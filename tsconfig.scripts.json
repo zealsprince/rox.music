@@ -1,0 +1,19 @@
+{
+  // scripts/ runs in node and sits outside the SvelteKit app, so it gets its own
+  // config. `npm run typecheck` covers this and the app in one go.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "types": ["node"],
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true
+  },
+  "include": ["scripts/**/*.ts", "src/data/images.ts"]
+}

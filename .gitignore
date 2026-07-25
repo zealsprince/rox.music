@@ -1,0 +1,29 @@
+node_modules
+
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Build-time release data, refetched on every build
+/src/data/release.generated.json
+
+# Built from src/enhance.ts by the prebuild step
+/static/js/enhance.js

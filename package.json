@@ -1,0 +1,43 @@
+{
+  "name": "rox.music",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run enhance && vite dev",
+    "dev:enhance": "tsx scripts/build-enhance.ts --watch",
+    "prebuild": "npm run enhance",
+    "build": "vite build",
+    "preview": "vite preview",
+    "enhance": "tsx scripts/build-enhance.ts",
+    "images": "tsx scripts/optimize-images.ts",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit -p tsconfig.scripts.json && npm run check",
+    "assets": "tsx scripts/build-assets.ts"
+  },
+  "dependencies": {
+    "@lucide/svelte": "^1.26.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.13.0",
+    "@eslint/compat": "^1.2.9",
+    "@sveltejs/adapter-static": "^3.0.8",
+    "@sveltejs/kit": "^2.20.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@tsconfig/svelte": "^5.0.4",
+    "@types/node": "^22.15.17",
+    "esbuild": "^0.28.1",
+    "eslint": "^9.26.0",
+    "eslint-plugin-format": "^1.0.1",
+    "eslint-plugin-svelte": "^3.9.0",
+    "globals": "^16.1.0",
+    "sass": "^1.89.0",
+    "sharp": "^0.34.2",
+    "svelte": "^5.28.1",
+    "svelte-check": "^4.2.1",
+    "tsx": "^4.23.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}

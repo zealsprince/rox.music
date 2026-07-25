@@ -1,0 +1,106 @@
+// The site palette is rox's own, lifted role for role from
+// crates/rox/src/design/palette.rs so the marketing site and the app agree on
+// what "rox amber on near-black" means. Dark is the app's default ladder, light
+// is the designed counterpart the app swaps in under a bright cover.
+//
+// If a role changes in the app, change it here. Nothing derives these at build
+// time on purpose: a Rust source parse would be a build dependency on a sibling
+// repo for six hex values.
+
+:root {
+  --accent: #ffb300;
+  --accent-hover: #fed840;
+  --highlight: #facc15;
+  // Accent as body-copy ink, for links. On dark the fill color is already
+  // 10.4:1 against the root, so it doubles as the text color.
+  --accent-text: #ffb300;
+  --accent-text-hover: #fed840;
+
+  --border: #333333;
+  --border-light: #3a3a3a;
+
+  --bg-root: #121212;
+  --bg-panel: #181818;
+  --bg-elevated: #1c1c1c;
+  --bg-control: #2a2a2a;
+  --bg-control-hover: #3a3a3a;
+  --bg-toolbar: #1f1f1f;
+
+  --text-bright: #e0e0e0;
+  --text: #c0c0c0;
+  --text-secondary: #a0a0a0;
+  --text-muted: #808080;
+  // Lifted from rox's #707070, which is 3.8:1 on the dark root. Same reason as
+  // the light ladder: this carries install instructions, not decoration.
+  --text-faint: #8a8a8a;
+  --text-on-accent: #121212;
+  --gridline: #6e6e6e;
+
+  color-scheme: dark;
+}
+
+:root.light {
+  --accent: #b07d00;
+  --accent-hover: #976a00;
+  --highlight: #1f1f1f;
+  // The light accent is 3.1:1 on the light root, fine as a fill behind dark ink
+  // but too weak for a link in a paragraph. Links get a darker amber that clears
+  // AA at 5.5:1 while reading as the same color.
+  --accent-text: #7d5800;
+  --accent-text-hover: #664700;
+
+  --border: #b3b3b3;
+  --border-light: #a9a9a9;
+
+  --bg-root: #ededed;
+  --bg-panel: #e7e7e7;
+  --bg-elevated: #e3e3e3;
+  --bg-control: #d5d5d5;
+  --bg-control-hover: #c5c5c5;
+  --bg-toolbar: #e0e0e0;
+
+  --text-bright: #1a1a1a;
+  --text: #3f3f3f;
+  --text-secondary: #5f5f5f;
+  // Darkened from rox's #7f7f7f / #8f8f8f, which are 3.4:1 and 2.9:1 here. Both
+  // carry real copy on this site (method notes, the Gatekeeper and SmartScreen
+  // instructions), so both have to clear AA.
+  --text-muted: #666666;
+  --text-faint: #6f6f6f;
+  // The one deliberate deviation from the app's ladder. rox pairs #fafafa with
+  // the light accent, which is 3.5:1 and fine for the app's own chrome, but the
+  // site's download buttons are normal-size text and that fails WCAG AA. Dark
+  // ink on the same amber is 5.2:1 and keeps the brand color intact.
+  --text-on-accent: #121212;
+  --gridline: #919191;
+
+  color-scheme: light;
+}
+
+:root {
+  // rox is a desktop app with no rounding in its default frame, and the site
+  // borrows that: square corners, hairline borders, density over air.
+  --radius: 0;
+  --hairline: 1px;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Inter",
+    "Roboto", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", "Consolas", monospace;
+
+  --step--1: clamp(0.79rem, 0.77rem + 0.1vw, 0.84rem);
+  --step-0: clamp(0.95rem, 0.92rem + 0.15vw, 1.05rem);
+  --step-1: clamp(1.2rem, 1.13rem + 0.35vw, 1.45rem);
+  --step-2: clamp(1.5rem, 1.36rem + 0.7vw, 2rem);
+  --step-3: clamp(1.9rem, 1.6rem + 1.5vw, 2.9rem);
+  --step-4: clamp(2.4rem, 1.8rem + 3vw, 4.5rem);
+
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3.5rem;
+  --space-2xl: 6rem;
+
+  --measure: 68ch;
+  --page-max: 1180px;
+}

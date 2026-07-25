@@ -1,0 +1,8 @@
+// Breakpoints as Sass variables, because media queries can't read custom
+// properties. Everything else that varies is a CSS custom property in
+// tokens.scss.
+
+$bp-sm: 30rem;
+$bp-md: 48rem;
+$bp-lg: 64rem;
+$bp-xl: 80rem;
