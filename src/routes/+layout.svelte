@@ -22,6 +22,13 @@
 <Footer />
 
 <style>
+  /* Takes whatever vertical slack is left over, which is what pins the footer to
+     the bottom on short pages. `0 auto` rather than `1 1 auto` so a long page
+     never gets its content squeezed to fit. */
+  main {
+    flex: 1 0 auto;
+  }
+
   .skip {
     position: absolute;
     left: -9999px;

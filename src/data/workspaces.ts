@@ -12,7 +12,7 @@ export const WORKSPACES: Workspace[] = [
   {
     id: 'default',
     name: 'Default',
-    blurb: 'What rox looks like out of the box: translucent surfaces, art tinting off, everything where a first run expects it.',
+    blurb: 'What rox looks like out of the box: translucent surfaces, art tinting off.',
   },
   {
     id: 'foobar',

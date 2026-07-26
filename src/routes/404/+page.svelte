@@ -22,9 +22,6 @@
 <section class="shell">
   <p class="code">404</p>
   <h1>Nothing here</h1>
-  <p class="body">
-    That page does not exist. The download is where it always was.
-  </p>
   <nav class="links" aria-label="Recovery">
     <a href="{base}/download">Download rox</a>
     <a href="{base}/workspaces">Workspaces</a>
@@ -46,12 +43,7 @@
 
   h1 {
     font-size: var(--step-3);
-    margin-block: var(--space-xs) var(--space-md);
-  }
-
-  .body {
-    color: var(--text-secondary);
-    margin-bottom: var(--space-lg);
+    margin-block: var(--space-xs) var(--space-lg);
   }
 
   .links {

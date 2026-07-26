@@ -26,9 +26,9 @@
   <div class="pitch">
     <h1>If Foobar2000 was made in the current year.</h1>
     <p class="lede">
-      A desktop music player for people with large, carefully tagged local libraries.
-      Panels you compose yourself, themes you can share, and a library that stays fast at
-      tens of thousands of tracks. Native on Linux, macOS and Windows.
+      A desktop music player for people with large, carefully tagged local libraries. You
+      build the panels yourself, and a theme is one file you can hand to someone else.
+      Native on Linux, macOS and Windows.
     </p>
     <DownloadButton release={data.release} />
   </div>
@@ -45,9 +45,7 @@
   <div class="shell">
     <h2>Under a second to a window</h2>
     <p class="prose">
-      rox ships as one binary and starts before you have let go of the mouse. The numbers
-      below are the same machine, the same 50,000-track library, and the same harness for
-      every player.
+      rox ships as one binary and starts before you've let go of the mouse.
     </p>
 
     <div class="table-scroll">
@@ -124,8 +122,8 @@
   <div class="shell">
     <h2>Make it yours</h2>
     <p class="prose">
-      A workspace is a whole look in one shareable file: layout, palette, appearance. Five
-      ship in the box, one click away on the welcome window.
+      Five workspaces ship in the box, one click away on the welcome window. Each one is a
+      single file you can edit, break, and hand to someone else.
       <a href="{base}/workspaces">See them all</a>.
     </p>
   </div>

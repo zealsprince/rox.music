@@ -34,7 +34,7 @@
   <h1>Download rox</h1>
   <p class="prose lede">
     One binary per platform. No installer, no account, nothing running in the background
-    when it is closed.
+    when it's closed.
   </p>
   <p class="version">
     <strong>v{data.release.version}</strong>
@@ -83,7 +83,7 @@
   <h2>Running it from a terminal</h2>
   <div class="prose">
     <p>
-      Pass rox files or folders and it plays them now, replacing what is loaded. Folders
+      Pass rox files or folders and it plays them now, replacing what's loaded. Folders
       expand to the audio files directly inside them.
     </p>
     <pre><code>rox ~/music/albums/loveless
@@ -103,7 +103,7 @@ rox --portable</code></pre>
   <h2>Building it yourself</h2>
   <div class="prose">
     <p>
-      Everything needed is in the repo. With Nix, <code>nix develop</code> then
+      With Nix, <code>nix develop</code> then
       <code>cargo run</code> gets you a dev shell carrying the Rust toolchain and the
       libraries gpui loads at runtime. Without Nix you need stable Rust and gpui's system
       libraries from your distro. The

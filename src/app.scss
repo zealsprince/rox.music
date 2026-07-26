@@ -32,6 +32,16 @@ html {
 
 body {
   margin: 0;
+
+  // Holds the footer at the bottom of the viewport on short pages like the 404,
+  // where it otherwise floated up under the heading. `main` takes the slack (see
+  // +layout.svelte). dvh so mobile browser chrome sliding away doesn't leave a
+  // gap, with vh first for anything that doesn't know dvh.
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+
   background: var(--bg-root);
   color: var(--text);
   font-family: var(--font-sans);

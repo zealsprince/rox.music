@@ -19,7 +19,11 @@ export interface Benchmark {
 // note below the table on the site is not optional, these are first-party
 // figures and have to read as such.
 export const BENCHMARK_METHOD
-  = 'All first-party numbers: one machine (Ryzen 9 5950X, Linux/Wayland), one 50k-track library on an external SSD, every player measured through the same harness with the library loaded. Memory is PSS across the full process tree. "Loaded" is when CPU settles after launch, idle is a paused player with the window visible.'
+  = 'I measured all of these myself, on one machine (Ryzen 9 5950X, Linux/Wayland) '
+    + 'with the same 50k-track library on an external SSD, every player through the same '
+    + 'harness with its library loaded. Memory is PSS across the full process tree. '
+    + '"Loaded" is when CPU settles after launch; idle is a paused player with the window '
+    + 'visible.'
 
 // Every player links out to its own project. A comparison that names competitors
 // should make them easy to go check, not just easy to lose to.
