@@ -6,8 +6,10 @@
 
 <Meta
   title="Workspaces"
-  description="A workspace is a whole look in one shareable file: layout, palette and appearance. Five ship with rox, from a Foobar2000 tribute to a monospace terminal."
+  fullTitle="rox workspaces - shareable themes and layouts"
+  description="A rox workspace is a whole look in one shareable file: layout, palette and appearance. Five ship in the box, from a Foobar2000 tribute to a monospace terminal."
   image="/social/workspaces.png"
+  imageAlt="The rox logo above the words: a whole look in one shareable file"
 />
 
 <section class="shell intro">
@@ -51,6 +53,10 @@
           sizes="(min-width: 64rem) 70vw, 100vw"
           priority={index === 0}
         />
+        <!-- A real heading per workspace, not just the tab label. The tab is a
+             control; this is the content, and it gives the page a structure
+             below the h1 for both crawlers and screen reader navigation. -->
+        <h2>{workspace.name}</h2>
         <p class="blurb">{workspace.blurb}</p>
       </article>
     {/each}
@@ -134,8 +140,13 @@
     pointer-events: none;
   }
 
-  .blurb {
+  .panel h2 {
     margin-top: var(--space-md);
+    font-size: var(--step-1);
+  }
+
+  .blurb {
+    margin-top: var(--space-xs);
     color: var(--text-secondary);
     font-size: var(--step--1);
   }

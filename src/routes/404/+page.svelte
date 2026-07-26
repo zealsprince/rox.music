@@ -1,30 +1,31 @@
+<!--
+  A real prerendered route, not the adapter's `fallback`. The fallback writes an
+  empty app shell, and with csr = false there is no client to fill it in, so
+  every 404 on the live site was a blank untitled page. This route prerenders to
+  build/404.html, which is exactly the file GitHub Pages serves for an unmatched
+  path.
+-->
 <script lang="ts">
   import { base } from '$app/paths'
-  import { page } from '$app/state'
   import { SITE } from '$data/site'
-
-  // adapter-static renders this once into 404.html, which GitHub Pages serves
-  // for every unmatched path. Without the file the fallback is an empty shell:
-  // no title, no heading, no way back. Which is exactly what it was.
-  const notFound = $derived(page.status === 404)
 </script>
 
 <svelte:head>
-  <title>{notFound ? 'Page not found' : 'Something went wrong'} - {SITE.name}</title>
+  <title>Page not found - {SITE.name}</title>
   <meta name="description" content="That page does not exist on rox.music." />
-  <!-- Error pages must never be indexed, and this one is reachable at any URL. -->
+  <!-- This route is reachable at /404 as well as through the Pages handler, so
+       it has to stay out of the index. `follow` still lets the links below pass
+       crawlers back into the real pages. -->
   <meta name="robots" content="noindex, follow" />
 </svelte:head>
 
 <section class="shell">
-  <p class="code">{page.status}</p>
-  <h1>{notFound ? 'Nothing here' : 'Something went wrong'}</h1>
+  <p class="code">404</p>
+  <h1>Nothing here</h1>
   <p class="body">
-    {notFound
-      ? 'That page does not exist. The download is where it always was.'
-      : (page.error?.message ?? 'An unexpected error occurred.')}
+    That page does not exist. The download is where it always was.
   </p>
-  <nav class="links">
+  <nav class="links" aria-label="Recovery">
     <a href="{base}/download">Download rox</a>
     <a href="{base}/workspaces">Workspaces</a>
     <a href="{base}/">Home</a>

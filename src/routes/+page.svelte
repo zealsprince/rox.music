@@ -4,6 +4,7 @@
   import DownloadButton from '$components/DownloadButton.svelte'
   import Meta from '$components/Meta.svelte'
   import Screenshot from '$components/Screenshot.svelte'
+  import StructuredData from '$components/StructuredData.svelte'
   import {
     BENCHMARK_FOOTNOTE_URL,
     BENCHMARK_METHOD,
@@ -19,6 +20,7 @@
 </script>
 
 <Meta title={SITE.name} description={SITE.description} />
+<StructuredData release={data.release} />
 
 <section class="hero shell">
   <div class="pitch">

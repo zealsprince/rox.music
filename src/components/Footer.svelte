@@ -11,7 +11,9 @@
       rox is built by <a href="https://zealsprince.com" rel="me">Andrew Lake</a> in Rust on
       <a href="https://gpui.rs" rel="noreferrer">gpui</a>, the UI framework behind
       <a href="https://zed.dev" rel="noreferrer">Zed</a>. Free and open source under the
-      GPL.
+      <a href="https://www.gnu.org/licenses/agpl-3.0.html" rel="license noreferrer">
+        AGPL-3.0
+      </a>.
     </p>
 
     <nav aria-label="Footer">

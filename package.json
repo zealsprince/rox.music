@@ -14,7 +14,8 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit -p tsconfig.scripts.json && npm run check",
-    "assets": "tsx scripts/build-assets.ts"
+    "assets": "tsx scripts/build-assets.ts",
+    "postbuild": "tsx scripts/postbuild-aliases.ts"
   },
   "dependencies": {
     "@lucide/svelte": "^1.26.0"

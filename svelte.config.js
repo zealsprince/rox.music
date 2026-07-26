@@ -7,9 +7,11 @@ export default {
     adapter: adapter({
       pages: 'build',
       assets: 'build',
-      // Every route is prerendered, so there is no SPA shell to fall back to.
-      // 404.html lets Pages serve a real 404 instead of a 200 with an empty page.
-      fallback: '404.html',
+      // No fallback on purpose. Every route is prerendered, so there is no SPA
+      // shell worth writing, and `fallback: '404.html'` actively hurt: it wrote
+      // an empty app shell that csr = false never fills in, so every 404 was a
+      // blank untitled page. src/routes/404 prerenders to build/404.html
+      // instead, which is the file GitHub Pages serves for unmatched paths.
       strict: true,
     }),
     paths: {

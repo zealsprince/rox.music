@@ -2,6 +2,7 @@
   import type { PageData } from './$types'
   import Meta from '$components/Meta.svelte'
   import PlatformIcon from '$components/PlatformIcon.svelte'
+  import StructuredData from '$components/StructuredData.svelte'
   import { PLATFORMS } from '$data/platforms'
   import { SITE } from '$data/site'
   import { Download } from '@lucide/svelte'
@@ -22,9 +23,12 @@
 
 <Meta
   title="Download"
-  description="Download rox for Linux, macOS or Windows. One binary, no installer, no account."
+  fullTitle="Download rox for Linux, macOS or Windows"
+  description="Download rox free for Linux, macOS or Windows. One binary per platform, no installer and no account. Open source under the AGPL."
   image="/social/download.png"
+  imageAlt="The rox logo above the words: download for Linux, macOS and Windows"
 />
+<StructuredData release={data.release} />
 
 <section class="shell intro">
   <h1>Download rox</h1>
