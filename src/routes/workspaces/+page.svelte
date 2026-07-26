@@ -136,7 +136,6 @@
 
   .blurb {
     margin-top: var(--space-md);
-    max-width: var(--measure);
     color: var(--text-secondary);
     font-size: var(--step--1);
   }

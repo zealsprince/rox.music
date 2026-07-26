@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "enhance": "tsx scripts/build-enhance.ts",
     "images": "tsx scripts/optimize-images.ts",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit -p tsconfig.scripts.json && npm run check",
     "assets": "tsx scripts/build-assets.ts"

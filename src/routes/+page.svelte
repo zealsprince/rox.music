@@ -291,7 +291,6 @@
   .method {
     color: var(--text-muted);
     font-size: var(--step--1);
-    max-width: var(--measure);
   }
 
   .method a {
