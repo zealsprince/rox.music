@@ -33,10 +33,15 @@
     <DownloadButton release={data.release} />
   </div>
 
+  <!--
+    `sizes` tracks the layout: the hero is the 7fr column of a 5fr/7fr grid with
+    a 3.5rem gap, inside .shell's 1116px content width, so (1116 - 56) * 7/12 =
+    618px at full width. The grid collapses to one column below 64rem.
+  -->
   <Screenshot
     id="hero"
     alt="rox running the NekoRoX-style default workspace, showing the library, cover art, queue and a spectrum panel"
-    sizes="(min-width: 64rem) 60vw, 100vw"
+    sizes="(min-width: 1180px) 618px, (min-width: 64rem) calc((100vw - 7.5rem) * 7 / 12), (min-width: 48rem) calc(100vw - 4rem), calc(100vw - 2.5rem)"
     priority
   />
 </section>

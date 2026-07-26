@@ -3,6 +3,7 @@
   import Meta from '$components/Meta.svelte'
   import PlatformIcon from '$components/PlatformIcon.svelte'
   import StructuredData from '$components/StructuredData.svelte'
+  import { PACKAGES } from '$data/packages'
   import { PLATFORMS } from '$data/platforms'
   import { SITE } from '$data/site'
   import { Download } from '@lucide/svelte'
@@ -78,6 +79,29 @@
     </article>
   {/each}
 </div>
+
+<section class="shell block">
+  <h2>Package managers</h2>
+  <p class="prose">
+    Two routes that keep rox updated alongside the rest of your system.
+  </p>
+
+  <div class="packages">
+    {#each PACKAGES as pkg (pkg.id)}
+      <article>
+        <h3>{pkg.name} <span class="scope">{pkg.scope}</span></h3>
+        <pre><code>{pkg.commands.join('\n')}</code></pre>
+        <p>{pkg.body}</p>
+        {#if pkg.caveat}
+          <p class="caveat">{pkg.caveat}</p>
+        {/if}
+        <p class="more">
+          <a href={pkg.link.href} rel="noreferrer">{pkg.link.label}</a>
+        </p>
+      </article>
+    {/each}
+  </div>
+</section>
 
 <section class="shell block">
   <h2>Running it from a terminal</h2>
@@ -266,5 +290,51 @@ rox --portable</code></pre>
   .block h2 {
     font-size: var(--step-2);
     margin-bottom: var(--space-md);
+  }
+
+  .packages {
+    display: grid;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  }
+
+  .packages article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    background: var(--bg-panel);
+    border: var(--hairline) solid var(--border);
+    padding: var(--space-md);
+  }
+
+  .packages h3 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: var(--step-1);
+  }
+
+  .scope {
+    color: var(--text-muted);
+    font-size: var(--step--1);
+    font-weight: 400;
+  }
+
+  .packages pre {
+    background: var(--bg-root);
+  }
+
+  .packages p {
+    color: var(--text-secondary);
+    font-size: var(--step--1);
+  }
+
+  /* Pushes the source link to the bottom so cards of different heights still
+     line their links up. */
+  .more {
+    margin-top: auto;
+    padding-top: var(--space-xs);
   }
 </style>

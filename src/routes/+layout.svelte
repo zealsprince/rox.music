@@ -4,7 +4,7 @@
   import Header from '$components/Header.svelte'
   import '../app.scss'
 
-  const { children } = $props()
+  const { children, data } = $props()
 </script>
 
 <svelte:head>
@@ -13,7 +13,7 @@
 
 <a class="skip" href="#main">Skip to content</a>
 
-<Header />
+<Header stars={data.repo.stars} />
 
 <main id="main">
   {@render children()}

@@ -1,7 +1,8 @@
-// The widths the screenshot encoder tries. What it actually emitted per image
-// lives in screenshots.generated.json, because a source narrower than a target
-// produces no file at that width and the srcset must not claim otherwise.
-export const SCREENSHOT_WIDTHS = [640, 1024, 1440] as const
+// Intermediate rungs the screenshot encoder tries. The source's own width is
+// always emitted on top of these, so the srcset can always offer full native
+// resolution; see optimize-images.ts. What actually got written per image lives
+// in screenshots.generated.json.
+export const SCREENSHOT_WIDTHS = [640, 1024, 1440, 1920] as const
 
 export interface ScreenshotEntry {
   /** Intrinsic size of the source, for reserving the box before load. */

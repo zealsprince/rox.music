@@ -9,6 +9,11 @@ on:
   # download page without anyone touching this repo.
   repository_dispatch:
     types: [rox-release]
+  # The header's star count and the download page's version are baked in at
+  # build time, so the site only learns about either when it rebuilds. A push
+  # and a release both trigger one; this catches the days with neither.
+  schedule:
+    - cron: '17 6 * * *'
   workflow_dispatch:
 
 permissions:

@@ -27,3 +27,6 @@ vite.config.ts.timestamp-*
 
 # Built from src/enhance.ts by the prebuild step
 /static/js/enhance.js
+
+# Build-time repo stats, refetched on every build
+/src/data/repo.generated.json

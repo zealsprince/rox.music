@@ -47,10 +47,17 @@
   <div class="panels">
     {#each WORKSPACES as workspace, index (workspace.id)}
       <article class="panel" data-panel={workspace.id}>
+        <!--
+          `sizes` describes the real box: the full content width of .shell, which
+          is max-width 1180px minus 2rem of padding each side = 1116px, dropping
+          to 1.25rem of padding below 48rem. The old "70vw" under-budgeted by a
+          third, so the browser fetched a file sized for an 832px slot and then
+          stretched it across 1116px. Update it if .shell or --page-max move.
+        -->
         <Screenshot
           id={workspace.id}
           alt="The {workspace.name} workspace in rox"
-          sizes="(min-width: 64rem) 70vw, 100vw"
+          sizes="(min-width: 1180px) 1116px, (min-width: 48rem) calc(100vw - 4rem), calc(100vw - 2.5rem)"
           priority={index === 0}
         />
         <!-- A real heading per workspace, not just the tab label. The tab is a

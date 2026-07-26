@@ -52,24 +52,34 @@ function lightPath(from: string): string {
 }
 
 /**
- * Writes every width of one image in both formats, skipping widths past the
- * source's own so no srcset can ever advertise a file that was not written.
- * Returns the widths that made it to disk and the bytes they cost.
+ * The widths to emit for a source: the ladder rungs below its own width, then
+ * its own width on top.
+ *
+ * Including the native width is the point. Without it a 1416px source topped out
+ * at the 1024 rung, because 1440 was skipped as an upscale, and the browser then
+ * had nothing sharp enough for a full-width slot on a 2x display.
+ *
+ * Every returned width is a width that gets written and is used verbatim in the
+ * filename, so the manifest and the disk can't disagree.
+ */
+function targetWidths(intrinsicWidth: number): number[] {
+  const rungs = SCREENSHOT_WIDTHS.filter(w => w < intrinsicWidth)
+  return [...rungs, intrinsicWidth]
+}
+
+/**
+ * Writes every target width of one image in both formats. Returns the widths
+ * that made it to disk and the bytes they cost.
  */
 async function encodeVariant(
   raw: Buffer,
   intrinsicWidth: number,
   outPrefix: string,
 ): Promise<{ widths: number[], bytes: number }> {
-  const widths: number[] = []
+  const widths = targetWidths(intrinsicWidth)
   let bytes = 0
 
-  for (const width of SCREENSHOT_WIDTHS) {
-    // Never upscale. A width past the source only gets emitted when it is the
-    // smallest one, so every screenshot has at least one variant.
-    if (width > intrinsicWidth && width !== SCREENSHOT_WIDTHS[0])
-      continue
-
+  for (const width of widths) {
     const resized = sharp(raw).resize({ width, withoutEnlargement: true })
     const avif = await resized.clone().avif({ quality: 55, effort: 6 }).toBuffer()
     const webp = await resized.clone().webp({ quality: 80 }).toBuffer()
@@ -77,7 +87,6 @@ async function encodeVariant(
     await fs.writeFile(path.join(OUT, `${outPrefix}-${width}.avif`), avif)
     await fs.writeFile(path.join(OUT, `${outPrefix}-${width}.webp`), webp)
     bytes += avif.length + webp.length
-    widths.push(Math.min(width, intrinsicWidth))
   }
 
   return { widths, bytes }
