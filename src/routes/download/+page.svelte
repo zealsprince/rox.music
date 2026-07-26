@@ -228,6 +228,33 @@ rox --portable</code></pre>
     font-size: var(--step--1);
   }
 
+  /* Side by side, each card's sections should sit on the same rows: one line
+     for the buttons, one for the filenames, one for the steps, one for the
+     caveats. Subgrid shares the row tracks across cards, and cards that wrap
+     to their own line get their own tracks, so mobile is unaffected. Kept
+     after the base rules above, since the margin-top reset ties on
+     specificity and has to win on order. */
+  @supports (grid-template-rows: subgrid) {
+    article {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 5;
+      row-gap: var(--space-sm);
+    }
+
+    .missing {
+      /* Stands in for the button and filename rows when a build is absent. */
+      grid-row: span 2;
+    }
+
+    .caveat,
+    .missing {
+      /* The flex bottom-pinning would float short caveats off their shared
+         row and misalign the rules. The track already puts them level. */
+      margin-top: 0;
+    }
+  }
+
   .block {
     padding-block: var(--space-xl) 0;
   }

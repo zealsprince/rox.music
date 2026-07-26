@@ -1,56 +1,55 @@
 {
   "hero": {
-    "width": 1274,
-    "height": 1067,
+    "width": 1000,
+    "height": 936,
     "widths": [
-      640,
-      1024
+      640
     ],
-    "hasLight": false
+    "hasLight": true
   },
   "default": {
-    "width": 1144,
-    "height": 888,
+    "width": 1416,
+    "height": 876,
     "widths": [
       640,
       1024
     ],
-    "hasLight": false
+    "hasLight": true
   },
   "foobar": {
-    "width": 1159,
-    "height": 721,
+    "width": 1416,
+    "height": 848,
     "widths": [
       640,
       1024
     ],
-    "hasLight": false
+    "hasLight": true
   },
   "llama": {
-    "width": 1165,
-    "height": 727,
+    "width": 1416,
+    "height": 876,
     "widths": [
       640,
       1024
     ],
-    "hasLight": false
+    "hasLight": true
   },
   "metro": {
-    "width": 1255,
-    "height": 793,
+    "width": 1416,
+    "height": 876,
     "widths": [
       640,
       1024
     ],
-    "hasLight": false
+    "hasLight": true
   },
   "phosphor": {
-    "width": 1055,
-    "height": 656,
+    "width": 1416,
+    "height": 876,
     "widths": [
       640,
       1024
     ],
-    "hasLight": false
+    "hasLight": true
   }
 }

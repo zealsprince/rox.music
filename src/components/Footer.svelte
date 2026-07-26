@@ -8,8 +8,10 @@
 <footer>
   <div class="shell inner">
     <p class="tag">
-      rox is built by <a href="https://zealsprince.com" rel="me">Andrew Lake</a>. Free and
-      open source under the GPL.
+      rox is built by <a href="https://zealsprince.com" rel="me">Andrew Lake</a> in Rust on
+      <a href="https://gpui.rs" rel="noreferrer">gpui</a>, the UI framework behind
+      <a href="https://zed.dev" rel="noreferrer">Zed</a>. Free and open source under the
+      GPL.
     </p>
 
     <nav aria-label="Footer">

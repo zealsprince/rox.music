@@ -28,6 +28,7 @@
     entry.widths.map(w => `${base}/screenshots/${variant}-${w}.${ext} ${w}w`).join(', ')
 
   const fallbackWidth = $derived(entry.widths[entry.widths.length - 1])
+  const dark = $derived(`${id}-dark`)
   const light = $derived(`${id}-light`)
 </script>
 
@@ -60,10 +61,10 @@
       type="image/webp"
     />
   {/if}
-  <source srcset={set(id, 'avif')} {sizes} type="image/avif" />
-  <source srcset={set(id, 'webp')} {sizes} type="image/webp" />
+  <source srcset={set(dark, 'avif')} {sizes} type="image/avif" />
+  <source srcset={set(dark, 'webp')} {sizes} type="image/webp" />
   <img
-    src="{base}/screenshots/{id}-{fallbackWidth}.webp"
+    src="{base}/screenshots/{dark}-{fallbackWidth}.webp"
     {sizes}
     {alt}
     width={entry.width}

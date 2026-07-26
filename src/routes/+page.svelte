@@ -149,6 +149,16 @@
     letter-spacing: -0.035em;
   }
 
+  /* Once the hero goes two-column the pitch column stops growing (the shell
+     caps at --page-max) but step-4 keeps scaling with the viewport, and the
+     headline ends up wrapping one word per line. Size it to the column it
+     actually lives in. */
+  @media (min-width: 64rem) {
+    h1 {
+      font-size: clamp(2.3rem, 1rem + 2.2vw, 3.3rem);
+    }
+  }
+
   .lede {
     margin-block: var(--space-md) var(--space-lg);
     font-size: var(--step-1);

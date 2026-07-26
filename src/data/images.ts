@@ -10,8 +10,9 @@ export interface ScreenshotEntry {
   /** Widths that exist on disk for this image. */
   widths: number[]
   /**
-   * Whether `<id>-light-<w>.<ext>` was written too. False means the site shows
-   * the dark shot in both themes, on a dark mat so it reads as deliberate.
+   * Whether `<id>-light-<w>.<ext>` was written alongside `<id>-dark-<w>.<ext>`.
+   * False means the site shows the dark shot in both themes, on a dark mat so
+   * it reads as deliberate.
    */
   hasLight: boolean
 }

@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run enhance && vite dev",
+    "dev": "concurrently -r npm:dev:enhance \"vite dev\"",
     "dev:enhance": "tsx scripts/build-enhance.ts --watch",
     "prebuild": "npm run enhance",
     "build": "vite build",
@@ -27,6 +27,7 @@
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@tsconfig/svelte": "^5.0.4",
     "@types/node": "^22.15.17",
+    "concurrently": "^10.0.4",
     "esbuild": "^0.28.1",
     "eslint": "^9.26.0",
     "eslint-plugin-format": "^1.0.1",

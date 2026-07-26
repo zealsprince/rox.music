@@ -5,10 +5,12 @@
 //   npm run images                  # reads ../rox
 //   ROX_REPO=/path/to/rox npm run images
 //
-// Each screenshot may have a light-theme counterpart, named by suffixing the
-// source with `-light` (Default.png -> Default-light.png). It is optional: a
-// missing one just means that image has no light variant and the site keeps
-// showing the dark shot on a dark mat. Drop the file in and rerun.
+// Each screenshot may have a light-theme counterpart. Workspace shots ship as
+// pairs (Default_Dark.png / Default_Light.png); anything else names its light
+// variant by suffixing the source with `-light` (nekorox.jpg ->
+// nekorox-light.jpg). It is optional: a missing one just means that image has
+// no light variant and the site keeps showing the dark shot on a dark mat.
+// Drop the file in and rerun.
 //
 // Output lands in static/screenshots and is committed, so a normal build needs
 // neither sharp nor the rox checkout.
@@ -31,18 +33,20 @@ const OUT = path.resolve('static/screenshots')
 const MANIFEST = path.resolve('src/data/screenshots.generated.json')
 
 const SOURCES: Source[] = [
-  { id: 'hero', from: 'docs/0S-screenshots/nekorox.jpg' },
-  { id: 'default', from: 'crates/rox/assets/workspaces/Default.png' },
-  { id: 'foobar', from: 'crates/rox/assets/workspaces/Foobar.png' },
-  { id: 'llama', from: 'crates/rox/assets/workspaces/Llama.png' },
-  { id: 'metro', from: 'crates/rox/assets/workspaces/Metro.png' },
-  { id: 'phosphor', from: 'crates/rox/assets/workspaces/Phosphor.png' },
+  { id: 'hero', from: 'docs/0S-screenshots/Preview_Dark.png' },
+  { id: 'default', from: 'crates/rox/assets/workspaces/Default_Dark.png' },
+  { id: 'foobar', from: 'crates/rox/assets/workspaces/Foobar_Dark.png' },
+  { id: 'llama', from: 'crates/rox/assets/workspaces/Llama_Dark.png' },
+  { id: 'metro', from: 'crates/rox/assets/workspaces/Metro_Dark.png' },
+  { id: 'phosphor', from: 'crates/rox/assets/workspaces/Phosphor_Dark.png' },
 ]
 
 const kb = (n: number): string => `${Math.round(n / 1024)} KB`
 
-/** `a/b/Default.png` -> `a/b/Default-light.png` */
+/** `Default_Dark.png` -> `Default_Light.png`, else `nekorox.jpg` -> `nekorox-light.jpg` */
 function lightPath(from: string): string {
+  if (from.includes('_Dark'))
+    return from.replace('_Dark', '_Light')
   const ext = path.extname(from)
   return `${from.slice(0, -ext.length)}-light${ext}`
 }
@@ -98,7 +102,9 @@ async function encode(
   if (!meta.width || !meta.height)
     throw new Error(`could not read dimensions of ${input}`)
 
-  const dark = await encodeVariant(raw, meta.width, source.id)
+  // Output names carry the theme explicitly (`<id>-dark`, `<id>-light`), since
+  // "default" would mislead: some workspaces, like Foobar, default to light.
+  const dark = await encodeVariant(raw, meta.width, `${source.id}-dark`)
 
   // The light counterpart is optional and silently absent most of the time.
   let hasLight = false
