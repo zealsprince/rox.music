@@ -80,7 +80,7 @@
   {/each}
 </div>
 
-<section class="shell block">
+<section id="packages" class="shell block">
   <h2>Package managers</h2>
   <p class="prose">
     Two routes that keep rox updated alongside the rest of your system.

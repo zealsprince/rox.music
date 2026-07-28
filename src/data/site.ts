@@ -14,6 +14,15 @@ export const SITE = {
   issues: 'https://github.com/zealsprince/rox/issues/new/choose',
   releases: 'https://github.com/zealsprince/rox/releases',
   docs: 'https://github.com/zealsprince/rox/tree/main/docs',
+  // #rox on irc.hivecom.net. Two routes, because the people who want IRC and
+  // the people who have never opened a client want opposite things: the first
+  // hands the channel to whatever client is already registered for the scheme,
+  // the second opens in the tab they are already in.
+  //
+  // TLS on 6697, which is what ircs:// already implies, but written out because
+  // client handling of the bare scheme is not consistent.
+  chatDirect: 'ircs://irc.hivecom.net:6697/rox',
+  chat: 'https://hivecom.net/chat?channel=rox',
   // Kept under 160 characters so Google shows the whole thing instead of cutting
   // it mid-clause. The old one ran to 230 and lost its last two sentences. This
   // one carries "music player", which the title had to give up for "Foobar2000".

@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Release } from '$types/release'
+  import { base } from '$app/paths'
   import { PLATFORM_BY_ID } from '$data/platforms'
   import { SITE } from '$data/site'
   import { Download } from '@lucide/svelte'
@@ -39,6 +40,18 @@
     </a>
   {/each}
 
+  <!--
+    The tarball above works everywhere, but on Arch or NixOS it is the wrong
+    answer: those two have a packaged rox that updates with the rest of the
+    system. Only shown once enhance.js has marked the visitor as Linux, so
+    nobody else reads a distro aside.
+  -->
+  <p class="packaged">
+    On Arch or NixOS?
+    <a href="{base}/download#packages">Install it from the AUR or the Nix flake</a>
+    instead.
+  </p>
+
   <p class="meta">
     v{release.version} &middot; Linux, macOS, Windows &middot;
     <a href={SITE.releases} rel="noreferrer">all downloads</a>
@@ -76,5 +89,15 @@
   .meta {
     color: var(--text-muted);
     font-size: var(--step--1);
+  }
+
+  .packaged {
+    display: none;
+    color: var(--text-secondary);
+    font-size: var(--step--1);
+  }
+
+  :global(html[data-platform='linux']) .packaged {
+    display: block;
   }
 </style>
