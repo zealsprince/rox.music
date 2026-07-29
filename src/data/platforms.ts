@@ -19,13 +19,12 @@ export const PLATFORMS: Platform[] = [
     id: 'macos',
     label: 'macOS',
     artifact: 'macos-aarch64',
-    archive: 'zip',
+    archive: 'dmg',
     steps: [
-      'Unzip the download.',
-      'Drag rox.app into Applications.',
+      'Open the DMG.',
+      'Drag rox into Applications.',
     ],
-    caveat:
-      'The build is unsigned. If Gatekeeper blocks the first launch, allow it under System Settings > Privacy & Security > Open Anyway.',
+    caveat: null,
   },
   {
     id: 'windows',
