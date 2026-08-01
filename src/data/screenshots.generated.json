@@ -29,11 +29,12 @@
     "hasLight": true
   },
   "catrox": {
-    "width": 1024,
-    "height": 960,
+    "width": 1416,
+    "height": 848,
     "widths": [
       640,
-      1024
+      1024,
+      1416
     ],
     "hasLight": true
   },
