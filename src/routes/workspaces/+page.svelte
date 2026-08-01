@@ -7,7 +7,7 @@
 <Meta
   title="Workspaces"
   fullTitle="rox workspaces - shareable themes and layouts"
-  description="A rox workspace is a whole look in one shareable file: layout, palette and appearance. Five ship in the box, from a Foobar2000 tribute to a monospace terminal."
+  description="A rox workspace is a whole look in one shareable file: layout, palette and appearance. Six ship in the box, from a Foobar2000 tribute to a monospace terminal."
   image="/social/workspaces.png"
   imageAlt="The rox logo above the words: a whole look in one shareable file"
 />
@@ -17,12 +17,12 @@
   <p class="prose lede">
     A workspace is a whole look in one file: layout, palette, appearance. Load one from
     the welcome window or settings, change anything you like, and hand the file to
-    someone else to get the same thing back. These five ship in the box.
+    someone else to get the same thing back. These six ship in the box.
   </p>
 </section>
 
 <!--
-  A switcher rather than five stacked full windows, because stacked they read as
+  A switcher rather than six stacked full windows, because stacked they read as
   repetition instead of as range.
 
   Built on radio inputs so it works with no JavaScript at all, which matters
@@ -161,10 +161,11 @@
   /*
     One rule per workspace tying a checked input to its panel. Written out rather
     than generated: :has() with :nth-of-type would be less legible and no shorter
-    at five items.
+    at six items.
   */
   .tabs:has(#ws-default:checked) ~ .panels .panel[data-panel='default'],
   .tabs:has(#ws-foobar:checked) ~ .panels .panel[data-panel='foobar'],
+  .tabs:has(#ws-catrox:checked) ~ .panels .panel[data-panel='catrox'],
   .tabs:has(#ws-llama:checked) ~ .panels .panel[data-panel='llama'],
   .tabs:has(#ws-metro:checked) ~ .panels .panel[data-panel='metro'],
   .tabs:has(#ws-phosphor:checked) ~ .panels .panel[data-panel='phosphor'] {

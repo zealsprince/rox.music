@@ -28,6 +28,15 @@
     ],
     "hasLight": true
   },
+  "catrox": {
+    "width": 1024,
+    "height": 960,
+    "widths": [
+      640,
+      1024
+    ],
+    "hasLight": true
+  },
   "llama": {
     "width": 1416,
     "height": 876,

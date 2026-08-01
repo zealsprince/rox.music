@@ -36,6 +36,7 @@ const SOURCES: Source[] = [
   { id: 'hero', from: 'docs/0S-screenshots/Preview_Dark.png' },
   { id: 'default', from: 'crates/rox/assets/workspaces/Default_Dark.png' },
   { id: 'foobar', from: 'crates/rox/assets/workspaces/Foobar_Dark.png' },
+  { id: 'catrox', from: 'crates/rox/assets/workspaces/CaTRoX_Dark.png' },
   { id: 'llama', from: 'crates/rox/assets/workspaces/Llama_Dark.png' },
   { id: 'metro', from: 'crates/rox/assets/workspaces/Metro_Dark.png' },
   { id: 'phosphor', from: 'crates/rox/assets/workspaces/Phosphor_Dark.png' },

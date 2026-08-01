@@ -127,7 +127,7 @@
   <div class="shell">
     <h2>Make it yours</h2>
     <p class="prose">
-      Five workspaces ship in the box, one click away on the welcome window. Each one is a
+      Six workspaces ship in the box, one click away on the welcome window. Each one is a
       single file you can edit, break, and hand to someone else.
       <a href="{base}/workspaces">See them all</a>.
     </p>

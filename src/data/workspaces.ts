@@ -5,7 +5,7 @@ export interface Workspace {
   blurb: string
 }
 
-// The five workspaces rox ships in the box, one click away on the welcome
+// The six workspaces rox ships in the box, one click away on the welcome
 // window. Screenshots come from crates/rox/assets/workspaces in the rox repo and
 // are re-encoded by scripts/optimize-images.ts.
 export const WORKSPACES: Workspace[] = [
@@ -18,6 +18,11 @@ export const WORKSPACES: Workspace[] = [
     id: 'foobar',
     name: 'Foobar',
     blurb: 'The layout this whole project is an argument with. Opaque, dense, OS decorations on, menubar where it always was.',
+  },
+  {
+    id: 'catrox',
+    name: 'CaTRoX',
+    blurb: 'The CaTRoX foobar2000 skin you know and love that started it all.',
   },
   {
     id: 'llama',
