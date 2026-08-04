@@ -8,11 +8,11 @@ export interface Feature {
 export const FEATURES: Feature[] = [
   {
     title: 'Panels you compose',
-    body: 'Two dozen panel types, from library and queue to spectrum, waveform and VU. Arrange them how you want, duplicate one with its own config, pop it out into a real OS window.',
+    body: 'Forty panel types, from library and queue to artist and genre grids, spectrum, waveform and VU. Arrange them how you want, duplicate one with its own config, pop it out into a real OS window.',
   },
   {
     title: 'A library that holds up',
-    body: 'A parallel scanner reads full tags and true durations from every file, not a header skim. Folder watching survives renames, and files with unreadable tags get indexed by filename so nothing drops silently.',
+    body: 'A parallel scanner reads full tags, true durations, and each file\'s own codec, sample rate and bit depth, not a header skim. Folder watching survives renames, and files with unreadable tags get indexed by filename so nothing drops silently.',
   },
   {
     title: 'Tagging you can trust',
@@ -25,6 +25,10 @@ export const FEATURES: Feature[] = [
   {
     title: 'Gapless playback',
     body: 'A single-stream engine with shuffle, repeat and play-next. It recovers when an audio device disappears, and media keys and now-playing work on all three platforms.',
+  },
+  {
+    title: 'An audio chain worth opening',
+    body: 'A ten-band equalizer in a window of its own, crossfade that leaves an album\'s own splices alone, ReplayGain off the tags with a loudness pass for the files nobody ever measured, and an exclusive output mode that tells you what the hardware agreed to.',
   },
   {
     title: 'Lyrics and history',

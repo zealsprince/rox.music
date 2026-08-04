@@ -55,6 +55,8 @@
           'Shareable workspaces carrying layout, palette and appearance',
           'Deep tag editing with atomic writes and batch edits',
           'Gapless playback',
+          'Equalizer, crossfade and ReplayGain',
+          'Exclusive bit-perfect output',
           'Synced lyrics',
           'Last.fm scrobbling',
         ],
