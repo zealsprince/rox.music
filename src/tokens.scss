@@ -102,5 +102,10 @@
   --space-2xl: 6rem;
 
   --measure: 68ch;
+  // The reading column on the long-form pages. Wider than --measure because
+  // everything shares this one edge there, screenshots and tables included, and
+  // 68ch is a comfortable paragraph but a cramped screenshot. Kept in ch so it
+  // scales with the type rather than drifting against it.
+  --reading: 82ch;
   --page-max: 1180px;
 }

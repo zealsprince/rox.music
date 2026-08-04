@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Release } from '$types/release'
+  import { page } from '$app/state'
   import { SITE } from '$data/site'
 
   interface Props {
@@ -8,9 +9,31 @@
      * version and download URL instead of a stale literal.
      */
     release?: Release
+    /** What this URL is about. Mirrors the <title> and description in Meta. */
+    name: string
+    description: string
+    /** Path to the page's lead image under static/, for primaryImageOfPage. */
+    image?: string
+    /**
+     * Label for this page in the trail under Home. Home passes nothing, since a
+     * breadcrumb whose only entry is the page you're on says nothing.
+     */
+    breadcrumb?: string
   }
 
-  const { release }: Props = $props()
+  const {
+    release,
+    name,
+    description,
+    image = '/social/default.png',
+    breadcrumb,
+  }: Props = $props()
+
+  // Same reasoning as Meta's canonical: prerendered, so page.url is the
+  // build-time URL. The origin has to come from SITE or every @id in the graph
+  // points at localhost.
+  const canonical = $derived(new URL(page.url.pathname, SITE.origin).href)
+  const imageUrl = $derived(new URL(image, SITE.origin).href)
 
   // One @graph rather than several loose blocks: it lets the nodes reference
   // each other by @id, so the author on the app is the same entity as the
@@ -50,6 +73,8 @@
         'installUrl': `${SITE.origin}/download`,
         'codeRepository': SITE.repo,
         'screenshot': `${SITE.origin}/social/default.png`,
+        'softwareHelp': SITE.docs,
+        'sameAs': [SITE.repo],
         'featureList': [
           'Composable panel UI with pop-out windows',
           'Shareable workspaces carrying layout, palette and appearance',
@@ -77,6 +102,34 @@
           }
           : {}),
       },
+      // Until this node existed, all three URLs emitted the same site-level
+      // graph, so /workspaces described the app and never itself. This is the
+      // node that says what *this* URL is, hangs it off the WebSite, and gives
+      // the breadcrumb something to attach to.
+      {
+        '@type': 'WebPage',
+        '@id': `${canonical}#webpage`,
+        'url': canonical,
+        name,
+        description,
+        'isPartOf': { '@id': `${SITE.origin}/#website` },
+        'about': { '@id': `${SITE.origin}/#app` },
+        'primaryImageOfPage': imageUrl,
+        'inLanguage': 'en',
+        ...(breadcrumb ? { breadcrumb: { '@id': `${canonical}#breadcrumb` } } : {}),
+      },
+      // The last crumb deliberately carries no `item`. Google reads a trailing
+      // self-link as a redundant hop and drops the whole trail over it.
+      ...(breadcrumb
+        ? [{
+          '@type': 'BreadcrumbList',
+          '@id': `${canonical}#breadcrumb`,
+          'itemListElement': [
+            { '@type': 'ListItem', 'position': 1, 'name': 'rox', 'item': `${SITE.origin}/` },
+            { '@type': 'ListItem', 'position': 2, 'name': breadcrumb },
+          ],
+        }]
+        : []),
     ],
   })
 

@@ -3,8 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.ico" type="image/svg+xml" />
+    <!--
+      Two icon tags, because the .ico is not an SVG and declaring it as one is
+      the kind of mismatch a strict consumer drops the whole tag over. Google's
+      favicon crawler is one of them, and a result row with no favicon next to
+      it is the visible cost. The SVG is listed second so browsers that scale it
+      prefer it; the .ico stays as the floor for the ones that don't.
+    -->
+    <link rel="icon" href="%sveltekit.assets%/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="%sveltekit.assets%/icon-180.png" />
+    <link rel="manifest" href="%sveltekit.assets%/manifest.webmanifest" />
     <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#ededed" media="(prefers-color-scheme: light)" />
     %sveltekit.head%

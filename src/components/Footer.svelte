@@ -1,5 +1,6 @@
 <script lang="ts">
   import { base } from '$app/paths'
+  import { HUB } from '$data/pages'
   import { SITE } from '$data/site'
   import { Bug, Hash } from '@lucide/svelte'
   import SiGithub from './icons/SiGithub.svelte'
@@ -20,6 +21,13 @@
     <nav aria-label="Footer">
       <a href="{base}/download">Download</a>
       <a href="{base}/workspaces">Workspaces</a>
+      <!--
+        The only link into the pages that sit off the nav. It has to exist:
+        a page reachable from nothing but sitemap.xml is an orphan, and orphans
+        get crawled rarely and indexed less. Footer rather than header keeps
+        them out of the way of people who came here to download something.
+      -->
+      <a href="{base}{HUB.path}">{HUB.name}</a>
       <a class="plain" href={SITE.repo} rel="noreferrer">
         <SiGithub size={15} title="" aria-hidden="true" />
         Source

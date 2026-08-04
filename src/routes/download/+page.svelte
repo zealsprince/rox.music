@@ -10,6 +10,13 @@
 
   const { data }: { data: PageData } = $props()
 
+  // Shared between the meta description and the WebPage node, so the two can't
+  // drift into describing the same URL two different ways.
+  const TITLE = 'Download rox for Linux, macOS or Windows'
+  const DESCRIPTION
+    = 'Download rox free for Linux, macOS or Windows. One binary per platform, '
+      + 'no installer and no account. Open source under the AGPL.'
+
   const assetFor = (id: string) => data.release.assets.find(a => a.platform === id)
 
   const mb = (bytes: number): string => `${(bytes / 1024 / 1024).toFixed(1)} MB`
@@ -24,12 +31,18 @@
 
 <Meta
   title="Download"
-  fullTitle="Download rox for Linux, macOS or Windows"
-  description="Download rox free for Linux, macOS or Windows. One binary per platform, no installer and no account. Open source under the AGPL."
+  fullTitle={TITLE}
+  description={DESCRIPTION}
   image="/social/download.png"
   imageAlt="The rox logo above the words: download for Linux, macOS and Windows"
 />
-<StructuredData release={data.release} />
+<StructuredData
+  release={data.release}
+  name={TITLE}
+  description={DESCRIPTION}
+  image="/social/download.png"
+  breadcrumb="Download"
+/>
 
 <section class="shell intro">
   <h1>Download rox</h1>

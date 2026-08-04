@@ -1,0 +1,29 @@
+{
+  "name": "rox - a Foobar2000 alternative for Linux, macOS and Windows",
+  "short_name": "rox",
+  "description": "A native music player for large, carefully tagged local libraries. Compose your own panels, share themes as files, and stay fast at 50,000 tracks.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "theme_color": "#121212",
+  "background_color": "#121212",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

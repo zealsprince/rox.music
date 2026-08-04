@@ -33,3 +33,13 @@ export const SITE = {
     + 'Compose your own panels, share themes as files, and stay fast at '
     + '50,000 tracks.',
 } as const
+
+/**
+ * Evaluated once at prerender. deploy.yml already rebuilds on a daily cron, so
+ * a heading that reads "in 2026" re-dates itself on January 1 and nobody has to
+ * remember it.
+ *
+ * This is why the year belongs in headings and never in a URL: a title can be
+ * rebuilt, a path can't be re-dated without breaking every link pointing at it.
+ */
+export const YEAR = new Date().getFullYear()

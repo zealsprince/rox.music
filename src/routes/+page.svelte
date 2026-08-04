@@ -20,7 +20,11 @@
 </script>
 
 <Meta title={SITE.name} description={SITE.description} />
-<StructuredData release={data.release} />
+<StructuredData
+  release={data.release}
+  name={SITE.tagline}
+  description={SITE.description}
+/>
 
 <section class="hero shell">
   <div class="pitch">

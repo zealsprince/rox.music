@@ -1,8 +1,30 @@
+import type { ScreenshotManifest } from '$data/images'
 import type { RequestHandler } from './$types'
+import { HUB, SIDE_PAGES } from '$data/pages'
+import manifest from '$data/screenshots.generated.json'
 import { SITE } from '$data/site'
+import { WORKSPACES } from '$data/workspaces'
 import { loadRelease } from '$lib/server/release'
 
 export const prerender = true
+
+// Widest webp variant for a screenshot id, as an absolute URL.
+//
+// webp rather than avif on purpose: the page offers both and a browser takes
+// the avif, but Google Images is the consumer here and its avif support has
+// never been something to bet a listing on. Dark rather than light because
+// that's what the <img> fallback carries, so the crawler and a JS-less visitor
+// resolve the same file.
+//
+// Reading widths off the manifest rather than hardcoding them means an image
+// re-encoded at a different size can't leave a 404 in the sitemap.
+function shot(id: string): string {
+  const entry = (manifest as ScreenshotManifest)[id]
+  if (!entry)
+    throw new Error(`no screenshot "${id}" in the manifest, run: npm run images`)
+  const widest = entry.widths[entry.widths.length - 1]
+  return new URL(`/screenshots/${id}-dark-${widest}.webp`, SITE.origin).href
+}
 
 // Hand-listed rather than crawled: three pages, and an explicit list can't
 // accidentally publish a route that was meant to stay unlinked.
@@ -10,10 +32,31 @@ export const prerender = true
 // Paths carry no trailing slash, matching `trailingSlash: 'never'` and the
 // canonical tags. A sitemap that disagrees with the canonical is a reliable way
 // to get the wrong URL indexed.
+//
+// `images` is the image sitemap extension. It's the only way to tell Google
+// about a picture it would otherwise have to find by parsing a <picture> block,
+// and for a player whose whole pitch is how it looks, an image listing is worth
+// as much as the page listing. Download carries none: it has no screenshots.
 const PATHS = [
-  { path: '/', priority: '1.0', changefreq: 'monthly' },
-  { path: '/download', priority: '0.9', changefreq: 'weekly' },
-  { path: '/workspaces', priority: '0.7', changefreq: 'monthly' },
+  { path: '/', priority: '1.0', changefreq: 'monthly', images: ['hero'] },
+  { path: '/download', priority: '0.9', changefreq: 'weekly', images: [] },
+  {
+    path: '/workspaces',
+    priority: '0.7',
+    changefreq: 'monthly',
+    images: WORKSPACES.map(w => w.id),
+  },
+  // The hub and the pages under it. Lower priority than the nav pages, which is
+  // an accurate statement of what they are: worth indexing, not worth outranking
+  // the homepage. The list comes from pages.ts so adding a page there can't
+  // leave it out of here.
+  { path: HUB.path, priority: '0.4', changefreq: 'monthly', images: [] },
+  ...SIDE_PAGES.map(item => ({
+    path: item.path,
+    priority: '0.6',
+    changefreq: 'monthly',
+    images: item.image ? [item.image] : [],
+  })),
 ]
 
 export const GET: RequestHandler = async () => {
@@ -23,17 +66,24 @@ export const GET: RequestHandler = async () => {
   const release = await loadRelease()
   const lastmod = release.publishedAt.slice(0, 10)
 
-  const urls = PATHS.map(
-    ({ path, priority, changefreq }) => `  <url>
+  const urls = PATHS.map(({ path, priority, changefreq, images }) => {
+    // Google dropped image:caption and image:title in 2022 and reads only the
+    // loc now, so anything else here would be bytes nobody parses.
+    const imageTags = images
+      .map(id => `\n    <image:image><image:loc>${shot(id)}</image:loc></image:image>`)
+      .join('')
+
+    return `  <url>
     <loc>${new URL(path, SITE.origin).href}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
-  </url>`,
-  ).join('\n')
+    <priority>${priority}</priority>${imageTags}
+  </url>`
+  }).join('\n')
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls}
 </urlset>
 `

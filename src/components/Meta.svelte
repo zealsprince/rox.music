@@ -41,6 +41,19 @@
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
 
+  <!--
+    `index, follow` is already the default, so it's the two limits after it that
+    earn this tag. Without `max-image-preview:large` Google caps the thumbnail
+    next to a result at a postage stamp, and this site's whole argument is what
+    it looks like: the screenshot is the pitch, and a large preview is the
+    difference between showing it and describing it. It's also the gate on
+    appearing in Discover at all.
+
+    `max-snippet:-1` lifts the description cap so the full sentence can show
+    rather than a truncated clause.
+  -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content={SITE.name} />
   <meta property="og:locale" content="en" />

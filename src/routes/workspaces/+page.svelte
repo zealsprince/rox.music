@@ -1,15 +1,30 @@
 <script lang="ts">
   import Meta from '$components/Meta.svelte'
   import Screenshot from '$components/Screenshot.svelte'
+  import StructuredData from '$components/StructuredData.svelte'
   import { WORKSPACES } from '$data/workspaces'
+
+  const TITLE = 'rox workspaces - shareable themes and layouts'
+  const DESCRIPTION
+    = 'A rox workspace is a whole look in one shareable file: layout, palette '
+      + 'and appearance. Six ship in the box, from a Foobar2000 tribute to a '
+      + 'monospace terminal.'
 </script>
 
 <Meta
   title="Workspaces"
-  fullTitle="rox workspaces - shareable themes and layouts"
-  description="A rox workspace is a whole look in one shareable file: layout, palette and appearance. Six ship in the box, from a Foobar2000 tribute to a monospace terminal."
+  fullTitle={TITLE}
+  description={DESCRIPTION}
   image="/social/workspaces.png"
   imageAlt="The rox logo above the words: a whole look in one shareable file"
+/>
+<!-- This page had no graph at all, so the six shots it exists to show were
+     invisible to anything reading structured data. -->
+<StructuredData
+  name={TITLE}
+  description={DESCRIPTION}
+  image="/social/workspaces.png"
+  breadcrumb="Workspaces"
 />
 
 <section class="shell intro">
@@ -56,7 +71,7 @@
         -->
         <Screenshot
           id={workspace.id}
-          alt="The {workspace.name} workspace in rox"
+          alt={workspace.alt}
           sizes="(min-width: 1180px) 1116px, (min-width: 48rem) calc(100vw - 4rem), calc(100vw - 2.5rem)"
           priority={index === 0}
         />

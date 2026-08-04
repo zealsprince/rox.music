@@ -157,6 +157,26 @@ pre {
   @media (min-width: $bp-md) {
     padding-inline: var(--space-lg);
   }
+
+  // The reading column, for pages that are read top to bottom rather than
+  // scanned. Everything inside shares one edge: headings, prose, screenshots,
+  // tables. Without it a paragraph stops at --measure while the screenshot
+  // under it runs to 1180px, and the eye reads the mismatch as two columns that
+  // failed to line up.
+  &.narrow {
+    max-width: calc(var(--reading) + var(--space-md) * 2);
+
+    @media (min-width: $bp-md) {
+      max-width: calc(var(--reading) + var(--space-lg) * 2);
+    }
+
+    // The column is already the measure here, so a nested .prose capping itself
+    // at --measure would put the mismatch straight back: prose short, image
+    // wide. Let it fill.
+    .prose {
+      max-width: none;
+    }
+  }
 }
 
 .prose {
