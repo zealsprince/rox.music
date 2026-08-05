@@ -122,6 +122,14 @@
       <li>
         <h3>{feature.title}</h3>
         <p>{feature.body}</p>
+        <!-- Pushed to the bottom of the cell rather than left under the copy,
+             so the links across a row sit on one line whatever the paragraphs
+             above them do. -->
+        {#if feature.link}
+          <p class="more">
+            <a href="{base}{feature.link.path}">{feature.link.name}</a>
+          </p>
+        {/if}
       </li>
     {/each}
   </ul>
@@ -313,13 +321,48 @@
     color: var(--accent-text);
   }
 
+  /* One hairline grid rather than nine paragraphs floating in whitespace: the
+     gap is the border colour showing through the cells, so they share their
+     rules the way rox's own panels do and a short entry next to a long one
+     stops reading as a misalignment. */
   .features {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    gap: var(--space-lg);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    gap: var(--hairline);
+    background: var(--border);
+    border: var(--hairline) solid var(--border);
+  }
+
+  .features li {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-md);
+    background: var(--bg-panel);
+  }
+
+  /* Explicit column counts, not auto-fit. Nine cells only divide evenly by
+     three, and auto-fit would pick two at some widths and leave a hole in the
+     grid where the tenth would be. */
+  @media (min-width: 34rem) {
+    .features {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .features li:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .features {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .features li:last-child {
+      grid-column: auto;
+    }
   }
 
   .features h3 {
@@ -329,6 +372,15 @@
 
   .features p {
     color: var(--text-secondary);
+    font-size: var(--step--1);
+  }
+
+  .more {
+    margin-top: auto;
+    padding-top: var(--space-md);
+  }
+
+  .more a {
     font-size: var(--step--1);
   }
 </style>

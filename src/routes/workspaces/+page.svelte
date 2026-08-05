@@ -104,12 +104,12 @@
     padding-bottom: var(--space-2xl);
   }
 
+  /* No rule of its own and no bottom margin: the screenshot's top border is the
+     line the tabs sit on, so the strip and the shot read as one frame. */
   .tabs {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-xs);
-    margin-bottom: var(--space-md);
-    border-bottom: var(--hairline) solid var(--border);
   }
 
   /* The radios are the state, not the interface. Kept in the layout rather than
@@ -122,7 +122,10 @@
     pointer-events: none;
   }
 
+  /* Relative so the checked tab paints over the screenshot border it overlaps,
+     which is what makes it look attached to the panel below. */
   .tabs label {
+    position: relative;
     padding: 0.55rem var(--space-md);
     margin-bottom: -1px;
     border: var(--hairline) solid transparent;

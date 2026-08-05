@@ -1,41 +1,61 @@
 export interface Feature {
   title: string
   body: string
+  /**
+   * The page that says more about this one. Site-relative, prefixed with `base`
+   * at render. Not every feature has one, and inventing a page so the grid looks
+   * even would be the wrong fix.
+   */
+  link?: { path: string, name: string }
 }
 
 // Condensed from rox's README feature table. The README is the exhaustive list
 // for people already sold; this is the version that has to land in one scroll.
+//
+// Nine entries, and it should stay nine or twelve: the grid is three columns
+// wide and an odd count leaves a hole in the last row. Titles stay short enough
+// to hold one line in a third of the content width, bodies land between roughly
+// 120 and 160 characters, and that's what keeps the cells from going ragged.
 export const FEATURES: Feature[] = [
   {
     title: 'Panels you compose',
-    body: 'Forty panel types, from library and queue to artist and genre grids, spectrum, waveform and VU. Arrange them how you want, duplicate one with its own config, pop it out into a real OS window.',
+    body: 'Forty panel types, from library and queue to artist grids, spectrum and VU. Duplicate one with its own config, or pop it out into a real OS window.',
+    link: { path: '/foobar2000-alternative', name: 'Next to Foobar2000' },
   },
   {
     title: 'A library that holds up',
-    body: 'A parallel scanner reads full tags, true durations, and each file\'s own codec, sample rate and bit depth, not a header skim. Folder watching survives renames, and files with unreadable tags get indexed by filename so nothing drops silently.',
+    body: 'A parallel scanner reads full tags, true durations and each file\'s own codec, not a header skim. Folder watching survives renames, and nothing drops silently.',
+    link: { path: '/best-music-player', name: 'What breaks at 50,000 tracks' },
   },
   {
     title: 'Tagging you can trust',
-    body: 'A full editor with atomic writes and batch edits. Ratings live in the files themselves via FMPS and POPM. Tag and cover lookup through MusicBrainz, iTunes and Deezer.',
+    body: 'A full editor with atomic writes and batch edits. Ratings live in the files themselves via FMPS and POPM. Lookup through MusicBrainz, iTunes and Deezer.',
+    link: { path: '/mp3tag-alternative', name: 'Next to Mp3tag' },
   },
   {
     title: 'Themes as shareable files',
-    body: 'A workspace is one file carrying layout, palette and appearance. Palettes can tint from the playing album cover per window, going light or dark with the art.',
+    body: 'A workspace is one file carrying layout, palette and appearance. Palettes can tint from the playing cover, going light or dark with the art.',
+    link: { path: '/workspaces', name: 'The six in the box' },
   },
   {
     title: 'Gapless playback',
-    body: 'A single-stream engine with shuffle, repeat and play-next. It recovers when an audio device disappears, and media keys and now-playing work on all three platforms.',
+    body: 'One stream, with shuffle, repeat and play-next. It recovers when an audio device disappears, and media keys and now-playing work on all three platforms.',
   },
   {
-    title: 'An audio chain worth opening',
-    body: 'A ten-band equalizer in a window of its own, crossfade that leaves an album\'s own splices alone, ReplayGain off the tags with a loudness pass for the files nobody ever measured, and an exclusive output mode that tells you what the hardware agreed to.',
+    title: 'Ten bands and bit-perfect',
+    body: 'An equalizer in a window of its own, crossfade that leaves an album\'s own splices alone, and exclusive output that says what the hardware agreed to.',
+    link: { path: '/replaygain', name: 'ReplayGain and bit-perfect' },
   },
   {
-    title: 'Music that sounds like what\'s playing',
-    body: 'rox can describe your tracks off their own audio and order what\'s coming by resemblance: a sortable Similar column, Play Similar on any row, and a queue that keeps going after the last track. It runs on your machine against your files, with no service in the loop.',
+    title: 'Sorted by how it sounds',
+    body: 'rox describes your tracks off their own audio and orders what\'s next by resemblance. It runs on your machine against your files, with no service in the loop.',
   },
   {
     title: 'Lyrics and history',
-    body: 'Synced and plain lyrics from sidecar files, tags or lrclib, with an editor that writes back where it read from. A full listen log drives the history panel, stats and Last.fm scrobbling.',
+    body: 'Synced or plain, from sidecar files, tags or lrclib, with an editor that writes back where it read. A listen log drives the history panel, stats and scrobbling.',
+  },
+  {
+    title: 'Playlists that survive',
+    body: 'Favourites, drag reorder across lists, m3u in and out. Entries keep their place when a file leaves the library and comes back later.',
   },
 ]
