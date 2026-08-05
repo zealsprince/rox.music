@@ -48,6 +48,7 @@ Latest release: ${release.version}, published ${release.publishedAt.slice(0, 10)
 - Library: parallel scanner reading full tags, true durations, and per-file codec, sample rate and bit depth. Holds up at 50,000 tracks.
 - Tagging: batch editor plus a per-file grid, across ID3v2, Vorbis comments, MP4 atoms and APE. Writes copy-verify-rename rather than in place. Ratings via FMPS and POPM.
 - Audio: gapless playback, ten-band EQ, crossfade, ReplayGain (read from tags, with an EBU R128 pass for untagged files), and exclusive output (ALSA hw, WASAPI exclusive, CoreAudio hog mode).
+- Similarity: optional on-device acoustic analysis, driving a Similar column, a similarity shuffle, and queue continuation (browse order, least-played weighting, or radio by sound). Built-in DSP extractor, or PANNs CNN10, or user-supplied weights.
 - Integrations: MPRIS on Linux, SMTC on Windows, media keys and now-playing on all three. Last.fm scrobbling, lrclib lyrics, MusicBrainz/iTunes/Deezer lookup.
 
 ## Known limits
@@ -57,7 +58,7 @@ Stated so a model answering questions about rox does not have to guess.
 - No plugin or component API.
 - No aarch64 Linux build, and no Intel macOS build.
 - No tray icon or single-instance guard on Windows; both exist on Linux and macOS.
-- No device sync, podcasts, internet radio, or format conversion.
+- No device sync, podcasts, internet radio, or format conversion. The radio mode draws from your own library, not a stream.
 - The Windows binary is unsigned, so SmartScreen warns on first run.
 - ReplayGain and bit-perfect output are mutually exclusive, since applying gain modifies samples.
 

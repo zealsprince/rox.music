@@ -31,6 +31,10 @@ export const FEATURES: Feature[] = [
     body: 'A ten-band equalizer in a window of its own, crossfade that leaves an album\'s own splices alone, ReplayGain off the tags with a loudness pass for the files nobody ever measured, and an exclusive output mode that tells you what the hardware agreed to.',
   },
   {
+    title: 'Music that sounds like what\'s playing',
+    body: 'rox can describe your tracks off their own audio and order what\'s coming by resemblance: a sortable Similar column, Play Similar on any row, and a queue that keeps going after the last track. It runs on your machine against your files, with no service in the loop.',
+  },
+  {
     title: 'Lyrics and history',
     body: 'Synced and plain lyrics from sidecar files, tags or lrclib, with an editor that writes back where it read from. A full listen log drives the history panel, stats and Last.fm scrobbling.',
   },

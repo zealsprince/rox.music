@@ -96,6 +96,13 @@
       something you can hand to someone else, or move to your other machine, rather than
       something that lives on one install.
     </p>
+    <p>
+      Auto-playlists are still MusicBee's, but the part of queue automation that matters
+      while you're listening is here: rox refills the queue when it runs dry, from your
+      browse order, from the tracks you keep never getting to, or from what the current
+      track sounds like. That last one comes from analyzing your files on your own
+      machine, so it works on a library nothing on the internet has heard of.
+    </p>
   </div>
 </section>
 
