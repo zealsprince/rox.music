@@ -12,18 +12,19 @@ export const prerender = true
 //
 // webp rather than avif on purpose: the page offers both and a browser takes
 // the avif, but Google Images is the consumer here and its avif support has
-// never been something to bet a listing on. Dark rather than light because
+// never been something to bet a listing on. The dark half of a pair, because
 // that's what the <img> fallback carries, so the crawler and a JS-less visitor
 // resolve the same file.
 //
-// Reading widths off the manifest rather than hardcoding them means an image
-// re-encoded at a different size can't leave a 404 in the sitemap.
+// Reading the path and widths off the manifest rather than rebuilding them from
+// the id means an image re-encoded at a different size, or written to a
+// different folder, can't leave a 404 in the sitemap.
 function shot(id: string): string {
   const entry = (manifest as ScreenshotManifest)[id]
   if (!entry)
     throw new Error(`no screenshot "${id}" in the manifest, run: npm run images`)
   const widest = entry.widths[entry.widths.length - 1]
-  return new URL(`/screenshots/${id}-dark-${widest}.webp`, SITE.origin).href
+  return new URL(`${entry.path}-${widest}.webp`, SITE.origin).href
 }
 
 // Hand-listed rather than crawled: three pages, and an explicit list can't

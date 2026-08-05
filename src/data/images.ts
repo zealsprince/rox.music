@@ -11,11 +11,18 @@ export interface ScreenshotEntry {
   /** Widths that exist on disk for this image. */
   widths: number[]
   /**
-   * Whether `<id>-light-<w>.<ext>` was written alongside `<id>-dark-<w>.<ext>`.
-   * False means the site shows the dark shot in both themes, on a dark mat so
-   * it reads as deliberate.
+   * Absolute site path of the served files, minus the `-<width>.<ext>` tail.
+   * Carrying the whole path is what lets rox screenshots and other people's
+   * software live in different folders under different naming rules without a
+   * consumer having to know which is which.
    */
-  hasLight: boolean
+  path: string
+  /**
+   * Same, for the light-theme counterpart, when one was encoded. Absent means
+   * the site shows the one shot in both themes, on a mat so it reads as
+   * deliberate.
+   */
+  lightPath?: string
 }
 
 export type ScreenshotManifest = Record<string, ScreenshotEntry>

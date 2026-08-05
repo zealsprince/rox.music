@@ -5,15 +5,15 @@
 //   npm run images                  # reads ../rox
 //   ROX_REPO=/path/to/rox npm run images
 //
-// Each screenshot may have a light-theme counterpart. Workspace shots ship as
-// pairs (Default_Dark.png / Default_Light.png); anything else names its light
-// variant by suffixing the source with `-light` (nekorox.jpg ->
-// nekorox-light.jpg). It is optional: a missing one just means that image has
-// no light variant and the site keeps showing the dark shot on a dark mat.
-// Drop the file in and rerun.
+// A source marked `kind: 'content'` reads and writes static/content in this
+// repo instead, for images the rox repo has no business carrying.
 //
-// Output lands in static/screenshots and is committed, so a normal build needs
-// neither sharp nor the rox checkout.
+// rox shots ship as theme pairs (Default_Dark.png / Default_Light.png). The
+// light half is optional: a missing one means the site keeps showing the dark
+// shot on a dark mat. Drop the file in and rerun.
+//
+// Output is committed, so a normal build needs neither sharp nor the rox
+// checkout.
 
 import type { Buffer } from 'node:buffer'
 import type { ScreenshotEntry, ScreenshotManifest } from '../src/data/images'
@@ -26,11 +26,32 @@ import { SCREENSHOT_WIDTHS } from '../src/data/images'
 interface Source {
   id: string
   from: string
+  /**
+   * Which pile this image belongs to, deciding where it's read from, where the
+   * variants land, and what they're called. Defaults to `rox`.
+   */
+  kind?: Kind
 }
 
+type Kind = 'rox' | 'content'
+
 const ROX = process.env.ROX_REPO ?? path.resolve('../rox')
-const OUT = path.resolve('static/screenshots')
+const CONTENT = path.resolve('static/content')
 const MANIFEST = path.resolve('src/data/screenshots.generated.json')
+
+/**
+ * `rox` is the app's own screenshots, read from the rox checkout. Every one of
+ * them is half of a theme pair, so the output carries `-dark` or `-light`.
+ *
+ * `content` is everything that isn't rox: screenshots of other people's
+ * software, which have no home in the rox repo and live here instead. They read
+ * and write in the same folder and get no theme suffix, because a foobar2000
+ * screenshot is one image rather than this site's dark half of anything.
+ */
+const PLACES: Record<Kind, { in: string, out: string, url: string }> = {
+  rox: { in: ROX, out: path.resolve('static/screenshots'), url: '/screenshots' },
+  content: { in: CONTENT, out: CONTENT, url: '/content' },
+}
 
 const SOURCES: Source[] = [
   { id: 'hero', from: 'docs/0S-screenshots/Preview_Dark.png' },
@@ -40,17 +61,16 @@ const SOURCES: Source[] = [
   { id: 'llama', from: 'crates/rox/assets/workspaces/Llama_Dark.png' },
   { id: 'metro', from: 'crates/rox/assets/workspaces/Metro_Dark.png' },
   { id: 'phosphor', from: 'crates/rox/assets/workspaces/Phosphor_Dark.png' },
+  { id: 'nekorox', from: 'nekorox.png', kind: 'content' },
+  { id: 'alpharox', from: 'alpharox.png', kind: 'content' },
 ]
+
+const placeOf = (source: Source) => PLACES[source.kind ?? 'rox']
 
 const kb = (n: number): string => `${Math.round(n / 1024)} KB`
 
-/** `Default_Dark.png` -> `Default_Light.png`, else `nekorox.jpg` -> `nekorox-light.jpg` */
-function lightPath(from: string): string {
-  if (from.includes('_Dark'))
-    return from.replace('_Dark', '_Light')
-  const ext = path.extname(from)
-  return `${from.slice(0, -ext.length)}-light${ext}`
-}
+/** `Default_Dark.png` -> `Default_Light.png` */
+const lightPath = (from: string): string => from.replace('_Dark', '_Light')
 
 /**
  * The widths to emit for a source: the ladder rungs below its own width, then
@@ -75,7 +95,8 @@ function targetWidths(intrinsicWidth: number): number[] {
 async function encodeVariant(
   raw: Buffer,
   intrinsicWidth: number,
-  outPrefix: string,
+  outDir: string,
+  stem: string,
 ): Promise<{ widths: number[], bytes: number }> {
   const widths = targetWidths(intrinsicWidth)
   let bytes = 0
@@ -85,8 +106,8 @@ async function encodeVariant(
     const avif = await resized.clone().avif({ quality: 55, effort: 6 }).toBuffer()
     const webp = await resized.clone().webp({ quality: 80 }).toBuffer()
 
-    await fs.writeFile(path.join(OUT, `${outPrefix}-${width}.avif`), avif)
-    await fs.writeFile(path.join(OUT, `${outPrefix}-${width}.webp`), webp)
+    await fs.writeFile(path.join(outDir, `${stem}-${width}.avif`), avif)
+    await fs.writeFile(path.join(outDir, `${stem}-${width}.webp`), webp)
     bytes += avif.length + webp.length
   }
 
@@ -96,7 +117,9 @@ async function encodeVariant(
 async function encode(
   source: Source,
 ): Promise<{ before: number, after: number, entry: ScreenshotEntry }> {
-  const input = path.join(ROX, source.from)
+  const kind = source.kind ?? 'rox'
+  const place = placeOf(source)
+  const input = path.join(place.in, source.from)
 
   let raw: Buffer
   try {
@@ -104,7 +127,9 @@ async function encode(
   }
   catch {
     throw new Error(
-      `missing ${input}\nset ROX_REPO if the rox checkout is not at ${ROX}`,
+      kind === 'content'
+        ? `missing ${input}`
+        : `missing ${input}\nset ROX_REPO if the rox checkout is not at ${ROX}`,
     )
   }
 
@@ -112,54 +137,64 @@ async function encode(
   if (!meta.width || !meta.height)
     throw new Error(`could not read dimensions of ${input}`)
 
-  // Output names carry the theme explicitly (`<id>-dark`, `<id>-light`), since
-  // "default" would mislead: some workspaces, like Foobar, default to light.
-  const dark = await encodeVariant(raw, meta.width, `${source.id}-dark`)
+  // rox output names carry the theme explicitly, since "default" would mislead:
+  // some workspaces, like Foobar, default to light. Content images are one
+  // image with no counterpart, so they keep the bare id.
+  const themed = kind === 'rox'
+  const stem = themed ? `${source.id}-dark` : source.id
+  const primary = await encodeVariant(raw, meta.width, place.out, stem)
 
   // The light counterpart is optional and silently absent most of the time.
-  let hasLight = false
+  let lightStem: string | undefined
   let lightBytes = 0
   let lightBefore = 0
-  try {
-    const lightRaw = await fs.readFile(path.join(ROX, lightPath(source.from)))
-    const lightMeta = await sharp(lightRaw).metadata()
-    if (lightMeta.width !== meta.width || lightMeta.height !== meta.height) {
-      // Mismatched pairs make the box jump when the theme flips, and the
-      // manifest only records one intrinsic size for both.
-      console.warn(
-        `[${source.id}] light variant is ${lightMeta.width}x${lightMeta.height}, `
-        + `dark is ${meta.width}x${meta.height}. Shoot the pair at one window size.`,
-      )
+  if (themed) {
+    try {
+      const lightRaw = await fs.readFile(path.join(place.in, lightPath(source.from)))
+      const lightMeta = await sharp(lightRaw).metadata()
+      if (lightMeta.width !== meta.width || lightMeta.height !== meta.height) {
+        // Mismatched pairs make the box jump when the theme flips, and the
+        // manifest only records one intrinsic size for both.
+        console.warn(
+          `[${source.id}] light variant is ${lightMeta.width}x${lightMeta.height}, `
+          + `dark is ${meta.width}x${meta.height}. Shoot the pair at one window size.`,
+        )
+      }
+      lightStem = `${source.id}-light`
+      const light = await encodeVariant(lightRaw, meta.width, place.out, lightStem)
+      lightBytes = light.bytes
+      lightBefore = lightRaw.length
     }
-    const light = await encodeVariant(lightRaw, meta.width, `${source.id}-light`)
-    hasLight = true
-    lightBytes = light.bytes
-    lightBefore = lightRaw.length
-  }
-  catch {
-    // No light variant for this one. Expected until the shots exist.
+    catch {
+      // No light variant for this one. Expected until the shots exist.
+      lightStem = undefined
+    }
   }
 
   console.log(
     `${source.id.padEnd(10)} ${meta.width}x${meta.height}  `
-    + `${kb(raw.length)} -> ${kb(dark.bytes)}  [${dark.widths.join(', ')}]`
-    + `${hasLight ? `  + light ${kb(lightBytes)}` : '  (no light variant)'}`,
+    + `${kb(raw.length)} -> ${kb(primary.bytes)}  [${primary.widths.join(', ')}]`
+    + `${lightStem ? `  + light ${kb(lightBytes)}` : '  (no light variant)'}`,
   )
 
   return {
     before: raw.length + lightBefore,
-    after: dark.bytes + lightBytes,
+    after: primary.bytes + lightBytes,
     entry: {
       width: meta.width,
       height: meta.height,
-      widths: dark.widths,
-      hasLight,
+      widths: primary.widths,
+      // Absolute site paths rather than an id, so a consumer never has to know
+      // which folder an image landed in or whether its name carries a theme.
+      path: `${place.url}/${stem}`,
+      ...(lightStem ? { lightPath: `${place.url}/${lightStem}` } : {}),
     },
   }
 }
 
 async function main(): Promise<void> {
-  await fs.mkdir(OUT, { recursive: true })
+  for (const place of Object.values(PLACES))
+    await fs.mkdir(place.out, { recursive: true })
 
   let before = 0
   let after = 0
@@ -174,7 +209,7 @@ async function main(): Promise<void> {
 
   await fs.writeFile(MANIFEST, `${JSON.stringify(manifest, null, 2)}\n`)
 
-  const withLight = Object.values(manifest).filter(e => e.hasLight).length
+  const withLight = Object.values(manifest).filter(e => e.lightPath).length
   console.log(
     `\n${kb(before)} of sources in, ${kb(after)} out across `
     + `${SCREENSHOT_WIDTHS.length} widths and 2 formats`,

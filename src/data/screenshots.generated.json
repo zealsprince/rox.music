@@ -6,7 +6,8 @@
       640,
       1000
     ],
-    "hasLight": true
+    "path": "/screenshots/hero-dark",
+    "lightPath": "/screenshots/hero-light"
   },
   "default": {
     "width": 1416,
@@ -16,7 +17,8 @@
       1024,
       1416
     ],
-    "hasLight": true
+    "path": "/screenshots/default-dark",
+    "lightPath": "/screenshots/default-light"
   },
   "foobar": {
     "width": 1416,
@@ -26,7 +28,8 @@
       1024,
       1416
     ],
-    "hasLight": true
+    "path": "/screenshots/foobar-dark",
+    "lightPath": "/screenshots/foobar-light"
   },
   "catrox": {
     "width": 1416,
@@ -36,7 +39,8 @@
       1024,
       1416
     ],
-    "hasLight": true
+    "path": "/screenshots/catrox-dark",
+    "lightPath": "/screenshots/catrox-light"
   },
   "llama": {
     "width": 1416,
@@ -46,7 +50,8 @@
       1024,
       1416
     ],
-    "hasLight": true
+    "path": "/screenshots/llama-dark",
+    "lightPath": "/screenshots/llama-light"
   },
   "metro": {
     "width": 1416,
@@ -56,7 +61,8 @@
       1024,
       1416
     ],
-    "hasLight": true
+    "path": "/screenshots/metro-dark",
+    "lightPath": "/screenshots/metro-light"
   },
   "phosphor": {
     "width": 1416,
@@ -66,6 +72,26 @@
       1024,
       1416
     ],
-    "hasLight": true
+    "path": "/screenshots/phosphor-dark",
+    "lightPath": "/screenshots/phosphor-light"
+  },
+  "nekorox": {
+    "width": 960,
+    "height": 1080,
+    "widths": [
+      640,
+      960
+    ],
+    "path": "/content/nekorox"
+  },
+  "alpharox": {
+    "width": 1068,
+    "height": 1270,
+    "widths": [
+      640,
+      1024,
+      1068
+    ],
+    "path": "/content/alpharox"
   }
 }

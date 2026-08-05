@@ -101,9 +101,10 @@
   <div class="prose">
     <p>
       A UI you assemble out of panels instead of accepting whatever the developer shipped.
-      A theme community on top of that, which is how CaTRoX, NekoRoX and Georgia exist at
-      all. And tag and library management that doesn't fall over when the collection is
-      tens of thousands of files deep.
+      A theme community on top of that, which is how CaTRoX,
+      <a href="{base}/nekorox">NekoRoX</a> and Georgia exist at all. And tag and library
+      management that doesn't fall over when the collection is tens of thousands of files
+      deep.
     </p>
     <p>
       Plenty of players do one. Very few do two. The stack that does all three has been

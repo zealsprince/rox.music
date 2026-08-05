@@ -35,6 +35,12 @@ export const SIDE_PAGES: SidePage[] = [
     image: 'catrox',
   },
   {
+    path: '/nekorox',
+    name: 'NekoRoX, and where it went',
+    blurb: 'The CaTRoX fork I maintained for a decade, why it stopped, and which of its panels exist in rox today. Includes AlphaRoX, the light one.',
+    image: 'nekorox',
+  },
+  {
     path: '/mp3tag-alternative',
     name: 'An Mp3tag alternative for Linux',
     blurb: 'Batch edits, a per-file grid, and a write path that copies, verifies and renames rather than editing your files in place.',

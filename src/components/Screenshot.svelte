@@ -11,9 +11,20 @@
     sizes?: string
     /** Only the hero should be eager. Everything else waits. */
     priority?: boolean
+    /**
+     * The source shot is light rather than dark. Only matters for shots with no
+     * light variant, where it flips which page theme gets the mat.
+     */
+    lightSource?: boolean
   }
 
-  const { id, alt, sizes = '100vw', priority = false }: Props = $props()
+  const {
+    id,
+    alt,
+    sizes = '100vw',
+    priority = false,
+    lightSource = false,
+  }: Props = $props()
 
   const entry = $derived.by(() => {
     const found = (manifest as ScreenshotManifest)[id]
@@ -22,14 +33,12 @@
     return found
   })
 
-  // Widths come from the manifest, so a srcset only ever lists files the encoder
-  // actually wrote.
-  const set = (variant: string, ext: string): string =>
-    entry.widths.map(w => `${base}/screenshots/${variant}-${w}.${ext} ${w}w`).join(', ')
+  // Path and widths both come from the manifest, so a srcset only ever lists
+  // files the encoder actually wrote, wherever it wrote them.
+  const set = (prefix: string, ext: string): string =>
+    entry.widths.map(w => `${base}${prefix}-${w}.${ext} ${w}w`).join(', ')
 
   const fallbackWidth = $derived(entry.widths[entry.widths.length - 1])
-  const dark = $derived(`${id}-dark`)
-  const light = $derived(`${id}-light`)
 </script>
 
 <!--
@@ -45,31 +54,32 @@
   `media` attribute on the [data-light] sources instead.
 -->
 <picture>
-  {#if entry.hasLight}
+  {#if entry.lightPath}
     <source
       data-light
       media="(prefers-color-scheme: light)"
-      srcset={set(light, 'avif')}
+      srcset={set(entry.lightPath, 'avif')}
       {sizes}
       type="image/avif"
     />
     <source
       data-light
       media="(prefers-color-scheme: light)"
-      srcset={set(light, 'webp')}
+      srcset={set(entry.lightPath, 'webp')}
       {sizes}
       type="image/webp"
     />
   {/if}
-  <source srcset={set(dark, 'avif')} {sizes} type="image/avif" />
-  <source srcset={set(dark, 'webp')} {sizes} type="image/webp" />
+  <source srcset={set(entry.path, 'avif')} {sizes} type="image/avif" />
+  <source srcset={set(entry.path, 'webp')} {sizes} type="image/webp" />
   <img
-    src="{base}/screenshots/{dark}-{fallbackWidth}.webp"
+    src="{base}{entry.path}-{fallbackWidth}.webp"
     {sizes}
     {alt}
     width={entry.width}
     height={entry.height}
-    class:matted={!entry.hasLight}
+    class:matted={!entry.lightPath && !lightSource}
+    class:matted-light={!entry.lightPath && lightSource}
     loading={priority ? 'eager' : 'lazy'}
     fetchpriority={priority ? 'high' : 'auto'}
     decoding={priority ? 'sync' : 'async'}
@@ -98,5 +108,12 @@
     padding: 0.6rem;
     background: #1c1c1c;
     border-color: #2a2a2a;
+  }
+
+  /* Same trick the other way up, for a shot that's light to begin with. */
+  :global(html.dark) .matted-light {
+    padding: 0.6rem;
+    background: #e3e3e3;
+    border-color: #d5d5d5;
   }
 </style>

@@ -62,6 +62,10 @@ npm run images                        # expects ../rox
 ROX_REPO=/path/to/rox npm run images
 ```
 
+Images with no home in the rox repo, like screenshots of other people's software, are
+marked `kind: 'content'` in the source list and both read and written under
+`static/content` instead.
+
 ## Icons
 
 UI icons come from `@lucide/svelte`. Brand marks live in `src/components/icons` as plain

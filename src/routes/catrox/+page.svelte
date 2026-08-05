@@ -75,11 +75,11 @@
     <div class="prose">
       <p>
         rox's author ran a fork of it for years.
-        <a href="https://github.com/catlinman/foobar2000" rel="noreferrer">NekoRoX</a> was
-        CaTRoX with a pile of custom panels, plugins and quality-of-life modules on top:
-        tree and filter navigation, mini and micro player modes, a synced lyric panel, a
-        cover flow, Discord presence, Last.fm tools. It has a note at the top of its README
-        now saying it's no longer maintained, and pointing here.
+        <a href="{base}/nekorox">NekoRoX</a> was CaTRoX with a pile of custom panels,
+        plugins and quality-of-life modules on top: tree and filter navigation, mini and
+        micro player modes, a synced lyric panel, a cover flow, Discord presence, Last.fm
+        tools. It has a note at the top of its README now saying it's no longer
+        maintained, and pointing here.
       </p>
       <p>
         The reason for that note is the honest content of this page. Moving to Linux full
