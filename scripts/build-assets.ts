@@ -86,6 +86,11 @@ const CARDS = [
     heading: 'rox',
     sub: 'A whole look in one shareable file.',
   },
+  {
+    file: 'social/visualizer.png',
+    heading: 'rox',
+    sub: 'Signals off the music, shaders on every surface.',
+  },
 ]
 
 const ICONS = [

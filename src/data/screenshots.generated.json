@@ -75,6 +75,17 @@
     "path": "/screenshots/phosphor-dark",
     "lightPath": "/screenshots/phosphor-light"
   },
+  "critters": {
+    "width": 1416,
+    "height": 876,
+    "widths": [
+      640,
+      1024,
+      1416
+    ],
+    "path": "/screenshots/critters-dark",
+    "lightPath": "/screenshots/critters-light"
+  },
   "nekorox": {
     "width": 960,
     "height": 1080,

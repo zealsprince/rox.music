@@ -13,9 +13,13 @@ export interface Workspace {
   alt: string
 }
 
-// The six workspaces rox ships in the box, one click away on the welcome
-// window. Screenshots come from crates/rox/assets/workspaces in the rox repo and
-// are re-encoded by scripts/optimize-images.ts.
+// The workspaces rox ships in the box, one click away on the welcome window.
+// Screenshots come from crates/rox/assets/workspaces in the rox repo and are
+// re-encoded by scripts/optimize-images.ts.
+//
+// Anything that needs the count says WORKSPACES.length rather than a number in
+// a sentence. Critters arriving as the seventh turned up "six" in five places
+// across three files, which is five chances to leave one wrong.
 export const WORKSPACES: Workspace[] = [
   {
     id: 'default',
@@ -53,4 +57,19 @@ export const WORKSPACES: Workspace[] = [
     blurb: 'Monospace everything. Consolas, no cover in quick play, a terminal that happens to play music.',
     alt: 'The Phosphor rox workspace: green-on-black monospace throughout, a folder tree beside a track table and a green waveform across the bottom, like a terminal that plays music.',
   },
+  {
+    id: 'critters',
+    name: 'Critters',
+    blurb: 'The whole app as a 1-bit print. An ordered dither over every surface, tones crushing with the sub-bass, and a noise wall behind the panels that moves with the song.',
+    alt: 'The Critters rox workspace: the entire window rendered in black-and-white ordered dither, with a curved shelf of album covers over a seek bar, transport row, waveform strip and track table, all sitting on a shifting field of noise.',
+  },
 ]
+
+const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+
+/**
+ * The count, spelled out, for the sentences that mention it. A numeral under
+ * ten reads as a spec sheet in prose, and every consumer of this needs it
+ * inside a sentence.
+ */
+export const WORKSPACE_COUNT: string = WORDS[WORKSPACES.length] ?? String(WORKSPACES.length)

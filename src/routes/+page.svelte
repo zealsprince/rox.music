@@ -2,6 +2,7 @@
   import type { PageData } from './$types'
   import { base } from '$app/paths'
   import DownloadButton from '$components/DownloadButton.svelte'
+  import FeatureIcon from '$components/FeatureIcon.svelte'
   import Meta from '$components/Meta.svelte'
   import Screenshot from '$components/Screenshot.svelte'
   import StructuredData from '$components/StructuredData.svelte'
@@ -13,8 +14,9 @@
     memoryLabel,
     memoryPct,
   } from '$data/benchmarks'
-  import { FEATURES } from '$data/features'
+  import { FEATURE_GROUPS } from '$data/features'
   import { SITE } from '$data/site'
+  import { WORKSPACE_COUNT } from '$data/workspaces'
 
   const { data }: { data: PageData } = $props()
 </script>
@@ -117,30 +119,43 @@
 
 <section class="shell block">
   <h2>What's in it</h2>
-  <ul class="features">
-    {#each FEATURES as feature (feature.title)}
-      <li>
-        <h3>{feature.title}</h3>
-        <p>{feature.body}</p>
-        <!-- Pushed to the bottom of the cell rather than left under the copy,
-             so the links across a row sit on one line whatever the paragraphs
-             above them do. -->
-        {#if feature.link}
-          <p class="more">
-            <a href="{base}{feature.link.path}">{feature.link.name}</a>
-          </p>
-        {/if}
-      </li>
+  <!--
+    One lattice with its groups drawn inside it as full-width rules, the way a
+    rox menu draws its own sections, rather than four separate boxes with air
+    between them. The group name is a real heading, so the twelve cells hang off
+    four h3s instead of sitting under the h2 as one undifferentiated run.
+  -->
+  <div class="features">
+    {#each FEATURE_GROUPS as group (group.name)}
+      <h3 class="group">{group.name}</h3>
+      {#each group.features as feature (feature.title)}
+        <article class="cell">
+          <h4 class="head">
+            <FeatureIcon icon={feature.icon} />
+            <span>{feature.title}</span>
+          </h4>
+          <p class="body">{feature.body}</p>
+          <!-- Pushed to the bottom of the cell rather than left under the copy,
+               so the links across a row sit on one line whatever the paragraphs
+               above them do. -->
+          {#if feature.link}
+            <p class="more">
+              <a href="{base}{feature.link.path}">{feature.link.name}</a>
+            </p>
+          {/if}
+        </article>
+      {/each}
     {/each}
-  </ul>
+  </div>
 </section>
 
 <section class="block band closer">
   <div class="shell">
     <h2>Make it yours</h2>
     <p class="prose">
-      Six workspaces ship in the box, one click away on the welcome window. Each one is a
-      single file you can edit, break, and hand to someone else.
+      There are {WORKSPACE_COUNT} workspaces in the box, one click away on the welcome
+      window. Each one is a single file carrying the layout, the palette and the shaders it
+      runs, so you can edit it, break it, and hand it to someone else.
       <a href="{base}/workspaces">See them all</a>.
     </p>
   </div>
@@ -321,36 +336,52 @@
     color: var(--accent-text);
   }
 
-  /* One hairline grid rather than nine paragraphs floating in whitespace: the
+  /* One hairline grid rather than twelve paragraphs floating in whitespace: the
      gap is the border colour showing through the cells, so they share their
      rules the way rox's own panels do and a short entry next to a long one
      stops reading as a misalignment. */
   .features {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: grid;
     gap: var(--hairline);
     background: var(--border);
     border: var(--hairline) solid var(--border);
   }
 
-  .features li {
+  /* The group rule. Same treatment as the benchmark table's header row, which
+     is the other place on this page where a strip labels the thing under it. */
+  .group {
+    grid-column: 1 / -1;
+    padding: 0.45rem var(--space-md);
+    background: var(--bg-toolbar);
+    color: var(--text-muted);
+    font-size: var(--step--1);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .cell {
     display: flex;
     flex-direction: column;
     padding: var(--space-md);
     background: var(--bg-panel);
   }
 
-  /* Explicit column counts, not auto-fit. Nine cells only divide evenly by
-     three, and auto-fit would pick two at some widths and leave a hole in the
-     grid where the tenth would be. */
+  /* Explicit column counts, not auto-fit: auto-fit picks its own number, and a
+     group of three can end up alone in a row of four at some width it chose. */
   @media (min-width: 34rem) {
     .features {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .features li:last-child {
+    /*
+      Two columns against groups of three leaves a hole at the end of every
+      group. The children repeat in fours (a heading, then its three cells), so
+      the third cell of each group is every fourth child, and stretching it
+      fills the row. This is the rule features.ts means when it says the groups
+      have to stay three long.
+    */
+    .features > :nth-child(4n) {
       grid-column: 1 / -1;
     }
   }
@@ -360,17 +391,23 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .features li:last-child {
+    .features > :nth-child(4n) {
       grid-column: auto;
     }
   }
 
-  .features h3 {
-    font-size: var(--step-1);
+  /* Icon and title on one line, aligned at the top rather than centred, so a
+     title that wraps to two lines keeps its mark against the first. */
+  .head {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
     margin-bottom: var(--space-xs);
+    font-size: var(--step-1);
+    line-height: 1.25;
   }
 
-  .features p {
+  .body {
     color: var(--text-secondary);
     font-size: var(--step--1);
   }

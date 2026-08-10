@@ -61,6 +61,7 @@ const SOURCES: Source[] = [
   { id: 'llama', from: 'crates/rox/assets/workspaces/Llama_Dark.png' },
   { id: 'metro', from: 'crates/rox/assets/workspaces/Metro_Dark.png' },
   { id: 'phosphor', from: 'crates/rox/assets/workspaces/Phosphor_Dark.png' },
+  { id: 'critters', from: 'crates/rox/assets/workspaces/Critters_Dark.png' },
   { id: 'nekorox', from: 'nekorox.png', kind: 'content' },
   { id: 'alpharox', from: 'alpharox.png', kind: 'content' },
 ]

@@ -41,6 +41,17 @@ export const SIDE_PAGES: SidePage[] = [
     image: 'nekorox',
   },
   {
+    path: '/music-visualizer',
+    name: 'The visualizer, and the layer under it',
+    blurb: 'Spectrum and waveform panels, WGSL shaders over any panel or the whole window, and the named signals off the audio that drive them.',
+    image: 'critters',
+  },
+  {
+    path: '/cue-sheets',
+    name: 'FLAC and CUE rips',
+    blurb: 'A whole-disc image and its sheet, indexed as real tracks that seek, sort, scrobble and run gaplessly into each other.',
+  },
+  {
     path: '/mp3tag-alternative',
     name: 'An Mp3tag alternative for Linux',
     blurb: 'Batch edits, a per-file grid, and a write path that copies, verifies and renames rather than editing your files in place.',

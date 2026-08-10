@@ -1,14 +1,15 @@
 <script lang="ts">
+  import { base } from '$app/paths'
   import Meta from '$components/Meta.svelte'
   import Screenshot from '$components/Screenshot.svelte'
   import StructuredData from '$components/StructuredData.svelte'
-  import { WORKSPACES } from '$data/workspaces'
+  import { WORKSPACE_COUNT, WORKSPACES } from '$data/workspaces'
 
   const TITLE = 'rox workspaces - shareable themes and layouts'
   const DESCRIPTION
-    = 'A rox workspace is a whole look in one shareable file: layout, palette '
-      + 'and appearance. Six ship in the box, from a Foobar2000 tribute to a '
-      + 'monospace terminal.'
+    = 'A rox workspace is a whole look in one shareable file: layout, palette, '
+      + 'appearance and the shaders it runs. They ship from a Foobar2000 tribute '
+      + 'to a player rendered entirely in 1-bit dither.'
 </script>
 
 <Meta
@@ -30,9 +31,10 @@
 <section class="shell intro">
   <h1>Workspaces</h1>
   <p class="prose lede">
-    A workspace is a whole look in one file: layout, palette, appearance. Load one from
-    the welcome window or settings, change anything you like, and hand the file to
-    someone else to get the same thing back. These six ship in the box.
+    A workspace is a whole look in one file: layout, palette, appearance, and any shaders
+    it runs, carried inline so an imported look arrives complete. Load one from the
+    welcome window or settings, change anything you like, and hand the file to someone
+    else to get the same thing back. These {WORKSPACE_COUNT} ship in the box.
   </p>
 </section>
 
@@ -85,6 +87,20 @@
   </div>
 </section>
 
+<!-- Critters is the one that raises a question the switcher can't answer, so
+     the page ends by pointing at the page that does. -->
+<section class="block band closer">
+  <div class="shell">
+    <h2>How Critters does that</h2>
+    <p class="prose">
+      A workspace carries its shaders inline, source and image assets both, so a look that
+      renders the whole app as a 1-bit print imports whole rather than arriving as a
+      reference to a file on somebody else's machine. Nothing runs until you approve it.
+      <a href="{base}/music-visualizer">Shaders and signals</a>.
+    </p>
+  </div>
+</section>
+
 <style>
   .intro {
     padding-block: var(--space-xl) var(--space-lg);
@@ -102,6 +118,20 @@
 
   .switcher {
     padding-bottom: var(--space-2xl);
+  }
+
+  .block {
+    padding-block: var(--space-xl);
+  }
+
+  .band {
+    background: var(--bg-panel);
+    border-block: var(--hairline) solid var(--border);
+  }
+
+  .closer h2 {
+    font-size: var(--step-3);
+    margin-bottom: var(--space-md);
   }
 
   /* No rule of its own and no bottom margin: the screenshot's top border is the
@@ -179,14 +209,16 @@
   /*
     One rule per workspace tying a checked input to its panel. Written out rather
     than generated: :has() with :nth-of-type would be less legible and no shorter
-    at six items.
+    at this many. A workspace added to workspaces.ts needs a line here too, or its
+    tab is a button that does nothing.
   */
   .tabs:has(#ws-default:checked) ~ .panels .panel[data-panel='default'],
   .tabs:has(#ws-foobar:checked) ~ .panels .panel[data-panel='foobar'],
   .tabs:has(#ws-catrox:checked) ~ .panels .panel[data-panel='catrox'],
   .tabs:has(#ws-llama:checked) ~ .panels .panel[data-panel='llama'],
   .tabs:has(#ws-metro:checked) ~ .panels .panel[data-panel='metro'],
-  .tabs:has(#ws-phosphor:checked) ~ .panels .panel[data-panel='phosphor'] {
+  .tabs:has(#ws-phosphor:checked) ~ .panels .panel[data-panel='phosphor'],
+  .tabs:has(#ws-critters:checked) ~ .panels .panel[data-panel='critters'] {
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
