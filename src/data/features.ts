@@ -5,19 +5,19 @@ import { WORKSPACE_COUNT } from './workspaces'
  * called. FeatureIcon.svelte maps these onto lucide components, the same split
  * PlatformIcon uses, so the data modules stay readable by the node scripts.
  */
-export type FeatureIconId =
-  | 'library'
-  | 'tagging'
-  | 'cue'
-  | 'gapless'
-  | 'equalizer'
-  | 'similarity'
-  | 'panels'
-  | 'themes'
-  | 'shaders'
-  | 'lyrics'
-  | 'playlists'
-  | 'binary'
+export type FeatureIconId
+  = | 'library'
+    | 'tagging'
+    | 'cue'
+    | 'gapless'
+    | 'equalizer'
+    | 'similarity'
+    | 'panels'
+    | 'themes'
+    | 'shaders'
+    | 'lyrics'
+    | 'playlists'
+    | 'binary'
 
 export interface Feature {
   title: string
