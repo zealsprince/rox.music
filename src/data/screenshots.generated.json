@@ -86,6 +86,17 @@
     "path": "/screenshots/critters-dark",
     "lightPath": "/screenshots/critters-light"
   },
+  "diffuse": {
+    "width": 1440,
+    "height": 900,
+    "widths": [
+      640,
+      1024,
+      1440
+    ],
+    "path": "/screenshots/diffuse-dark",
+    "lightPath": "/screenshots/diffuse-light"
+  },
   "nekorox": {
     "width": 960,
     "height": 1080,

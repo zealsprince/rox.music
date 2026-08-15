@@ -135,8 +135,8 @@
     <h2>What you don't get back</h2>
     <ul class="limits">
       <li>
-        Not every CaTRoX panel has an equivalent. rox has forty panel types and they're
-        not the same forty.
+        Not every CaTRoX panel has an equivalent. rox has forty-odd panel types of its own
+        and they aren't the same forty.
       </li>
       <li>
         No YouTube playback. CaTRoX and NekoRoX both had it through components; rox plays

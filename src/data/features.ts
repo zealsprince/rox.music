@@ -88,7 +88,7 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
       {
         title: 'Sorted by how it sounds',
         icon: 'similarity',
-        body: 'rox describes your tracks off their own audio and orders what\'s next by resemblance. It runs on your machine against your files, with no service in the loop.',
+        body: 'rox describes your tracks off their own audio, tempo included, and orders what\'s next by resemblance. It runs on your machine against your files, no service in the loop.',
       },
     ],
   },
@@ -98,7 +98,7 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
       {
         title: 'Panels you compose',
         icon: 'panels',
-        body: 'Forty panel types, from library and queue to artist grids, spectrum and VU. Duplicate one with its own config, save it as a preset, or pop it out into a window.',
+        body: 'Forty-odd panel types, from library and queue to artist grids, spectrum and VU. Duplicate one with its config, save it as a preset, or pop it out into a window.',
         link: { path: '/foobar2000-alternative', name: 'Next to Foobar2000' },
       },
       {
@@ -126,7 +126,7 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
       {
         title: 'Playlists that survive',
         icon: 'playlists',
-        body: 'Favourites, drag reorder across lists, m3u in and out. Entries keep their place when a file leaves the library and comes back later.',
+        body: 'Favourites, drag reorder, m3u in and out, and smart playlists that re-run a saved query rather than hold a snapshot. Entries survive a file leaving and returning.',
       },
       {
         title: 'One binary, no installer',

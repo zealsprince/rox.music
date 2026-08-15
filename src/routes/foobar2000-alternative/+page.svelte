@@ -39,7 +39,7 @@
     {
       area: 'Panels you compose',
       fb: 'Yes, through Columns UI and friends.',
-      rox: 'Forty panel types, built in, no components to install.',
+      rox: 'Forty-odd panel types, built in, no components to install.',
       win: 'even',
     },
     {
@@ -144,8 +144,9 @@
   <div class="prose">
     <p>
       Native on all three platforms, one binary each, written in Rust on
-      <a href="https://gpui.rs" rel="noreferrer">gpui</a>. Forty panel types you arrange
-      yourself, duplicate with independent configs, and pop out into real OS windows. The
+      <a href="https://gpui.rs" rel="noreferrer">gpui</a>. Around forty panel types you
+      arrange yourself, duplicate with independent configs, and pop out into real OS
+      windows. The
       library scanner reads full tags, true durations and each file's own codec, sample
       rate and bit depth rather than skimming headers, and it holds up at 50,000 tracks.
     </p>
@@ -229,7 +230,7 @@
       The other side of arriving late is worth stating. Nothing in rox has to stay
       compatible with a decision made in 2002, which is how a whole look ends up as one
       shareable file instead of a component graph, how one codebase covers all three
-      platforms, and how forty panel types ship in the box rather than getting assembled
+      platforms, and how forty-odd panel types ship in the box rather than getting assembled
       one download at a time. It's also why track identity was never tied to file paths,
       which is the thing that makes merging a local library with anything else possible
       later. Most of that 62 MB is the same story.

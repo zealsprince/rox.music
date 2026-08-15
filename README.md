@@ -90,7 +90,7 @@ The site uses the system UI stack. If a webfont ever lands, self-host the woff2 
 
 ## Colors
 
-`src/tokens.scss` mirrors rox's palette from `crates/rox/src/design/palette.rs`, role
+`src/tokens.scss` mirrors rox's palette from `crates/rox-design/src/palette.rs`, role
 for role. Change a role in the app and change it here.
 
 ## License

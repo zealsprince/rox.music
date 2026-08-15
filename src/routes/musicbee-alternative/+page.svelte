@@ -65,13 +65,12 @@
     <ul class="limits">
       <li><strong>No device sync.</strong> If you move music onto a phone or a DAP through your player, rox has no answer at all.</li>
       <li><strong>No podcasts or internet radio.</strong> rox plays files on your disk.</li>
-      <li><strong>No format conversion.</strong> No transcoding, no converter, no on-sync re-encoding.</li>
-      <li><strong>No auto-playlists.</strong> Rule-based playlists that maintain themselves aren't there.</li>
       <li><strong>No plugin API.</strong> Anything you'd have solved with an add-on has to already exist.</li>
+      <li><strong>Conversion needs ffmpeg.</strong> rox converts between formats, but it drives an ffmpeg you installed rather than carrying an encoder of its own, and it won't re-encode on the way to a device because there's no sync to re-encode for.</li>
     </ul>
     <p class="method">
-      That's five real features and the list isn't padded to look honest. If two of them
-      are part of how you use a player, stop here.
+      Four real things and the list isn't padded to look honest. If two of them are part of
+      how you use a player, stop here.
     </p>
   </div>
 </section>
@@ -90,18 +89,24 @@
     </p>
     <p>
       The interface is the bigger difference. MusicBee gives you a good layout and some
-      skinning; rox gives you forty panel types you arrange yourself, duplicate with their
+      skinning; rox gives you around forty panel types you arrange yourself, duplicate with their
       own configs, and pop out into real OS windows. A whole look is one file carrying
       layout, palette and appearance, which means the arrangement you settle on is
       something you can hand to someone else, or move to your other machine, rather than
       something that lives on one install.
     </p>
     <p>
-      Auto-playlists are still MusicBee's, but the part of queue automation that matters
-      while you're listening is here: rox refills the queue when it runs dry, from your
-      browse order, from the tracks you keep never getting to, or from what the current
-      track sounds like. That last one comes from analyzing your files on your own
-      machine, so it works on a library nothing on the internet has heard of.
+      Auto-playlists transfer. A smart playlist in rox is a saved query written in the same
+      syntax the search box uses, with an optional sort and cap, and it re-runs every time
+      the panel refreshes rather than holding a stale snapshot. The editor previews what the
+      query takes as you type it, so you find out you wrote the wrong rule before you save
+      it under a name.
+    </p>
+    <p>
+      Queue automation is here too: rox refills the queue when it runs dry, from your browse
+      order, from the tracks you keep never getting to, or from what the current track
+      sounds like. That last one comes from analyzing your files on your own machine, so it
+      works on a library nothing on the internet has heard of.
     </p>
   </div>
 </section>
@@ -170,15 +175,15 @@
   <h2>The honest split</h2>
   <div class="prose">
     <p>
-      Staying on Windows with a MusicBee setup that syncs your phone and maintains your
-      auto-playlists? Nothing here replaces that, and switching would cost you two features
-      rox has no version of.
+      Staying on Windows with a MusicBee setup that syncs your phone and feeds it podcasts?
+      Nothing here replaces that, and switching would cost you two features rox has no
+      version of.
     </p>
     <p>
       Moving to Linux or a Mac, or already there and looking at the gap MusicBee left?
-      That's the whole reason this exists, and the trade is specific: you give up sync,
-      podcasts and conversion, and you get a native player with deeper tagging, a layout
-      you build yourself, and a library that stays quick at fifty thousand tracks.
+      That's the whole reason this exists, and the trade is specific: you give up sync and
+      podcasts, and you get a native player with deeper tagging, a layout you build
+      yourself, and a library that stays quick at fifty thousand tracks.
     </p>
     <p class="aside">
       Popping a panel into its own OS window, or handing your entire layout to someone as a

@@ -1,22 +1,22 @@
 {
-  "tag_name": "v1.4.1",
-  "html_url": "https://github.com/zealsprince/rox/releases/tag/v1.4.1",
-  "published_at": "2026-07-25T07:07:44Z",
+  "tag_name": "v1.18.0",
+  "html_url": "https://github.com/zealsprince/rox/releases/tag/v1.18.0",
+  "published_at": "2026-08-14T23:38:35Z",
   "assets": [
     {
-      "name": "rox-v1.4.1-linux-x86_64.tar.gz",
-      "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.4.1/rox-v1.4.1-linux-x86_64.tar.gz",
-      "size": 23096954
+      "name": "rox-v1.18.0-linux-x86_64.tar.gz",
+      "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.18.0/rox-v1.18.0-linux-x86_64.tar.gz",
+      "size": 41066039
     },
     {
-      "name": "rox-v1.4.1-macos-aarch64.zip",
-      "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.4.1/rox-v1.4.1-macos-aarch64.zip",
-      "size": 15005272
+      "name": "rox-v1.18.0-macos-aarch64.dmg",
+      "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.18.0/rox-v1.18.0-macos-aarch64.dmg",
+      "size": 37236262
     },
     {
-      "name": "rox-v1.4.1-windows-x86_64.zip",
-      "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.4.1/rox-v1.4.1-windows-x86_64.zip",
-      "size": 19369341
+      "name": "rox-v1.18.0-windows-x86_64.zip",
+      "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.18.0/rox-v1.18.0-windows-x86_64.zip",
+      "size": 41899146
     }
   ]
 }

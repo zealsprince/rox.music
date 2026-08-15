@@ -61,13 +61,14 @@
 
 <section class="block band">
   <div class="shell narrow">
-    <h2>Shaders, on three surfaces</h2>
+    <h2>Shaders, on four surfaces</h2>
     <div class="prose">
       <p>
         A rox shader is one WGSL fragment stage. It can run over a single panel's body, as
-        a Shader panel of its own, or as an overlay across the whole window, with a switch
-        that extends it to every window rox has open. Same language, same uniform block,
-        same routing in all three places.
+        a Shader panel of its own, as an overlay across the whole window, or as a backdrop
+        painting under every panel, behind the cover art. Overlay and backdrop each take a
+        switch that extends them to every window rox has open. Same language, same uniform
+        block, same routing in all of them.
       </p>
       <p>
         Every shader gets the clock, the resolution, the pointer, and eight meta floats
@@ -75,6 +76,12 @@
         is actually moving, the track's length, and how dark the current palette renders,
         so one shader can dress itself for light and dark instead of shipping for the
         theme it was written against.
+      </p>
+      <p>
+        A panel shader can also read what the panel actually drew. A mask binding hands it
+        the panel's own painting replayed onto transparency, and panels publish the shape of
+        their content, so a shadow or a glow follows a letterboxed cover rather than the
+        empty bars either side of it.
       </p>
       <p>
         Past one stage, a <code>// @pass</code> comment splits the text into a chain of up

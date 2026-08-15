@@ -115,6 +115,12 @@
         lived in the files, a setting writes them back through the same verified write path
         the tag editor uses.
       </p>
+      <p>
+        That pass can run itself. With automatic measuring on, files get measured once the
+        folder watcher settles after an import, and a track dropped into an album that was
+        already measured sends the whole record back for re-metering, since album gain is a
+        figure about the record rather than the file.
+      </p>
     </div>
   </div>
 </section>

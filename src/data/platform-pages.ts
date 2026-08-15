@@ -1,4 +1,5 @@
 import type { Platform } from '$types/release'
+import { WORKSPACE_COUNT } from './workspaces'
 
 /**
  * The long-form platform pages.
@@ -63,7 +64,7 @@ export const PLATFORM_PAGES: Record<Platform['id'], PlatformPage> = {
         body: [
           'The good Linux players each give up something. Tauon\'s tagging is shallow. Strawberry isn\'t composable. Quod Libet isn\'t something anyone would theme. The stack that does panels, deep tagging and a theming story all at once has been stuck on Windows for twenty years.',
           'Running that stack through Wine works until it doesn\'t. A skin like CaTRoX is held together by stacked workarounds and, in places, Internet Explorer rendering inside panels. Through a translation layer it becomes obvious how much is luck, and every OS update is a chance to find out.',
-          'rox is that shape written natively: forty panel types you arrange yourself, tag editing you can trust with a real collection, and themes that travel as a single file.',
+          'rox is that shape written natively: around forty panel types you arrange yourself, tag editing you can trust with a real collection, and themes that travel as a single file.',
         ],
       },
       {
@@ -159,11 +160,11 @@ export const PLATFORM_PAGES: Record<Platform['id'], PlatformPage> = {
         heading: 'The rest of the Windows integration',
         body: [
           'Media keys and the now-playing overlay come through SMTC, the same system surface built-in apps use, so the volume-key panel shows the track and the transport buttons work.',
+          'There is a tray icon with quit-to-tray, so closing the last window leaves the music playing rather than ending it, and the icon is the way back in. A workspace can also take the window frame off, or keep the frame and drop only the resize border, which leaves the shadow, the snap layouts and Win+arrow intact and gives up the edge drag alone.',
         ],
       },
     ],
     limits: [
-      'No tray icon. Quit-to-tray exists on Linux and macOS; on Windows, closing the last window quits.',
       'No single-instance guard. On Linux and macOS a second launch hands its files to the running rox; on Windows it starts a second copy.',
       'x86_64 only, and the binary is unsigned, so expect SmartScreen once.',
       'No plugin API, so a specific Foobar2000 component has no equivalent here.',
@@ -190,7 +191,7 @@ export const PLATFORM_PAGES: Record<Platform['id'], PlatformPage> = {
         heading: 'The gap on the Mac specifically',
         body: [
           'Foobar2000 v2 ships an official macOS version, and this page isn\'t going to pretend it doesn\'t. The catch is that the component and skin ecosystem, the thing that made a Windows install worth a weekend of configuring, is Windows-side. On a Mac you get the player without the ecosystem that justified choosing it.',
-          'rox puts the composition and theming back: forty panel types arranged how you want, duplicated with their own configs, popped out into real windows, and a whole look stored as one shareable file. One of the six shipped workspaces is a CaTRoX recreation, which is a fair statement of what it\'s aiming at.',
+          `rox puts the composition and theming back: around forty panel types arranged how you want, duplicated with their own configs, popped out into real windows, and a whole look stored as one shareable file. One of the ${WORKSPACE_COUNT} shipped workspaces is a CaTRoX recreation, which is a fair statement of what it's aiming at.`,
         ],
       },
       {
@@ -219,8 +220,8 @@ export const PLATFORM_PAGES: Record<Platform['id'], PlatformPage> = {
       'No plugin API, so a specific Foobar2000 component has no equivalent here.',
     ],
     aside:
-      'Menus where macOS puts them, forty panel types to arrange however you like, and six '
-      + 'complete looks a click away on the welcome window. If configuring the player is '
-      + 'the part you actually enjoy, that\'s what\'s here.',
+      'Menus where macOS puts them, around forty panel types to arrange however you like, '
+      + `and ${WORKSPACE_COUNT} complete looks a click away on the welcome window. If `
+      + 'configuring the player is the part you actually enjoy, that\'s what\'s here.',
   },
 }

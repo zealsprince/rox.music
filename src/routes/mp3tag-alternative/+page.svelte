@@ -39,10 +39,10 @@
   <div class="prose">
     <p>
       rox is a music player that contains a serious tag editor. Mp3tag is a dedicated
-      tagger, and at being a dedicated tagger it's better: scripting and actions, format
-      strings, filename-to-tag and tag-to-filename conversion by pattern, and twenty years
-      of accumulated sharp edges filed off. If what you want is a standalone tool to run
-      over a folder and then close, on Windows, that's the one.
+      tagger, and at being a dedicated tagger it's better: scripting, actions, format
+      strings you can compose, and twenty years of accumulated sharp edges filed off. If
+      what you want is a standalone tool to run over a folder and then close, on Windows,
+      that's the one.
     </p>
     <p>
       The case for doing it in rox is that tagging a library is not usually a task you
@@ -119,6 +119,7 @@
       <li><strong>Cover art.</strong> Multi-picture album art, added and replaced through the same atomic path.</li>
       <li><strong>Lookup.</strong> Tags and covers from MusicBrainz, iTunes and Deezer, applied through the same diff so you see what changes before it writes.</li>
       <li><strong>Repair.</strong> A pass for files whose tags are damaged in specific known ways rather than merely wrong, the ones that make other taggers show a track as a filename and a zero duration.</li>
+      <li><strong>Patterns, both directions.</strong> A format string like <code>%artist% - %title%</code> reads tags out of a filename, and the same pattern run backwards renames files from their tags. Both preview every track before anything is written.</li>
     </ul>
   </div>
 </section>
@@ -127,10 +128,9 @@
   <h2>Who should stay with Mp3tag</h2>
   <div class="prose">
     <p>
-      If you're on Windows and you lean on actions, scripting or format-string conversions,
-      rox has no equivalent and this would be a downgrade. If you want a tagger that isn't
-      also a player, this is the wrong shape entirely. And if your workflow is renaming
-      files from tags in bulk by pattern, that's Mp3tag's home ground.
+      If you're on Windows and you lean on actions, scripting or the more elaborate
+      format-string work, rox has no equivalent and this would be a downgrade. If you want a
+      tagger that isn't also a player, this is the wrong shape entirely.
     </p>
     <p>
       If you're on Linux or a Mac, or your tagging happens in the middle of listening

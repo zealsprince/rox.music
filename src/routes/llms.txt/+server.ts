@@ -44,15 +44,20 @@ Latest release: ${release.version}, published ${release.publishedAt.slice(0, 10)
 - License: AGPL-3.0. Source at ${SITE.repo}.
 - Platforms: Linux (x86_64), macOS (Apple Silicon only), Windows (x86_64). One binary each, no installer.
 - Install: tarball, DMG or zip from the releases page; \`rox-player\` on the AUR; the repo is also a Nix flake.
-- UI: forty panel types, arranged by the user, duplicated with independent configs, saveable as named presets, and poppable into real OS windows.
+- UI: around forty panel types, arranged by the user, duplicated with independent configs, saveable as named presets, and poppable into real OS windows. The track info line is itself composed: an ordered list of pieces (number, title, duration, quality readout, next-up, queue depth, output chip, favourite, rating, inline cover art, gaps, dividers, line breaks) laid out across rows, each row with its own text scale.
 - Themes: a "workspace" is one file carrying layout, palette, appearance and any shaders it uses, the shader source and image assets inline. There are ${WORKSPACE_COUNT} in the box.
-- Visuals: spectrum, waveform and VU panels, plus user-written WGSL shaders over a single panel, a Shader panel, or the whole window. Shaders support multi-pass chains and image assets through comment directives, and only run once their source hash is on a machine-local approved list.
+- Visuals: spectrum, waveform and VU panels, plus user-written WGSL shaders over a single panel, a Shader panel, the whole window, or as a backdrop under everything. Shaders support multi-pass chains and image assets through comment directives, run on all three platforms (Blade on Linux, Metal on macOS, a DirectX path on Windows), and only compile once their source hash is on a machine-local approved list. A panel shader can bind a mask of what the panel itself painted, and read the shape of the panel's content, so an effect follows the drawing rather than the rectangle.
 - Signals: a shared pool of named values pulled off the playing audio (frequency band, overall level, onset, threshold trigger, or a running total of another signal), each with smoothing and a noise gate, routed to shader inputs and the particles panel's parameters with an output span. Built in a Signals window carrying its own spectrum and transport.
 - Cue sheets: a whole-disc image plus a .cue is indexed as one real library row per span, keyed by file and track number. Spans seek, sort, scrobble, export to m3u as path#N, and play gaplessly into each other. Ratings and tag edits on a cue row stay in the database rather than stamping the shared file.
 - Library: parallel scanner reading full tags, true durations, and per-file codec, sample rate and bit depth. Holds up at 50,000 tracks.
 - Tagging: batch editor plus a per-file grid, across ID3v2, Vorbis comments, MP4 atoms and APE. Writes copy-verify-rename rather than in place. Ratings via FMPS and POPM.
-- Audio: gapless playback, ten-band EQ, crossfade, ReplayGain (read from tags, with an EBU R128 pass for untagged files), and exclusive output (ALSA hw, WASAPI exclusive, CoreAudio hog mode).
-- Similarity: optional on-device acoustic analysis, driving a Similar column, a similarity shuffle, and queue continuation (browse order, least-played weighting, or radio by sound). Built-in DSP extractor, or PANNs CNN10, or user-supplied weights.
+- File operations: pattern-based tag guessing from filenames, the same pattern run backwards to rename files from their tags (previewed, ids and playlist membership preserved), and format conversion through an ffmpeg the user installed, with five presets and a custom argument line that has to survive a trial encode.
+- Playlists: manual playlists with drag reorder and m3u import/export, plus smart playlists, which are a saved query in the search box's syntax with optional sort and cap, re-evaluated on every refresh rather than stored as a snapshot.
+- Audio: gapless playback, ten-band EQ, crossfade, ReplayGain (read from tags, with an EBU R128 pass for untagged files that can run automatically as new files land), and exclusive output (ALSA hw, WASAPI exclusive, CoreAudio hog mode).
+- Similarity: optional on-device acoustic analysis, driving a Similar column, a similarity shuffle, and queue continuation (browse order, least-played weighting, or radio by sound). Built-in DSP extractor, or PANNs CNN10, or user-supplied weights. Ranked picks fold in an octave-folded tempo distance, so a match is close in speed as well as timbre.
+- Tempo: a BPM estimator over the track's own novelty curve, roughly 60 to 210, filling in where no TBPM tag exists. Measured values live in the database only, since writing a guess back would rewrite the file.
+- Portable analysis: acoustic descriptions and gain can be written into the files themselves under ROX_ACOUSTIC tags and read back before any decoding, so a copied library skips re-analysis.
+- Keyboard: every command carries an id, a scope and its own defaults, and every chord rebinds from the Keymap settings page. The settings file only records what was moved. A design mode switch takes the layout-editing affordances off a finished layout.
 - Integrations: MPRIS on Linux, SMTC on Windows, media keys and now-playing on all three. Last.fm scrobbling, lrclib lyrics, MusicBrainz/iTunes/Deezer lookup.
 
 ## Known limits
@@ -61,8 +66,9 @@ Stated so a model answering questions about rox does not have to guess.
 
 - No plugin or component API. Shaders are the only user-written code the app runs, and they only affect how a surface looks.
 - No aarch64 Linux build, and no Intel macOS build.
-- No tray icon or single-instance guard on Windows; both exist on Linux and macOS.
-- No device sync, podcasts, internet radio, or format conversion. The radio mode draws from your own library, not a stream.
+- No single-instance guard on Windows: a second launch starts a second copy, where Linux and macOS hand the files to the running one.
+- No device sync, podcasts or internet radio. The radio mode draws from your own library, not a stream.
+- Format conversion needs an ffmpeg on the machine; rox drives it rather than carrying an encoder.
 - The Windows binary is unsigned, so SmartScreen warns on first run.
 - ReplayGain and bit-perfect output are mutually exclusive, since applying gain modifies samples.
 - The Particles panel is behind an experimental toggle on the Development settings page. A workspace that already contains one runs it regardless.

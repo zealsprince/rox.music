@@ -63,6 +63,12 @@ export const WORKSPACES: Workspace[] = [
     blurb: 'The whole app as a 1-bit print. An ordered dither over every surface, tones crushing with the sub-bass, and a noise wall behind the panels that moves with the song.',
     alt: 'The Critters rox workspace: the entire window rendered in black-and-white ordered dither, with a curved shelf of album covers over a seek bar, transport row, waveform strip and track table, all sitting on a shifting field of noise.',
   },
+  {
+    id: 'diffuse',
+    name: 'Diffuse',
+    blurb: 'Just the album that\'s playing, over a soft wash of its own cover. Monochrome on purpose, so the art carries the colour, and the library waits in a drawer on the right edge.',
+    alt: 'The Diffuse rox workspace: one large album cover filling the left of the window against a blurred gradient of the same art, with the track title, artist and album beside it over a thin seek line, a row of transport buttons and a volume slider.',
+  },
 ]
 
 const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']

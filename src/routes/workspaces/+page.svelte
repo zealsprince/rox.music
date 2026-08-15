@@ -19,7 +19,7 @@
   image="/social/workspaces.png"
   imageAlt="The rox logo above the words: a whole look in one shareable file"
 />
-<!-- This page had no graph at all, so the six shots it exists to show were
+<!-- This page had no graph at all, so the shots it exists to show were
      invisible to anything reading structured data. -->
 <StructuredData
   name={TITLE}
@@ -39,7 +39,7 @@
 </section>
 
 <!--
-  A switcher rather than six stacked full windows, because stacked they read as
+  A switcher rather than a stack of full windows, because stacked they read as
   repetition instead of as range.
 
   Built on radio inputs so it works with no JavaScript at all, which matters
@@ -218,7 +218,8 @@
   .tabs:has(#ws-llama:checked) ~ .panels .panel[data-panel='llama'],
   .tabs:has(#ws-metro:checked) ~ .panels .panel[data-panel='metro'],
   .tabs:has(#ws-phosphor:checked) ~ .panels .panel[data-panel='phosphor'],
-  .tabs:has(#ws-critters:checked) ~ .panels .panel[data-panel='critters'] {
+  .tabs:has(#ws-critters:checked) ~ .panels .panel[data-panel='critters'],
+  .tabs:has(#ws-diffuse:checked) ~ .panels .panel[data-panel='diffuse'] {
     visibility: visible;
     opacity: 1;
     pointer-events: auto;

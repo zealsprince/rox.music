@@ -6,6 +6,7 @@
   import Meta from '$components/Meta.svelte'
   import Screenshot from '$components/Screenshot.svelte'
   import StructuredData from '$components/StructuredData.svelte'
+  import { WORKSPACE_COUNT } from '$data/workspaces'
 
   const { data }: { data: PageData } = $props()
 
@@ -182,7 +183,7 @@
   <h2>Get rox</h2>
   <p class="prose">
     Free, open source, one binary per platform. The
-    <a href="{base}/workspaces">workspaces page</a> shows the six shipped looks, and the
+    <a href="{base}/workspaces">workspaces page</a> shows the {WORKSPACE_COUNT} shipped looks, and the
     <a href="{base}/foobar2000-alternative">foobar2000 comparison</a> covers where
     foobar2000 is still ahead.
   </p>
