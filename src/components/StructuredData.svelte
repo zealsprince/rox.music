@@ -2,6 +2,7 @@
   import type { Release } from '$types/release'
   import { page } from '$app/state'
   import { SITE } from '$data/site'
+  import { i18n } from '$lib/i18n/context'
 
   interface Props {
     /**
@@ -29,6 +30,22 @@
     breadcrumb,
   }: Props = $props()
 
+  const { t, info } = i18n()
+
+  // Eight short claims about what the app does, in the language of the page
+  // making them. A graph that describes a German page in English is a graph
+  // describing something else.
+  const FEATURES = [
+    'app-feature-panels',
+    'app-feature-workspaces',
+    'app-feature-tagging',
+    'app-feature-gapless',
+    'app-feature-dsp',
+    'app-feature-exclusive',
+    'app-feature-lyrics',
+    'app-feature-scrobbling',
+  ].map(key => t(key))
+
   // Same reasoning as Meta's canonical: prerendered, so page.url is the
   // build-time URL. The origin has to come from SITE or every @id in the graph
   // points at localhost.
@@ -46,9 +63,9 @@
         '@id': `${SITE.origin}/#website`,
         'url': `${SITE.origin}/`,
         'name': SITE.name,
-        'description': SITE.description,
+        'description': t('site-description'),
         'publisher': { '@id': `${SITE.origin}/#author` },
-        'inLanguage': 'en',
+        'inLanguage': info.htmlLang,
       },
       {
         '@type': 'Person',
@@ -64,7 +81,7 @@
         'url': `${SITE.origin}/`,
         'applicationCategory': 'MultimediaApplication',
         'applicationSubCategory': 'Music player',
-        'description': SITE.description,
+        'description': t('site-description'),
         'operatingSystem': 'Linux, macOS, Windows',
         'author': { '@id': `${SITE.origin}/#author` },
         'license': 'https://www.gnu.org/licenses/agpl-3.0.html',
@@ -75,16 +92,7 @@
         'screenshot': `${SITE.origin}/social/default.png`,
         'softwareHelp': SITE.docs,
         'sameAs': [SITE.repo],
-        'featureList': [
-          'Composable panel UI with pop-out windows',
-          'Shareable workspaces carrying layout, palette and appearance',
-          'Deep tag editing with atomic writes and batch edits',
-          'Gapless playback',
-          'Equalizer, crossfade and ReplayGain',
-          'Exclusive bit-perfect output',
-          'Synced lyrics',
-          'Last.fm scrobbling',
-        ],
+        'featureList': FEATURES,
         // Free software, but the node still needs an Offer for search engines
         // to show it as free rather than as unknown.
         'offers': {
@@ -115,7 +123,7 @@
         'isPartOf': { '@id': `${SITE.origin}/#website` },
         'about': { '@id': `${SITE.origin}/#app` },
         'primaryImageOfPage': imageUrl,
-        'inLanguage': 'en',
+        'inLanguage': info.htmlLang,
         ...(breadcrumb ? { breadcrumb: { '@id': `${canonical}#breadcrumb` } } : {}),
       },
       // The last crumb deliberately carries no `item`. Google reads a trailing

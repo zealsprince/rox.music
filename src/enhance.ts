@@ -79,6 +79,11 @@ function markPlatform(): void {
 
   // The hero's primary button is a generic "Download" link until we know
   // better. Swap its href and label for the matching asset.
+  //
+  // The label comes off the button as a whole sentence with `%s` where the
+  // platform name goes, because this script has no idea what language the page
+  // it landed on is in. Building it here out of a word and a name would work in
+  // English and put the pieces in the wrong order everywhere else.
   const primary = document.querySelector<HTMLAnchorElement>('[data-download-primary]')
   const asset = document.querySelector<HTMLAnchorElement>(
     `[data-download-asset="${platform}"]`,
@@ -87,8 +92,9 @@ function markPlatform(): void {
     primary.href = asset.href
     const label = primary.querySelector<HTMLElement>('[data-download-label]')
     const name = asset.dataset.platformLabel
-    if (label && name)
-      label.textContent = `Download for ${name}`
+    const template = primary.dataset.downloadTemplate
+    if (label && name && template)
+      label.textContent = template.replace('%s', name)
   }
 }
 

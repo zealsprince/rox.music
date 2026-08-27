@@ -2,6 +2,7 @@ import type { RequestHandler } from './$types'
 import { HUB, SIDE_PAGES } from '$data/pages'
 import { SITE } from '$data/site'
 import { WORKSPACE_COUNT } from '$data/workspaces'
+import { localePath, LOCALES, SOURCE_LOCALE, translate } from '$lib/i18n'
 import { loadRelease } from '$lib/server/release'
 
 export const prerender = true
@@ -18,19 +19,33 @@ export const prerender = true
 // The register is deliberately flatter than the site's: no voice, no argument,
 // just what is true. A model quoting this should end up with accurate claims
 // about rox rather than the pitch.
+//
+// One file, in English, at the root. The site has four languages and this index
+// is read by models rather than by people, so four copies of the same facts
+// would be four things to keep in sync for no reader. What it does carry is
+// where the translations live, which is the part a model can't guess.
 
 const url = (path: string): string => new URL(path, SITE.origin).href
+
+function t(key: string, args?: Record<string, string | number>): string {
+  return translate(SOURCE_LOCALE, key, args)
+}
 
 export const GET: RequestHandler = async () => {
   const release = await loadRelease()
 
   const guides = SIDE_PAGES
-    .map(item => `- [${item.name}](${url(item.path)}): ${item.blurb}`)
+    .map(item => `- [${t(item.key)}](${url(item.path)}): ${t(`${item.key}.blurb`)}`)
+    .join('\n')
+
+  const languages = LOCALES
+    .filter(locale => locale.id !== SOURCE_LOCALE)
+    .map(locale => `- ${locale.native} (${locale.htmlLang}): ${url(localePath(locale.id, '/'))}`)
     .join('\n')
 
   const body = `# rox
 
-> ${SITE.description} Native on Linux, macOS and Windows, free and open source under the AGPL-3.0.
+> ${t('site-description')} Native on Linux, macOS and Windows, free and open source under the AGPL-3.0.
 
 Written in Rust on [gpui](https://gpui.rs), the UI framework behind the Zed editor.
 The design goal is the Foobar2000 shape (a UI you compose from panels, deep tag
@@ -45,7 +60,7 @@ Latest release: ${release.version}, published ${release.publishedAt.slice(0, 10)
 - Platforms: Linux (x86_64), macOS (Apple Silicon only), Windows (x86_64). One binary each, no installer.
 - Install: tarball, DMG or zip from the releases page; \`rox-player\` on the AUR; the repo is also a Nix flake.
 - UI: around forty panel types, arranged by the user, duplicated with independent configs, saveable as named presets, and poppable into real OS windows. The track info line is itself composed: an ordered list of pieces (number, title, duration, quality readout, next-up, queue depth, output chip, favourite, rating, inline cover art, gaps, dividers, line breaks) laid out across rows, each row with its own text scale.
-- Themes: a "workspace" is one file carrying layout, palette, appearance and any shaders it uses, the shader source and image assets inline. There are ${WORKSPACE_COUNT} in the box.
+- Themes: a "workspace" is one file carrying layout, palette, appearance and any shaders it uses, the shader source and image assets inline. There are ${t('workspace-count', { count: WORKSPACE_COUNT })} in the box.
 - Visuals: spectrum, waveform and VU panels, plus user-written WGSL shaders over a single panel, a Shader panel, the whole window, or as a backdrop under everything. Shaders support multi-pass chains and image assets through comment directives, run on all three platforms (Blade on Linux, Metal on macOS, a DirectX path on Windows), and only compile once their source hash is on a machine-local approved list. A panel shader can bind a mask of what the panel itself painted, and read the shape of the panel's content, so an effect follows the drawing rather than the rectangle.
 - Signals: a shared pool of named values pulled off the playing audio (frequency band, overall level, onset, threshold trigger, or a running total of another signal), each with smoothing and a noise gate, routed to shader inputs and the particles panel's parameters with an output span. Built in a Signals window carrying its own spectrum and transport.
 - Cue sheets: a whole-disc image plus a .cue is indexed as one real library row per span, keyed by file and track number. Spans seek, sort, scrobble, export to m3u as path#N, and play gaplessly into each other. Ratings and tag edits on a cue row stay in the database rather than stamping the shared file.
@@ -79,12 +94,20 @@ Stated so a model answering questions about rox does not have to guess.
 
 - [Home](${url('/')}): what rox is, a benchmark table against six other players on one 50,000-track library, and the feature summary.
 - [Download](${url('/download')}): per-platform builds with sizes, package manager instructions for AUR and Nix, command line flags, and build-from-source notes.
-- [Workspaces](${url('/workspaces')}): the ${WORKSPACE_COUNT} shipped looks with screenshots.
+- [Workspaces](${url('/workspaces')}): the ${t('workspace-count', { count: WORKSPACE_COUNT })} shipped looks with screenshots.
 
 ## Guides, comparisons and platform notes
 
 ${guides}
-- [${HUB.name}](${url(HUB.path)}): index of the pages above.
+- [${t(HUB.key)}](${url(HUB.path)}): index of the pages above.
+
+## Other languages
+
+The whole site is also published in the languages below, under a locale prefix:
+every page above exists at the same path behind it, and English stays at the
+root. The content is the same; nothing is translated selectively.
+
+${languages}
 
 ## Optional
 

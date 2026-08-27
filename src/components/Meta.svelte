@@ -1,6 +1,8 @@
 <script lang="ts">
   import { page } from '$app/state'
   import { SITE } from '$data/site'
+  import { alternates, SOURCE_LOCALE } from '$lib/i18n'
+  import { i18n } from '$lib/i18n/context'
 
   interface Props {
     title: string
@@ -18,28 +20,49 @@
     imageAlt?: string
   }
 
+  const { t, info, path } = i18n()
+
   const {
     title,
     description,
     fullTitle,
     image = '/social/default.png',
-    imageAlt = 'The rox logo above the words: if Foobar2000 was made in the current year',
+    imageAlt = t('social-image-alt'),
   }: Props = $props()
 
   // Prerendered, so page.url is the build-time URL and not the deployed origin.
   // The canonical origin comes from SITE instead. This is also what keeps the
   // http:// copy of the site from competing with https:// in the index.
+  //
+  // The locale prefix is already in page.url.pathname, so every translation
+  // remains its own canonical URL. Pointing them all at the English one would
+  // be telling Google the translations are duplicates and to drop them.
   const canonical = $derived(new URL(page.url.pathname, SITE.origin).href)
   const imageUrl = $derived(new URL(image, SITE.origin).href)
-  const full = $derived(
-    fullTitle ?? (title === SITE.name ? SITE.tagline : `${title} - ${SITE.name}`),
-  )
+  const full = $derived(fullTitle ?? `${title} - ${SITE.name}`)
+
+  // Every language this page exists in, this one included: hreflang is a set of
+  // mutual claims, and a page that doesn't list itself is one Google throws the
+  // whole cluster out over.
+  const languages = alternates(path, SITE.origin)
 </script>
 
 <svelte:head>
   <title>{full}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
+
+  <!--
+    x-default goes to the English URL. It is not "the English version", it's
+    where a request whose language nobody here speaks should land, and English
+    at the site root is the honest answer for a Rust music player.
+  -->
+  {#each languages as { locale, url } (locale.id)}
+    <link rel="alternate" hreflang={locale.htmlLang} href={url} />
+    {#if locale.id === SOURCE_LOCALE}
+      <link rel="alternate" hreflang="x-default" href={url} />
+    {/if}
+  {/each}
 
   <!--
     `index, follow` is already the default, so it's the two limits after it that
@@ -56,7 +79,12 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content={SITE.name} />
-  <meta property="og:locale" content="en" />
+  <meta property="og:locale" content={info.og} />
+  {#each languages as { locale } (locale.id)}
+    {#if locale.id !== info.id}
+      <meta property="og:locale:alternate" content={locale.og} />
+    {/if}
+  {/each}
   <meta property="og:title" content={full} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} />

@@ -1,16 +1,16 @@
 export interface Benchmark {
+  /** Project name. Never a key. */
   player: string
   /** Home page or canonical repo. Null for rox, which is already this site. */
   url: string | null
-  /** Time to a visible window, or null where the run never produced one. */
-  windowUp: string | null
+  /** Seconds to a visible window, or null where the run never produced one. */
+  windowUpSecs: number | null
   /** Seconds to a settled CPU, or null where it never settled. */
   loadedSecs: number | null
-  /** What to print when there is no number: "never settles". */
-  loadedLabel: string
   /** PSS across the full process tree, in MB, for both the bar and the label. */
   memoryMb: number
-  idleCpu: string
+  /** Idle CPU as a fraction, so Intl can render it as a percent per locale. */
+  idleCpu: number
   self: boolean
 }
 
@@ -18,23 +18,18 @@ export interface Benchmark {
 // harness. Kept in sync with the benchmark table in rox's README; the method
 // note below the table on the site is not optional, these are first-party
 // figures and have to read as such.
-export const BENCHMARK_METHOD
-  = 'I measured all of these myself, on one machine (Ryzen 9 5950X, Linux/Wayland) '
-    + 'with the same 50k-track library on an external SSD, every player through the same '
-    + 'harness with its library loaded. Memory is PSS across the full process tree. '
-    + '"Loaded" is when CPU settles after launch; idle is a paused player with the window '
-    + 'visible.'
-
-// Every player links out to its own project. A comparison that names competitors
-// should make them easy to go check, not just easy to lose to.
+//
+// Raw numbers rather than pre-rendered labels, because "2.3 s" is "2,3 s" in
+// three of the four languages this table now renders in. The formatters below
+// take the locale and put the separator where that language puts it.
 export const BENCHMARKS: Benchmark[] = [
-  { player: 'rox', url: null, windowUp: '0.3 s', loadedSecs: 2.3, loadedLabel: '2.3 s', memoryMb: 134, idleCpu: '0.5%', self: true },
-  { player: 'Elisa', url: 'https://invent.kde.org/multimedia/elisa', windowUp: '0.7 s', loadedSecs: null, loadedLabel: 'never settles', memoryMb: 206, idleCpu: '74%', self: false },
-  { player: 'fooyin', url: 'https://github.com/fooyin/fooyin', windowUp: '0.3 s', loadedSecs: 18, loadedLabel: '18 s', memoryMb: 364, idleCpu: '0%', self: false },
-  { player: 'Quod Libet', url: 'https://github.com/quodlibet/quodlibet', windowUp: null, loadedSecs: 19, loadedLabel: '19 s', memoryMb: 384, idleCpu: '0.2%', self: false },
-  { player: 'Strawberry', url: 'https://www.strawberrymusicplayer.org/', windowUp: '0.3 s', loadedSecs: 32, loadedLabel: '32 s', memoryMb: 434, idleCpu: '0.8%', self: false },
-  { player: 'Museeks', url: 'https://github.com/martpie/museeks', windowUp: null, loadedSecs: 3, loadedLabel: '3 s', memoryMb: 436, idleCpu: '0%', self: false },
-  { player: 'Tauon', url: 'https://tauonmusicbox.rocks/', windowUp: '8.7 s', loadedSecs: 12, loadedLabel: '12 s', memoryMb: 2800, idleCpu: '0%', self: false },
+  { player: 'rox', url: null, windowUpSecs: 0.3, loadedSecs: 2.3, memoryMb: 134, idleCpu: 0.005, self: true },
+  { player: 'Elisa', url: 'https://invent.kde.org/multimedia/elisa', windowUpSecs: 0.7, loadedSecs: null, memoryMb: 206, idleCpu: 0.74, self: false },
+  { player: 'fooyin', url: 'https://github.com/fooyin/fooyin', windowUpSecs: 0.3, loadedSecs: 18, memoryMb: 364, idleCpu: 0, self: false },
+  { player: 'Quod Libet', url: 'https://github.com/quodlibet/quodlibet', windowUpSecs: null, loadedSecs: 19, memoryMb: 384, idleCpu: 0.002, self: false },
+  { player: 'Strawberry', url: 'https://www.strawberrymusicplayer.org/', windowUpSecs: 0.3, loadedSecs: 32, memoryMb: 434, idleCpu: 0.008, self: false },
+  { player: 'Museeks', url: 'https://github.com/martpie/museeks', windowUpSecs: null, loadedSecs: 3, memoryMb: 436, idleCpu: 0, self: false },
+  { player: 'Tauon', url: 'https://tauonmusicbox.rocks/', windowUpSecs: 8.7, loadedSecs: 12, memoryMb: 2800, idleCpu: 0, self: false },
 ]
 
 /**
@@ -48,9 +43,7 @@ export const BENCHMARK_FOOTNOTE_URL = 'https://github.com/DeaDBeeF-Player/deadbe
 // that 134 MB against 2.8 GB is a 21x gap, and a log axis would flatter everyone
 // else by hiding it.
 const MAX_MEMORY = Math.max(...BENCHMARKS.map(b => b.memoryMb))
-const MAX_LOADED = Math.max(
-  ...BENCHMARKS.map(b => b.loadedSecs ?? 0),
-)
+const MAX_LOADED = Math.max(...BENCHMARKS.map(b => b.loadedSecs ?? 0))
 
 /** Bar width as a percentage, floored so the smallest bar is still visible. */
 export function memoryPct(row: Benchmark): number {
@@ -67,8 +60,29 @@ export function loadedPct(row: Benchmark): number {
   return Math.max(1.5, (row.loadedSecs / MAX_LOADED) * 100)
 }
 
-export function memoryLabel(row: Benchmark): string {
+/**
+ * The units stay as written. "MB", "GB", "s" and "%" are the same symbols in
+ * every language this site speaks, and running them through Intl's unit styles
+ * would turn "18 s" into "18 Sek." for no reader's benefit. It's the decimal
+ * mark and the grouping that move, and those are the number's job.
+ */
+function decimal(locale: string, value: number): string {
+  return new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(value)
+}
+
+export function secondsLabel(locale: string, secs: number): string {
+  return `${decimal(locale, secs)} s`
+}
+
+export function memoryLabel(locale: string, row: Benchmark): string {
   return row.memoryMb >= 1000
-    ? `${(row.memoryMb / 1000).toFixed(1)} GB`
-    : `${row.memoryMb} MB`
+    ? `${decimal(locale, row.memoryMb / 1000)} GB`
+    : `${decimal(locale, row.memoryMb)} MB`
+}
+
+export function cpuLabel(locale: string, row: Benchmark): string {
+  return new Intl.NumberFormat(locale, {
+    style: 'percent',
+    maximumFractionDigits: 1,
+  }).format(row.idleCpu)
 }

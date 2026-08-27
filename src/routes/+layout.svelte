@@ -2,16 +2,24 @@
   import { base } from '$app/paths'
   import Footer from '$components/Footer.svelte'
   import Header from '$components/Header.svelte'
+  import { setI18n } from '$lib/i18n/context'
   import '../app.scss'
 
   const { children, data } = $props()
+
+  // Before anything renders, so Header, Footer and every page below can read
+  // the locale out of context instead of taking it as a prop. Reading `data`
+  // once at init is the point: with csr = false the page never navigates, and
+  // a locale that could change under the tree is a bug, not a feature.
+  // svelte-ignore state_referenced_locally
+  const { t } = setI18n(data.locale, data.path)
 </script>
 
 <svelte:head>
   <script defer src="{base}/js/enhance.js"></script>
 </svelte:head>
 
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main">{t('skip-to-content')}</a>
 
 <Header stars={data.repo.stars} />
 

@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { base } from '$app/paths'
   import { page } from '$app/state'
   import { SITE } from '$data/site'
+  import { i18n } from '$lib/i18n/context'
   import SiGithub from './icons/SiGithub.svelte'
+  import LanguagePicker from './LanguagePicker.svelte'
   import Logo from './Logo.svelte'
   import ThemeToggle from './ThemeToggle.svelte'
 
@@ -13,9 +14,13 @@
 
   const { stars }: Props = $props()
 
+  const { t, href } = i18n()
+
+  // Paths in source form; `href` puts the locale on them. A nav that hardcoded
+  // `/download` would walk a German reader back into the English site.
   const LINKS = [
-    { href: '/download', label: 'Download' },
-    { href: '/workspaces', label: 'Workspaces' },
+    { path: '/download', label: t('nav-download') },
+    { path: '/workspaces', label: t('nav-workspaces') },
   ]
 
   // Set this above 0 to hide the badge until the number is worth showing. A
@@ -34,16 +39,16 @@
 
 <header>
   <div class="shell bar">
-    <a class="brand" href="{base}/" aria-label="rox home">
+    <a class="brand" href={href('/')} aria-label={t('nav-home')}>
       <Logo />
       <span>rox</span>
     </a>
 
-    <nav aria-label="Main">
-      {#each LINKS as link (link.href)}
+    <nav aria-label={t('nav-main')}>
+      {#each LINKS as link (link.path)}
         <a
-          href="{base}{link.href}"
-          aria-current={current === `${base}${link.href}` ? 'page' : undefined}
+          href={href(link.path)}
+          aria-current={current === href(link.path) ? 'page' : undefined}
         >
           {link.label}
         </a>
@@ -52,7 +57,7 @@
         class="gh plain"
         href={SITE.repo}
         rel="noreferrer"
-        aria-label="rox on GitHub{stars >= MIN_STARS ? `, ${stars} stars` : ''}"
+        aria-label={stars >= MIN_STARS ? t('nav-github.stars', { stars }) : t('nav-github')}
       >
         <SiGithub size={17} title="" aria-hidden="true" />
         <span class="gh-label">GitHub</span>
@@ -67,6 +72,7 @@
           </span>
         {/if}
       </a>
+      <LanguagePicker />
       <ThemeToggle />
     </nav>
   </div>

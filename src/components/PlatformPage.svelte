@@ -1,13 +1,14 @@
 <script lang="ts">
   import type { PlatformPage } from '$data/platform-pages'
   import type { Release } from '$types/release'
-  import { base } from '$app/paths'
   import DownloadButton from '$components/DownloadButton.svelte'
   import Meta from '$components/Meta.svelte'
   import PlatformIcon from '$components/PlatformIcon.svelte'
+  import Rich from '$components/Rich.svelte'
   import StructuredData from '$components/StructuredData.svelte'
-  import { PLATFORM_PAGES } from '$data/platform-pages'
   import { PLATFORM_BY_ID } from '$data/platforms'
+  import { WORKSPACE_COUNT } from '$data/workspaces'
+  import { i18n } from '$lib/i18n/context'
 
   interface Props {
     page: PlatformPage
@@ -16,15 +17,15 @@
 
   const { page, release }: Props = $props()
 
+  const { t } = i18n()
+
   const label = $derived(PLATFORM_BY_ID[page.id].label)
 
-  // The other two platform pages. rox is cross-platform and the people most
-  // likely to want it run more than one OS, so this is a real link for a reader
-  // as well as the thing that stops each page hanging off a single inbound edge
-  // from the hub.
-  const siblings = $derived(
-    Object.values(PLATFORM_PAGES).filter(other => other.id !== page.id),
-  )
+  // The macOS page counts the shipped workspaces in two of its sentences.
+  // Every message on these pages gets the argument rather than the two that
+  // need it getting a special case: an unused Fluent argument costs nothing,
+  // and a missing one renders the placeable raw.
+  const ARGS = { count: WORKSPACE_COUNT }
 </script>
 
 <!--
@@ -33,12 +34,16 @@
   these from being three copies of one page with the OS name substituted.
 -->
 
-<Meta title={label} fullTitle={page.title} description={page.description} />
+<Meta
+  title={label}
+  fullTitle={t(page.key, ARGS)}
+  description={t(`${page.key}.description`, ARGS)}
+/>
 <StructuredData
   {release}
-  name={page.title}
-  description={page.description}
-  breadcrumb="rox on {label}"
+  name={t(page.key, ARGS)}
+  description={t(`${page.key}.description`, ARGS)}
+  breadcrumb={t('platform-breadcrumb', { platform: label })}
 />
 
 <section class="shell narrow intro">
@@ -46,18 +51,18 @@
     <PlatformIcon platform={page.id} size={18} />
     {label}
   </p>
-  <h1>{page.h1}</h1>
-  <p class="prose lede">{page.lede}</p>
+  <h1>{t(`${page.key}.h1`, ARGS)}</h1>
+  <p class="prose lede">{t(`${page.key}.lede`, ARGS)}</p>
   <DownloadButton {release} />
 </section>
 
 {#each page.sections as section, index (section.heading)}
   <section class="block" class:band={index % 2 === 1}>
     <div class="shell narrow">
-      <h2>{section.heading}</h2>
+      <h2>{t(section.heading)}</h2>
       <div class="prose">
         {#each section.body as paragraph (paragraph)}
-          <p>{paragraph}</p>
+          <p><Rich key={paragraph} args={ARGS} /></p>
         {/each}
         {#if section.commands}
           <pre><code>{section.commands.join('\n')}</code></pre>
@@ -68,41 +73,34 @@
 {/each}
 
 <section class="shell narrow block">
-  <h2>What it can't do on {label}</h2>
+  <h2>{t('platform-limits', { platform: label })}</h2>
   <!-- Every page carries this. A platform page with no limits section is a
        brochure, and the first thing it costs is the reader's trust in the
        sections above it. -->
   <ul class="limits">
     {#each page.limits as limit (limit)}
-      <li>{limit}</li>
+      <li><Rich key={limit} args={ARGS} /></li>
     {/each}
   </ul>
   <!-- The turn, after the limits rather than before them. A page that lists
        what it can't do and stops reads as an apology; one that leads with the
        pitch and buries the limits under it reads as a brochure. This order is
        the one that leaves the reader trusting both halves. -->
-  <p class="aside">{page.aside}</p>
+  <p class="aside">{t(`${page.key}.aside`, ARGS)}</p>
 </section>
 
 <section class="block band closer">
   <div class="shell narrow">
-    <h2>Point it at your library</h2>
-    <p class="prose">
-      Free and open source under the AGPL. No account, and nothing running in the
-      background when it's closed.
-    </p>
+    <h2>{t('platform-closer')}</h2>
+    <p class="prose">{t('platform-closer.body')}</p>
     <DownloadButton {release} />
+    <!-- Two sentences, two messages, both carrying their own links. The second
+         differs per page because it names the other two platforms, and word
+         order around a pair of links is not something a template can fake in
+         four languages. -->
     <p class="prose fine">
-      More on <a href="{base}/workspaces">what it looks like</a>, the
-      <a href="{base}/foobar2000-alternative">full Foobar2000 comparison</a>, or what the
-      exclusive output above is actually doing, under
-      <a href="{base}/replaygain">ReplayGain and bit-perfect</a>.
-      Same player on
-      {#each siblings as other, index (other.id)}
-        <a href="{base}/{other.id}">{PLATFORM_BY_ID[other.id].label}</a>{index === 0
-          ? ' and '
-          : '.'}
-      {/each}
+      <Rich key="platform-more" />
+      <Rich key="{page.key}.siblings" />
     </p>
   </div>
 </section>

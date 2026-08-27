@@ -13,16 +13,20 @@
     "images": "tsx scripts/optimize-images.ts",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "lint": "eslint .",
+    "locales": "tsx scripts/check-locales.ts",
     "typecheck": "tsc --noEmit -p tsconfig.scripts.json && npm run check",
     "assets": "tsx scripts/build-assets.ts",
     "postbuild": "tsx scripts/postbuild-aliases.ts"
   },
   "dependencies": {
+    "@fluent/bundle": "^0.19.1",
+    "@fluent/langneg": "^0.7.0",
     "@lucide/svelte": "^1.26.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.13.0",
     "@eslint/compat": "^1.2.9",
+    "@fluent/syntax": "^0.19.0",
     "@sveltejs/adapter-static": "^3.0.8",
     "@sveltejs/kit": "^2.20.0",
     "@sveltejs/vite-plugin-svelte": "^5.0.3",

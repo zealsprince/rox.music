@@ -8,9 +8,9 @@ export interface Platform {
   artifact: string
   /** What the user ends up with once the archive is open. */
   archive: string
-  /** Install steps, one line each, rendered as an ordered list. */
+  /** Message keys, one line each, rendered as an ordered list. */
   steps: string[]
-  /** The gatekeeping note for unsigned builds, or null where there isn't one. */
+  /** Message key for the gatekeeping note on unsigned builds, or null. */
   caveat: string | null
 }
 

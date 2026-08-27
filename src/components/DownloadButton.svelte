@@ -1,8 +1,9 @@
 <script lang="ts">
   import type { Release } from '$types/release'
-  import { base } from '$app/paths'
+  import Rich from '$components/Rich.svelte'
   import { PLATFORM_BY_ID } from '$data/platforms'
   import { SITE } from '$data/site'
+  import { i18n } from '$lib/i18n/context'
   import { Download } from '@lucide/svelte'
 
   interface Props {
@@ -11,16 +12,30 @@
 
   const { release }: Props = $props()
 
+  const { t } = i18n()
+
   // Server-rendered this points at the releases page, which works for everyone
   // including bots and people with JS off. enhance.js rewrites it to the direct
   // asset once it knows the OS.
   const fallbackHref = SITE.releases
+
+  // enhance.js swaps the label once it knows the OS, and it has no locale of
+  // its own, so it gets the whole sentence with a hole where the platform name
+  // goes rather than two halves to glue together. "Download for Linux" and
+  // "Linux herunterladen" put the name in different places, and concatenation
+  // only ever knows one of them.
+  const detectedTemplate = t('download-cta-detected', { platform: '%s' })
 </script>
 
 <div class="wrap">
-  <a class="primary plain" href={fallbackHref} data-download-primary>
+  <a
+    class="primary plain"
+    href={fallbackHref}
+    data-download-primary
+    data-download-template={detectedTemplate}
+  >
     <Download size={20} strokeWidth={2.2} aria-hidden="true" />
-    <span data-download-label>Download rox</span>
+    <span data-download-label>{t('download-cta')}</span>
   </a>
 
   <!--
@@ -46,16 +61,9 @@
     system. Only shown once enhance.js has marked the visitor as Linux, so
     nobody else reads a distro aside.
   -->
-  <p class="packaged">
-    On Arch or NixOS?
-    <a href="{base}/download#packages">Install it from the AUR or the Nix flake</a>
-    instead.
-  </p>
+  <p class="packaged"><Rich key="download-packaged" /></p>
 
-  <p class="meta">
-    v{release.version} &middot; Linux, macOS, Windows &middot;
-    <a href={SITE.releases} rel="noreferrer">all downloads</a>
-  </p>
+  <p class="meta"><Rich key="download-meta" args={{ version: release.version }} /></p>
 </div>
 
 <style>

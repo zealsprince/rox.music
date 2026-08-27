@@ -4,6 +4,7 @@ import { HUB, SIDE_PAGES } from '$data/pages'
 import manifest from '$data/screenshots.generated.json'
 import { SITE } from '$data/site'
 import { WORKSPACES } from '$data/workspaces'
+import { alternates, SOURCE_LOCALE } from '$lib/i18n'
 import { loadRelease } from '$lib/server/release'
 
 export const prerender = true
@@ -27,8 +28,8 @@ function shot(id: string): string {
   return new URL(`${entry.path}-${widest}.webp`, SITE.origin).href
 }
 
-// Hand-listed rather than crawled: three pages, and an explicit list can't
-// accidentally publish a route that was meant to stay unlinked.
+// Hand-listed rather than crawled: an explicit list can't accidentally publish
+// a route that was meant to stay unlinked.
 //
 // Paths carry no trailing slash, matching `trailingSlash: 'never'` and the
 // canonical tags. A sitemap that disagrees with the canonical is a reliable way
@@ -67,24 +68,40 @@ export const GET: RequestHandler = async () => {
   const release = await loadRelease()
   const lastmod = release.publishedAt.slice(0, 10)
 
-  const urls = PATHS.map(({ path, priority, changefreq, images }) => {
+  // Every page, once per locale, and every entry carrying the full alternate
+  // set including itself. That reciprocity is the whole protocol: Google reads
+  // the cluster as one page in four languages only if all four agree on who's
+  // in it, and drops the lot if one of them doesn't list the others.
+  const urls = PATHS.flatMap(({ path, priority, changefreq, images }) => {
+    const languages = alternates(path, SITE.origin)
+    const links = [
+      ...languages.map(({ locale, url }) =>
+        `\n    <xhtml:link rel="alternate" hreflang="${locale.htmlLang}" href="${url}"/>`),
+      `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${
+        languages.find(entry => entry.locale.id === SOURCE_LOCALE)!.url
+      }"/>`,
+    ].join('')
+
     // Google dropped image:caption and image:title in 2022 and reads only the
-    // loc now, so anything else here would be bytes nobody parses.
+    // loc now, so anything else here would be bytes nobody parses. The shots
+    // are the same files in every language, so every locale's entry points at
+    // them rather than the English one hoarding the image listing.
     const imageTags = images
       .map(id => `\n    <image:image><image:loc>${shot(id)}</image:loc></image:image>`)
       .join('')
 
-    return `  <url>
-    <loc>${new URL(path, SITE.origin).href}</loc>
+    return languages.map(({ locale, url }) => `  <url>
+    <loc>${url}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>${imageTags}
-  </url>`
+    <priority>${locale.id === SOURCE_LOCALE ? priority : bumpDown(priority)}</priority>${links}${imageTags}
+  </url>`)
   }).join('\n')
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urls}
 </urlset>
 `
@@ -92,4 +109,16 @@ ${urls}
   return new Response(body, {
     headers: { 'content-type': 'application/xml' },
   })
+}
+
+/**
+ * Translations sit a notch below their English original.
+ *
+ * Priority is relative within one sitemap and nothing outside it, so this is
+ * only saying which URL to crawl first when the crawler has to choose. English
+ * is where the inbound links point and where the traffic is, so it goes first;
+ * the ranking of any of these against another site is unaffected either way.
+ */
+function bumpDown(priority: string): string {
+  return Math.max(0.1, Number(priority) - 0.1).toFixed(1)
 }

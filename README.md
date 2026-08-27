@@ -18,7 +18,7 @@ npm run build
 npm run preview
 ```
 
-`npm run lint` and `npm run typecheck` both run in CI and must pass.
+`npm run lint`, `npm run typecheck` and `npm run locales` all run in CI and must pass.
 
 ## Project structure
 
@@ -26,15 +26,58 @@ npm run preview
 scripts/         # Node tooling, run through tsx
 src/
   components/    # Svelte components
-  data/          # Site content and config as typed modules
+  data/          # Page structure and config as typed modules
+  lib/i18n/      # Locale registry, message lookup, inline markup
   lib/server/    # Build-time only, runs during prerender
-  routes/        # SvelteKit routes
+  locales/       # One Fluent catalog per language
+  params/        # Route param matchers
+  routes/        # SvelteKit routes, all under [[lang]]
   types/         # Shared types
   enhance.ts     # The entire client runtime
 static/          # Copied to the site root verbatim
 ```
 
-Page content lives in `src/data` as typed modules, next to the layout that renders it.
+Copy lives in `src/locales`. `src/data` holds the shape around it: which cells a
+grid has, which sections a page has, which message key fills each one.
+
+## Languages
+
+The site ships in the same languages rox itself does, with the same source
+locale and the same Fluent catalogs: `src/locales/<id>/rox.ftl` here,
+`crates/rox-i18n/locales/<id>/rox.ftl` there. A string that exists in both
+should carry the same key. The decision behind the stack is
+[ADR 27](https://github.com/zealsprince/rox/blob/main/docs/02-architecture/decisions/27-adr-i18n.md)
+in the rox repo.
+
+English lives at the site root and the rest sit behind a locale prefix, so
+`/download` and `/de/download` are the same page. Every route is under
+`[[lang=locale]]`, and the prerender crawler finds the translations through the
+language picker in the header, which is the only reason `/de` gets built at all.
+Slugs stay English: a translated path is a second URL to keep alive forever, and
+the one already indexed is worth more than the keyword.
+
+Adding a language is one row in `LOCALES` (`src/lib/i18n/registry.ts`) and one
+ftl file mirroring en-CA. Everything else follows: the picker, the hreflang
+tags, the sitemap and the prerender all read the registry.
+
+```bash
+npm run locales                       # parity gate, also runs in CI
+ROX_PSEUDOLOCALE=1 npm run dev        # brackets and pads every resolved string
+```
+
+The parity check fails when a locale's key inventory drifts from en-CA in either
+direction, and warns about keys nothing in `src` names. The pseudo-locale is how
+you find the literal that dodged extraction: it's the only text on the page
+without brackets, and it shows you which layouts can't absorb German-length
+copy before German does.
+
+Messages can carry `[links](/paths)`, `[aliases](@repo)`, `` `code` ``,
+`**bold**` and `_italic_`. `renderRich` in `src/lib/i18n` turns those into HTML
+and the `<Rich>` component renders them; nothing else on the site writes
+`{@html}`. Aliases resolve through the table at the bottom of that file, which
+is where a URL linked more than once belongs, along with any `rel` it needs.
+Anything targeting an element inside rich text needs `:global()`, since Svelte's
+scoping class never lands on markup it didn't compile.
 
 ## Release data
 

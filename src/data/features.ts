@@ -1,5 +1,3 @@
-import { WORKSPACE_COUNT } from './workspaces'
-
 /**
  * Which mark the cell wears, by what it means rather than by what the icon is
  * called. FeatureIcon.svelte maps these onto lucide components, the same split
@@ -20,20 +18,20 @@ export type FeatureIconId
     | 'binary'
 
 export interface Feature {
-  title: string
-  body: string
+  /** Message key. Value is the cell title, `.body` the paragraph under it. */
+  key: string
   icon: FeatureIconId
   /**
-   * The page that says more about this one. Site-relative, prefixed with `base`
-   * at render. Not every feature has one, and inventing a page so the grid looks
-   * even would be the wrong fix.
+   * The page that says more about this one. `path` is site-relative and gets
+   * its locale at render; `key` is the link text. Not every feature has one,
+   * and inventing a page so the grid looks even would be the wrong fix.
    */
-  link?: { path: string, name: string }
+  link?: { path: string, key: string }
 }
 
 export interface FeatureGroup {
-  /** Rides the grid as a full-width rule, so it reads as one of rox's own menus. */
-  name: string
+  /** Message key. Rides the grid as a full-width rule, like one of rox's menus. */
+  key: string
   features: Feature[]
 }
 
@@ -46,93 +44,70 @@ export interface FeatureGroup {
 // the rule that fills the hole at two columns keys off the group being that
 // length. Titles stay short enough to hold one line next to their icon in a third
 // of the content width, bodies land between roughly 120 and 160 characters, and
-// that's what keeps the cells from going ragged.
+// that's what keeps the cells from going ragged. A translation that runs long
+// costs the same thing, so German is the one to check the grid against.
 export const FEATURE_GROUPS: FeatureGroup[] = [
   {
-    name: 'Library',
+    key: 'features-library',
     features: [
       {
-        title: 'A library that holds up',
+        key: 'feature-library',
         icon: 'library',
-        body: 'A parallel scanner reads full tags, true durations and each file\'s own codec, not a header skim. Folder watching survives renames, and nothing drops silently.',
-        link: { path: '/best-music-player', name: 'What breaks at 50,000 tracks' },
+        link: { path: '/best-music-player', key: 'feature-library.link' },
       },
       {
-        title: 'Tagging you can trust',
+        key: 'feature-tagging',
         icon: 'tagging',
-        body: 'A full editor with atomic writes and batch edits. Ratings live in the files themselves via FMPS and POPM. Lookup through MusicBrainz, iTunes and Deezer.',
-        link: { path: '/mp3tag-alternative', name: 'Next to Mp3tag' },
+        link: { path: '/mp3tag-alternative', key: 'feature-tagging.link' },
       },
       {
-        title: 'Cue rips play like tracks',
+        key: 'feature-cue',
         icon: 'cue',
-        body: 'A whole-disc FLAC beside its cue sheet indexes as real rows. Each span seeks, scrobbles, sorts and runs into the next one gaplessly, the way a file does.',
-        link: { path: '/cue-sheets', name: 'How the spans work' },
+        link: { path: '/cue-sheets', key: 'feature-cue.link' },
       },
     ],
   },
   {
-    name: 'Playback',
+    key: 'features-playback',
     features: [
+      { key: 'feature-gapless', icon: 'gapless' },
       {
-        title: 'Gapless playback',
-        icon: 'gapless',
-        body: 'One stream, with shuffle, repeat and play-next. It recovers when an audio device disappears, and media keys and now-playing work on all three platforms.',
-      },
-      {
-        title: 'Ten bands and bit-perfect',
+        key: 'feature-equalizer',
         icon: 'equalizer',
-        body: 'An equalizer in a window of its own, crossfade that leaves an album\'s own splices alone, and exclusive output that says what the hardware agreed to.',
-        link: { path: '/replaygain', name: 'ReplayGain and bit-perfect' },
+        link: { path: '/replaygain', key: 'feature-equalizer.link' },
       },
-      {
-        title: 'Sorted by how it sounds',
-        icon: 'similarity',
-        body: 'rox describes your tracks off their own audio, tempo included, and orders what\'s next by resemblance. It runs on your machine against your files, no service in the loop.',
-      },
+      { key: 'feature-similarity', icon: 'similarity' },
     ],
   },
   {
-    name: 'Looks',
+    key: 'features-looks',
     features: [
       {
-        title: 'Panels you compose',
+        key: 'feature-panels',
         icon: 'panels',
-        body: 'Forty-odd panel types, from library and queue to artist grids, spectrum and VU. Duplicate one with its config, save it as a preset, or pop it out into a window.',
-        link: { path: '/foobar2000-alternative', name: 'Next to Foobar2000' },
+        link: { path: '/foobar2000-alternative', key: 'feature-panels.link' },
       },
       {
-        title: 'Themes as shareable files',
+        key: 'feature-themes',
         icon: 'themes',
-        body: 'A workspace is one file carrying layout, palette, appearance and shaders. Palettes can tint from the playing cover, going light or dark with the art.',
-        link: { path: '/workspaces', name: `The ${WORKSPACE_COUNT} in the box` },
+        link: { path: '/workspaces', key: 'feature-themes.link' },
       },
       {
-        title: 'Visuals that listen',
+        key: 'feature-shaders',
         icon: 'shaders',
-        body: 'Write a WGSL shader over one panel or the whole window. Named signals off the spectrum ride its inputs, so a kick band drives whichever knob you point it at.',
-        link: { path: '/music-visualizer', name: 'Shaders and signals' },
+        link: { path: '/music-visualizer', key: 'feature-shaders.link' },
       },
     ],
   },
   {
-    name: 'Day to day',
+    key: 'features-daily',
     features: [
+      { key: 'feature-lyrics', icon: 'lyrics' },
+      { key: 'feature-playlists', icon: 'playlists' },
       {
-        title: 'Lyrics and history',
-        icon: 'lyrics',
-        body: 'Synced or plain, from sidecar files, tags or lrclib, with an editor that writes back where it read. A listen log drives the history panel, stats and scrobbling.',
-      },
-      {
-        title: 'Playlists that survive',
-        icon: 'playlists',
-        body: 'Favourites, drag reorder, m3u in and out, and smart playlists that re-run a saved query rather than hold a snapshot. Entries survive a file leaving and returning.',
-      },
-      {
-        title: 'One binary, no installer',
+        key: 'feature-binary',
         icon: 'binary',
-        body: 'A tarball, a DMG or a zip, plus the AUR and a Nix flake. Portable mode keeps the library and settings in a folder beside the executable.',
-        link: { path: '/download', name: 'Get it' },
+        link: { path: '/download', key: 'feature-binary.link' },
       },
     ],
   },

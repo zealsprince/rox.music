@@ -1,36 +1,31 @@
 <script lang="ts">
-  import { base } from '$app/paths'
   import { HUB } from '$data/pages'
   import { SITE } from '$data/site'
+  import { i18n } from '$lib/i18n/context'
   import { Bug, Hash } from '@lucide/svelte'
   import SiGithub from './icons/SiGithub.svelte'
+  import Rich from './Rich.svelte'
+
+  const { t, href } = i18n()
 </script>
 
 <footer>
   <div class="shell inner">
-    <p class="tag">
-      rox is built by
-      <a href="https://zealsprince.com" rel="me">Andrew Lake (zealsprince)</a> in Rust on
-      <a href="https://gpui.rs" rel="noreferrer">gpui</a>, the UI framework behind
-      <a href="https://zed.dev" rel="noreferrer">Zed</a>. Free and open source under the
-      <a href="https://www.gnu.org/licenses/agpl-3.0.html" rel="license noreferrer">
-        AGPL-3.0
-      </a>.
-    </p>
+    <p class="tag"><Rich key="footer-credit" /></p>
 
-    <nav aria-label="Footer">
-      <a href="{base}/download">Download</a>
-      <a href="{base}/workspaces">Workspaces</a>
+    <nav aria-label={t('footer-nav')}>
+      <a href={href('/download')}>{t('nav-download')}</a>
+      <a href={href('/workspaces')}>{t('nav-workspaces')}</a>
       <!--
         The only link into the pages that sit off the nav. It has to exist:
         a page reachable from nothing but sitemap.xml is an orphan, and orphans
         get crawled rarely and indexed less. Footer rather than header keeps
         them out of the way of people who came here to download something.
       -->
-      <a href="{base}{HUB.path}">{HUB.name}</a>
+      <a href={href(HUB.path)}>{t(HUB.key)}</a>
       <a class="plain" href={SITE.repo} rel="noreferrer">
         <SiGithub size={15} title="" aria-hidden="true" />
-        Source
+        {t('footer-source')}
       </a>
       <!--
         Not a link itself, so the text stays inside one inline run: a flex row
@@ -39,13 +34,14 @@
       <span class="chat">
         <Hash size={15} strokeWidth={2} aria-hidden="true" />
         <span>
-          IRC (<a class="plain" href={SITE.chatDirect}>Direct</a> /
-          <a class="plain" href={SITE.chat} rel="noreferrer">Webchat</a>)
+          {t('footer-irc')} (<a class="plain" href={SITE.chatDirect}>{t('footer-irc-direct')}</a>
+          /
+          <a class="plain" href={SITE.chat} rel="noreferrer">{t('footer-irc-web')}</a>)
         </span>
       </span>
       <a class="plain" href={SITE.issues} rel="noreferrer">
         <Bug size={15} strokeWidth={2} aria-hidden="true" />
-        Report a bug
+        {t('footer-bug')}
       </a>
     </nav>
   </div>

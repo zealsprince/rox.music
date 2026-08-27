@@ -42,6 +42,11 @@ jobs:
 
       - run: npm run typecheck
 
+      # Every locale carries every key the source does. A hole falls back to
+      # English on the live site, which is the right behaviour there and the
+      # wrong one in a pull request.
+      - run: npm run locales
+
       # GITHUB_TOKEN lifts the release lookup off the 60/hour anonymous limit,
       # which shared CI runners hit surprisingly often.
       - name: Build

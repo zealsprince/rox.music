@@ -1,3 +1,9 @@
+<script lang="ts">
+  import { i18n } from '$lib/i18n/context'
+
+  const { t } = i18n()
+</script>
+
 <!--
   Static markup only. Pages are prerendered with csr = false, so no Svelte
   runtime reaches the browser and this component cannot hold state. Both icons
@@ -8,8 +14,8 @@
   hidden until enhance.js marks the document. The theme itself is still correct
   in that case: the inline script falls through to prefers-color-scheme.
 -->
-<button type="button" class="theme-toggle" title="Toggle theme">
-  <span class="visually-hidden">Toggle light and dark theme</span>
+<button type="button" class="theme-toggle" title={t('theme-toggle')}>
+  <span class="visually-hidden">{t('theme-toggle.label')}</span>
   <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
     <circle cx="12" cy="12" r="4.2" />
     <path

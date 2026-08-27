@@ -1,81 +1,47 @@
 export interface Workspace {
   id: string
-  name: string
-  /** What it's evoking, one line. */
-  blurb: string
   /**
-   * What's actually on screen in this workspace's shot. Written per workspace
-   * rather than templated off the name, because six images sharing one sentence
-   * describe nothing to a screen reader and rank for nothing in image search.
-   * These are the shots the sitemap points Google at, so the alt is the only
-   * text it gets about them.
+   * The name rox itself gives the workspace. Not a key: these are what the
+   * welcome window says, and a German reader told to click "Standard" would be
+   * looking for a button that says "Default".
    */
-  alt: string
+  name: string
+  /**
+   * Message key. Value is the one-line blurb, `.alt` is the alt text.
+   *
+   * The alt is written per workspace rather than templated off the name,
+   * because six images sharing one sentence describe nothing to a screen reader
+   * and rank for nothing in image search. These are the shots the sitemap
+   * points Google at, so the alt is the only text it gets about them.
+   */
+  key: string
 }
 
 // The workspaces rox ships in the box, one click away on the welcome window.
 // Screenshots come from crates/rox/assets/workspaces in the rox repo and are
 // re-encoded by scripts/optimize-images.ts.
 //
-// Anything that needs the count says WORKSPACES.length rather than a number in
-// a sentence. Critters arriving as the seventh turned up "six" in five places
-// across three files, which is five chances to leave one wrong.
+// Anything that needs the count says WORKSPACE_COUNT rather than a number in a
+// sentence. Critters arriving as the seventh turned up "six" in five places
+// across three files, which is five chances to leave one wrong, and four
+// languages would have made it twenty.
 export const WORKSPACES: Workspace[] = [
-  {
-    id: 'default',
-    name: 'Default',
-    blurb: 'What rox looks like out of the box: translucent surfaces, art tinting off.',
-    alt: 'The Default rox workspace: a cover art grid beside a playlist with star ratings, an amber waveform seek bar along the bottom and tabs for biography, lyrics and metadata.',
-  },
-  {
-    id: 'foobar',
-    name: 'Foobar',
-    blurb: 'The layout this whole project is an argument with. Opaque, dense, OS decorations on, menubar where it always was.',
-    alt: 'The Foobar rox workspace: a classic foobar2000 layout with a menubar, artist and album filter columns, a dense track table with play counts and ratings, and cover art bottom left.',
-  },
-  {
-    id: 'catrox',
-    name: 'CaTRoX',
-    blurb: 'The CaTRoX foobar2000 skin you know and love that started it all.',
-    alt: 'The CaTRoX rox workspace: the foobar2000 skin recreated, with a circular CD render of the cover, a metadata field list down the left and album-grouped tracks with rating dots.',
-  },
-  {
-    id: 'llama',
-    name: 'Llama',
-    blurb: 'WinAmp, in the way you remember it rather than the way it was. Tahoma, dark, no chrome.',
-    alt: 'The Llama rox workspace: a Winamp-style dotted spectrum analyzer across the top, green transport controls and a dense track list below, with no window chrome.',
-  },
-  {
-    id: 'metro',
-    name: 'Metro',
-    blurb: 'Flat panels and comfortable rows with art theming on, so the palette follows whatever cover is playing.',
-    alt: 'The Metro rox workspace: a full-width grid of album covers with titles beneath, and an artist biography panel on the right carrying a photo, genre tags and listener counts.',
-  },
-  {
-    id: 'phosphor',
-    name: 'Phosphor',
-    blurb: 'Monospace everything. Consolas, no cover in quick play, a terminal that happens to play music.',
-    alt: 'The Phosphor rox workspace: green-on-black monospace throughout, a folder tree beside a track table and a green waveform across the bottom, like a terminal that plays music.',
-  },
-  {
-    id: 'critters',
-    name: 'Critters',
-    blurb: 'The whole app as a 1-bit print. An ordered dither over every surface, tones crushing with the sub-bass, and a noise wall behind the panels that moves with the song.',
-    alt: 'The Critters rox workspace: the entire window rendered in black-and-white ordered dither, with a curved shelf of album covers over a seek bar, transport row, waveform strip and track table, all sitting on a shifting field of noise.',
-  },
-  {
-    id: 'diffuse',
-    name: 'Diffuse',
-    blurb: 'Just the album that\'s playing, over a soft wash of its own cover. Monochrome on purpose, so the art carries the colour, and the library waits in a drawer on the right edge.',
-    alt: 'The Diffuse rox workspace: one large album cover filling the left of the window against a blurred gradient of the same art, with the track title, artist and album beside it over a thin seek line, a row of transport buttons and a volume slider.',
-  },
+  { id: 'default', name: 'Default', key: 'workspace-default' },
+  { id: 'foobar', name: 'Foobar', key: 'workspace-foobar' },
+  { id: 'catrox', name: 'CaTRoX', key: 'workspace-catrox' },
+  { id: 'llama', name: 'Llama', key: 'workspace-llama' },
+  { id: 'metro', name: 'Metro', key: 'workspace-metro' },
+  { id: 'phosphor', name: 'Phosphor', key: 'workspace-phosphor' },
+  { id: 'critters', name: 'Critters', key: 'workspace-critters' },
+  { id: 'diffuse', name: 'Diffuse', key: 'workspace-diffuse' },
 ]
 
-const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
-
 /**
- * The count, spelled out, for the sentences that mention it. A numeral under
- * ten reads as a spec sheet in prose, and every consumer of this needs it
- * inside a sentence.
+ * The count, as a number, handed to any message that mentions it as `$count`.
+ *
+ * It used to be spelled out here, because a numeral under ten reads as a spec
+ * sheet in prose. Spelling it out is a per-language job, so the catalogs do it:
+ * `workspace-count` selects the word, and every sentence that needs it says
+ * `{ workspace-count }` and inherits the argument.
  */
-export const WORKSPACE_COUNT: string = WORDS[WORKSPACES.length] ?? String(WORKSPACES.length)
+export const WORKSPACE_COUNT: number = WORKSPACES.length
