@@ -15,6 +15,8 @@ export const PLATFORMS: Platform[] = [
     archive: 'tar.gz',
     steps: ['install-linux-1', 'install-linux-2'],
     caveat: null,
+    // cargo-deb names it rox_<version>_amd64.deb, so the slug never appears.
+    alt: { suffix: '_amd64.deb', key: 'download-alt-linux' },
   },
   {
     id: 'macos',
@@ -23,6 +25,7 @@ export const PLATFORMS: Platform[] = [
     archive: 'dmg',
     steps: ['install-macos-1', 'install-macos-2'],
     caveat: null,
+    alt: null,
   },
   {
     id: 'windows',
@@ -31,6 +34,7 @@ export const PLATFORMS: Platform[] = [
     archive: 'zip',
     steps: ['install-windows-1', 'install-windows-2'],
     caveat: 'install-windows-caveat',
+    alt: { suffix: '-setup.exe', key: 'download-alt-windows' },
   },
 ]
 

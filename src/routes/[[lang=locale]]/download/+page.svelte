@@ -19,6 +19,7 @@
   const DESCRIPTION = t('download-title.description')
 
   const assetFor = (id: string) => data.release.assets.find(a => a.platform === id)
+  const altFor = (id: string) => data.release.alts.find(a => a.platform === id)
 
   const mb = (bytes: number): string =>
     `${new Intl.NumberFormat(info.htmlLang, { maximumFractionDigits: 1 })
@@ -70,12 +71,27 @@
       </h2>
 
       {#if asset}
+        {@const alt = altFor(platform.id)}
         <a class="get plain" href={asset.url}>
           <Download size={17} strokeWidth={2} aria-hidden="true" />
           {t('nav-download')}
           <span class="size">{mb(asset.size)}</span>
         </a>
-        <p class="filename"><code>{asset.name}</code></p>
+        <!--
+          The alt link lives inside the filename paragraph rather than as its
+          own element: the subgrid below spans a fixed five rows per card, and
+          a sixth child on only some cards would knock the rows out of line.
+        -->
+        <p class="filename">
+          <code>{asset.name}</code>
+          {#if platform.alt && alt}
+            <span class="alt">
+              {t(platform.alt.key)}
+              <a href={alt.url}><code>{alt.name}</code></a>
+              <span class="alt-size">{mb(alt.size)}</span>
+            </span>
+          {/if}
+        </p>
       {:else}
         <p class="missing">
           <Rich key="download-missing" args={{ platform: platform.label }} />
@@ -235,6 +251,18 @@ rox --portable</code></pre>
     border: 0;
     padding: 0;
     overflow-wrap: anywhere;
+  }
+
+  .alt {
+    display: block;
+    margin-top: var(--space-xs);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .alt-size {
+    font-variant-numeric: tabular-nums;
+    opacity: 0.75;
   }
 
   ol {

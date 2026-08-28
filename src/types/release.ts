@@ -12,6 +12,12 @@ export interface Platform {
   steps: string[]
   /** Message key for the gatekeeping note on unsigned builds, or null. */
   caveat: string | null
+  /**
+   * A second artifact beside the archive, like the .deb or the Windows
+   * installer. `suffix` is matched against the end of the asset name, `key`
+   * is the message introducing the link.
+   */
+  alt: { suffix: string, key: string } | null
 }
 
 export interface ReleaseAsset {
@@ -26,7 +32,10 @@ export interface Release {
   tag: string
   url: string
   publishedAt: string
+  /** One per platform: the archive the platform card and CTA button link. */
   assets: ReleaseAsset[]
+  /** The alt artifacts, at most one per platform with an `alt` matcher. */
+  alts: ReleaseAsset[]
   /** True when the data came from the checked-in fallback, not the API. */
   stale: boolean
 }

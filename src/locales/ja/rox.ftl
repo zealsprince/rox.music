@@ -179,11 +179,11 @@ download-meta = v{ $version } · Linux, macOS, Windows · [すべてのダウン
 ## ダウンロード
 
 download-title = Linux、macOS、Windows 向けの rox をダウンロード
-    .description = Linux、macOS、Windows 向けの rox を無料でダウンロード。プラットフォームごとにバイナリ 1 つ、インストーラーもアカウントも不要。AGPL のオープンソース。
+    .description = Linux、macOS、Windows 向けの rox を無料でダウンロード。プラットフォームごとにダウンロード 1 つ、アカウント不要。AGPL のオープンソース。
     .image-alt = rox のロゴと、その下に英語で「Download for Linux, macOS and Windows.」の一文
 
 download-h1 = rox をダウンロード
-    .lede = プラットフォームごとにバイナリ 1 つ。インストーラーもアカウントも要らず、閉じれば裏で動くものも残りません。
+    .lede = プラットフォームごとにダウンロード 1 つ。アカウントは要らず、閉じれば裏で動くものも残りません。
 
 download-released = { $date } 公開
 download-notes = リリースノート
@@ -196,6 +196,9 @@ install-macos-2 = rox をアプリケーションフォルダーにドラッグ�
 install-windows-1 = 好きな場所に展開する。
 install-windows-2 = `rox.exe` を実行する。
 install-windows-caveat = SmartScreen が止めたら、詳細情報を開いて実行してください。
+
+download-alt-linux = Debian、Ubuntu、Mint にはパッケージもあります：
+download-alt-windows = インストーラー派の方にはこちら：
 
 download-packages = パッケージマネージャー
     .body = システムの他のものと一緒に rox を更新し続ける 2 つの経路。

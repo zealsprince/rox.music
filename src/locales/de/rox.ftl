@@ -183,11 +183,11 @@ download-meta = v{ $version } · Linux, macOS, Windows · [alle Downloads](@rele
 ## Download
 
 download-title = rox für Linux, macOS oder Windows herunterladen
-    .description = rox kostenlos für Linux, macOS oder Windows herunterladen. Eine Binärdatei pro Plattform, kein Installer und kein Konto. Quelloffen unter der AGPL.
+    .description = rox kostenlos für Linux, macOS oder Windows herunterladen. Ein Download pro Plattform, kein Konto. Quelloffen unter der AGPL.
     .image-alt = Das rox-Logo über dem englischen Satz: download for Linux, macOS and Windows
 
 download-h1 = Hol dir rox
-    .lede = Eine Binärdatei pro Plattform. Kein Installer, kein Konto, nichts, was im Hintergrund weiterläuft, wenn es zu ist.
+    .lede = Ein Download pro Plattform. Kein Konto, nichts, was im Hintergrund weiterläuft, wenn es zu ist.
 
 download-released = veröffentlicht am { $date }
 download-notes = Versionshinweise
@@ -200,6 +200,9 @@ install-macos-2 = rox nach Programme ziehen.
 install-windows-1 = Irgendwohin entpacken.
 install-windows-2 = `rox.exe` starten.
 install-windows-caveat = Wenn SmartScreen sich beschwert: Weitere Informationen, dann Trotzdem ausführen.
+
+download-alt-linux = Auf Debian, Ubuntu oder Mint gibt es auch ein Paket:
+download-alt-windows = Lieber ein geführtes Setup? Es gibt einen Installer:
 
 download-packages = Paketmanager
     .body = Zwei Wege, auf denen rox mit dem Rest deines Systems aktuell bleibt.

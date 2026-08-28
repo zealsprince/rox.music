@@ -198,11 +198,11 @@ download-meta = v{ $version } · Linux, macOS, Windows · [все загрузк
 ## Загрузка
 
 download-title = Скачать rox для Linux, macOS или Windows
-    .description = Скачайте rox бесплатно для Linux, macOS или Windows. Один бинарник на платформу, без установщика и без аккаунта. Открытый исходный код под AGPL.
+    .description = Скачайте rox бесплатно для Linux, macOS или Windows. Одна загрузка на платформу, без аккаунта. Открытый исходный код под AGPL.
     .image-alt = Логотип rox над английской фразой: download for Linux, macOS and Windows
 
 download-h1 = Скачать rox
-    .lede = Один бинарник на платформу. Без установщика, без аккаунта, и ничего не работает в фоне, когда он закрыт.
+    .lede = Одна загрузка на платформу. Без аккаунта, и ничего не работает в фоне, когда он закрыт.
 
 download-released = выпущено { $date }
 download-notes = заметки о выпуске
@@ -215,6 +215,9 @@ install-macos-2 = Перетащите rox в Applications.
 install-windows-1 = Распакуйте куда угодно.
 install-windows-2 = Запустите `rox.exe`.
 install-windows-caveat = Если SmartScreen возражает, выберите «Подробнее», затем «Выполнить в любом случае».
+
+download-alt-linux = Для Debian, Ubuntu или Mint есть и пакет:
+download-alt-windows = Предпочитаете установщик? Он тоже есть:
 
 download-packages = Пакетные менеджеры
     .body = Два пути, на которых rox обновляется вместе с остальной системой.

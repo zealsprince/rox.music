@@ -189,11 +189,11 @@ download-meta = v{ $version } · Linux、macOS、Windows · [全部下载](@rele
 ## 下载
 
 download-title = 下载 rox，Linux、macOS 或 Windows 版
-    .description = 免费下载 rox 的 Linux、macOS 或 Windows 版。每个平台一个可执行文件，没有安装程序，也不用账号。开源，采用 AGPL。
+    .description = 免费下载 rox 的 Linux、macOS 或 Windows 版。每个平台一个下载文件，不用账号。开源，采用 AGPL。
     .image-alt = rox 标志，下面是英文原句：download for Linux, macOS and Windows
 
 download-h1 = 下载 rox
-    .lede = 每个平台一个可执行文件。没有安装程序，不用账号，关掉之后后台什么都不留。
+    .lede = 每个平台一个下载文件。不用账号，关掉之后后台什么都不留。
 
 download-released = 发布于 { $date }
 download-notes = 发行说明
@@ -206,6 +206,9 @@ install-macos-2 = 把 rox 拖进“应用程序”。
 install-windows-1 = 解压到任意位置。
 install-windows-2 = 运行 `rox.exe`。
 install-windows-caveat = 如果 SmartScreen 拦下来，选“更多信息”，再点“仍要运行”。
+
+download-alt-linux = Debian、Ubuntu 或 Mint 也有安装包：
+download-alt-windows = 想要引导式安装？这里有安装程序：
 
 download-packages = 包管理器
     .body = 两条能让 rox 跟着系统其他部分一起更新的路。

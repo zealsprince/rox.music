@@ -190,11 +190,11 @@ download-meta = v{ $version } · Linux, macOS, Windows · [todos os downloads](@
 ## Download
 
 download-title = Baixar o rox para Linux, macOS ou Windows
-    .description = Baixe o rox de graça para Linux, macOS ou Windows. Um binário por plataforma, sem instalador e sem conta. Código aberto sob a AGPL.
+    .description = Baixe o rox de graça para Linux, macOS ou Windows. Um download por plataforma, sem conta. Código aberto sob a AGPL.
     .image-alt = O logo do rox acima da frase em inglês: download for Linux, macOS and Windows
 
 download-h1 = Baixar o rox
-    .lede = Um binário por plataforma. Sem instalador, sem conta, e nada rodando em segundo plano quando ele está fechado.
+    .lede = Um download por plataforma. Sem conta, e nada rodando em segundo plano quando ele está fechado.
 
 download-released = lançado em { $date }
 download-notes = notas da versão
@@ -207,6 +207,9 @@ install-macos-2 = Arraste o rox para Aplicativos.
 install-windows-1 = Descompacte em qualquer lugar.
 install-windows-2 = Rode `rox.exe`.
 install-windows-caveat = Se o SmartScreen reclamar, escolha Mais informações e depois Executar assim mesmo.
+
+download-alt-linux = No Debian, Ubuntu ou Mint também há um pacote:
+download-alt-windows = Prefere uma instalação guiada? Há um instalador:
 
 download-packages = Gerenciadores de pacotes
     .body = Dois caminhos que mantêm o rox atualizado junto com o resto do seu sistema.

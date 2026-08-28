@@ -1,4 +1,4 @@
-import type { Release, ReleaseAsset } from '$types/release'
+import type { Platform, Release, ReleaseAsset } from '$types/release'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
@@ -31,25 +31,23 @@ interface ApiRelease {
 }
 
 /**
- * Picks one asset per platform out of a release, matching on the artifact slug
- * rather than the full name so a version bump doesn't need a code change. A
- * platform with no matching asset is dropped rather than rendered as a dead
- * link.
+ * Picks the assets a platform can claim out of a release: the archive, plus
+ * the alt artifact (the .deb, the Windows installer) where the platform
+ * declares one. Matched on suffix rather than substring: the installer's name
+ * carries the same `windows-x86_64` slug as the zip, so a substring match
+ * would hand whichever GitHub lists first to both slots. A platform with no
+ * matching asset is dropped rather than rendered as a dead link.
  */
-function mapAssets(assets: ApiAsset[]): ReleaseAsset[] {
-  const mapped: ReleaseAsset[] = []
-  for (const platform of PLATFORMS) {
-    const match = assets.find(a => a.name.includes(platform.artifact))
-    if (!match)
-      continue
-    mapped.push({
-      platform: platform.id,
-      name: match.name,
-      url: match.browser_download_url,
-      size: match.size,
-    })
-  }
-  return mapped
+function bySuffix(api: ApiAsset[], platform: Platform, suffix: string): ReleaseAsset[] {
+  const match = api.find(a => a.name.endsWith(suffix))
+  if (!match)
+    return []
+  return [{
+    platform: platform.id,
+    name: match.name,
+    url: match.browser_download_url,
+    size: match.size,
+  }]
 }
 
 function normalize(api: ApiRelease, stale: boolean): Release {
@@ -58,7 +56,10 @@ function normalize(api: ApiRelease, stale: boolean): Release {
     tag: api.tag_name,
     url: api.html_url,
     publishedAt: api.published_at,
-    assets: mapAssets(api.assets),
+    assets: PLATFORMS.flatMap(p =>
+      bySuffix(api.assets, p, `${p.artifact}.${p.archive}`)),
+    alts: PLATFORMS.flatMap(p =>
+      p.alt ? bySuffix(api.assets, p, p.alt.suffix) : []),
     stale,
   }
 }
