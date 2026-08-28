@@ -15,8 +15,9 @@ export const PLATFORMS: Platform[] = [
     archive: 'tar.gz',
     steps: ['install-linux-1', 'install-linux-2'],
     caveat: null,
+    cta: 'download-btn-tarball',
     // cargo-deb names it rox_<version>_amd64.deb, so the slug never appears.
-    alt: { suffix: '_amd64.deb', key: 'download-alt-linux' },
+    alt: { suffix: '_amd64.deb', key: 'download-btn-deb' },
   },
   {
     id: 'macos',
@@ -25,6 +26,7 @@ export const PLATFORMS: Platform[] = [
     archive: 'dmg',
     steps: ['install-macos-1', 'install-macos-2'],
     caveat: null,
+    cta: null,
     alt: null,
   },
   {
@@ -34,7 +36,10 @@ export const PLATFORMS: Platform[] = [
     archive: 'zip',
     steps: ['install-windows-1', 'install-windows-2'],
     caveat: 'install-windows-caveat',
-    alt: { suffix: '-setup.exe', key: 'download-alt-windows' },
+    cta: 'download-btn-portable',
+    // The installer leads: per-user install, Start menu entry, in-place
+    // upgrades. The zip stays for people who want portable mode.
+    alt: { suffix: '-setup.exe', key: 'download-btn-installer', lead: true },
   },
 ]
 

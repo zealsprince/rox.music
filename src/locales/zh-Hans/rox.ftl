@@ -177,6 +177,18 @@ feature-binary = 一个可执行文件，不用装
     .body = 一个 tar 包、一个 DMG 或者一个 zip，另外还有 AUR 和 Nix flake。便携模式把媒体库和设置放在可执行文件旁边的文件夹里。
     .link = 去下载
 
+features-beyond = 窗口之外
+
+feature-ipc = 一个套接字，不是一台服务器
+    .body = 本地套接字上的 JSON-RPC：播放控制、队列编辑、媒体库搜索和主动推送的事件。鉴权就是文件权限，没有任何东西在端口上监听。
+    .link = 在它上面能搭什么
+
+feature-mcp = 播放器变成 MCP 工具
+    .body = 应用旁边的一个代理把套接字接上 MCP，AI 客户端就能问正在放什么，也能控制播放。默认关闭，每次调用都重新查一遍。
+
+feature-broadcast = 推流到 Icecast
+    .body = 一个源客户端把 rox 正在播的内容编码成 MP3 推到你指定的挂载点。只往外连：对外的网络那一面归 Icecast，服务器挂了也不会卡住本地播放。
+
 ## 下载按钮，不管它出现在哪里
 
 download-cta = 下载 rox
@@ -184,7 +196,7 @@ download-cta = 下载 rox
 # 只会做替换，所以语序得在这里就摆对，%s 前后的字都改不了。
 download-cta-detected = 下载 %s 版
 download-packaged = 用 Arch 或 NixOS？那就[从 AUR 或 Nix flake 装](/download#packages)吧。
-download-meta = v{ $version } · Linux、macOS、Windows · [全部下载](@releases)
+download-meta = v{ $version } · Linux、macOS、Windows · [全部下载](/download)
 
 ## 下载
 
@@ -203,12 +215,14 @@ install-linux-1 = 把 tar 包解压到任意位置。
 install-linux-2 = 运行 `./rox`。
 install-macos-1 = 打开 DMG。
 install-macos-2 = 把 rox 拖进“应用程序”。
-install-windows-1 = 解压到任意位置。
-install-windows-2 = 运行 `rox.exe`。
+install-windows-1 = 运行安装程序，rox 会出现在开始菜单中。
+install-windows-2 = 想用便携版？解压到任意位置，运行 `rox.exe` 即可。
 install-windows-caveat = 如果 SmartScreen 拦下来，选“更多信息”，再点“仍要运行”。
 
-download-alt-linux = Debian、Ubuntu 或 Mint 也有安装包：
-download-alt-windows = 想要引导式安装？这里有安装程序：
+download-btn-tarball = 下载压缩包
+download-btn-deb = 下载 .deb
+download-btn-portable = 下载便携版
+download-btn-installer = 下载安装程序
 
 download-packages = 包管理器
     .body = 两条能让 rox 跟着系统其他部分一起更新的路。
@@ -305,6 +319,9 @@ page-musicbee-alternative = MusicBee 替代品
 
 page-replaygain = ReplayGain，以及它的代价
     .blurb = ReplayGain 到底做了什么、曲目增益和专辑增益的区别、怎么处理没人测过的文件，以及打开它为什么就意味着放弃位完美。
+
+page-control = 一台可以在上面搭东西的播放器
+    .blurb = JSON-RPC 控制套接字、它推送的事件、MCP 代理和往外推的 Icecast 流，以及这些拼在一起怎么变成你自己的前端。
 
 page-best-music-player = 本地媒体库最好的播放器
     .blurb = 媒体库一旦成了真规模，真正拉开播放器差距的是什么，以及这一批在五万首曲目的收藏上表现如何。
@@ -865,3 +882,41 @@ rg-limit-rate-switch = 在独占模式下跟随源采样率，会在两首采样
 
 rg-closer = 让它指向你的媒体库
     .body = 测量会在后台把所有缺增益的东西跑一遍，设置窗口关掉也接着跑。更多内容见[媒体库规模上还有什么要紧](/best-music-player)。
+
+## Control
+
+ctl-title = 从外部控制 rox：套接字、MCP 和 Icecast
+    .description = rox 的机器接口：一个带事件推送的本地 JSON-RPC 套接字、随附的命令行客户端、面向 AI 工具的 MCP 代理，还有往外推的 Icecast 流。每一块各做什么，拼起来又是什么。
+
+ctl-h1 = 一台可以在上面搭东西的播放器
+    .lede = 别的播放器要内置一台 web 服务器才有的东西，rox 直接有：一个本地 JSON-RPC 套接字、事情一变就推过来的事件、一个 MCP 代理，还有往外推的 Icecast 流。
+
+ctl-refused = rox 拒绝成为的那台服务器
+    .p1 = 桌面播放器把自己开放出去的常规做法，是内嵌一台 web 服务器。它买来的是远程控制，赔进去的是其余一切：你机器上的一个端口、一整套鉴权、一个抛弃播放器自己长相的 web 界面，还有一个音乐播放器根本不该有的攻击面。所有用户一起买单，只为了让少数写脚本的人用得上。
+    .p2 = rox 留下能力，拒绝这种交付方式。它的机器接口是一个本地套接字，Linux 和 macOS 上是 Unix 域套接字，Windows 上是命名管道，并且绑定到数据文件夹，两个便携实例永远不会串线。鉴权就是文件系统权限：能读你音乐的东西，本来就能做套接字允许的事。没有任何东西在端口上监听，可执行文件里也不带 HTTP 服务器。
+
+ctl-socket = 一个套接字，整台播放器
+    .p1 = 协议是 JSON-RPC 2.0，一行一个对象，先做一次版本握手。`transport.*` 操作播放：播放暂停、拖动进度、音量。`queue.*` 按稳定的条目 id 编辑播放顺序，你挪的那一行始终是你想挪的那一行。`library.*` 负责搜索、返回正在播放曲目的完整标签，也能交出封面。每个方法读的、驱动的都是面板背后的同一台播放器和同一个媒体库，所以套接字永远说不出界面不会说的话。
+    .p2 = 先例是 mpv 的 JSON IPC 和 mpd 的协议，代价也一并继承下来：服务器能让你用 curl 的地方，这里得有个套接字客户端。源码树里的参考客户端 `roxctl` 管住了 shell 这一头，一次调用干一件事，脚本要读就加 `--json`，所以 `roxctl next` 和 `roxctl search miles davis` 在你写下任何一行代码之前就已经能用了。
+
+ctl-events = 主动推送，所以你永远不用轮询
+    .p1 = 订阅不了的前端就只能轮询，所以事件从第一版起就写在契约里。调用 `subscribe`，套接字就会在事情变化时把帧推过来：换曲时是 `event.track`，播放状态、音量或静音变了是 `event.playback`，顺序变了是 `event.queue`。
+    .p2 = 跟不上的消费者会被掐掉而不是被等着，所以卡住的读取端永远堵不回播放本身。`roxctl watch` 会把事件流边到边打出来，状态栏要的“正在播放”显示，一个 shell 循环就解决了。
+
+ctl-mcp = MCP，别的播放器都没有的那块
+    .p1 = 应用旁边站着 `rox-mcp`，一个很薄的可执行文件，一头在 stdio 上说 [MCP](@mcp-spec)，另一头连着套接字。把 Claude 或任何 MCP 客户端指向它，播放器就变成了一组工具：正在放什么、搜媒体库、读队列、控制播放。“来点七十年代安静的歌”不再是 rox 得自己长出来的功能，而是你的助手能直接照办的一句话。
+    .p2 = 每个工具都只是代理一个套接字方法，MCP 这一面从构造上就是套接字所提供内容的子集，永远跑不到它前头。而且它要点头两次才开：一个默认关闭的“启用 AI 功能”开关会让 MCP 设置页出现，那页还有自己的开关，每次工具调用应答之前都会去正在运行的应用里把这两个开关再查一遍。关着就是明明白白的拒绝，不是挂起。
+
+ctl-broadcast = 音频那一半
+    .p1 = 控制只是前端的一半，另一半是得听见声音。rox 作为源客户端往外连一台 [Icecast](@icecast) 服务器，把处理后的流编码成 MP3 推到你起名的挂载点。取流点在处理链之后，所以广播出去的和音箱里出来的一模一样，均衡器也算在内。
+    .p2 = 方向就是重点。rox 只往外连，从不对外服务：挂载点、听众和对外的网络那一面都归 Icecast。服务器连不上，数据块就地丢掉，绝不去碰本地播放；只要配置还在，这个输出端就按自己的节奏一直重连。
+
+ctl-build = 这打开了什么
+    .p1 = 每一块单拿出来都有用。媒体键守护进程或者状态栏部件，就是套接字加几行代码。硬件控制器，不管是 stream deck 还是单片机上的一个旋钮，就是任何摸得到套接字的东西发 `transport.*`。给听音室当点播台，就是队列方法加上 `event.track` 驱动一块显示屏。
+    .p2 = 拼在一起，rox 就是一套个人流媒体方案的后端：播放和队列走套接字，音频从 Icecast 挂载点嵌进来，前端用你喜欢的任何东西写，你的媒体库就在存着它的那台机器上播放。
+
+ctl-honest = 线在哪里
+    .body = 套接字只留在本地；这就是安全模型。远程访问由你按自己的条件去加，SSH 转发也好，Icecast 前面架个反向代理也好。还有两件事要提前想到：rox 一暂停，流就断粮，直到播放恢复；Icecast 要单独装，这是 rox 不带服务器的代价。
+
+ctl-closer = 带上一个套接字客户端
+    .body = rox 跑在哪儿，套接字就开在哪儿，`rox-mcp` 随应用一起发，设置里的 MCP 页上就有给你客户端用的那行配置。`roxctl` 用一条 cargo 命令就能从[源码](@repo)构建出来。

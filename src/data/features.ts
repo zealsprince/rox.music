@@ -16,6 +16,9 @@ export type FeatureIconId
     | 'lyrics'
     | 'playlists'
     | 'binary'
+    | 'ipc'
+    | 'mcp'
+    | 'broadcast'
 
 export interface Feature {
   /** Message key. Value is the cell title, `.body` the paragraph under it. */
@@ -109,6 +112,18 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
         icon: 'binary',
         link: { path: '/download', key: 'feature-binary.link' },
       },
+    ],
+  },
+  {
+    key: 'features-beyond',
+    features: [
+      {
+        key: 'feature-ipc',
+        icon: 'ipc',
+        link: { path: '/control', key: 'feature-ipc.link' },
+      },
+      { key: 'feature-mcp', icon: 'mcp' },
+      { key: 'feature-broadcast', icon: 'broadcast' },
     ],
   },
 ]

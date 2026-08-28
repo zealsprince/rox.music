@@ -47,6 +47,7 @@
     <nav aria-label={t('nav-main')}>
       {#each LINKS as link (link.path)}
         <a
+          class="page-link"
           href={href(link.path)}
           aria-current={current === href(link.path) ? 'page' : undefined}
         >
@@ -166,6 +167,14 @@
       overflow: hidden;
       clip-path: inset(50%);
       white-space: nowrap;
+    }
+  }
+
+  /* At phone widths the page links squeeze the icons into slivers. Drop them;
+     the footer carries both destinations. */
+  @media (max-width: 30rem) {
+    .page-link {
+      display: none;
     }
   }
 </style>

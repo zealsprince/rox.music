@@ -13,11 +13,18 @@ export interface Platform {
   /** Message key for the gatekeeping note on unsigned builds, or null. */
   caveat: string | null
   /**
+   * Message key for the main download button's label, or null for the plain
+   * "Download". Platforms with an alt name both buttons so the pair reads
+   * as a choice.
+   */
+  cta: string | null
+  /**
    * A second artifact beside the archive, like the .deb or the Windows
    * installer. `suffix` is matched against the end of the asset name, `key`
-   * is the message introducing the link.
+   * labels its button. `lead` puts it first on the card: display order only,
+   * the archive stays the release's canonical asset.
    */
-  alt: { suffix: string, key: string } | null
+  alt: { suffix: string, key: string, lead?: boolean } | null
 }
 
 export interface ReleaseAsset {

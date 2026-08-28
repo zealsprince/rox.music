@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { Platform } from '$types/release'
   import type { PageData } from './$types'
   import Meta from '$components/Meta.svelte'
   import PlatformIcon from '$components/PlatformIcon.svelte'
@@ -20,6 +21,21 @@
 
   const assetFor = (id: string) => data.release.assets.find(a => a.platform === id)
   const altFor = (id: string) => data.release.alts.find(a => a.platform === id)
+
+  // The card's buttons in display order: the lead artifact takes the accent,
+  // the rest render as outlined alternatives. Windows leads with the installer
+  // while the zip stays the canonical asset the hero button hands out.
+  const buttonsFor = (platform: Platform) => {
+    const asset = assetFor(platform.id)
+    if (!asset)
+      return []
+    const main = { ...asset, label: platform.cta ?? 'nav-download' }
+    const alt = platform.alt ? altFor(platform.id) : undefined
+    if (!platform.alt || !alt)
+      return [main]
+    const second = { ...alt, label: platform.alt.key }
+    return platform.alt.lead ? [second, main] : [main, second]
+  }
 
   const mb = (bytes: number): string =>
     `${new Intl.NumberFormat(info.htmlLang, { maximumFractionDigits: 1 })
@@ -63,34 +79,32 @@
 
 <div class="shell cards">
   {#each PLATFORMS as platform (platform.id)}
-    {@const asset = assetFor(platform.id)}
+    {@const buttons = buttonsFor(platform)}
     <article data-platform-card={platform.id}>
       <h2>
         <PlatformIcon platform={platform.id} size={22} />
         {platform.label}
       </h2>
 
-      {#if asset}
-        {@const alt = altFor(platform.id)}
-        <a class="get plain" href={asset.url}>
-          <Download size={17} strokeWidth={2} aria-hidden="true" />
-          {t('nav-download')}
-          <span class="size">{mb(asset.size)}</span>
-        </a>
+      {#if buttons.length > 0}
         <!--
-          The alt link lives inside the filename paragraph rather than as its
-          own element: the subgrid below spans a fixed five rows per card, and
-          a sixth child on only some cards would knock the rows out of line.
+          The buttons share one wrapper: the subgrid below spans a fixed five
+          rows per card, and a sixth child on only some cards would knock the
+          rows out of line.
         -->
+        <div class="gets">
+          {#each buttons as button, index (button.url)}
+            <a class="get plain" class:secondary={index > 0} href={button.url}>
+              <Download size={17} strokeWidth={2} aria-hidden="true" />
+              {t(button.label)}
+              <span class="size">{mb(button.size)}</span>
+            </a>
+          {/each}
+        </div>
         <p class="filename">
-          <code>{asset.name}</code>
-          {#if platform.alt && alt}
-            <span class="alt">
-              {t(platform.alt.key)}
-              <a href={alt.url}><code>{alt.name}</code></a>
-              <span class="alt-size">{mb(alt.size)}</span>
-            </span>
-          {/if}
+          {#each buttons as button (button.url)}
+            <code>{button.name}</code>
+          {/each}
         </p>
       {:else}
         <p class="missing">
@@ -219,6 +233,12 @@ rox --portable</code></pre>
     color: var(--accent-text);
   }
 
+  .gets {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
   .get {
     display: flex;
     align-items: center;
@@ -227,12 +247,27 @@ rox --portable</code></pre>
     color: var(--text-on-accent);
     font-weight: 600;
     padding: 0.6em 1em;
+    /* Transparent rather than none, so both buttons come out the same height
+       once the secondary paints its outline. */
+    border: var(--hairline) solid transparent;
     border-radius: var(--radius);
   }
 
   .get:hover {
     background: var(--accent-hover);
     color: var(--text-on-accent);
+  }
+
+  .get.secondary {
+    background: none;
+    border-color: var(--border);
+    color: var(--text-bright);
+  }
+
+  .get.secondary:hover {
+    background: none;
+    border-color: var(--accent);
+    color: var(--text-bright);
   }
 
   .size {
@@ -245,24 +280,14 @@ rox --portable</code></pre>
   }
 
   .filename code {
+    /* One filename per line, in the same order as the buttons above. */
+    display: block;
     font-size: 0.75rem;
     color: var(--text-muted);
     background: none;
     border: 0;
     padding: 0;
     overflow-wrap: anywhere;
-  }
-
-  .alt {
-    display: block;
-    margin-top: var(--space-xs);
-    font-size: var(--step--1);
-    color: var(--text-muted);
-  }
-
-  .alt-size {
-    font-variant-numeric: tabular-nums;
-    opacity: 0.75;
   }
 
   ol {

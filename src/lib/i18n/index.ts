@@ -180,6 +180,8 @@ const ALIASES: Record<string, { href: string, rel?: string, plain?: boolean }> =
   '@foobar': { href: 'https://www.foobar2000.org' },
   '@musicbee': { href: 'https://getmusicbee.com' },
   '@mp3tag': { href: 'https://www.mp3tag.de/en/' },
+  '@icecast': { href: 'https://icecast.org' },
+  '@mcp-spec': { href: 'https://modelcontextprotocol.io' },
   // Plain, because it sits in the method note under a table whose own player
   // column already suppresses its arrows: one arrow down there would read as a
   // different kind of link rather than as the same one.

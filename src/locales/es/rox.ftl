@@ -170,6 +170,18 @@ feature-binary = Un binario, sin instalador
     .body = Un tarball, un DMG o un zip, además del AUR y un flake de Nix. El modo portátil guarda la biblioteca y los ajustes en una carpeta junto al ejecutable.
     .link = Consíguelo
 
+features-beyond = Más allá de la ventana
+
+feature-ipc = Un socket, no un servidor
+    .body = JSON-RPC sobre un socket local: transporte, cola, búsqueda y eventos empujados. La autenticación son los permisos de archivo, nada escucha en un puerto.
+    .link = Qué puedes construir encima
+
+feature-mcp = El reproductor como herramientas MCP
+    .body = Un proxy junto a la aplicación pone el socket en MCP: un cliente de IA puede preguntar qué suena o manejar el transporte. Apagado por defecto, comprobado en cada llamada.
+
+feature-broadcast = Emite hacia fuera a Icecast
+    .body = Un cliente de origen empuja lo que suena como MP3 a tu punto de montaje. Solo hacia fuera: la cara de red es de Icecast, y un servidor caído nunca frena la reproducción.
+
 ## El botón de descarga, allá donde aparezca
 
 download-cta = Descargar rox
@@ -178,7 +190,7 @@ download-cta = Descargar rox
 # palabras tiene que estar bien aquí.
 download-cta-detected = Descargar para %s
 download-packaged = ¿En Arch o NixOS? [Instálalo desde el AUR o el flake de Nix](/download#packages) en su lugar.
-download-meta = v{ $version } · Linux, macOS, Windows · [todas las descargas](@releases)
+download-meta = v{ $version } · Linux, macOS, Windows · [todas las descargas](/download)
 
 ## Descargar
 
@@ -197,12 +209,14 @@ install-linux-1 = Descomprime el tarball donde quieras.
 install-linux-2 = Ejecuta `./rox`.
 install-macos-1 = Abre el DMG.
 install-macos-2 = Arrastra rox a Aplicaciones.
-install-windows-1 = Descomprime donde quieras.
-install-windows-2 = Ejecuta `rox.exe`.
+install-windows-1 = Ejecuta el instalador. rox queda en el menú Inicio.
+install-windows-2 = ¿Prefieres portable? Descomprime el zip donde quieras y ejecuta `rox.exe`.
 install-windows-caveat = Si SmartScreen protesta, elige Más información y luego Ejecutar de todas formas.
 
-download-alt-linux = En Debian, Ubuntu o Mint también hay un paquete:
-download-alt-windows = ¿Prefieres un instalador guiado? Aquí está:
+download-btn-tarball = Descargar tarball
+download-btn-deb = Descargar .deb
+download-btn-portable = Descargar versión portátil
+download-btn-installer = Descargar instalador
 
 download-packages = Gestores de paquetes
     .body = Dos vías para que rox se mantenga al día junto con el resto de tu sistema.
@@ -299,6 +313,9 @@ page-musicbee-alternative = Una alternativa a MusicBee
 
 page-replaygain = ReplayGain, y lo que cuesta
     .blurb = Qué hace ReplayGain en realidad, ganancia de pista frente a ganancia de álbum, medir los archivos que nadie etiquetó, y por qué activarlo significa renunciar al bit a bit.
+
+page-control = Un reproductor sobre el que construir
+    .blurb = El socket de control JSON-RPC, los eventos que empuja, el proxy MCP y la emisión a Icecast, y cómo las piezas acaban sumando tu propio front end.
 
 page-best-music-player = El mejor reproductor de música para una biblioteca local
     .blurb = Qué separa de verdad a los reproductores cuando tu biblioteca es real, y cómo queda el campo con una colección de 50.000 pistas.
@@ -858,3 +875,41 @@ rg-limit-rate-switch = Seguir la frecuencia de origen en modo exclusivo cuesta u
 
 rg-closer = Apúntalo a tu biblioteca
     .body = La pasada de medición se ejecuta en segundo plano sobre todo lo que no tenga ganancia, y sigue en marcha con la ventana de ajustes cerrada. Más sobre [qué más importa a escala de biblioteca](/best-music-player).
+
+## Control
+
+ctl-title = Controla rox desde fuera: el socket, MCP e Icecast
+    .description = La interfaz de máquina de rox: un socket JSON-RPC local con eventos empujados, una CLI incluida, un proxy MCP para herramientas de IA y una emisión a Icecast. Qué hace cada pieza y qué suman juntas.
+
+ctl-h1 = Un reproductor sobre el que construir
+    .lede = rox tiene lo que otros reproductores empaquetan un servidor web para conseguir: un socket JSON-RPC local, eventos empujados cuando algo cambia, un proxy MCP y una emisión a Icecast.
+
+ctl-refused = El servidor que rox se niega a ser
+    .p1 = La forma habitual de que un reproductor de escritorio se abra al exterior es incrustar un servidor web. Eso compra el control remoto y cuesta todo lo demás: un puerto en tu máquina, una historia de autenticación, una interfaz web que abandona el aspecto del propio reproductor, y una superficie de ataque que un reproductor de música no tiene por qué tener. Lo pagan todos los usuarios para que puedan los pocos que programan sobre su reproductor.
+    .p2 = rox se queda con la capacidad y rechaza el envoltorio. Su interfaz de máquina es un socket local, un socket de dominio Unix en Linux y macOS y una tubería con nombre en Windows, atado a la carpeta de datos para que dos instancias portátiles nunca se crucen. La autenticación son los permisos del sistema de archivos: cualquier cosa que pudiera leer tu música ya puede hacer lo que el socket permite. Nada escucha en un puerto, y en el binario no viaja ningún servidor HTTP.
+
+ctl-socket = Un socket, el reproductor entero
+    .p1 = El protocolo es JSON-RPC 2.0, un objeto por línea, abierto con un saludo de versión. `transport.*` maneja el transporte: alternar, saltar, volumen. `queue.*` edita el orden de reproducción por id estable de entrada, así que la fila que moviste sigue siendo la fila que querías decir. `library.*` busca, devuelve las etiquetas completas de la pista que suena y entrega la carátula. Cada método lee y maneja el mismo reproductor y la misma biblioteca que los paneles, así que el socket nunca puede decir algo que la interfaz no diría.
+    .p2 = El precedente son el IPC JSON de mpv y el protocolo de mpd, y el coste también es el suyo: un consumidor necesita un cliente de socket donde un servidor habría ofrecido curl. `roxctl`, el cliente de referencia en el árbol del código, cubre el caso de la shell, una llamada por invocación, `--json` cuando lee un script, así que `roxctl next` y `roxctl search miles davis` funcionan antes de que hayas escrito una línea de nada.
+
+ctl-events = Empuje, para no sondear nunca
+    .p1 = Un front end que no puede suscribirse acabará sondeando, así que los eventos están en el contrato desde la versión uno. Llama a `subscribe` y el socket empuja tramas según se mueven las cosas: `event.track` al cambiar de pista, `event.playback` cuando cambian el estado de reproducción, el volumen o el silencio, `event.queue` cuando cambia el orden.
+    .p2 = A un consumidor que se queda atrás se le corta en vez de esperarlo, así que un lector atascado nunca puede atragantar la reproducción. `roxctl watch` imprime el flujo según llega, que es un "sonando ahora" para una barra de estado resuelto en un bucle de shell.
+
+ctl-mcp = MCP, que ningún otro reproductor tiene
+    .p1 = Junto a la aplicación va `rox-mcp`, un binario fino que habla [MCP](@mcp-spec) sobre stdio por un lado y con el socket por el otro. Apúntale Claude o cualquier cliente MCP y el reproductor se convierte en herramientas: qué suena, buscar en la biblioteca, leer la cola, manejar el transporte. "Pon en cola algo tranquilo de los 70" deja de ser una función que rox tendría que criar y pasa a ser una frase sobre la que tu asistente puede actuar.
+    .p2 = Cada herramienta pasa por un método del socket, así que la superficie MCP es por construcción un subconjunto de lo que sirve el socket y no puede adelantársele. Y se activa dos veces: un interruptor de funciones de IA, apagado por defecto, revela una página de ajustes de MCP con su propio interruptor, y cada llamada de herramienta vuelve a comprobar los interruptores en la aplicación en marcha antes de responder. Apagado significa un rechazo claro, no un cuelgue.
+
+ctl-broadcast = La mitad del audio
+    .p1 = El control es la mitad de un front end; la otra mitad es oír algo. rox conecta hacia fuera con un servidor [Icecast](@icecast) como cliente de origen y empuja el flujo procesado, codificado a MP3, al punto de montaje que le indiques. La toma viene después de la cadena de procesado, así que la emisión es exactamente lo que reciben los altavoces, ecualizador incluido.
+    .p2 = La dirección es la gracia. rox conecta hacia fuera, nunca sirve: el punto de montaje, los oyentes y la cara de red son todos de Icecast. Un servidor inalcanzable tira los trozos al suelo antes que tocar la reproducción local, y el emisor se reconecta a su propio ritmo mientras la configuración siga ahí.
+
+ctl-build = Lo que eso abre
+    .p1 = Cada pieza es útil por sí sola. Un demonio de teclas multimedia o un widget de barra de estado son el socket y unas pocas líneas. Un controlador físico, un stream deck o una rueda en un microcontrolador, es `transport.*` desde cualquier cosa que alcance un socket. El modo quiosco para una sala de escucha son los métodos de cola y `event.track` moviendo una pantalla.
+    .p2 = Júntalas y rox es el backend de un montaje de streaming personal: transporte y cola por el socket, el audio incrustado desde el punto de montaje de Icecast, y un front end que escribes en lo que quieras, con tu biblioteca sonando en la máquina que la guarda.
+
+ctl-honest = Dónde está la línea
+    .body = El socket se queda en local; ese es el modelo de seguridad. El acceso remoto lo añades tú en tus propios términos, un reenvío SSH o un proxy inverso delante de Icecast. Dos cosas más con las que contar: un rox en pausa deja la emisión sin datos hasta que vuelve la reproducción, e Icecast se instala aparte, el coste de que rox no traiga un servidor.
+
+ctl-closer = Trae un cliente de socket
+    .body = El socket está encendido allá donde corra rox, `rox-mcp` viaja junto a la aplicación, y la página de MCP en los ajustes tiene la línea de configuración para tu cliente. `roxctl` se compila desde [el código](@repo) con un comando de cargo.

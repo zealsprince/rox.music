@@ -33,6 +33,7 @@ export const SIDE_PAGES: SidePage[] = [
   { path: '/mp3tag-alternative', key: 'page-mp3tag-alternative' },
   { path: '/musicbee-alternative', key: 'page-musicbee-alternative' },
   { path: '/replaygain', key: 'page-replaygain' },
+  { path: '/control', key: 'page-control' },
   { path: '/best-music-player', key: 'page-best-music-player' },
   { path: '/linux', key: 'page-linux' },
   { path: '/windows', key: 'page-windows' },

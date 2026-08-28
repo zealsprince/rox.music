@@ -3,15 +3,18 @@
   import {
     AudioLines,
     Blend,
+    Cable,
     Disc3,
     Heart,
     LayoutDashboard,
+    Link,
     ListMusic,
     Mic,
     Package,
     Palette,
     Play,
     Radio,
+    RadioTower,
     Tag,
   } from '@lucide/svelte'
 
@@ -25,7 +28,8 @@
   // The marks rox wears for these things, borrowed role for role: Blend is the
   // Shader panel's icon in the app's own Add Panel menu, Palette is the
   // Appearance settings page, AudioLines is the equalizer, Mic is the lyrics
-  // panel. Someone who has used rox should recognise the row.
+  // panel, Link is the MCP settings page. Someone who has used rox should
+  // recognise the row.
   //
   // `satisfies` rather than a type annotation, so a new id in features.ts fails
   // the typecheck here instead of rendering nothing.
@@ -42,6 +46,9 @@
     lyrics: Mic,
     playlists: Heart,
     binary: Package,
+    ipc: Cable,
+    mcp: Link,
+    broadcast: RadioTower,
   } satisfies Record<FeatureIconId, unknown>
 
   const Icon = $derived(ICONS[icon])
