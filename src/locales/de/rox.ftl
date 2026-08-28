@@ -490,7 +490,7 @@ musicbee-split = Die ehrliche Aufteilung
     .aside = Ein Panel in ein eigenes Betriebssystemfenster auszukoppeln oder dein gesamtes Layout als eine Datei weiterzugeben, sind keine Zeilen in einem Funktionsvergleich, weil es auf der anderen Seite nichts zu vergleichen gibt. Wenn du darauf aus warst, bist du bei rox richtig.
 
 musicbee-closer = Probier es an deiner eigenen Sammlung
-    .body = Frei und quelloffen unter der AGPL, kein Konto und kein Installer. Es gibt auch einen [Foobar2000-Vergleich](/foobar2000-alternative), falls das das Setup ist, das du eigentlich verlässt.
+    .body = Frei und quelloffen unter der AGPL, kein Konto und kein Installer. Es gibt auch einen [Foobar2000-Vergleich](/foobar2000-alternative), falls es eigentlich das Setup ist, das du verlässt.
 
 ## CaTRoX
 
@@ -525,8 +525,8 @@ catrox-limit-youtube = Keine YouTube-Wiedergabe. CaTRoX und NekoRoX hatten sie b
 catrox-limit-plugins = Keine Plugin-Schnittstelle, was du also mit einer foobar2000-Komponente gelöst hättest, muss es in rox schon geben oder es gibt es gar nicht.
 catrox-limit-fidelity = Es ist ein Nachbau von außen. Details unterscheiden sich, und eine pixelgenaue Übereinstimmung war nie das Ziel.
 
+# $others ist die Anzahl der mitgelieferten Arbeitsflächen minus dieser einen.
 catrox-closer = Probier es aus
-    # $others ist die Anzahl der mitgelieferten Arbeitsflächen minus dieser einen.
     .body = Die CaTRoX-Arbeitsfläche ist mit dabei, einen Klick entfernt im Willkommensfenster. { $others } weitere ebenso, darunter ein [Foobar-Layout und eins, das aussieht wie WinAmp](/workspaces).
 
 ## Cue-Sheets
@@ -766,9 +766,9 @@ neko-stopped = Warum es aufgehört hat
     .p1 = Ich bin ganz zu Linux gewechselt, was hieß, dass das ganze Konstrukt durch Wine ging. Es lief. Es hat auch Internet Explorer in Panels gerendert, und ein Stapel, den aufeinandergestapelte Behelfslösungen zusammenhalten, hat mit einer Übersetzungsschicht keine Freude. Jedes foobar2000-Update und jedes Wine-Update war ein Münzwurf über ein Jahrzehnt Konfiguration.
     .p2 = Das tiefere Problem war das Format. Eine NekoRoX-Installation ist keine Datei, sie ist eine Komponentenliste, eine Installationsreihenfolge und ein Satz Pfade, die sich nur auf der Maschine wieder zusammensetzen, auf der sie gebaut wurden. Deshalb stand in der README, man solle vier Verzeichnisse an zwei verschiedene Orte kopieren. Einen Look zu teilen sollte keine Seite Anleitung brauchen.
 
+# $others ist die Anzahl minus der Standard-Arbeitsfläche und CaTRoX, die
+# beide schon im Satz stehen.
 neko-rox = Was rox daraus macht
-    # $others ist die Anzahl minus der Standard-Arbeitsfläche und CaTRoX, die
-    # beide schon im Satz stehen.
     .body = rox ist ein nativer Player in Rust, unter Linux, macOS und Windows, ohne foobar2000 und ohne Wine darunter. Seine Standard-Arbeitsfläche ist das NekoRoX-Layout, aus nativen Panels neu gebaut, deshalb sehen die beiden Screenshots verwandt aus. Es gibt auch eine [CaTRoX-Arbeitsfläche](/catrox) dazu, und { $others } weitere.
 
 neko-default-alt = Die Standard-Arbeitsfläche von rox, eine native Rekonstruktion des NekoRoX-Layouts: ein Cover-Raster neben einer Playlist mit Sternebewertungen, eine bernsteinfarbene Wellenform als Fortschrittsleiste am unteren Rand, und Reiter für Biografie, Songtext und Metadaten.

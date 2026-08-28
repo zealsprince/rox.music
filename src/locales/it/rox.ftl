@@ -511,7 +511,7 @@ musicbee-split = Il bivio onesto
     .p2 = Passi a Linux o a un Mac, o ci sei già e guardi il vuoto lasciato da MusicBee? È tutta la ragione per cui questo esiste, e lo scambio è preciso: rinunci alla sincronizzazione e ai podcast, e ottieni un lettore nativo con un tagging più profondo, un layout che costruisci tu, e una libreria che resta veloce a cinquantamila tracce.
     .aside = Staccare un pannello in una finestra di sistema tutta sua, o passare a qualcuno l'intero layout come un file, non sono righe di un confronto di funzioni perché dall'altra parte non c'è niente da confrontare. Se è questo che cercavi, è qui che lo trovi.
 
-musicbee-closer = Provalo sulla tua libreria
+musicbee-closer = Mettilo alla prova sulla tua libreria
     .body = Libero e open source sotto AGPL, nessun account e nessun installer. C'è anche un [confronto con Foobar2000](/foobar2000-alternative), se è davvero quella la configurazione che stai lasciando.
 
 ## CaTRoX
@@ -547,10 +547,10 @@ catrox-limit-youtube = Nessuna riproduzione da YouTube. CaTRoX e NekoRoX ce l'av
 catrox-limit-plugins = Nessuna API per plugin, quindi quello che avresti risolto con un componente foobar2000 deve esistere già in rox oppure non esiste affatto.
 catrox-limit-fidelity = È una ricreazione fatta dall'esterno. I dettagli differiscono, e una corrispondenza al pixel non è mai stata l'obiettivo.
 
+# $others è il numero degli spazi di lavoro inclusi meno questo. Prima
+# c'era scritto "Cinque", che ha smesso di essere vero due spazi di lavoro
+# fa.
 catrox-closer = Provalo
-    # $others è il numero degli spazi di lavoro inclusi meno questo. Prima
-    # c'era scritto "Cinque", che ha smesso di essere vero due spazi di lavoro
-    # fa.
     .body = Lo spazio di lavoro CaTRoX è incluso, a un clic dalla finestra di benvenuto. Ce ne sono altri { $others }, tra cui un [layout Foobar e uno a forma di WinAmp](/workspaces).
 
 ## Cue sheet
@@ -668,7 +668,7 @@ fb-not = Chi non dovrebbe cambiare
     .p3 = Vale la pena dire anche l'altro lato dell'arrivare tardi. Niente in rox deve restare compatibile con una decisione presa nel 2002, ed è così che un look intero finisce per essere un file condivisibile invece di un grafo di componenti, che una sola base di codice copre tutte e tre le piattaforme, e che una quarantina di tipi di pannello arrivano inclusi invece di essere montati un download alla volta. È anche il motivo per cui l'identità di una traccia non è mai stata legata ai percorsi dei file, ed è questo che renderà possibile più avanti unire una libreria locale con qualcos'altro. Gran parte di quei 62 MB racconta la stessa storia.
     .aside = Pannelli che si staccano in vere finestre di sistema, o una palette che si ritinge dalla copertina in riproduzione, non sono mai entrati nella tabella qui sopra. Non c'era niente da mettere nell'altra colonna. Se è questo il genere di differenze che cerchi, rox è il posto giusto.
 
-fb-closer = Provalo sulla tua libreria
+fb-closer = Mettilo alla prova sulla tua libreria
     .body = Libero, open source sotto AGPL, nessun account e nessun installer. Puntalo sulla collezione che rompe gli altri lettori.
     .fine = Oppure leggi prima il [codice sorgente](@repo). È un modo ragionevole di valutare un lettore che vuole il permesso di scrivere i tuoi tag. Ancora indeciso? I [criteri che distinguono i lettori di libreria](/best-music-player) sono scritti a parte, benchmark compresi.
 
@@ -790,10 +790,10 @@ neko-stopped = Perché si è fermato
     .p1 = Sono passato a Linux a tempo pieno, il che voleva dire far girare l'intero assemblaggio sotto Wine. Girava. Renderizzava anche Internet Explorer dentro i pannelli, e una pila tenuta insieme da soluzioni di fortuna impilate non gradisce uno strato di traduzione. Ogni aggiornamento di foobar2000, e ogni aggiornamento di Wine, era un testa o croce su dieci anni di configurazione.
     .p2 = Il problema più profondo era il formato. Un'installazione NekoRoX non è un file, è un elenco di componenti, un ordine di installazione e un insieme di percorsi che si rimontano solo sulla macchina su cui sono stati costruiti. È per questo che il README diceva di copiare quattro cartelle in due posti diversi. Condividere un look non dovrebbe richiedere una pagina di istruzioni.
 
+# $others è il numero degli spazi di lavoro inclusi meno quello
+# predefinito e CaTRoX, che nella frase sono già nominati. Prima diceva
+# "altri quattro".
 neko-rox = Cosa ne fa rox
-    # $others è il numero degli spazi di lavoro inclusi meno quello
-    # predefinito e CaTRoX, che nella frase sono già nominati. Prima diceva
-    # "altri quattro".
     .body = rox è un lettore nativo scritto in Rust, su Linux, macOS e Windows, senza foobar2000 né Wine sotto. Il suo spazio di lavoro predefinito è il layout NekoRoX ricostruito con pannelli nativi, ed è per questo che i due screenshot si somigliano. C'è anche uno [spazio di lavoro CaTRoX](/catrox) incluso, più altri { $others }.
 
 neko-default-alt = Lo spazio di lavoro predefinito di rox, una ricostruzione nativa del layout NekoRoX: una griglia di copertine accanto a una playlist con voti a stelle, una barra di scorrimento a forma d'onda ambrata in basso, e schede per biografia, testo e metadati.

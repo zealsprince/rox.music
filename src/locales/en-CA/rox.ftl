@@ -528,9 +528,9 @@ catrox-limit-youtube = No YouTube playback. CaTRoX and NekoRoX both had it throu
 catrox-limit-plugins = No plugin API, so anything you'd have solved with a foobar2000 component has to already exist in rox or not exist at all.
 catrox-limit-fidelity = It's a recreation working from the outside. Details differ, and a pixel-exact match was never the goal.
 
+# $others is the shipped workspace count minus this one. It used to be the
+# literal "Five", which stopped being true two workspaces ago.
 catrox-closer = Try it
-    # $others is the shipped workspace count minus this one. It used to be the
-    # literal "Five", which stopped being true two workspaces ago.
     .body = The CaTRoX workspace ships in the box, one click away on the welcome window. { $others } others do too, including a [Foobar layout and a WinAmp-shaped one](/workspaces).
 
 ## Cue sheets
@@ -770,9 +770,9 @@ neko-stopped = Why it stopped
     .p1 = I moved to Linux full time, which meant the whole assembly went through Wine. It ran. It also rendered Internet Explorer inside panels, and a stack held together by stacked workarounds does not enjoy a translation layer. Every foobar2000 update, and every Wine update, was a coin flip on a decade of configuration.
     .p2 = The deeper problem was the format. A NekoRoX install isn't a file, it's a component list, an install order and a set of paths that only reassemble on the machine they were built on. That's why the README told people to copy four directories into two different places. Sharing a look shouldn't take a page of instructions.
 
+# $others is the shipped workspace count minus the default and CaTRoX, both
+# already named in the sentence. It used to read "four others".
 neko-rox = What rox does with it
-    # $others is the shipped workspace count minus the default and CaTRoX, both
-    # already named in the sentence. It used to read "four others".
     .body = rox is a native player written in Rust, on Linux, macOS and Windows, with no foobar2000 and no Wine underneath it. Its default workspace is the NekoRoX layout rebuilt out of native panels, which is why the two shots look related. There's a [CaTRoX workspace](/catrox) in the box too, along with { $others } others.
 
 neko-default-alt = The default rox workspace, a native reconstruction of the NekoRoX layout: a cover art grid beside a playlist with star ratings, an amber waveform seek bar along the bottom, and tabs for biography, lyrics and metadata.

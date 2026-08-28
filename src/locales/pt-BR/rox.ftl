@@ -537,10 +537,10 @@ catrox-limit-youtube = Sem reprodução do YouTube. CaTRoX e NekoRoX tinham isso
 catrox-limit-plugins = Sem API de plugins, então o que você resolveria com um componente do foobar2000 precisa já existir no rox ou não existe de jeito nenhum.
 catrox-limit-fidelity = É uma recriação feita de fora. Os detalhes diferem, e uma correspondência pixel a pixel nunca foi o objetivo.
 
+# $others é a quantidade de espaços de trabalho que vêm com o rox menos este
+# aqui. Já foi o literal "Cinco", que deixou de ser verdade dois espaços de
+# trabalho atrás.
 catrox-closer = Experimente
-    # $others é a quantidade de espaços de trabalho que vêm com o rox menos este
-    # aqui. Já foi o literal "Cinco", que deixou de ser verdade dois espaços de
-    # trabalho atrás.
     .body = O espaço de trabalho CaTRoX já vem com o rox, a um clique na janela de boas-vindas. Outros { $others } também, incluindo um [layout Foobar e um com cara de WinAmp](/workspaces).
 
 ## Cue sheets
@@ -780,9 +780,9 @@ neko-stopped = Por que parou
     .p1 = Eu mudei para o Linux em tempo integral, o que significou que a montagem inteira passou a rodar pelo Wine. Rodava. Também renderizava Internet Explorer dentro de painéis, e uma pilha sustentada por gambiarras empilhadas não se dá bem com uma camada de tradução. Cada atualização do foobar2000, e cada atualização do Wine, era uma moeda jogada para o alto sobre uma década de configuração.
     .p2 = O problema mais fundo era o formato. Uma instalação do NekoRoX não é um arquivo, é uma lista de componentes, uma ordem de instalação e um conjunto de caminhos que só se remontam na máquina em que foram construídos. É por isso que o README mandava as pessoas copiarem quatro diretórios para dois lugares diferentes. Compartilhar um visual não deveria exigir uma página de instruções.
 
+# $others é a quantidade de espaços de trabalho que vêm com o rox menos o
+# padrão e o CaTRoX, os dois já citados na frase. Já foi "outros quatro".
 neko-rox = O que o rox faz com isso
-    # $others é a quantidade de espaços de trabalho que vêm com o rox menos o
-    # padrão e o CaTRoX, os dois já citados na frase. Já foi "outros quatro".
     .body = O rox é um player nativo escrito em Rust, no Linux, no macOS e no Windows, sem foobar2000 e sem Wine por baixo. O espaço de trabalho padrão dele é o layout do NekoRoX reconstruído a partir de painéis nativos, e é por isso que as duas capturas se parecem. Tem um [espaço de trabalho CaTRoX](/catrox) junto também, mais outros { $others }.
 
 neko-default-alt = O espaço de trabalho padrão do rox, uma reconstrução nativa do layout do NekoRoX: uma grade de capas ao lado de uma playlist com avaliações em estrelas, uma barra de posição em forma de onda âmbar embaixo, e abas para biografia, letra e metadados.

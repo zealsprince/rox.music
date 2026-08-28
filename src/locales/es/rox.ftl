@@ -42,7 +42,7 @@ footer-nav = Pie de página
 footer-source = Código
 footer-irc = IRC
 footer-irc-direct = Directo
-footer-irc-web = Webchat
+footer-irc-web = Chat web
 footer-bug = Informar de un fallo
 footer-translate = Ayuda a traducir
 
@@ -530,8 +530,8 @@ catrox-limit-youtube = Sin reproducción de YouTube. CaTRoX y NekoRoX la tenían
 catrox-limit-plugins = Sin API de plugins, así que lo que hubieras resuelto con un componente de foobar2000 tiene que existir ya en rox o no existir en absoluto.
 catrox-limit-fidelity = Es una recreación hecha desde fuera. Los detalles difieren, y una coincidencia exacta al píxel nunca fue el objetivo.
 
+# $others es la cuenta de espacios de trabajo incluidos menos este.
 catrox-closer = Pruébalo
-    # $others es la cuenta de espacios de trabajo incluidos menos este.
     .body = El espacio de trabajo CaTRoX viene de serie, a un clic en la ventana de bienvenida. Y con él otros { $others }, entre ellos una [disposición Foobar y otra con forma de WinAmp](/workspaces).
 
 ## Cue sheets
@@ -718,7 +718,7 @@ viz-shaders = Shaders, en cuatro superficies
 
 viz-signals = Las señales son la parte diferente
     .p1 = Un shader con un reloj dentro es un salvapantallas. Lo que lo convierte en visualizador es lo que le des de comer, y en rox eso es un conjunto de señales con nombre compartido por toda la aplicación. Las construyes en una ventana propia, dentro de Aplicación, junto al ecualizador, y lleva un espectro y un transporte por la misma razón que el ecualizador: eliges una banda a ojo y de oído contra lo que estás reproduciendo de verdad.
-    .p2 = Cinco clases de origen. Una **banda** es la energía entre dos frecuencias, que es la señal sobre la que cabalga un crescendo. **Nivel** es toda la mezcla. Un **onset** pulsa cuando una banda salta por encima de su propia media reciente, que es la señal sobre la que cabalga un golpe. Un **trigger** pulsa cuando una banda cruza una línea que dibujaste tú, para material donde la media móvil nunca llega a bajar y un onset se queda callado tras el primer compás. Un **total** suma otra señal a lo largo del tiempo y da la vuelta en uno, así que un shader puede leerlo como una fase que avanza mientras la música está fuerte y se estanca mientras no lo está.
+    .p2 = Cinco clases de origen. Una **banda** es la energía entre dos frecuencias, que es la señal sobre la que cabalga un crescendo. **Nivel** es toda la mezcla. Un **ataque** pulsa cuando una banda salta por encima de su propia media reciente, que es la señal sobre la que cabalga un golpe. Un **disparo** pulsa cuando una banda cruza una línea que dibujaste tú, para material donde la media móvil nunca llega a bajar y un ataque se queda callado tras el primer compás. Un **total** suma otra señal a lo largo del tiempo y da la vuelta en uno, así que un shader puede leerlo como una fase que avanza mientras la música está fuerte y se estanca mientras no lo está.
     .p3 = Cada una lleva suavizado de respuesta y una puerta. La puerta es el ajuste que se gana su sitio: una banda cabalgando el ruido de sala mantiene para siempre todos los mandos que cuelgan de ella ligeramente fuera de su reposo, y un umbral con una curva encima entrega silencio entre los golpes. El medidor dibuja el valor sin puerta con el umbral marcado encima, porque una barra que desapareciera bajo su propia puerta no ayudaría nada a colocar la puerta.
     .p4 = Una ruta une una señal con un parámetro y un tramo de salida: esta señal, este destino, de aquí hasta allá. Dieciséis slots llegan a cada shader, y los slots a los que no se enruta nada reciben un deslizador normal en la página de ajustes, así que un aspecto puede estar medio interpretado y medio puesto a mano.
 
@@ -771,9 +771,9 @@ neko-stopped = Por qué se paró
     .p1 = Me mudé a Linux a tiempo completo, lo que significaba pasar el ensamblaje entero por Wine. Funcionaba. También renderizaba Internet Explorer dentro de los paneles, y una pila sostenida con apaños apilados no se lleva nada bien con una capa de traducción. Cada actualización de foobar2000, y cada actualización de Wine, era una moneda al aire sobre una década de configuración.
     .p2 = El problema más de fondo era el formato. Una instalación de NekoRoX no es un archivo, es una lista de componentes, un orden de instalación y un conjunto de rutas que solo se vuelven a montar en la máquina donde se hicieron. Por eso el README le decía a la gente que copiara cuatro directorios en dos sitios distintos. Compartir un aspecto no debería llevar una página de instrucciones.
 
+# $others es la cuenta de espacios de trabajo incluidos menos el
+# predeterminado y CaTRoX, que ya salen nombrados en la frase.
 neko-rox = Qué hace rox con ello
-    # $others es la cuenta de espacios de trabajo incluidos menos el
-    # predeterminado y CaTRoX, que ya salen nombrados en la frase.
     .body = rox es un reproductor nativo escrito en Rust, en Linux, macOS y Windows, sin foobar2000 y sin Wine debajo. Su espacio de trabajo predeterminado es la disposición de NekoRoX reconstruida con paneles nativos, y por eso las dos capturas se parecen. De serie viene también un [espacio de trabajo CaTRoX](/catrox), y otros { $others } con él.
 
 neko-default-alt = El espacio de trabajo predeterminado de rox, una reconstrucción nativa de la disposición de NekoRoX: una cuadrícula de carátulas junto a una lista con valoraciones por estrellas, una barra de posición con forma de onda ámbar abajo, y pestañas de biografía, letras y metadatos.

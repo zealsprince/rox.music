@@ -536,9 +536,9 @@ catrox-limit-youtube = 没有 YouTube 播放。CaTRoX 和 NekoRoX 都通过组�
 catrox-limit-plugins = 没有插件 API，所以你打算用某个 foobar2000 组件解决的事，要么 rox 里已经有，要么就没有。
 catrox-limit-fidelity = 这是一次从外面看着做出来的重现。细节会有出入，逐像素一致从来不是目标。
 
+# $others 是随附工作区的总数减掉这一套。以前写的是字面上的“五套”，两套
+# 工作区之前就不成立了。
 catrox-closer = 试试看
-    # $others 是随附工作区的总数减掉这一套。以前写的是字面上的“五套”，两套
-    # 工作区之前就不成立了。
     .body = CaTRoX 工作区随附在盒子里，在欢迎窗口上点一下就有。另外 { $others } 套也一样，其中包括[一套 Foobar 布局和一套 WinAmp 形状的](/workspaces)。
 
 ## Cue 表
@@ -778,9 +778,9 @@ neko-stopped = 它为什么停了
     .p1 = 我全职搬到了 Linux，也就意味着整套东西都要过 Wine。它能跑。它也在面板里渲染 Internet Explorer，而那个栈是靠一层层变通手段撑起来的，最受不了的就是翻译层。每一次 foobar2000 更新，每一次 Wine 更新，都是拿十年配置在抛硬币。
     .p2 = 更深的问题是格式。一次 NekoRoX 安装不是一个文件，是一份组件清单、一个安装顺序，外加一组路径，只在原来那台机器上才拼得回来。这就是为什么 README 要让人把四个目录复制到两个不同的地方。分享一套外观不该需要一页说明书。
 
+# $others 是随附工作区的总数减掉默认那套和 CaTRoX，这两套句子里已经点名了。
+# 以前写的是“另外四套”。
 neko-rox = rox 拿它做了什么
-    # $others 是随附工作区的总数减掉默认那套和 CaTRoX，这两套句子里已经点名了。
-    # 以前写的是“另外四套”。
     .body = rox 是一款用 Rust 写的原生播放器，跑在 Linux、macOS 和 Windows 上，底下没有 foobar2000，也没有 Wine。它的默认工作区是 NekoRoX 布局用原生面板重搭出来的，这也是那两张截图看起来像亲戚的原因。盒子里还有一套 [CaTRoX 工作区](/catrox)，另外还有 { $others } 套。
 
 neko-default-alt = 默认的 rox 工作区，NekoRoX 布局的原生重建：封面网格旁边是带星级评分的播放列表，底部一条琥珀色波形进度条，还有简介、歌词和元数据的标签页。
