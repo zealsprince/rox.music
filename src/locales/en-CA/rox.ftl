@@ -27,6 +27,10 @@ nav-github = rox on GitHub
     .stars = rox on GitHub, { $stars } stars
 
 language-picker = Language
+# The last row of the language menu, and the only one that leaves the site. It
+# goes to the Weblate project, where a missing language is something the reader
+# can start rather than request.
+language-missing = Can't find your language?
 theme-toggle = Toggle theme
     .label = Toggle light and dark theme
 
@@ -37,6 +41,7 @@ footer-irc = IRC
 footer-irc-direct = Direct
 footer-irc-web = Webchat
 footer-bug = Report a bug
+footer-translate = Help translate
 
 ## The site itself
 

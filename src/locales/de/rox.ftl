@@ -7,20 +7,29 @@
 # Produktnamen bleiben stehen: rox, Foobar2000, CaTRoX, NekoRoX, MusicBee,
 # Mp3tag, ReplayGain, gpui. Übersetzt wird, was jemand liest, nicht, was jemand
 # anklickt oder eintippt.
+#
+# "Workspace" heißt hier Arbeitsfläche, weil die App selbst das so nennt
+# (crates/rox-i18n/locales/de). Wer auf der Seite über Arbeitsflächen liest,
+# soll das Wort in den Einstellungen wiederfinden. Feminin, also "die
+# CaTRoX-Arbeitsfläche", "eine der mitgelieferten".
+#
+# Anführungszeichen sind „…“, nicht "…". Die Zahlen sind schon lokalisiert
+# (50.000, 0,3 Sekunden, 100 %); das bitte so halten.
 
 ## Rahmen
 
 skip-to-content = Zum Inhalt springen
 
-nav-home = rox Startseite
-nav-main = Hauptmenü
+nav-home = rox-Startseite
+nav-main = Hauptnavigation
 nav-download = Download
-nav-workspaces = Workspaces
+nav-workspaces = Arbeitsflächen
 nav-more = Mehr
 nav-github = rox auf GitHub
     .stars = rox auf GitHub, { $stars } Sterne
 
 language-picker = Sprache
+language-missing = Deine Sprache fehlt?
 theme-toggle = Design wechseln
     .label = Zwischen hellem und dunklem Design wechseln
 
@@ -31,15 +40,29 @@ footer-irc = IRC
 footer-irc-direct = Direkt
 footer-irc-web = Webchat
 footer-bug = Fehler melden
+footer-translate = Mitübersetzen
 
 ## Die Seite selbst
 
-site-tagline = rox - eine Foobar2000-Alternative für Linux, macOS und Windows
+# Der Titel für die Suche, nicht der Satz für Menschen. Zielt auf "foobar2000
+# alternative", die eine Suche, die rox gewinnen kann. 59 Zeichen im Englischen,
+# damit Google ihn ganz anzeigt; hier gilt dasselbe Budget. Eine Plattform
+# fallen zu lassen ist der billigste Weg, Platz zu schaffen.
+site-tagline = rox - Foobar2000-Alternative für Linux, macOS und Windows
 
-site-description = Ein nativer Musikplayer für große, sorgfältig getaggte lokale Sammlungen. Panels selbst zusammenstellen, Themes als Datei weitergeben, bei 50.000 Titeln schnell bleiben.
+# Unter 160 Zeichen, sonst schneidet Google mitten im Satz ab.
+site-description = Nativer Musikplayer für große, sorgfältig getaggte lokale Sammlungen. Panels selbst bauen, Themes als Datei weitergeben, bei 50.000 Titeln schnell bleiben.
 
-social-image-alt = Das rox-Logo über den Worten: der Medienplayer von heute, nicht von gestern
+# Alle vier Social-Cards unter static/social/ sind für jede Sprache dieselbe
+# Datei, und der Satz steht als englischer Text im Bild. Der Alt-Text muss also
+# sagen, was dort wirklich steht, und dass es Englisch ist. Gilt genauso für
+# download-title, workspaces-title und viz-title.
+social-image-alt = Das rox-Logo über dem englischen Satz: if Foobar2000 was made in the current year
 
+# Die Anzahl der mitgelieferten Arbeitsflächen, ausgeschrieben. Eine Ziffer
+# unter zehn liest sich mitten im Satz wie ein Datenblatt, und welche Zahlen
+# ausgeschrieben werden, entscheidet jede Sprache selbst. Jeder Satz, der die
+# Anzahl nennt, sagt { workspace-count } und reicht $count durch.
 workspace-count = { $count ->
     [1] ein
     [2] zwei
@@ -56,7 +79,7 @@ workspace-count = { $count ->
 ## Aussagen im Structured-Data-Graph
 
 app-feature-panels = Zusammenstellbare Panel-Oberfläche mit auskoppelbaren Fenstern
-app-feature-workspaces = Teilbare Workspaces mit Layout, Palette und Erscheinungsbild
+app-feature-workspaces = Teilbare Arbeitsflächen mit Layout, Palette und Erscheinungsbild
 app-feature-tagging = Tiefe Tag-Bearbeitung mit atomaren Schreibvorgängen und Stapelverarbeitung
 app-feature-gapless = Lückenlose Wiedergabe
 app-feature-dsp = Equalizer, Crossfade und ReplayGain
@@ -66,9 +89,9 @@ app-feature-scrobbling = Last.fm-Scrobbling
 
 ## Startseite
 
-home-hero = Der Medienplayer von heute, nicht von gestern.
+home-hero = Als hätte jemand Foobar2000 dieses Jahr gebaut.
     .lede = Ein Desktop-Musikplayer für Leute mit großen, sorgfältig getaggten lokalen Sammlungen. Die Oberfläche baust du dir selbst aus Panels zusammen, und ein ganzes Theme passt in eine Datei zum Weitergeben. Nativ auf Linux, macOS und Windows.
-    .alt = rox mit dem NekoRoX-artigen Standard-Workspace: Bibliothek, Cover, Warteschlange und ein Spektrum-Panel
+    .alt = rox mit der NekoRoX-artigen Standard-Arbeitsfläche: Bibliothek, Cover, Warteschlange und ein Spektrum-Panel
 
 home-speed = Ein Fenster in unter einer Sekunde
     .body = rox ist eine einzige Binärdatei und startet, bevor du die Maus losgelassen hast.
@@ -76,7 +99,7 @@ home-speed = Ein Fenster in unter einer Sekunde
 home-features = Was drinsteckt
 
 home-closer = Mach was Eigenes draus
-    .body = { workspace-count } Workspaces sind mit dabei, einen Klick entfernt im Willkommensfenster. Jeder davon ist eine einzelne Datei mit dem Layout, der Palette und den Shadern, die er benutzt: du kannst sie bearbeiten, kaputtmachen und weitergeben. [Alle ansehen](/workspaces).
+    .body = { workspace-count } Arbeitsflächen sind mit dabei, einen Klick entfernt im Willkommensfenster. Jede davon ist eine einzelne Datei mit dem Layout, der Palette und den Shadern, die sie benutzt: du kannst sie bearbeiten, kaputtmachen und weitergeben. [Alle ansehen](/workspaces).
 
 ## Die Benchmark-Tabelle
 
@@ -88,7 +111,7 @@ benchmark-memory = Speicher
 benchmark-idle-cpu = CPU im Leerlauf
 benchmark-never-settles = beruhigt sich nie
 
-benchmark-method = Alle Werte habe ich selbst gemessen, auf einer Maschine (Ryzen 9 5950X, Linux/Wayland), mit derselben Sammlung aus 50.000 Titeln auf einer externen SSD, jeder Player über dieselbe Testumgebung mit geladener Bibliothek. Speicher ist PSS über den gesamten Prozessbaum. "Geladen" heißt, dass sich die CPU nach dem Start beruhigt hat; Leerlauf ist ein pausierter Player mit sichtbarem Fenster.
+benchmark-method = Alle Werte habe ich selbst gemessen, auf einer Maschine (Ryzen 9 5950X, Linux/Wayland), mit derselben Sammlung aus 50.000 Titeln auf einer externen SSD, jeder Player über dieselbe Testumgebung mit geladener Bibliothek. Speicher ist PSS über den gesamten Prozessbaum. „Geladen“ heißt, dass sich die CPU nach dem Start beruhigt hat; Leerlauf ist ein pausierter Player mit sichtbarem Fenster.
     .deadbeef = [DeaDBeeF](@deadbeef) wäre bei 44 MB gelandet und hätte beim Speicher gewonnen, bekam aber keine Zeile: sein MP3-Parser stürzt beim Import dieser Sammlung jedes Mal mittendrin ab. rox indiziert alle 50.000 Titel, auch die abgeschnittenen Dateien, über die er stolpert.
 
 ## Das Feature-Raster
@@ -111,7 +134,7 @@ feature-cue = CUE-Rips spielen wie Titel
     .link = Wie die Abschnitte funktionieren
 
 feature-gapless = Lückenlose Wiedergabe
-    .body = Ein Stream, mit Zufallswiedergabe, Wiederholung und "Als Nächstes spielen". Er fängt sich, wenn ein Audiogerät verschwindet, und Medientasten und Now-Playing funktionieren auf allen drei Plattformen.
+    .body = Ein Stream, mit Zufallswiedergabe, Wiederholung und „Als Nächstes spielen“. Er fängt sich, wenn ein Audiogerät verschwindet, und Medientasten und die Titelanzeige des Systems funktionieren auf allen drei Plattformen.
 
 feature-equalizer = Zehn Bänder und bitgenau
     .body = Ein Equalizer in einem eigenen Fenster, ein Crossfade, der die eigenen Übergänge eines Albums in Ruhe lässt, und exklusive Ausgabe, die sagt, worauf die Hardware sich eingelassen hat.
@@ -125,7 +148,7 @@ feature-panels = Panels, die du zusammenstellst
     .link = Neben Foobar2000
 
 feature-themes = Themes als teilbare Dateien
-    .body = Ein Workspace ist eine Datei mit Layout, Palette, Erscheinungsbild und Shadern. Paletten können sich am laufenden Cover einfärben und mit dem Bild hell oder dunkel werden.
+    .body = Eine Arbeitsfläche ist eine Datei mit Layout, Palette, Erscheinungsbild und Shadern. Paletten können sich am laufenden Cover einfärben und mit dem Bild hell oder dunkel werden.
     .link = Die { workspace-count } mitgelieferten
 
 feature-shaders = Visuals, die zuhören
@@ -145,6 +168,9 @@ feature-binary = Eine Binärdatei, kein Installer
 ## Der Download-Button, überall wo er auftaucht
 
 download-cta = rox herunterladen
+# %s ist die Stelle, an der enhance.js den erkannten Plattformnamen einsetzt.
+# Muss bleiben: das Skript kennt keine Sprache und kann nur ersetzen, die
+# Wortstellung muss also hier stimmen.
 download-cta-detected = Für %s herunterladen
 download-packaged = Auf Arch oder NixOS? [Installiere es stattdessen aus dem AUR oder dem Nix-Flake](/download#packages).
 download-meta = v{ $version } · Linux, macOS, Windows · [alle Downloads](@releases)
@@ -153,7 +179,7 @@ download-meta = v{ $version } · Linux, macOS, Windows · [alle Downloads](@rele
 
 download-title = rox für Linux, macOS oder Windows herunterladen
     .description = rox kostenlos für Linux, macOS oder Windows herunterladen. Eine Binärdatei pro Plattform, kein Installer und kein Konto. Quelloffen unter der AGPL.
-    .image-alt = Das rox-Logo über den Worten: Download für Linux, macOS und Windows
+    .image-alt = Das rox-Logo über dem englischen Satz: download for Linux, macOS and Windows
 
 download-h1 = rox herunterladen
     .lede = Eine Binärdatei pro Plattform. Kein Installer, kein Konto, nichts, was im Hintergrund weiterläuft, wenn es zu ist.
@@ -190,40 +216,40 @@ download-cli = Aus einem Terminal starten
 download-build = Selbst bauen
     .body = Mit Nix bekommst du über `nix develop` und dann `cargo run` eine Entwicklungsumgebung mit der Rust-Toolchain und den Bibliotheken, die gpui zur Laufzeit lädt. Ohne Nix brauchst du stabiles Rust und gpuis Systembibliotheken aus deiner Distribution. Der [Entwicklungsabschnitt der README](@readme-dev) hat die vollständige Liste.
 
-## Workspaces
+## Arbeitsflächen
 
-workspaces-title = rox-Workspaces - teilbare Themes und Layouts
-    .description = Ein rox-Workspace ist ein ganzes Erscheinungsbild in einer teilbaren Datei: Layout, Palette, Aussehen und die Shader, die er benutzt. Sie reichen von einer Foobar2000-Hommage bis zu einem Player, der komplett in 1-Bit-Dither gerendert wird.
-    .image-alt = Das rox-Logo über den Worten: ein ganzes Erscheinungsbild in einer teilbaren Datei
+workspaces-title = rox-Arbeitsflächen - teilbare Themes und Layouts
+    .description = Eine rox-Arbeitsfläche ist ein ganzes Erscheinungsbild in einer teilbaren Datei: Layout, Palette, Aussehen und die Shader, die sie benutzt. Sie reichen von einer Foobar2000-Hommage bis zu einem Player, der komplett in 1-Bit-Dither gerendert wird.
+    .image-alt = Das rox-Logo über dem englischen Satz: a whole look in one shareable file
 
-workspaces-lede = Ein Workspace ist ein ganzes Erscheinungsbild in einer Datei: Layout, Palette, Aussehen und alle Shader, die er benutzt, eingebettet, damit ein importierter Look vollständig ankommt. Lade einen aus dem Willkommensfenster oder den Einstellungen, ändere daran, was du willst, und gib die Datei weiter, damit jemand anderes genau dasselbe zurückbekommt. Diese { workspace-count } sind mit dabei.
+workspaces-lede = Eine Arbeitsfläche ist ein ganzes Erscheinungsbild in einer Datei: Layout, Palette, Aussehen und alle Shader, die sie benutzt, eingebettet, damit ein importierter Look vollständig ankommt. Lade eine aus dem Willkommensfenster oder den Einstellungen, ändere daran, was du willst, und gib die Datei weiter, damit jemand anderes genau dasselbe zurückbekommt. Diese { workspace-count } sind mit dabei.
 
 workspaces-critters = Wie Critters das macht
-    .body = Ein Workspace trägt seine Shader eingebettet mit sich, Quellcode und Bilddaten, damit ein Look, der die ganze App als 1-Bit-Druck rendert, vollständig importiert wird statt als Verweis auf eine Datei auf einer fremden Maschine anzukommen. Nichts läuft, bevor du es freigibst. [Shader und Signale](/music-visualizer).
+    .body = Eine Arbeitsfläche trägt ihre Shader eingebettet mit sich, Quellcode und Bilddaten, damit ein Look, der die ganze App als 1-Bit-Druck rendert, vollständig importiert wird statt als Verweis auf eine Datei auf einer fremden Maschine anzukommen. Nichts läuft, bevor du es freigibst. [Shader und Signale](/music-visualizer).
 
 workspace-default = Wie rox ohne Zutun aussieht: durchscheinende Flächen, Cover-Einfärbung aus.
-    .alt = Der Standard-Workspace von rox: ein Cover-Raster neben einer Playlist mit Sternebewertungen, eine bernsteinfarbene Wellenform als Fortschrittsleiste am unteren Rand und Reiter für Biografie, Songtext und Metadaten.
+    .alt = Die Standard-Arbeitsfläche von rox: ein Cover-Raster neben einer Playlist mit Sternebewertungen, eine bernsteinfarbene Wellenform als Fortschrittsleiste am unteren Rand und Reiter für Biografie, Songtext und Metadaten.
 
 workspace-foobar = Das Layout, mit dem dieses ganze Projekt streitet. Deckend, dicht, Fensterrahmen an, Menüleiste da, wo sie immer war.
-    .alt = Der Foobar-Workspace von rox: ein klassisches foobar2000-Layout mit Menüleiste, Filterspalten für Künstler und Album, einer dichten Titeltabelle mit Wiedergabezählern und Bewertungen und Cover unten links.
+    .alt = Die Foobar-Arbeitsfläche von rox: ein klassisches foobar2000-Layout mit Menüleiste, Filterspalten für Künstler und Album, einer dichten Titeltabelle mit Wiedergabezählern und Bewertungen und Cover unten links.
 
 workspace-catrox = Der CaTRoX-Skin für foobar2000, den du kennst und liebst und mit dem alles anfing.
-    .alt = Der CaTRoX-Workspace von rox: der foobar2000-Skin nachgebaut, mit einer runden CD-Darstellung des Covers, einer Metadatenliste links und nach Alben gruppierten Titeln mit Bewertungspunkten.
+    .alt = Die CaTRoX-Arbeitsfläche von rox: der foobar2000-Skin nachgebaut, mit einer runden CD-Darstellung des Covers, einer Metadatenliste links und nach Alben gruppierten Titeln mit Bewertungspunkten.
 
 workspace-llama = WinAmp, so wie du es in Erinnerung hast und nicht, wie es war. Tahoma, dunkel, kein Fensterrahmen.
-    .alt = Der Llama-Workspace von rox: ein gepunkteter Spektrumanalysator im Winamp-Stil oben, grüne Transportknöpfe und darunter eine dichte Titelliste, ganz ohne Fensterrahmen.
+    .alt = Die Llama-Arbeitsfläche von rox: ein gepunkteter Spektrumanalysator im Winamp-Stil oben, grüne Transportknöpfe und darunter eine dichte Titelliste, ganz ohne Fensterrahmen.
 
 workspace-metro = Flache Panels und großzügige Zeilen mit Cover-Einfärbung, damit die Palette dem folgt, was gerade läuft.
-    .alt = Der Metro-Workspace von rox: ein Raster aus Albumcovern über die volle Breite mit Titeln darunter, und rechts ein Künstlerbiografie-Panel mit Foto, Genre-Tags und Hörerzahlen.
+    .alt = Die Metro-Arbeitsfläche von rox: ein Raster aus Albumcovern über die volle Breite mit Titeln darunter, und rechts ein Künstlerbiografie-Panel mit Foto, Genre-Tags und Hörerzahlen.
 
 workspace-phosphor = Alles Monospace. Consolas, kein Cover in der Schnellwiedergabe, ein Terminal, das zufällig Musik spielt.
-    .alt = Der Phosphor-Workspace von rox: durchgehend grün auf schwarz in Monospace, ein Ordnerbaum neben einer Titeltabelle und eine grüne Wellenform am unteren Rand, wie ein Terminal, das Musik spielt.
+    .alt = Die Phosphor-Arbeitsfläche von rox: durchgehend grün auf schwarz in Monospace, ein Ordnerbaum neben einer Titeltabelle und eine grüne Wellenform am unteren Rand, wie ein Terminal, das Musik spielt.
 
 workspace-critters = Die ganze App als 1-Bit-Druck. Ein geordneter Dither über jeder Fläche, Tonwerte, die mit dem Subbass zusammenbrechen, und eine Rauschwand hinter den Panels, die sich mit dem Song bewegt.
-    .alt = Der Critters-Workspace von rox: das gesamte Fenster in schwarz-weißem geordnetem Dither, mit einem gebogenen Regal aus Albumcovern über Fortschrittsleiste, Transportzeile, Wellenformstreifen und Titeltabelle, alles auf einem wandernden Rauschfeld.
+    .alt = Die Critters-Arbeitsfläche von rox: das gesamte Fenster in schwarz-weißem geordnetem Dither, mit einem gebogenen Regal aus Albumcovern über Fortschrittsleiste, Transportzeile, Wellenformstreifen und Titeltabelle, alles auf einem wandernden Rauschfeld.
 
 workspace-diffuse = Nur das Album, das gerade läuft, über einem weichen Verlauf aus seinem eigenen Cover. Absichtlich monochrom, damit die Farbe vom Bild kommt, und die Bibliothek wartet in einer Schublade am rechten Rand.
-    .alt = Der Diffuse-Workspace von rox: ein großes Albumcover füllt die linke Fensterhälfte vor einem weichgezeichneten Verlauf desselben Bildes, daneben Titel, Künstler und Album über einer dünnen Fortschrittslinie, einer Reihe Transportknöpfe und einem Lautstärkeregler.
+    .alt = Die Diffuse-Arbeitsfläche von rox: ein großes Albumcover füllt die linke Fensterhälfte vor einem weichgezeichneten Verlauf desselben Bildes, daneben Titel, Künstler und Album über einer dünnen Fortschrittslinie, einer Reihe Transportknöpfe und einem Lautstärkeregler.
 
 ## Mehr
 
@@ -303,7 +329,7 @@ linux = rox - ein nativer Musikplayer für Linux
     .siblings = Derselbe Player unter [Windows](/windows) und [macOS](/macos).
 
 linux-why = Das Problem, für das er geschrieben wurde
-linux-why-1 = Die guten Linux-Player geben jeweils etwas auf. Tauons Tagging bleibt an der Oberfläche. Bei Strawberry stellst du nichts selbst zusammen. Für Quod Libet würde niemand freiwillig ein Theme bauen. Das Paket aus Panels, tiefem Tagging und einer Theming-Kultur hängt seit zwanzig Jahren unter Windows fest.
+linux-why-1 = Die guten Linux-Player geben jeweils etwas auf. Tauons Tagging bleibt an der Oberfläche. Bei Strawberry stellst du nichts selbst zusammen. Quod Libet ist nichts, wofür jemand ein Theme bauen würde. Das Paket aus Panels, tiefem Tagging und einer Theming-Kultur hängt seit zwanzig Jahren unter Windows fest.
 linux-why-2 = Dieses Paket über Wine laufen zu lassen funktioniert, bis es das nicht mehr tut. Ein Skin wie CaTRoX wird von aufeinandergestapelten Behelfslösungen zusammengehalten und rendert stellenweise Internet Explorer in Panels. Durch eine Übersetzungsschicht wird offensichtlich, wie viel davon Glück ist, und jedes Systemupdate ist eine Gelegenheit, das herauszufinden.
 linux-why-3 = rox ist diese Form, nativ geschrieben: rund vierzig Panel-Typen, die du selbst anordnest, Tag-Bearbeitung, der du eine echte Sammlung anvertrauen kannst, und Themes, die als eine einzelne Datei reisen.
 
@@ -313,7 +339,7 @@ linux-install-2 = Das Repository ist außerdem ein Flake, also bekommen Nix und 
 linux-install-3 = Überall sonst entpackst du den Tarball und startest `./rox`. Eine Binärdatei, kein Installer, nichts, was zurückbleibt, wenn du sie löschst.
 
 linux-display = Wayland und X11
-linux-display-1 = Beides, nativ, über gpui. Fensterdekorationen sind eine Einstellung pro Workspace statt einer Entscheidung zur Übersetzungszeit, du kannst also auf einem Layout serverseitige Dekorationen fahren und auf dem nächsten randlos, ohne in einen anderen Build neu zu starten.
+linux-display-1 = Beides, nativ, über gpui. Fensterdekorationen sind eine Einstellung pro Arbeitsfläche statt einer Entscheidung zur Übersetzungszeit, du kannst also auf einem Layout serverseitige Dekorationen fahren und auf dem nächsten randlos, ohne in einen anderen Build neu zu starten.
 
 linux-alsa = Exklusive Ausgabe über ALSA
 linux-alsa-1 = Der exklusive Modus öffnet die Karte direkt als `hw:CARD=x,DEV=n`. Das ist der eine ALSA-Name ohne dmix, ohne plug und ohne Soundserver irgendwo im Weg, und genau deshalb der einzige Weg, der eine Abtastrate ablehnt, die er nicht kann, statt still auf etwas anderes umzurechnen.
@@ -321,7 +347,7 @@ linux-alsa-2 = Der Tausch ist ehrlich: solange rox die Karte im exklusiven Modus
 linux-alsa-3 = Der geteilte Modus ist der Standard und verhält sich wie jedes andere Programm auf deinem Desktop.
 
 linux-desktop = Desktop-Anbindung
-linux-desktop-1 = Medientasten und Now-Playing laufen über einen echten MPRIS-Dienst, also sehen playerctl, die Medien-Widgets von GNOME und KDE und alles andere, was `org.mpris.MediaPlayer2` spricht, es ohne Konfiguration.
+linux-desktop-1 = Medientasten und die Titelanzeige laufen über einen echten MPRIS-Dienst, also sehen playerctl, die Medien-Widgets von GNOME und KDE und alles andere, was `org.mpris.MediaPlayer2` spricht, es ohne Konfiguration.
 linux-desktop-2 = Das Tray-Symbol geht über StatusNotifierItem auf den Bus, und genau das macht Schließen-ins-Tray sicher: läuft kein SNI-Host, der es entgegennimmt, beendet sich rox beim Schließen des letzten Fensters, statt einen unerreichbaren Prozess ohne Oberfläche zurückzulassen.
 
 linux-benchmarks = In den Benchmarks stehen ausschließlich Linux-Player
@@ -341,7 +367,7 @@ windows = rox - ein Musikplayer für Windows ohne Installer
 
 windows-awkward = Fangen wir mit dem unangenehmen Teil an
 windows-awkward-1 = Wenn du unter Windows unterwegs bist, dein Foobar2000 so eingerichtet ist, wie du es magst, und das seit Jahren stabil ist, dann ist rox kein Upgrade. Foobar2000 hat zwei Jahrzehnte Komponenten, ist genügsamer und hält keine Überraschungen mehr bereit. Auf einer Seite wie dieser etwas anderes zu behaupten wäre ein einfacher Weg, deinen Nachmittag zu verschwenden.
-windows-awkward-2 = Es gibt wenige Gründe, trotzdem hinzusehen, aber es sind echte. Du willst denselben Player und dasselbe Layout auf der Linux- oder Mac-Maschine, die du auch benutzt. Du willst lesbaren Quellcode und eine AGPL-Lizenz statt geschlossener Freeware. Oder du willst ein Theming, bei dem ein ganzer Look eine Datei ist, die du jemandem schicken kannst, statt eines Ordners aus Komponenten, Konfigurationen und Skripten, der sich nur auf deiner Maschine wieder zusammensetzt.
+windows-awkward-2 = Die Gründe, trotzdem hinzusehen, sind eng gefasst und echt. Du willst denselben Player und dasselbe Layout auf der Linux- oder Mac-Maschine, die du auch benutzt. Du willst lesbaren Quellcode und eine AGPL-Lizenz statt geschlossener Freeware. Oder du willst ein Theming, bei dem ein ganzer Look eine Datei ist, die du jemandem schicken kannst, statt eines Ordners aus Komponenten, Konfigurationen und Skripten, der sich nur auf deiner Maschine wieder zusammensetzt.
 
 windows-install = Installieren
 windows-install-1 = Irgendwohin entpacken und `rox.exe` starten. Kein Installer, kein Dienst, kein Eintrag in der Softwareliste und nichts, was im Hintergrund läuft, sobald es zu ist.
@@ -353,8 +379,8 @@ windows-wasapi-1 = Der exklusive Modus übernimmt den Endpunkt in WASAPI exclusi
 windows-wasapi-2 = Solange es den Endpunkt hält, spielt nichts anderes auf der Maschine über dieses Gerät. Genau das heißt exklusiv, und genau deshalb ist es nicht der Standard.
 
 windows-integration = Der Rest der Windows-Anbindung
-windows-integration-1 = Medientasten und die Now-Playing-Einblendung laufen über SMTC, dieselbe Systemoberfläche, die eingebaute Apps benutzen, die Lautstärke-Einblendung zeigt also den Titel und die Transportknöpfe funktionieren.
-windows-integration-2 = Es gibt ein Tray-Symbol mit Schließen-ins-Tray, das Schließen des letzten Fensters lässt die Musik also weiterlaufen, und das Symbol ist der Weg zurück. Ein Workspace kann den Fensterrahmen auch ganz weglassen, oder den Rahmen behalten und nur den Größenänderungsrand aufgeben, was Schatten, Snap-Layouts und Win+Pfeil intakt lässt und allein das Ziehen an der Kante kostet.
+windows-integration-1 = Medientasten und die Titeleinblendung laufen über SMTC, dieselbe Systemoberfläche, die eingebaute Apps benutzen, die Lautstärke-Einblendung zeigt also den Titel und die Transportknöpfe funktionieren.
+windows-integration-2 = Es gibt ein Tray-Symbol mit Schließen-ins-Tray, das Schließen des letzten Fensters lässt die Musik also weiterlaufen, und das Symbol ist der Weg zurück. Eine Arbeitsfläche kann den Fensterrahmen auch ganz weglassen, oder den Rahmen behalten und nur den Größenänderungsrand aufgeben, was Schatten, Snap-Layouts und Win+Pfeil intakt lässt und allein das Ziehen an der Kante kostet.
 
 windows-limit-instance = Keine Einzelinstanz-Sperre. Unter Linux und macOS übergibt ein zweiter Start seine Dateien an das laufende rox; unter Windows startet eine zweite Kopie.
 windows-limit-signing = Nur x86_64, und die Binärdatei ist unsigniert, rechne also einmal mit SmartScreen.
@@ -371,7 +397,7 @@ macos = rox - ein nativer Musikplayer für macOS
 
 macos-gap = Die Lücke speziell auf dem Mac
 macos-gap-1 = Foobar2000 v2 hat eine offizielle macOS-Version, und diese Seite wird nicht so tun, als gäbe es sie nicht. Der Haken ist, dass das Komponenten- und Skin-Ökosystem, also das, was eine Windows-Installation ein Wochenende Einrichten wert gemacht hat, auf der Windows-Seite liegt. Auf einem Mac bekommst du den Player ohne das Ökosystem, das die Wahl gerechtfertigt hat.
-macos-gap-2 = rox bringt das Zusammenstellen und das Theming zurück: rund vierzig Panel-Typen, angeordnet wie du willst, dupliziert mit eigenen Konfigurationen, in echte Fenster ausgekoppelt, und ein ganzes Erscheinungsbild in einer teilbaren Datei. Einer der { workspace-count } mitgelieferten Workspaces ist ein CaTRoX-Nachbau, was eine faire Aussage darüber ist, worauf das Ganze zielt.
+macos-gap-2 = rox bringt das Zusammenstellen und das Theming zurück: rund vierzig Panel-Typen, angeordnet wie du willst, dupliziert mit eigenen Konfigurationen, in echte Fenster ausgekoppelt, und ein ganzes Erscheinungsbild in einer teilbaren Datei. Eine der { workspace-count } mitgelieferten Arbeitsflächen ist ein CaTRoX-Nachbau, was eine faire Aussage darüber ist, worauf das Ganze zielt.
 
 macos-install = Installieren
 macos-install-1 = Öffne das DMG und zieh rox nach Programme. Releases sind mit einer Apple Developer ID signiert und notarisiert, Gatekeeper lässt es also ohne das Rechtsklick-Öffnen-Theater und ohne Ausflug in die Sicherheitseinstellungen starten.
@@ -456,7 +482,7 @@ musicbee-transfers = Was mitkommt, und was besser ist
     .p4 = Warteschlangen-Automatik gibt es auch: rox füllt die Warteschlange nach, wenn sie leer läuft, aus deiner Browse-Reihenfolge, aus den Titeln, zu denen du nie kommst, oder danach, wie der laufende Titel klingt. Letzteres kommt aus der Analyse deiner Dateien auf deiner eigenen Maschine, es funktioniert also auch bei einer Sammlung, von der im Internet niemand je gehört hat.
 
 musicbee-size = Die Größenfrage
-    .body = MusicBee steht nicht in dieser Tabelle, weil die Benchmarks unter Linux gefahren wurden, wo es nicht läuft. Sie steht hier als Antwort auf "fällt die Alternative bei meiner Sammlungsgröße um", gemessen an 50.000 Titeln.
+    .body = MusicBee steht nicht in dieser Tabelle, weil die Benchmarks unter Linux gefahren wurden, wo es nicht läuft. Es steht hier als Antwort auf „fällt die Alternative bei meiner Sammlungsgröße um“, gemessen an 50.000 Titeln.
 
 musicbee-split = Die ehrliche Aufteilung
     .p1 = Du bleibst unter Windows, mit einem MusicBee-Setup, das dein Telefon synchronisiert und mit Podcasts füttert? Nichts hier ersetzt das, und ein Wechsel würde dich zwei Funktionen kosten, die rox schlicht nicht hat.
@@ -472,10 +498,10 @@ catrox-title = CaTRoX, als nativer Player neu gebaut
     .description = Das CaTRoX-Theme für foobar2000, wer es gebaut hat, und was nötig war, damit dieser Look nativ unter Linux und macOS läuft, ohne Windows oder Wine darunter.
 
 catrox-h1 = CaTRoX, ohne Windows darunter
-    .lede = rox bringt einen CaTRoX-Workspace mit. Das hier ist die Seite über das Warum und über die Leute, auf deren Arbeit das alles steht.
+    .lede = rox bringt eine CaTRoX-Arbeitsfläche mit. Das hier ist die Seite über das Warum und über die Leute, auf deren Arbeit das alles steht.
 
 catrox-credit = Anerkennung, wo sie hingehört
-    .body = CaTRoX ist ein Theme für foobar2000. Design und Farbschema stammen ursprünglich von eXtremeHunter1972, und die Ausgabe, die die meisten Leute tatsächlich benutzt haben, ist [CaTRoX_QWR](https://theqwertiest.github.io/CaTRoX_QWR/), neu gebaut und gepflegt von TheQwertiest. rox steht mit keinem von beiden in Verbindung, und nichts hiervon ist ihr Code. Der Workspace unten ist ein Nachbau eines Looks, den sie gemacht haben.
+    .body = CaTRoX ist ein Theme für foobar2000. Design und Farbschema stammen ursprünglich von eXtremeHunter1972, und die Ausgabe, die die meisten Leute tatsächlich benutzt haben, ist [CaTRoX_QWR](https://theqwertiest.github.io/CaTRoX_QWR/), neu gebaut und gepflegt von TheQwertiest. rox steht mit keinem von beiden in Verbindung, und nichts hiervon ist ihr Code. Die Arbeitsfläche unten ist ein Nachbau eines Looks, den sie gemacht haben.
 
 catrox-was = Was CaTRoX war
     .p1 = Ein dichtes, dunkles, informationsgetriebenes Layout für foobar2000: Cover als CD gerendert, eine Metadatenliste an einer Seite, nach Alben gruppierte Titel mit Bewertungspunkten, und eine Menüleiste genau da, wo eine Menüleiste hingehört. Es ist das, was Leute meinen, wenn sie sagen, foobar2000 könne gut aussehen, und es ist der Hauptgrund, aus dem sich überhaupt jemand das Einrichten von foobar2000 angetan hat.
@@ -486,10 +512,10 @@ catrox-nekorox = Wo NekoRoX ins Spiel kam
     .p2 = Der Grund für diesen Hinweis ist der ehrliche Inhalt dieser Seite. Der Wechsel zu Linux als Hauptsystem hieß, das ganze Konstrukt durch Wine zu fahren, und ein Stapel, den aufeinandergestapelte Behelfslösungen zusammenhalten und der stellenweise Internet Explorer in Panels rendert, verträgt eine Übersetzungsschicht nicht gut. Er lief. Er fühlte sich auch ein Update davon entfernt an, endgültig stehenzubleiben, mit einem Jahrzehnt Konfiguration darin.
 
 catrox-recreation = Der Nachbau
-    .body = Der CaTRoX-Workspace in rox ist dieses Layout, aus nativen Panels neu gebaut: die runde Cover-Darstellung, die Metadatenliste, die nach Alben gruppierte Titelliste mit ihren Bewertungspunkten, die Menüleiste. Es ist ein Look, reproduziert, keine Portierung von irgendetwas. Nichts von CaTRoX' Code steckt in rox, und das ginge auch gar nicht, denn rox ist Rust auf [gpui](@gpui) und CaTRoX sind Panel-Skripte, die in foobar2000 laufen. Die größere Auseinandersetzung mit foobar2000, samt der Punkte, in denen es weiter vorne liegt, steht auf [einer eigenen Seite](/foobar2000-alternative).
-    .after = Was sich geändert hat, ist, was es kostet, das zu haben. In rox ist ein ganzes Erscheinungsbild eine einzelne Datei mit Layout, Palette und Aussehen zusammen, der CaTRoX-Workspace ist also ein Klick im Willkommensfenster, und was du daraus baust, ist eine Datei, die du jemandem geben kannst. Keine Komponentenliste, keine Installationsreihenfolge, keine Konfiguration, die sich nur auf der Maschine wieder zusammensetzt, auf der sie gebaut wurde.
+    .body = Die CaTRoX-Arbeitsfläche in rox ist dieses Layout, aus nativen Panels neu gebaut: die runde Cover-Darstellung, die Metadatenliste, die nach Alben gruppierte Titelliste mit ihren Bewertungspunkten, die Menüleiste. Es ist ein Look, reproduziert, keine Portierung von irgendetwas. Nichts von CaTRoX' Code steckt in rox, und das ginge auch gar nicht, denn rox ist Rust auf [gpui](@gpui) und CaTRoX sind Panel-Skripte, die in foobar2000 laufen. Die größere Auseinandersetzung mit foobar2000, samt der Punkte, in denen es weiter vorne liegt, steht auf [einer eigenen Seite](/foobar2000-alternative).
+    .after = Was sich geändert hat, ist, was es kostet, das zu haben. In rox ist ein ganzes Erscheinungsbild eine einzelne Datei mit Layout, Palette und Aussehen zusammen, die CaTRoX-Arbeitsfläche ist also ein Klick im Willkommensfenster, und was du daraus baust, ist eine Datei, die du jemandem geben kannst. Keine Komponentenliste, keine Installationsreihenfolge, keine Konfiguration, die sich nur auf der Maschine wieder zusammensetzt, auf der sie gebaut wurde.
 
-catrox-shot-alt = Der CaTRoX-Workspace in rox: eine runde CD-Darstellung des Covers, links eine Metadatenliste mit Titel, Künstler, Album, Codec und Bitrate, und rechts nach Alben gruppierte Titel mit Bewertungspunkten.
+catrox-shot-alt = Die CaTRoX-Arbeitsfläche in rox: eine runde CD-Darstellung des Covers, links eine Metadatenliste mit Titel, Künstler, Album, Codec und Bitrate, und rechts nach Alben gruppierte Titel mit Bewertungspunkten.
 
 catrox-limits = Was du nicht zurückbekommst
     .aside = Was du stattdessen bekommst, ist ein Layout, das unter Linux und macOS läuft, ohne dass Wine auch nur in die Nähe kommt, ein Systemupdate übersteht und als eine Datei reist. Nach einem Jahrzehnt Pflege des Originals ist dieser Tausch der ganze Grund, aus dem es rox gibt.
@@ -500,7 +526,8 @@ catrox-limit-plugins = Keine Plugin-Schnittstelle, was du also mit einer foobar2
 catrox-limit-fidelity = Es ist ein Nachbau von außen. Details unterscheiden sich, und eine pixelgenaue Übereinstimmung war nie das Ziel.
 
 catrox-closer = Probier es aus
-    .body = Der CaTRoX-Workspace ist mit dabei, einen Klick entfernt im Willkommensfenster. { $others } weitere ebenso, darunter ein [Foobar-Layout und eins, das aussieht wie WinAmp](/workspaces).
+    # $others ist die Anzahl der mitgelieferten Arbeitsflächen minus dieser einen.
+    .body = Die CaTRoX-Arbeitsfläche ist mit dabei, einen Klick entfernt im Willkommensfenster. { $others } weitere ebenso, darunter ein [Foobar-Layout und eins, das aussieht wie WinAmp](/workspaces).
 
 ## Cue-Sheets
 
@@ -539,7 +566,7 @@ cue-later = Die Teile, die dir erst später auffallen würden
     .aside = Der Maßstab dafür ist nicht, ob ein Rip abspielt. Sondern ob sich einen Monat später noch irgendetwas in der Bibliothek anders verhält, weil es aus einem Abbild kam.
 
 cue-later-m3u = Der m3u-Export schreibt Abschnitte als `path#N`, und der Import bevorzugt eine exakte Pfadübereinstimmung, eine Liste übersteht den Umweg über andere Software also, ohne auf das Abbild zusammenzufallen.
-cue-later-scrobble = Scrobbling und Now-Playing deduplizieren auf dem Paar, die elf Titel einer CD scrobbeln also als elf Titel und nicht als ein sehr langer.
+cue-later-scrobble = Scrobbling und Titelanzeige deduplizieren auf dem Paar, die elf Titel einer CD scrobbeln also als elf Titel und nicht als ein sehr langer.
 cue-later-listens = Hörvorgänge hängen sich nach einem erneuten Einlesen wieder pro Abschnitt an, eine CD behält ihre Wiedergabehistorie also pro Titel, selbst wenn jeder Abschnitt identische Tags trägt.
 cue-later-replaygain = Nur das Album-Paar der ReplayGain-Werte wird übernommen. Titelwerte, die gegen ein Abbild einer ganzen CD geschrieben wurden, beschreiben die CD, sie werden also ignoriert statt geglaubt.
 
@@ -566,9 +593,9 @@ fb-leaves = Wo es dich hängen lässt
 
 fb-does = Was rox dagegen tut
     .p1 = Nativ auf allen drei Plattformen, je eine Binärdatei, in Rust auf [gpui](@gpui) geschrieben. Rund vierzig Panel-Typen, die du selbst anordnest, mit eigenen Konfigurationen duplizierst und in echte Betriebssystemfenster auskoppelst. Der Bibliotheksscanner liest vollständige Tags, echte Laufzeiten und den Codec, die Abtastrate und die Bittiefe jeder Datei, statt Header zu überfliegen, und er hält bei 50.000 Titeln stand.
-    .p2 = Beim Theming hat sich am meisten geändert. Ein Workspace ist eine einzelne Datei mit Layout, Palette und Aussehen zusammen. Du bearbeitest sie, du machst sie kaputt, du gibst sie jemandem, und derjenige bekommt genau das, was du hattest. Einer der { workspace-count } mitgelieferten ist ein [CaTRoX-Nachbau](/catrox), was die ehrliche Absichtserklärung ist.
+    .p2 = Beim Theming hat sich am meisten geändert. Eine Arbeitsfläche ist eine einzelne Datei mit Layout, Palette und Aussehen zusammen. Du bearbeitest sie, du machst sie kaputt, du gibst sie weiter, und was ankommt, ist genau das, was du hattest. Eine der { workspace-count } mitgelieferten ist ein [CaTRoX-Nachbau](/catrox), was die ehrliche Absichtserklärung ist.
 
-fb-shot-alt = Der CaTRoX-Workspace in rox: der foobar2000-Skin nativ nachgebaut, mit einer runden CD-Darstellung des Covers, einer Metadatenliste links und nach Alben gruppierten Titeln mit Bewertungspunkten.
+fb-shot-alt = Die CaTRoX-Arbeitsfläche in rox: der foobar2000-Skin nativ nachgebaut, mit einer runden CD-Darstellung des Covers, einer Metadatenliste links und nach Alben gruppierten Titeln mit Bewertungspunkten.
 
 fb-table = Nebeneinander
     .caption = Foobar2000 und rox im Vergleich: Plattformunterstützung, Theming, Lizenz und Reife
@@ -628,7 +655,7 @@ mp3tag-title = Eine Mp3tag-Alternative für Linux und macOS { $year }
     .description = Stapelweise Tag-Bearbeitung über FLAC, MP3, MP4 und APE, ein Raster pro Datei für die unordentlichen Importe, Bewertungen in den Dateien selbst und ein Schreibweg, der ein Original nie an Ort und Stelle verändert.
 
 mp3tag-h1 = Ein Tag-Editor, den du auf zehntausend Dateien loslassen kannst
-    .lede = Mp3tag ist das Werkzeug, das die meisten Leute meinen, wenn sie Tag-Editor sagen, und es gibt keinen Linux-Build davon. rox hat einen vollwertigen Editor eingebaut, und einen Schreibweg für den Fall, dass eine Stapelverarbeitung groß genug ist, dass "läuft meistens" nicht mehr reicht.
+    .lede = Mp3tag ist das Werkzeug, das die meisten Leute meinen, wenn sie Tag-Editor sagen, und es gibt keinen Linux-Build davon. rox hat einen vollwertigen Editor eingebaut, und einen Schreibweg für den Fall, dass eine Stapelverarbeitung groß genug ist, dass „läuft meistens“ nicht mehr reicht.
 
 mp3tag-isnt = Fangen wir damit an, was das hier nicht ist
     .p1 = rox ist ein Musikplayer, in dem ein ernstzunehmender Tag-Editor steckt. Mp3tag ist ein spezialisierter Tagger, und als spezialisierter Tagger ist es besser: Skripting, Aktionen, zusammensetzbare Formatzeichenfolgen und zwanzig Jahre abgeschliffene Kanten. Wenn du ein eigenständiges Werkzeug willst, das du über einen Ordner laufen lässt und danach schließt, unter Windows, dann ist Mp3tag das Richtige.
@@ -668,7 +695,7 @@ mp3tag-closer = Zeig ihm den Ordner, um den du einen Bogen machst
 viz-breadcrumb = Musik-Visualisierung
 viz-title = Eine Musik-Visualisierung, die im Player eingebaut ist - rox
     .description = Spektrum-, Wellenform- und VU-Panels, dazu WGSL-Shader über jedem Panel oder dem ganzen Fenster, angetrieben von benannten Signalen, die du aus dem laufenden Audiomaterial ziehst und schickst, wohin du willst.
-    .image-alt = Das rox-Logo über den Worten: Signale aus der Musik, Shader auf jeder Fläche
+    .image-alt = Das rox-Logo über dem englischen Satz: signals off the music, shaders on every surface
 
 viz-h1 = Eine Visualisierung, die im Player wohnt
     .lede = Die meisten Player geben dir einen Spektrumanalysator und hören da auf. rox hat diese Panels, und darunter eine Modulationsschicht: benannte Signale aus dem Audiomaterial, geleitet in Shader-Eingänge, die du selbst schreibst, gespeichert in derselben Datei, in der auch der Rest deines Themes lebt.
@@ -694,16 +721,16 @@ viz-tap = Gemessen vor dem Lautstärkeregler
     .body = Der Abgriff, den die Visualisierung liest, sitzt vor der Ausgangslautstärke. Die Musik leiser zu drehen ließ sie früher leiser aussehen, als sie ist, und ein bei einer Lautstärke abgestimmtes Signal war bei einer anderen falsch. Equalizer und ReplayGain schlagen weiterhin durch, denn die laufen davor und gehören zu dem, was du hörst.
 
 viz-critters = Critters, als Argument
-    .body = Einer der mitgelieferten Workspaces ist der ganze Player als 1-Bit-Druck: ein geordneter Dither über jeder Fläche, Tonwerte, die mit dem Subbass zusammenbrechen, und eine Rauschwand hinter den Panels, die sich mit dem Song bewegt. Es sind fünf Signale und vier Shader in einer einzigen Datei, und nichts davon ist ein Sonderfall in der App.
+    .body = Eine der mitgelieferten Arbeitsflächen ist der ganze Player als 1-Bit-Druck: ein geordneter Dither über jeder Fläche, Tonwerte, die mit dem Subbass zusammenbrechen, und eine Rauschwand hinter den Panels, die sich mit dem Song bewegt. Es sind fünf Signale und vier Shader in einer einzigen Datei, und nichts davon ist ein Sonderfall in der App.
     .caption = Lade ihn aus dem Willkommensfenster, öffne dann die Einstellungen und nimm ihn auseinander. [Der Rest davon](/workspaces).
 
 viz-trust = Den Shader eines Fremden ausführen
-    .p1 = Shader reisen in Workspace-Dateien mit, ein importierter Look kommt also mit dem Code von jemand anderem an.
+    .p1 = Shader reisen in den Dateien der Arbeitsflächen mit, ein importierter Look kommt also mit dem Code von jemand anderem an.
     .p2 = Nichts läuft, bevor du es sagst. Der Quellcode jedes Shaders bekommt einen Fingerabdruck, und die Freigabeliste ist maschinenlokal und wird nur durch eine direkte Handlung geschrieben: du hast die Datei ausgewählt, du hast neu geladen, du hast eine Vorlage gewählt, du hast Freigeben gedrückt. Ein Look, der in einem Bündel ankam, sitzt bis dahin untätig da, mit einem Knopf darunter. Die Beispiele, die rox mitbringt, sind konstruktionsbedingt vertrauenswürdig, weil sie in die Binärdatei einkompiliert sind.
     .p3 = Eines anzuschalten öffnet ein Bestätigungsfenster, das auf eine Antwort wartet, statt herunterzuzählen, und dieses Fenster wird selbst nie geshadert. Was der Shader auch mit dem Rest des Bildschirms anstellt, der Weg hinaus bleibt lesbar.
 
 viz-limits = Was nicht abgedeckt ist
-    .aside = Der Weg von "ich will, dass der ganze Player auf den Kick blitzt" bis dahin, dass er es tut, sind ein Band, ein Gate und eine Route, und keines der drei braucht einen neuen Build.
+    .aside = Der Weg von „ich will, dass der ganze Player auf den Kick blitzt“ bis dahin, dass er es tut, sind ein Band, ein Gate und eine Route, und keines der drei braucht einen neuen Build.
 
 viz-limit-routes = Routen erreichen Shader-Plätze und die Regler des Partikel-Panels. Die Einstellungen jedes anderen Panels sind weiterhin Regler, die du von Hand setzt.
 viz-limit-milkdrop = WGSL, nicht Milkdrop oder AVS. Es gibt für keines von beiden einen Importer, und zwanzig Jahre Vorlagen kommen nicht mit herüber.
@@ -711,7 +738,7 @@ viz-limit-midi = Keine MIDI- oder OSC-Steueroberfläche. Der Overlay-Durchlauf u
 viz-limit-battery = Ein Durchlauf über das ganze Fenster ist ein echter GPU-Durchlauf pro Bild. Auf einem Laptop im Akkubetrieb ist das eine Entscheidung, die du triffst.
 
 viz-closer = Probier es an deiner eigenen Sammlung
-    .body = Nichts hier telefoniert nach Hause: die Analyse ist das Audiomaterial, das ohnehin durch den Player läuft. Mehr dazu, [was ein Workspace mit sich trägt](/workspaces).
+    .body = Nichts hier telefoniert nach Hause: die Analyse ist das Audiomaterial, das ohnehin durch den Player läuft. Mehr dazu, [was eine Arbeitsfläche mit sich trägt](/workspaces).
 
 ## NekoRoX
 
@@ -736,21 +763,23 @@ neko-alpha = AlphaRoX, das helle
     .alt = Das foobar2000-Theme AlphaRoX: das helle Gegenstück zu NekoRoX, mit weißem Hintergrund, einer Cover-Wand links, nach Alben gruppierten Titeln mit Sternebewertungen, und einer blauen Wellenform mit Spektrumanalysator am unteren Rand.
 
 neko-stopped = Warum es aufgehört hat
-    .p1 = Ich bin ganz zu Linux gewechselt, was hieß, dass das ganze Konstrukt durch Wine ging. Es lief. Es rendert auch Internet Explorer in Panels, und ein Stapel, den aufeinandergestapelte Behelfslösungen zusammenhalten, hat mit einer Übersetzungsschicht keine Freude. Jedes foobar2000-Update und jedes Wine-Update war ein Münzwurf über ein Jahrzehnt Konfiguration.
+    .p1 = Ich bin ganz zu Linux gewechselt, was hieß, dass das ganze Konstrukt durch Wine ging. Es lief. Es hat auch Internet Explorer in Panels gerendert, und ein Stapel, den aufeinandergestapelte Behelfslösungen zusammenhalten, hat mit einer Übersetzungsschicht keine Freude. Jedes foobar2000-Update und jedes Wine-Update war ein Münzwurf über ein Jahrzehnt Konfiguration.
     .p2 = Das tiefere Problem war das Format. Eine NekoRoX-Installation ist keine Datei, sie ist eine Komponentenliste, eine Installationsreihenfolge und ein Satz Pfade, die sich nur auf der Maschine wieder zusammensetzen, auf der sie gebaut wurden. Deshalb stand in der README, man solle vier Verzeichnisse an zwei verschiedene Orte kopieren. Einen Look zu teilen sollte keine Seite Anleitung brauchen.
 
 neko-rox = Was rox daraus macht
-    .body = rox ist ein nativer Player in Rust, unter Linux, macOS und Windows, ohne foobar2000 und ohne Wine darunter. Sein Standard-Workspace ist das NekoRoX-Layout, aus nativen Panels neu gebaut, deshalb sehen die beiden Screenshots verwandt aus. Es gibt auch einen [CaTRoX-Workspace](/catrox) dazu, und { $others } weitere.
+    # $others ist die Anzahl minus der Standard-Arbeitsfläche und CaTRoX, die
+    # beide schon im Satz stehen.
+    .body = rox ist ein nativer Player in Rust, unter Linux, macOS und Windows, ohne foobar2000 und ohne Wine darunter. Seine Standard-Arbeitsfläche ist das NekoRoX-Layout, aus nativen Panels neu gebaut, deshalb sehen die beiden Screenshots verwandt aus. Es gibt auch eine [CaTRoX-Arbeitsfläche](/catrox) dazu, und { $others } weitere.
 
-neko-default-alt = Der Standard-Workspace von rox, eine native Rekonstruktion des NekoRoX-Layouts: ein Cover-Raster neben einer Playlist mit Sternebewertungen, eine bernsteinfarbene Wellenform als Fortschrittsleiste am unteren Rand, und Reiter für Biografie, Songtext und Metadaten.
+neko-default-alt = Die Standard-Arbeitsfläche von rox, eine native Rekonstruktion des NekoRoX-Layouts: ein Cover-Raster neben einer Playlist mit Sternebewertungen, eine bernsteinfarbene Wellenform als Fortschrittsleiste am unteren Rand, und Reiter für Biografie, Songtext und Metadaten.
 
 neko-carried = Die Funktionsliste, Zeile für Zeile
-    .after = Das, was NekoRoX nicht konnte, ist mir am wichtigsten. In rox ist ein ganzes Erscheinungsbild eine einzelne Datei mit Layout, Palette und Aussehen zusammen, du gibst also jemandem einen Workspace und derjenige hat dein Setup. Keine Komponentenliste, keine Installationsreihenfolge, kein Schriftartenverzeichnis.
+    .after = Das, was NekoRoX nicht konnte, ist mir am wichtigsten. In rox ist ein ganzes Erscheinungsbild eine einzelne Datei mit Layout, Palette und Aussehen zusammen, du gibst also jemandem eine Arbeitsfläche weiter und damit dein ganzes Setup. Keine Komponentenliste, keine Installationsreihenfolge, kein Schriftartenverzeichnis.
 
 neko-had-nav = Baum- und filterbasierte Navigation
     .now = Ordnerbaum-Panel, dazu ein kaskadierendes Filter-Panel über Künstler, Album, Genre und Jahr.
 neko-had-mini = Mini- und Mikro-Player-Modi
-    .now = Ein Mini-Layout pro Workspace, aus dem Transport heraus umschaltbar, mit eigener Fenstergröße.
+    .now = Ein Mini-Layout pro Arbeitsfläche, aus dem Transport heraus umschaltbar, mit eigener Fenstergröße.
 neko-had-ontop = Immer im Vordergrund
     .now = Noch nichts. Das Fenster ist ein normales Fenster.
 neko-had-ratings = Bewertungs- und Wiedergabezähler-Ansichten
@@ -768,10 +797,10 @@ neko-had-discord = Discord Rich Presence
 neko-had-bio = Biografie-Abruf in Echtzeit
     .now = Künstlerbiografie mit Fanart, Tags, Hörerzahlen und ähnlichen Künstlern.
 neko-had-lastfm = Last.fm-Anbindung
-    .now = Scrobbling, Now-Playing, Herzen als Loves gespiegelt, und ein Import der geliebten Titel.
+    .now = Scrobbling, laufender Titel, Herzen als Loves gespiegelt, und ein Import der geliebten Titel.
 
 neko-closer = rox holen
-    .body = Frei, quelloffen, eine Binärdatei pro Plattform. Die [Workspaces-Seite](/workspaces) zeigt die { workspace-count } mitgelieferten Looks, und der [foobar2000-Vergleich](/foobar2000-alternative) deckt ab, wo foobar2000 weiter vorne liegt.
+    .body = Frei, quelloffen, eine Binärdatei pro Plattform. Die [Seite mit den Arbeitsflächen](/workspaces) zeigt die { workspace-count } mitgelieferten Looks, und der [foobar2000-Vergleich](/foobar2000-alternative) deckt ab, wo foobar2000 weiter vorne liegt.
 
 ## ReplayGain
 

@@ -1,0 +1,12 @@
+# There are no templates left in here, only this. The site's copy is the one
+# thing people used to file about often enough to warrant a form, and that moved
+# to Weblate, where the report and the fix are the same edit. Anything else about
+# the site is rare enough to be a blank issue.
+blank_issues_enabled: true
+contact_links:
+  - name: 'Translations: the website on Weblate'
+    url: https://hosted.weblate.org/projects/rox/website/
+    about: Page copy that reads wrong in your language, or one the site doesn't speak yet. Fix it in place, no clone needed.
+  - name: 'Translations: the rox app on Weblate'
+    url: https://hosted.weblate.org/projects/rox/app/
+    about: For strings inside the player rather than on a page. Same project, other component.

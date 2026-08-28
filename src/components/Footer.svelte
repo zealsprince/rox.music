@@ -2,7 +2,7 @@
   import { HUB } from '$data/pages'
   import { SITE } from '$data/site'
   import { i18n } from '$lib/i18n/context'
-  import { Bug, Hash } from '@lucide/svelte'
+  import { Bug, Hash, Languages } from '@lucide/svelte'
   import SiGithub from './icons/SiGithub.svelte'
   import Rich from './Rich.svelte'
 
@@ -42,6 +42,15 @@
       <a class="plain" href={SITE.issues} rel="noreferrer">
         <Bug size={15} strokeWidth={2} aria-hidden="true" />
         {t('footer-bug')}
+      </a>
+      <!--
+        Beside the bug link on purpose. A wrong translation is the one kind of
+        wrong that the person noticing it can also fix, so the two sit together
+        and one of them skips the issue tracker entirely.
+      -->
+      <a class="plain" href={SITE.translate} rel="noreferrer">
+        <Languages size={15} strokeWidth={2} aria-hidden="true" />
+        {t('footer-translate')}
       </a>
     </nav>
   </div>

@@ -13,6 +13,10 @@ export const SITE = {
   issues: 'https://github.com/zealsprince/rox/issues/new/choose',
   releases: 'https://github.com/zealsprince/rox/releases',
   docs: 'https://github.com/zealsprince/rox/tree/main/docs',
+  // The project rather than either component. Both catalogs live under it, and
+  // someone arriving from the language picker wants the app translated as much
+  // as the pages: a new language that only covers the site is half a language.
+  translate: 'https://hosted.weblate.org/projects/rox/',
   // #rox on irc.hivecom.net. Two routes, because the people who want IRC and
   // the people who have never opened a client want opposite things: the first
   // hands the channel to whatever client is already registered for the scheme,

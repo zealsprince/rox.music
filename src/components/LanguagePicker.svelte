@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { SITE } from '$data/site'
   import { i18n } from '$lib/i18n/context'
   import { LOCALES } from '$lib/i18n/registry'
   import { Check, Languages } from '@lucide/svelte'
@@ -42,6 +43,18 @@
         </a>
       </li>
     {/each}
+
+    <!--
+      The one entry that isn't a language. Someone who opened this menu and
+      didn't find theirs has already told us what they want; sending them to a
+      dead end when the place to fix it exists would be a waste of the only
+      moment they'll ever care.
+    -->
+    <li class="missing">
+      <a class="plain" href={SITE.translate} rel="noreferrer">
+        {t('language-missing')}
+      </a>
+    </li>
   </ul>
 </details>
 
@@ -119,6 +132,19 @@
   ul a :global(.tick) {
     margin-left: auto;
     color: var(--accent-text);
+  }
+
+  /* Ruled off from the languages above because it doesn't do what they do:
+     every other row swaps the page, this one leaves the site. */
+  .missing {
+    margin-top: 0.25rem;
+    padding-top: 0.25rem;
+    border-top: var(--hairline) solid var(--border);
+  }
+
+  .missing a {
+    color: var(--text-muted);
+    font-size: var(--step--1);
   }
 
   /* Same call the GitHub label makes: past this width the mark carries it. */
