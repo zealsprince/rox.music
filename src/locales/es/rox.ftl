@@ -94,7 +94,7 @@ app-feature-scrobbling = Scrobbling a Last.fm
 
 ## Inicio
 
-home-hero = Como si Foobar2000 se hubiera hecho este año.
+home-hero = La forma de Foobar2000, sin veinte años a cuestas.
     .lede = Un reproductor de escritorio para quien tiene la biblioteca en su disco, grande y bien etiquetada. Los paneles los montas tú. Un tema es un archivo, y ese archivo se lo puedes pasar a otra persona. Nativo en Linux, macOS y Windows.
     .alt = rox con el espacio de trabajo predeterminado al estilo NekoRoX, mostrando la biblioteca, la carátula, la cola y un panel de espectro
 
@@ -313,7 +313,7 @@ page-macos = rox en macOS
 
 notfound-title = Página no encontrada
     .description = Esa página no existe en rox.music.
-notfound-h1 = Aquí no hay nada
+notfound-h1 = Nada por aquí
 notfound-nav = Volver al camino
 
 ## Las tres páginas de plataforma, marco común
@@ -330,7 +330,7 @@ linux = rox - un reproductor de música nativo para Linux
     .description = Un reproductor de música nativo de Linux para bibliotecas locales grandes. En el AUR y como flake de Nix, Wayland y X11, salida exclusiva por ALSA, teclas multimedia por MPRIS, y menos de un segundo hasta la ventana con 50.000 pistas.
     .h1 = Un reproductor de música para Linux hecho para Linux
     .lede = No es un port, ni un envoltorio de Electron, ni Foobar2000 bajo Wine. Un binario nativo que trata Linux como objetivo de primera y no como el tercero.
-    .aside = Salida exclusiva que informa de a qué accedió la tarjeta en vez de lo que le pediste, y un aspecto que puedes construir aquí y pasarle a alguien con Windows. Si eso es lo que Linux te ha hecho echar de menos, aquí es donde vive.
+    .aside = Salida exclusiva que informa de a qué accedió la tarjeta de sonido en vez de lo que le pediste, y un aspecto que puedes construir aquí y pasarle a alguien con Windows. Si eso es lo que echabas de menos en Linux, pues aquí está.
     .siblings = El mismo reproductor en [Windows](/windows) y [macOS](/macos).
 
 linux-why = El problema para el que se escribió
@@ -347,7 +347,7 @@ linux-display = Wayland y X11
 linux-display-1 = Los dos, de forma nativa, a través de gpui. Las decoraciones de ventana son un ajuste por espacio de trabajo y no una decisión de compilación, así que puedes usar decoraciones del servidor en una disposición y otra sin bordes en la siguiente sin reiniciar en una compilación distinta.
 
 linux-alsa = Salida exclusiva a través de ALSA
-linux-alsa-1 = El modo exclusivo abre la tarjeta directamente como `hw:CARD=x,DEV=n`. Ese es el único nombre de ALSA sin dmix, sin plug y sin ningún servidor de sonido por el camino. Por eso es también la única vía que rechaza una frecuencia que no puede dar, en lugar de remuestrear a otra cosa sin avisar.
+linux-alsa-1 = El modo exclusivo abre la tarjeta de sonido directamente como `hw:CARD=x,DEV=n`. Ese es el único nombre de ALSA sin dmix, sin plug y sin ningún servidor de sonido por el camino. Por eso es también la única vía que rechaza una frecuencia que no puede dar, en lugar de remuestrear a otra cosa sin avisar.
 linux-alsa-2 = El trato es el honesto: mientras rox tiene la tarjeta en modo exclusivo, la tiene. Nada más del sistema suena por ese dispositivo hasta que pares. rox te dice a qué accedió el hardware en realidad y no lo que pediste, así que un desajuste aparece como un número en vez de como una sospecha.
 linux-alsa-3 = El modo compartido es el predeterminado y se comporta como cualquier otra aplicación de tu escritorio.
 
@@ -367,7 +367,7 @@ windows = rox - un reproductor de música para Windows sin instalador
     .description = Un reproductor de música nativo de Windows para bibliotecas locales grandes. Un zip sin instalador, modo portátil, salida exclusiva por WASAPI, edición profunda de etiquetas, y paneles que compones tú.
     .h1 = Un reproductor de música para Windows, de alguien que dejó Windows
     .lede = Windows es la casa de Foobar2000 y ahí es muy bueno. Esta página es honesta sobre eso, y sobre los motivos concretos por los que aun así podrías querer rox.
-    .aside = Lo que montes aquí es un archivo, y se abre igual en la máquina con Linux o Mac que tienes al lado. Si alguna vez una configuración a la que le dedicaste un fin de semana se te quedó atrapada en un sistema operativo, esa es la parte que vale una tarde.
+    .aside = Lo que montes aquí es un archivo, y se abre igual en la máquina con Linux o Mac que tienes al lado. Si alguna vez una configuración a la que le dedicaste un fin de semana se te quedó atrapada en un sistema operativo, esa es la parte que merece una tarde.
     .siblings = El mismo reproductor en [Linux](/linux) y [macOS](/macos).
 
 windows-awkward = Empecemos por la parte incómoda
@@ -400,7 +400,7 @@ macos = rox - un reproductor de música nativo para macOS
     .aside = Menús donde macOS los pone, unos cuarenta tipos de panel para colocarlos como quieras, y { workspace-count } aspectos completos a un clic en la ventana de bienvenida. Si configurar el reproductor es la parte que de verdad disfrutas, eso es lo que hay aquí.
     .siblings = El mismo reproductor en [Linux](/linux) y [Windows](/windows).
 
-macos-gap = El hueco en el Mac en concreto
+macos-gap = En el Mac, el hueco es otro
 macos-gap-1 = Foobar2000 v2 trae una versión oficial de macOS, y esta página no va a fingir que no. El problema es que el ecosistema de componentes y skins, lo que hacía que una instalación de Windows valiera un fin de semana de configuración, está del lado de Windows. En un Mac tienes el reproductor sin el ecosistema que justificaba elegirlo.
 macos-gap-2 = rox devuelve la composición y los temas: unos cuarenta tipos de panel colocados como quieras, duplicados con sus propias configuraciones, sacados a ventanas de verdad, y un aspecto entero guardado como un solo archivo que se comparte. Uno de los { workspace-count } espacios de trabajo incluidos es una recreación de CaTRoX, que es una declaración justa de a qué apunta.
 
@@ -455,7 +455,7 @@ best-shortlist = La lista corta honesta
     .p3 = rox es la respuesta si quieres la forma de Foobar2000 de manera nativa en Linux o macOS: paneles que compones, etiquetado profundo, temas como archivos que se comparten, y un reproductor que abre la ventana en menos de un segundo con una biblioteca de este tamaño. Es nuevo, y no tiene API de plugins. Las dos cosas son costes reales.
     .aside = Los cinco criterios de arriba son el suelo, no el techo. Las valoraciones van en los propios archivos a través de FMPS y POPM y no en una base de datos que no te puedes llevar, y los géneros de valores múltiples se unifican como una opinión de la biblioteca en vez de como una reescritura de tus etiquetas. Si eso es lo que llevas tiempo queriendo de una biblioteca, este es el que hay que apuntar a tu disco.
 
-best-closer = Mídelo contra tu propia colección
+best-closer = Mídelo con tu propia colección
     .body = El benchmark que importa es el que está en tu disco. Libre y de código abierto, sin cuenta, sin instalador.
 
 ## MusicBee
@@ -489,12 +489,12 @@ musicbee-transfers = Qué se traslada, y qué es mejor
 musicbee-size = La cuestión del tamaño
     .body = MusicBee no está en esta tabla, porque los benchmarks se hicieron en Linux, donde no funciona. Está aquí como respuesta a "¿se cae la alternativa con el tamaño de mi biblioteca?", medido con 50.000 pistas.
 
-musicbee-split = La división honesta
+musicbee-split = A quién le sirve esto y a quién no
     .p1 = ¿Te quedas en Windows con una configuración de MusicBee que sincroniza tu teléfono y le mete podcasts? Nada de aquí sustituye eso, y cambiar te costaría dos funciones de las que rox no tiene versión.
     .p2 = ¿Te mudas a Linux o a un Mac, o ya estás ahí mirando el hueco que dejó MusicBee? Esa es la razón entera de que esto exista, y el trato es concreto: renuncias a la sincronización y a los podcasts, y consigues un reproductor nativo con etiquetado más profundo, una disposición que montas tú, y una biblioteca que sigue ágil con cincuenta mil pistas.
-    .aside = Sacar un panel a su propia ventana del sistema, o pasarle a alguien tu disposición entera como un solo archivo, no son filas de una comparación de funciones porque no hay nada al otro lado con lo que compararlas. Si eso es lo que llevas buscando, rox es donde está.
+    .aside = Sacar un panel a su propia ventana del sistema, o pasarle a alguien tu disposición entera como un solo archivo, no son filas de una comparación de funciones porque no hay nada al otro lado con lo que compararlas. Si eso es lo que llevas buscando, está en rox.
 
-musicbee-closer = Pruébalo contra tu propia biblioteca
+musicbee-closer = Ponlo a prueba con tu propia biblioteca
     .body = Libre y de código abierto bajo la AGPL, sin cuenta y sin instalador. También hay una [comparación con Foobar2000](/foobar2000-alternative), por si esa es la configuración que estás dejando de verdad.
 
 ## CaTRoX
@@ -624,7 +624,7 @@ fb-row-panels = Paneles que compones
     .rox = Cuarenta y pico tipos de panel, de serie, sin componentes que instalar.
 
 fb-row-sharing = Compartir un aspecto
-    .fb = Una skin son componentes, configuraciones y scripts. Con toda la fama de delicada que eso merece.
+    .fb = Una skin son componentes, configuraciones y scripts. Un lío, y con fama de serlo.
     .rox = Un archivo con la disposición, la paleta y la apariencia.
 
 fb-row-source = Código disponible
@@ -632,7 +632,7 @@ fb-row-source = Código disponible
     .rox = AGPL-3.0, todo él.
 
 fb-row-components = Ecosistema de componentes
-    .fb = Dos décadas de profundidad. Todo lo que se te ocurra.
+    .fb = Cada uno construyó sobre el anterior. Lo que se te ocurra, ya existe.
     .rox = Sin API de plugins.
 
 fb-row-maturity = Madurez
@@ -647,9 +647,9 @@ fb-not = Quién no debería cambiar
     .p1 = Si usas Windows, tienes tus componentes configurados y la cosa lleva una década estable, aquí no hay nada que compense el lío de cambiar. Si dependes de un componente concreto de Foobar2000, rox no tiene API de plugins y no puede sustituirlo. Si quieres software que ya haya cometido todos sus errores, rox es cuatro años demasiado joven.
     .p2 = Si te mudaste a Linux y dejaste la configuración atrás, o estás en un Mac con un reproductor sin el ecosistema que lo justificaba, ese es el hueco en el que se construyó esto.
     .p3 = El otro lado de llegar tarde merece decirse. Nada en rox tiene que seguir siendo compatible con una decisión tomada en 2002, que es cómo un aspecto entero acaba siendo un solo archivo que se comparte en vez de un grafo de componentes, cómo una sola base de código cubre las tres plataformas, y cómo cuarenta y pico tipos de panel vienen de serie en vez de montarse una descarga cada vez. También es por lo que la identidad de una pista nunca se ató a las rutas de archivo, que es lo que hace posible fusionar más adelante una biblioteca local con cualquier otra cosa. La mayor parte de esos 62 MB es la misma historia.
-    .aside = Los paneles que salen a ventanas del sistema de verdad, o una paleta que se retiñe con la carátula que esté sonando, nunca llegaron a la tabla de arriba. No había nada que poner en la otra columna. Si diferencias así son lo que buscas, rox es el sitio.
+    .aside = Los paneles que salen a ventanas del sistema de verdad, o una paleta que se retiñe con la carátula que esté sonando, nunca llegaron a la tabla de arriba. No había nada que poner en la otra columna. Si diferencias así son lo que buscas, rox es tu sitio.
 
-fb-closer = Pruébalo contra tu propia biblioteca
+fb-closer = Ponlo a prueba con tu propia biblioteca
     .body = Libre, de código abierto bajo la AGPL, sin cuenta y sin instalador. Apúntalo a la colección que rompe otros reproductores.
     .fine = O lee antes el [código](@repo). Es una forma razonable de evaluar un reproductor que quiere permiso de escritura sobre tus etiquetas. ¿Sigues dándole vueltas? Los [criterios que separan a los reproductores de biblioteca](/best-music-player) están escritos aparte, benchmarks incluidos.
 
@@ -690,7 +690,7 @@ mp3tag-spec-patterns = **Patrones, en los dos sentidos.** Una cadena de formato 
 mp3tag-stay = Quién debería quedarse con Mp3tag
     .p1 = Si usas Windows y te apoyas en acciones, scripting o en el trabajo más elaborado con cadenas de formato, rox no tiene equivalente y esto sería un paso atrás. Si quieres un etiquetador que no sea además un reproductor, esta es la forma equivocada por completo.
     .p2 = Si usas Linux o un Mac, o tu etiquetado ocurre en mitad de la escucha en vez de como tarea aparte, ese es el hueco que esto llena.
-    .aside = La ruta de escritura es la parte que no tiene contraparte con la que compararse. Verificar el hash del flujo de audio antes de renombrar sobre un original no es algo que haga un etiquetador salvo que espere que lo apunten a todo lo que tienes. Si esa es la clase de cautela que quieres entre una edición y tus archivos, eso es esto.
+    .aside = La ruta de escritura es la parte que no tiene contraparte con la que compararse. Verificar el hash del flujo de audio antes de renombrar sobre un original no es algo que haga un etiquetador salvo que espere que lo apunten a todo lo que tienes. Si esa es la clase de cautela que quieres entre una edición y tus archivos, aquí la tienes.
 
 mp3tag-closer = Apúntalo a la carpeta que llevas evitando
     .body = Libre y de código abierto, sin cuenta, sin instalador. El [lado de la biblioteca](/best-music-player) está escrito aparte, y si vienes de una configuración de Windows también hay una comparación con [MusicBee](/musicbee-alternative) y otra con [Foobar2000](/foobar2000-alternative).

@@ -89,7 +89,12 @@ app-feature-scrobbling = Last.fm-Scrobbling
 
 ## Startseite
 
-home-hero = Als hätte jemand Foobar2000 dieses Jahr gebaut.
+# Bewusst keine Übersetzung des englischen Satzes. Die h1 ist die Stimme, nicht
+# der Suchtreffer: site-tagline trägt "Foobar2000-Alternative" für Google, also
+# ist diese Zeile frei, das Gefühl zu transportieren statt den Witz des
+# Originals nachzubauen. Wer hier auf eine wörtliche Fassung zurückgeht, nimmt
+# der Startseite genau das, wofür sie da ist.
+home-hero = Der Medienplayer von heute, nicht von gestern.
     .lede = Ein Desktop-Musikplayer für Leute mit großen, sorgfältig getaggten lokalen Sammlungen. Die Oberfläche baust du dir selbst aus Panels zusammen, und ein ganzes Theme passt in eine Datei zum Weitergeben. Nativ auf Linux, macOS und Windows.
     .alt = rox mit der NekoRoX-artigen Standard-Arbeitsfläche: Bibliothek, Cover, Warteschlange und ein Spektrum-Panel
 
@@ -167,7 +172,7 @@ feature-binary = Eine Binärdatei, kein Installer
 
 ## Der Download-Button, überall wo er auftaucht
 
-download-cta = rox herunterladen
+download-cta = Hol dir rox
 # %s ist die Stelle, an der enhance.js den erkannten Plattformnamen einsetzt.
 # Muss bleiben: das Skript kennt keine Sprache und kann nur ersetzen, die
 # Wortstellung muss also hier stimmen.
@@ -181,7 +186,7 @@ download-title = rox für Linux, macOS oder Windows herunterladen
     .description = rox kostenlos für Linux, macOS oder Windows herunterladen. Eine Binärdatei pro Plattform, kein Installer und kein Konto. Quelloffen unter der AGPL.
     .image-alt = Das rox-Logo über dem englischen Satz: download for Linux, macOS and Windows
 
-download-h1 = rox herunterladen
+download-h1 = Hol dir rox
     .lede = Eine Binärdatei pro Plattform. Kein Installer, kein Konto, nichts, was im Hintergrund weiterläuft, wenn es zu ist.
 
 download-released = veröffentlicht am { $date }
@@ -209,11 +214,11 @@ package-nix =
     .body = Das Repository ist ein Flake. Der erste Befehl startet rox, ohne etwas zu installieren, der zweite legt es in dein Profil. Unter NixOS nimmst du das Flake als Input auf und bindest `packages.default` ein, oder du benutzt das Overlay, das es exportiert.
     .link = flake.nix
 
-download-cli = Aus einem Terminal starten
+download-cli = Mit der Kommandozeile
     .body = Übergib rox Dateien oder Ordner, und es spielt sie sofort und ersetzt, was geladen war. Ordner werden zu den Audiodateien direkt darin aufgelöst.
     .flags = `--enqueue` (oder `-e`) hängt an die Warteschlange an, statt sofort zu spielen. `--portable` hält Bibliothek, Einstellungen und Caches für diesen Start in einem Ordner `rox-data` neben der ausführbaren Datei. Damit das über Starts hinweg gilt, legst du eine leere Datei namens `portable` daneben oder setzt den Schalter in den Verhaltenseinstellungen.
 
-download-build = Selbst bauen
+download-build = Compile und entwickle rox selbst
     .body = Mit Nix bekommst du über `nix develop` und dann `cargo run` eine Entwicklungsumgebung mit der Rust-Toolchain und den Bibliotheken, die gpui zur Laufzeit lädt. Ohne Nix brauchst du stabiles Rust und gpuis Systembibliotheken aus deiner Distribution. Der [Entwicklungsabschnitt der README](@readme-dev) hat die vollständige Liste.
 
 ## Arbeitsflächen
@@ -233,7 +238,7 @@ workspace-default = Wie rox ohne Zutun aussieht: durchscheinende Flächen, Cover
 workspace-foobar = Das Layout, mit dem dieses ganze Projekt streitet. Deckend, dicht, Fensterrahmen an, Menüleiste da, wo sie immer war.
     .alt = Die Foobar-Arbeitsfläche von rox: ein klassisches foobar2000-Layout mit Menüleiste, Filterspalten für Künstler und Album, einer dichten Titeltabelle mit Wiedergabezählern und Bewertungen und Cover unten links.
 
-workspace-catrox = Der CaTRoX-Skin für foobar2000, den du kennst und liebst und mit dem alles anfing.
+workspace-catrox = Der CaTRoX-Skin für foobar2000, mit dem hier alles anfing. Ja, genau der.
     .alt = Die CaTRoX-Arbeitsfläche von rox: der foobar2000-Skin nachgebaut, mit einer runden CD-Darstellung des Covers, einer Metadatenliste links und nach Alben gruppierten Titeln mit Bewertungspunkten.
 
 workspace-llama = WinAmp, so wie du es in Erinnerung hast und nicht, wie es war. Tahoma, dunkel, kein Fensterrahmen.
@@ -275,7 +280,7 @@ page-catrox = CaTRoX, nativ neu gebaut
     .blurb = Das foobar2000-Theme, mit dem das hier angefangen hat, wer es gemacht hat, und was nötig war, damit dieser Look ohne Windows darunter läuft.
 
 page-nekorox = NekoRoX, und wohin es ging
-    .blurb = Der CaTRoX-Fork, den ich zehn Jahre gepflegt habe, warum das aufgehört hat, und welche seiner Panels es heute in rox gibt. Inklusive AlphaRoX, dem hellen.
+    .blurb = Der CaTRoX-Fork, den ich zehn Jahre gepflegt habe, warum das aufgehört hat, und welche seiner Panels es heute in rox gibt. Inklusive AlphaRoX, dem „Light Theme".
 
 page-music-visualizer = Die Visualisierung, und die Schicht darunter
     .blurb = Spektrum- und Wellenform-Panels, WGSL-Shader über jedem Panel oder dem ganzen Fenster, und die benannten Signale aus dem Audiomaterial, die sie antreiben.
@@ -290,7 +295,7 @@ page-musicbee-alternative = Eine MusicBee-Alternative
     .blurb = Was MusicBee kann und rox nicht, was rox kann und MusicBee nicht, und warum die ehrliche Antwort von deinem Betriebssystem abhängt.
 
 page-replaygain = ReplayGain, und was es kostet
-    .blurb = Was ReplayGain wirklich tut, Titel- gegen Album-Gain, das Messen der Dateien, die nie jemand getaggt hat, und warum es anzuschalten heißt, auf bitgenau zu verzichten.
+    .blurb = Was ReplayGain wirklich tut. Titel-Gain gegen Album-Gain. Wie man die Dateien misst, die nie jemand getaggt hat. Und warum es anzuschalten bedeutet, auf bitgenaue Wiedergabe zu verzichten.
 
 page-best-music-player = Der beste Musikplayer für eine lokale Sammlung
     .blurb = Was Player wirklich unterscheidet, sobald deine Sammlung echt ist, und wie sich das Feld auf 50.000 Titeln schlägt.
@@ -308,7 +313,7 @@ page-macos = rox unter macOS
 
 notfound-title = Seite nicht gefunden
     .description = Diese Seite gibt es auf rox.music nicht.
-notfound-h1 = Hier ist nichts
+notfound-h1 = Tja, hier gibts nichts zu finden
 notfound-nav = Zurück ins Trockene
 
 ## Die drei Plattformseiten, gemeinsamer Rahmen
@@ -325,7 +330,7 @@ linux = rox - ein nativer Musikplayer für Linux
     .description = Ein nativer Linux-Musikplayer für große lokale Sammlungen. Im AUR und als Nix-Flake, Wayland und X11, exklusive ALSA-Ausgabe, MPRIS-Medientasten und bei 50.000 Titeln ein Fenster in unter einer Sekunde.
     .h1 = Ein Musikplayer für Linux, der für Linux gebaut wurde
     .lede = Keine Portierung, kein Electron-Wrapper und kein Foobar2000 unter Wine. Eine native Binärdatei, die Linux als erstklassiges Ziel behandelt statt als drittes.
-    .aside = Exklusive Ausgabe, die zurückmeldet, worauf die Karte sich wirklich eingelassen hat, statt was du verlangt hast, und ein Look, den du hier baust und jemandem unter Windows in die Hand drückst. Wenn du auf so etwas unter Linux bisher verzichten musstest: hier gibt es das.
+    .aside = Exklusive Ausgabe, die zurückmeldet, worauf die Soundkarte sich wirklich eingelassen hat, statt was du verlangt hast, und ein Look, den du hier baust und jemandem unter Windows in die Hand drückst. Wenn du auf so etwas unter Linux bisher verzichten musstest: hier gibt es das.
     .siblings = Derselbe Player unter [Windows](/windows) und [macOS](/macos).
 
 linux-why = Das Problem, für das er geschrieben wurde
@@ -342,7 +347,7 @@ linux-display = Wayland und X11
 linux-display-1 = Beides, nativ, über gpui. Fensterdekorationen sind eine Einstellung pro Arbeitsfläche statt einer Entscheidung zur Übersetzungszeit, du kannst also auf einem Layout serverseitige Dekorationen fahren und auf dem nächsten randlos, ohne in einen anderen Build neu zu starten.
 
 linux-alsa = Exklusive Ausgabe über ALSA
-linux-alsa-1 = Der exklusive Modus öffnet die Karte direkt als `hw:CARD=x,DEV=n`. Das ist der eine ALSA-Name ohne dmix, ohne plug und ohne Soundserver irgendwo im Weg, und genau deshalb der einzige Weg, der eine Abtastrate ablehnt, die er nicht kann, statt still auf etwas anderes umzurechnen.
+linux-alsa-1 = Der exklusive Modus öffnet die Soundkarte direkt als `hw:CARD=x,DEV=n`. Das ist der eine ALSA-Name ohne dmix, ohne plug und ohne Soundserver irgendwo im Weg, und genau deshalb der einzige Weg, der eine Abtastrate ablehnt, die er nicht kann, statt still auf etwas anderes umzurechnen.
 linux-alsa-2 = Der Tausch ist ehrlich: solange rox die Karte im exklusiven Modus hält, hält es sie. Nichts anderes auf dem System spielt über dieses Gerät, bis du aufhörst. rox sagt dir, worauf die Hardware sich wirklich eingelassen hat, statt was du verlangt hast, und eine Abweichung taucht so als Zahl auf statt als Verdacht.
 linux-alsa-3 = Der geteilte Modus ist der Standard und verhält sich wie jedes andere Programm auf deinem Desktop.
 
@@ -395,7 +400,7 @@ macos = rox - ein nativer Musikplayer für macOS
     .aside = Menüs da, wo macOS sie hinsetzt, rund vierzig Panel-Typen zum Anordnen wie du willst, und { workspace-count } fertige Looks einen Klick entfernt im Willkommensfenster. Wenn das Einrichten des Players der Teil ist, den du wirklich magst, ist das hier für dich.
     .siblings = Derselbe Player unter [Linux](/linux) und [Windows](/windows).
 
-macos-gap = Die Lücke speziell auf dem Mac
+macos-gap = Die Lücke, die auf dem Mac bleibt
 macos-gap-1 = Foobar2000 v2 hat eine offizielle macOS-Version, und diese Seite wird nicht so tun, als gäbe es sie nicht. Der Haken ist, dass das Komponenten- und Skin-Ökosystem, also das, was eine Windows-Installation ein Wochenende Einrichten wert gemacht hat, auf der Windows-Seite liegt. Auf einem Mac bekommst du den Player ohne das Ökosystem, das die Wahl gerechtfertigt hat.
 macos-gap-2 = rox bringt das Zusammenstellen und das Theming zurück: rund vierzig Panel-Typen, angeordnet wie du willst, dupliziert mit eigenen Konfigurationen, in echte Fenster ausgekoppelt, und ein ganzes Erscheinungsbild in einer teilbaren Datei. Eine der { workspace-count } mitgelieferten Arbeitsflächen ist ein CaTRoX-Nachbau, was eine faire Aussage darüber ist, worauf das Ganze zielt.
 
@@ -419,12 +424,12 @@ best-breadcrumb = Bester Musikplayer
 best-title = Der beste Musikplayer für eine lokale Sammlung { $year }
     .description = Streaming-Apps und Bibliotheks-Player werden an unterschiedlichen Dingen gemessen. Fünf Kriterien, die Desktop-Musikplayer wirklich unterscheiden, sobald deine Sammlung echt ist, gemessen an 50.000 Titeln.
 
-best-lede = Nicht die beste Musik-App. Das sind Streaming-Clients, und die werden am Katalog und am Preis gemessen. Hier geht es um die kleinere Frage: welcher Desktop-Player standhält, wenn die Musik längst auf deiner Platte liegt, und zwar viel davon.
+best-lede = Nicht die beste Musik-App. Das sind Streaming-Clients, und die werden am Katalog und am Preis gemessen. Hier geht es um die kleinere Frage: welcher Desktop-Player mit einer großen Sammlung klarkommt, die längst auf deiner Platte liegt.
 
 disclosure = Offenlegung
-best-disclosure = rox ist einer der Player in diesem Vergleich und das hier ist seine eigene Seite, lies also erst die Kriterien und dann die Zahlen. Alle fünf gelten unabhängig davon, ob du am Ende irgendetwas herunterlädst.
+best-disclosure = rox ist einer der Player in diesem Vergleich und das hier ist seine eigene Seite. Lies also erst die Kriterien und dann die Zahlen. Alle fünf gelten unabhängig davon, ob du am Ende irgendetwas herunterlädst.
 
-best-criteria = Fünf Dinge, die sie wirklich unterscheiden
+best-criteria = Fünf Dinge, die die Player wirklich unterscheiden
 
 best-criterion-size = Er muss die Größe deiner Sammlung überleben
     .body = Die meisten Player werden an ein paar hundert Alben vorgeführt. Die interessanten Ausfälle fangen im Zehntausenderbereich an, wo das Einlesen einen Abend dauert, das Scrollen stockt und der Speicherverbrauch steigt, bis irgendetwas nachgibt. Das ist das eine Kriterium, das du von einem Screenshot nicht ablesen kannst, und es ist das, das entscheidet, ob du das Ding in einem Jahr noch benutzt.
@@ -444,8 +449,8 @@ best-criterion-yours = Er muss dir gehören und das auch bleiben
 best-measured = Wie das erste Kriterium gemessen aussieht
     .body = Sieben Player, eine Sammlung aus 50.000 Titeln, eine Maschine, eine Testumgebung. Startzeit und Leerlaufkosten sind die Teile, die du jeden einzelnen Tag spürst.
 
-best-shortlist = Die ehrliche engere Auswahl
-    .p1 = Wenn du unter Windows bist und ohnehin [Foobar2000](/foobar2000-alternative) benutzt, hast du die Antwort und hast sie seit zwanzig Jahren. Nichts auf dieser Seite schlägt ein funktionierendes Foobar2000-Setup auf seiner eigenen Plattform.
+best-shortlist = Die ehrliche Empfehlung
+    .p1 = Wenn du unter Windows bist und ohnehin [Foobar2000](/foobar2000-alternative) benutzt, hast du die Antwort längst, aber das wusstest du schon. Nichts auf dieser Seite schlägt ein funktionierendes Foobar2000-Setup auf seiner eigenen Plattform.
     .p2 = Wenn du etwas mit einem großen Plugin-Ökosystem und langer Linux-Historie willst, sind Quod Libet und Strawberry beide echte Antworten, und beide kosten beim Laden einer Sammlung dieser Größe mehr Geduld, als sie danach Freude machen. Wenn das Tagging-Kriterium das ist, das dich wirklich interessiert, steht das separat als [Mp3tag-Alternative](/mp3tag-alternative), und die Lautheitsseite von Kriterium eins steht unter [ReplayGain](/replaygain).
     .p3 = rox ist die Antwort, wenn du die Foobar2000-Form nativ unter Linux oder macOS willst: Panels, die du zusammenstellst, tiefes Tagging, Themes als einzelne teilbare Dateien, und ein Player, der bei einer Sammlung dieser Größe in unter einer Sekunde ein Fenster hat. Er ist neu, und er hat keine Plugin-Schnittstelle. Beides sind echte Kosten.
     .aside = Die fünf Kriterien oben sind die Untergrenze, nicht die Obergrenze. Bewertungen gehen über FMPS und POPM in die Dateien selbst statt in eine Datenbank, die du nicht mitnehmen kannst, und mehrwertige Genres werden als Meinung der Bibliothek zusammengeführt statt als Umschreiben deiner Tags. Wenn du so etwas aus einer Bibliothek haben wolltest, ist das hier der, den du auf deine Platte loslässt.
@@ -484,7 +489,7 @@ musicbee-transfers = Was mitkommt, und was besser ist
 musicbee-size = Die Größenfrage
     .body = MusicBee steht nicht in dieser Tabelle, weil die Benchmarks unter Linux gefahren wurden, wo es nicht läuft. Es steht hier als Antwort auf „fällt die Alternative bei meiner Sammlungsgröße um“, gemessen an 50.000 Titeln.
 
-musicbee-split = Die ehrliche Aufteilung
+musicbee-split = Die ehrliche Trennlinie
     .p1 = Du bleibst unter Windows, mit einem MusicBee-Setup, das dein Telefon synchronisiert und mit Podcasts füttert? Nichts hier ersetzt das, und ein Wechsel würde dich zwei Funktionen kosten, die rox schlicht nicht hat.
     .p2 = Du wechselst zu Linux oder auf einen Mac, oder du bist schon dort und siehst die Lücke, die MusicBee hinterlassen hat? Genau dafür gibt es das hier, und der Tausch ist konkret: du gibst Synchronisierung und Podcasts auf und bekommst einen nativen Player mit tieferem Tagging, einem Layout, das du selbst baust, und einer Bibliothek, die bei fünfzigtausend Titeln flott bleibt.
     .aside = Ein Panel in ein eigenes Betriebssystemfenster auszukoppeln oder dein gesamtes Layout als eine Datei weiterzugeben, sind keine Zeilen in einem Funktionsvergleich, weil es auf der anderen Seite nichts zu vergleichen gibt. Wenn du darauf aus warst, bist du bei rox richtig.
@@ -611,15 +616,15 @@ fb-row-macos = Nativ unter macOS
     .rox = Erstklassig, Apple Silicon.
 
 fb-row-windows = Nativ unter Windows
-    .fb = Sein Zuhause. Seit über zwanzig Jahren.
+    .fb = Heimspiel, seit über zwanzig Jahren.
     .rox = Erstklassig, x86_64.
 
 fb-row-panels = Panels zum Zusammenstellen
     .fb = Ja, über Columns UI und Co.
-    .rox = Rund vierzig Panel-Typen, eingebaut, keine Komponenten zu installieren.
+    .rox = Rund vierzig Panel-Typen, eingebaut. Nichts nachzurüsten.
 
 fb-row-sharing = Einen Look teilen
-    .fb = Ein Skin ist Komponenten, Konfigurationen und Skripte. Berüchtigt fummelig.
+    .fb = Ein Skin ist Komponenten, Konfigurationen und Skripte. Berüchtigte Frickelei.
     .rox = Eine Datei mit Layout, Palette und Aussehen.
 
 fb-row-source = Quellcode verfügbar
@@ -627,7 +632,7 @@ fb-row-source = Quellcode verfügbar
     .rox = AGPL-3.0, komplett.
 
 fb-row-components = Komponenten-Ökosystem
-    .fb = Zwei Jahrzehnte tief. Alles, was dir einfällt.
+    .fb = Jeder hat auf dem Vorherigen aufgebaut. Es gibt nichts, was es nicht gibt.
     .rox = Keine Plugin-Schnittstelle.
 
 fb-row-maturity = Reife
@@ -657,7 +662,7 @@ mp3tag-title = Eine Mp3tag-Alternative für Linux und macOS { $year }
 mp3tag-h1 = Ein Tag-Editor, den du auf zehntausend Dateien loslassen kannst
     .lede = Mp3tag ist das Werkzeug, das die meisten Leute meinen, wenn sie Tag-Editor sagen, und es gibt keinen Linux-Build davon. rox hat einen vollwertigen Editor eingebaut, und einen Schreibweg für den Fall, dass eine Stapelverarbeitung groß genug ist, dass „läuft meistens“ nicht mehr reicht.
 
-mp3tag-isnt = Fangen wir damit an, was das hier nicht ist
+mp3tag-isnt = Zuerst das, was das hier nicht ist
     .p1 = rox ist ein Musikplayer, in dem ein ernstzunehmender Tag-Editor steckt. Mp3tag ist ein spezialisierter Tagger, und als spezialisierter Tagger ist es besser: Skripting, Aktionen, zusammensetzbare Formatzeichenfolgen und zwanzig Jahre abgeschliffene Kanten. Wenn du ein eigenständiges Werkzeug willst, das du über einen Ordner laufen lässt und danach schließt, unter Windows, dann ist Mp3tag das Richtige.
     .p2 = Das Argument dafür, es in rox zu tun, ist, dass das Taggen einer Sammlung normalerweise keine Aufgabe ist, die man abschließt. Es ist etwas, das man beim Hören tut, an der Datei, die einem gerade als falsch aufgefallen ist, und deshalb ist es Absicht und kein Kompromiss, dass der Editor am Player und an der Bibliothek hängt.
 
@@ -799,7 +804,7 @@ neko-had-bio = Biografie-Abruf in Echtzeit
 neko-had-lastfm = Last.fm-Anbindung
     .now = Scrobbling, laufender Titel, Herzen als Loves gespiegelt, und ein Import der geliebten Titel.
 
-neko-closer = rox holen
+neko-closer = Nimm stattdessen rox
     .body = Frei, quelloffen, eine Binärdatei pro Plattform. Die [Seite mit den Arbeitsflächen](/workspaces) zeigt die { workspace-count } mitgelieferten Looks, und der [foobar2000-Vergleich](/foobar2000-alternative) deckt ab, wo foobar2000 weiter vorne liegt.
 
 ## ReplayGain

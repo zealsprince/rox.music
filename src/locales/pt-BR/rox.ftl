@@ -110,7 +110,7 @@ home-speed = Menos de um segundo até a janela abrir
 
 home-features = O que tem dentro
 
-home-closer = Faça dele o seu
+home-closer = Deixe com a sua cara
     .body = São { workspace-count } espaços de trabalho que já vêm com o rox, a um clique na janela de boas-vindas. Cada um é um arquivo único com o layout, a paleta e os shaders que ele roda, então dá para editar, quebrar e passar para outra pessoa. [Veja todos](/workspaces).
 
 ## A tabela de benchmarks
@@ -242,10 +242,10 @@ workspaces-critters = Como o Critters faz isso
 workspace-default = A cara do rox recém-instalado: superfícies translúcidas, tintura pelas capas desligada.
     .alt = O espaço de trabalho Default do rox: uma grade de capas ao lado de uma playlist com avaliações em estrelas, uma barra de posição em forma de onda âmbar embaixo e abas para biografia, letra e metadados.
 
-workspace-foobar = O layout com o qual este projeto inteiro discute. Opaco, denso, decorações do sistema ligadas, barra de menus onde ela sempre esteve.
+workspace-foobar = O layout com que este projeto inteiro briga. Opaco, denso, decorações do sistema ligadas, barra de menus onde ela sempre esteve.
     .alt = O espaço de trabalho Foobar do rox: um layout clássico de foobar2000 com barra de menus, colunas de filtro por artista e álbum, uma tabela de faixas densa com contagens de reprodução e avaliações, e a capa no canto inferior esquerdo.
 
-workspace-catrox = O skin CaTRoX de foobar2000 que você conhece e ama, o que começou tudo.
+workspace-catrox = O skin CaTRoX de foobar2000 que todo mundo conhece de cor, o que começou tudo.
     .alt = O espaço de trabalho CaTRoX do rox: o skin de foobar2000 recriado, com uma renderização circular da capa como CD, uma lista de campos de metadados descendo à esquerda e faixas agrupadas por álbum com pontos de avaliação.
 
 workspace-llama = O WinAmp, do jeito que você lembra e não do jeito que ele era. Tahoma, escuro, sem moldura.
@@ -321,7 +321,7 @@ page-macos = rox no macOS
 notfound-title = Página não encontrada
     .description = Essa página não existe no rox.music.
 notfound-h1 = Não tem nada aqui
-notfound-nav = Recuperação
+notfound-nav = Por onde seguir
 
 ## As três páginas de plataforma, moldura comum
 
@@ -337,7 +337,7 @@ linux = rox - um player de música nativo para Linux
     .description = Um player de música nativo de Linux para coleções locais grandes. No AUR e como flake do Nix, Wayland e X11, saída exclusiva por ALSA, teclas de mídia via MPRIS, e menos de um segundo até a janela abrir com 50.000 faixas.
     .h1 = Um player de música para Linux que foi feito para o Linux
     .lede = Não é um port, não é um empacotamento em Electron, e não é o Foobar2000 no Wine. É um binário nativo que trata o Linux como alvo de primeira classe, e não como o terceiro da fila.
-    .aside = Saída exclusiva que devolve com o que a placa realmente concordou, em vez do que você pediu. E um visual que você monta aqui e entrega para alguém no Windows. Se é desse tipo de coisa que o Linux vinha te deixando sem, é aqui que ela mora.
+    .aside = Saída exclusiva que te diz com o que a placa de som realmente concordou, e não o que você pediu. E um visual que você monta aqui e entrega para alguém no Windows. Se é desse tipo de coisa que o Linux vinha te deixando sem, é aqui que ela mora.
     .siblings = O mesmo player no [Windows](/windows) e no [macOS](/macos).
 
 linux-why = O problema para o qual ele foi escrito
@@ -354,7 +354,7 @@ linux-display = Wayland e X11
 linux-display-1 = Os dois, nativamente, pelo gpui. As decorações de janela são uma configuração por espaço de trabalho, e não uma decisão de tempo de compilação. Dá para rodar decorações do servidor num layout e um sem borda no seguinte, sem reiniciar em outra build.
 
 linux-alsa = Saída exclusiva por ALSA
-linux-alsa-1 = O modo exclusivo abre a placa direto como `hw:CARD=x,DEV=n`. Esse é o único nome de ALSA sem dmix, sem plug e sem servidor de som em lugar nenhum do caminho, e é isso que faz dele a única rota que recusa uma taxa que não consegue em vez de reamostrar caladinha para outra coisa.
+linux-alsa-1 = O modo exclusivo abre a placa de som direto como `hw:CARD=x,DEV=n`. Esse é o único nome de ALSA sem dmix, sem plug e sem servidor de som em lugar nenhum do caminho, e é isso que faz dele a única rota que recusa uma taxa que não consegue em vez de reamostrar caladinha para outra coisa.
 linux-alsa-2 = A troca é a honesta: enquanto o rox segura a placa em modo exclusivo, ele a segura mesmo. Nada mais no sistema toca por aquele dispositivo até você parar. O rox te diz com o que o hardware realmente concordou, em vez do que você pediu, então uma divergência aparece como número e não como suspeita.
 linux-alsa-3 = O modo compartilhado é o padrão e se comporta como qualquer outro programa na sua área de trabalho.
 
@@ -433,7 +433,7 @@ best-title = O melhor player de música para uma coleção local em { $year }
 
 best-lede = Não é o melhor aplicativo de música. Esses são clientes de streaming e são julgados por catálogo e preço. Aqui a pergunta é menor: qual player de desktop aguenta quando a música já está no seu disco e tem muita dela.
 
-disclosure = Divulgação
+disclosure = Transparência
 best-disclosure = O rox é um dos players desta comparação e este é o site dele, então leia os critérios primeiro e os números depois. Os cinco valem independentemente de você acabar baixando qualquer coisa.
 
 best-criteria = Cinco coisas que de fato os separam
@@ -450,7 +450,7 @@ best-criterion-write = Ele tem que deixar você escrever as tags de volta
 best-criterion-layout = O layout tem que ser seu
     .body = O gosto aqui é realmente pessoal, e é esse o argumento a favor da montagem em vez de um bom padrão. Painéis que você arruma, duplica com configurações próprias e destaca em janelas de verdade batem qualquer layout único que outra pessoa escolheu.
 
-best-criterion-yours = Ele tem que ser seu para ficar
+best-criterion-yours = Ele tem que continuar sendo seu
     .body = As coleções locais são aquilo para onde as pessoas voltam quando um serviço tira um álbum do ar ou muda os termos. Um player que responde a isso com conta, telemetria ou assinatura perdeu o sentido daquilo que está tocando.
 
 best-measured = Como o primeiro fica quando medido
@@ -462,7 +462,7 @@ best-shortlist = A lista curta honesta
     .p3 = O rox é a resposta se você quer o formato do Foobar2000 nativamente no Linux ou no macOS: painéis que você monta, tagging profundo, temas como arquivos únicos compartilháveis, e um player que coloca uma janela na tela em menos de um segundo com uma coleção deste tamanho. Ele é novo, e não tem API de plugins. Os dois são custos reais.
     .aside = Os cinco critérios acima são o piso, e não o teto. As avaliações vão para os próprios arquivos por FMPS e POPM, e não para um banco de dados que você não pode levar. Os gêneros com vários valores são unificados como uma opinião da biblioteca, sem reescrever as suas tags. Se é esse tipo de coisa que você vinha querendo de uma biblioteca, é este que você aponta para o seu disco.
 
-best-closer = Meça contra a sua própria coleção
+best-closer = Ponha à prova na sua própria coleção
     .body = O benchmark que importa é o que está no seu disco. Livre e de código aberto, sem conta, sem instalador.
 
 ## MusicBee
@@ -496,7 +496,7 @@ musicbee-transfers = O que vem junto, e o que é melhor
 musicbee-size = A questão do tamanho
     .body = O MusicBee não está nesta tabela porque os benchmarks foram rodados no Linux, onde ele não roda. A tabela está aqui como resposta para “a alternativa aguenta uma coleção do meu tamanho?”, medida em 50.000 faixas.
 
-musicbee-split = A divisão honesta
+musicbee-split = Quem fica e quem muda
     .p1 = Vai ficar no Windows com um MusicBee que sincroniza seu celular e o alimenta com podcasts? Nada aqui substitui isso, e trocar te custaria dois recursos dos quais o rox não tem versão nenhuma.
     .p2 = Está indo para o Linux ou para um Mac, ou já está lá olhando a lacuna que o MusicBee deixou? É exatamente por isso que isto existe, e a troca é específica: você abre mão de sincronização e podcasts, e ganha um player nativo com tagging mais profundo, um layout que você mesmo monta, e uma biblioteca que continua rápida com cinquenta mil faixas.
     .aside = Destacar um painel numa janela própria do sistema, ou entregar seu layout inteiro para alguém como um arquivo só, não são linhas numa comparação de recursos, porque não há nada do outro lado para comparar. Se é atrás disso que você estava, o rox é onde isso está.
@@ -618,22 +618,22 @@ fb-table = Lado a lado
 
 fb-row-linux = Nativo no Linux
     .fb = Sem build oficial. Só Wine.
-    .rox = Primeira classe, x86_64.
+    .rox = De primeira, x86_64.
 
 fb-row-macos = Nativo no macOS
     .fb = Build oficial desde a v2.
-    .rox = Primeira classe, Apple Silicon.
+    .rox = De primeira, Apple Silicon.
 
 fb-row-windows = Nativo no Windows
     .fb = A casa dele. Vinte e tantos anos disso.
-    .rox = Primeira classe, x86_64.
+    .rox = De primeira, x86_64.
 
 fb-row-panels = Painéis que você monta
     .fb = Sim, pelo Columns UI e afins.
     .rox = Uns quarenta tipos de painel, embutidos, sem componentes para instalar.
 
 fb-row-sharing = Compartilhar um visual
-    .fb = Um skin é componentes, configurações e scripts. Famosamente chato.
+    .fb = Um skin é componentes, configurações e scripts. Um perrengue conhecido.
     .rox = Um arquivo com layout, paleta e aparência.
 
 fb-row-source = Código disponível
@@ -641,7 +641,7 @@ fb-row-source = Código disponível
     .rox = AGPL-3.0, tudo.
 
 fb-row-components = Ecossistema de componentes
-    .fb = Duas décadas de profundidade. Qualquer coisa que você imaginar.
+    .fb = Cada um construiu sobre o anterior. Qualquer coisa que você imaginar.
     .rox = Sem API de plugins.
 
 fb-row-maturity = Maturidade

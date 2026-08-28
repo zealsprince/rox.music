@@ -48,7 +48,7 @@ footer-irc = IRC
 footer-irc-direct = Diretto
 footer-irc-web = Webchat
 footer-bug = Segnala un bug
-footer-translate = Aiuta a tradurre
+footer-translate = Dai una mano a tradurre
 
 ## Il sito stesso
 
@@ -111,7 +111,12 @@ app-feature-scrobbling = Scrobbling su Last.fm
 
 ## Home
 
-home-hero = Foobar2000, se l'avessero fatto quest'anno.
+# Deliberatamente non una traduzione della frase inglese. L'h1 porta la voce,
+# non la ricerca: è site-tagline a portare "alternativa a Foobar2000" per Google,
+# quindi questa riga è libera di trasmettere il sentimento invece di rifare la
+# battuta dell'originale. Tornare a una versione letterale toglierebbe alla home
+# proprio quello per cui esiste.
+home-hero = Il lettore musicale di oggi, non di ieri.
     .lede = Un lettore desktop per chi ha una libreria locale grande e taggata con cura. I pannelli li componi tu, e un tema intero sta in un file solo, da passare a chi vuoi. Nativo su Linux, macOS e Windows.
     .alt = rox con lo spazio di lavoro predefinito in stile NekoRoX: libreria, copertina, coda e un pannello di spettro
 
@@ -171,7 +176,7 @@ feature-panels = Pannelli che componi tu
 
 feature-themes = Temi come file condivisibili
     .body = Uno spazio di lavoro è un file con layout, palette, aspetto e shader. Le palette possono tingersi dalla copertina in riproduzione, virando al chiaro o allo scuro con l'immagine.
-    .link = Gli spazi di lavoro inclusi: { workspace-count }
+    .link = Quelli inclusi, { workspace-count } in tutto
 
 feature-shaders = Visual che ascoltano
     .body = Scrivi uno shader WGSL su un pannello o sull'intera finestra. Segnali con un nome ricavati dallo spettro viaggiano sui suoi ingressi, così una banda di cassa muove la manopola che le indichi.
@@ -264,7 +269,7 @@ workspace-llama = WinAmp, com'è nel tuo ricordo e non com'era davvero. Tahoma, 
 workspace-metro = Pannelli piatti e righe comode con la tinta dalla copertina attiva, così la palette segue quello che sta suonando.
     .alt = Lo spazio di lavoro Metro di rox: una griglia a tutta larghezza di copertine con i titoli sotto, e a destra un pannello di biografia dell'artista con foto, etichette di genere e numero di ascoltatori.
 
-workspace-phosphor = Tutto a spaziatura fissa. Consolas, nessuna copertina nella riproduzione rapida, un terminale che per caso suona musica.
+workspace-phosphor = Tutto a spaziatura fissa. Consolas, nessuna copertina nella riproduzione rapida, un terminale a cui capita di suonare musica.
     .alt = Lo spazio di lavoro Phosphor di rox: verde su nero a spaziatura fissa ovunque, un albero di cartelle accanto a una tabella di tracce e una forma d'onda verde in basso, come un terminale che suona musica.
 
 workspace-critters = L'intera applicazione come stampa a 1 bit. Un dithering ordinato su ogni superficie, toni che collassano con i bassi profondi, e un muro di rumore dietro i pannelli che si muove con il brano.
@@ -278,7 +283,7 @@ workspace-diffuse = Solo l'album in riproduzione, su una velatura morbida ricava
 more-title = Altro su rox
     .description = Le pagine che stanno fuori dalla navigazione principale: il confronto con Foobar2000, cosa cercare in un lettore per una libreria locale, e come funziona rox su Linux, macOS e Windows.
 
-more-lede = Le pagine che non hanno posto nella navigazione, tenute dove si possono trovare invece di finire cancellate.
+more-lede = Le pagine che non hanno posto nella navigazione, tenute a portata di mano invece che cancellate.
 
 more-why = Perché esistono
     .p1 = Queste pagine esistono per essere trovate. Chi nel { $year } cerca un'alternativa a Foobar2000 su Linux, o sta capendo quale lettore sopravvive a una libreria di queste dimensioni, dovrebbe atterrare dove gli si risponde, non su una home scritta per chi già sa cos'è rox.
@@ -330,7 +335,7 @@ page-macos = rox su macOS
 
 notfound-title = Pagina non trovata
     .description = Questa pagina non esiste su rox.music.
-notfound-h1 = Qui non c'è niente
+notfound-h1 = Da queste parti non c'è niente
 notfound-nav = Vie d'uscita
 
 ## Le tre pagine di piattaforma, cornice comune
@@ -347,7 +352,7 @@ linux = rox - un lettore musicale nativo per Linux
     .description = Un lettore musicale Linux nativo per grandi librerie locali. Sull'AUR e come flake Nix, Wayland e X11, uscita esclusiva ALSA, tasti multimediali MPRIS, e una finestra in meno di un secondo a 50.000 tracce.
     .h1 = Un lettore musicale per Linux, costruito per Linux
     .lede = Non un port, non un involucro Electron, e non Foobar2000 sotto Wine. Un binario nativo che tratta Linux come piattaforma di prima classe invece che come la terza.
-    .aside = Un'uscita esclusiva che riferisce cosa ha davvero accettato la scheda invece di cosa le hai chiesto, e un look che costruisci qui e passi a qualcuno che sta su Windows. Se è il genere di cosa a cui Linux ti ha abituato a rinunciare, è qui che la trovi.
+    .aside = Un'uscita esclusiva che riferisce cosa ha davvero accettato la scheda audio invece di cosa le hai chiesto, e un look che costruisci qui e passi a qualcuno che sta su Windows. Se è il genere di cosa a cui Linux ti ha abituato a rinunciare, è qui che la trovi.
     .siblings = Lo stesso lettore su [Windows](/windows) e [macOS](/macos).
 
 linux-why = Il problema per cui è stato scritto
@@ -364,7 +369,7 @@ linux-display = Wayland e X11
 linux-display-1 = Entrambi, in modo nativo, tramite gpui. Le decorazioni della finestra sono un'impostazione per spazio di lavoro invece che una decisione presa in fase di compilazione, quindi puoi usare decorazioni lato server su un layout e una senza bordi sul successivo, senza riavviare in una build diversa.
 
 linux-alsa = Uscita esclusiva tramite ALSA
-linux-alsa-1 = La modalità esclusiva apre la scheda direttamente come `hw:CARD=x,DEV=n`. È l'unico nome ALSA senza dmix, senza plug e senza server audio da nessuna parte nel percorso, ed è proprio questo che ne fa l'unica strada che rifiuta una frequenza che non sa fare invece di ricampionare in silenzio verso qualcos'altro.
+linux-alsa-1 = La modalità esclusiva apre la scheda audio direttamente come `hw:CARD=x,DEV=n`. È l'unico nome ALSA senza dmix, senza plug e senza server audio da nessuna parte nel percorso, ed è proprio questo che ne fa l'unica strada che rifiuta una frequenza che non sa fare invece di ricampionare in silenzio verso qualcos'altro.
 linux-alsa-2 = Lo scambio è quello onesto: finché rox tiene la scheda in modalità esclusiva, la tiene. Nient'altro nel sistema suona attraverso quel dispositivo finché non smetti. rox ti dice cosa ha davvero accettato l'hardware invece di cosa hai chiesto, così una discrepanza compare come un numero invece che come un sospetto.
 linux-alsa-3 = La modalità condivisa è quella predefinita e si comporta come qualsiasi altra applicazione sul tuo desktop.
 
@@ -509,7 +514,7 @@ musicbee-size = La questione delle dimensioni
 musicbee-split = Il bivio onesto
     .p1 = Resti su Windows con un MusicBee che sincronizza il telefono e lo riempie di podcast? Niente qui lo sostituisce, e cambiare ti costerebbe due funzioni di cui rox non ha alcuna versione.
     .p2 = Passi a Linux o a un Mac, o ci sei già e guardi il vuoto lasciato da MusicBee? È tutta la ragione per cui questo esiste, e lo scambio è preciso: rinunci alla sincronizzazione e ai podcast, e ottieni un lettore nativo con un tagging più profondo, un layout che costruisci tu, e una libreria che resta veloce a cinquantamila tracce.
-    .aside = Staccare un pannello in una finestra di sistema tutta sua, o passare a qualcuno l'intero layout come un file, non sono righe di un confronto di funzioni perché dall'altra parte non c'è niente da confrontare. Se è questo che cercavi, è qui che lo trovi.
+    .aside = Staccare un pannello in una finestra di sistema tutta sua, o passare a qualcuno l'intero layout come un file, non sono righe di un confronto di funzioni perché dall'altra parte non c'è niente da confrontare. Se è questo che cercavi, l'hai trovato.
 
 musicbee-closer = Mettilo alla prova sulla tua libreria
     .body = Libero e open source sotto AGPL, nessun account e nessun installer. C'è anche un [confronto con Foobar2000](/foobar2000-alternative), se è davvero quella la configurazione che stai lasciando.
@@ -628,15 +633,15 @@ fb-table = Fianco a fianco
 
 fb-row-linux = Nativo su Linux
     .fb = Nessuna build ufficiale. Solo Wine.
-    .rox = Di prima classe, x86_64.
+    .rox = A pieno titolo, x86_64.
 
 fb-row-macos = Nativo su macOS
     .fb = Build ufficiale dalla v2.
-    .rox = Di prima classe, Apple Silicon.
+    .rox = A pieno titolo, Apple Silicon.
 
 fb-row-windows = Nativo su Windows
     .fb = Casa sua. Da oltre vent'anni.
-    .rox = Di prima classe, x86_64.
+    .rox = A pieno titolo, x86_64.
 
 fb-row-panels = Pannelli da comporre
     .fb = Sì, tramite Columns UI e affini.
@@ -644,14 +649,14 @@ fb-row-panels = Pannelli da comporre
 
 fb-row-sharing = Condividere un look
     .fb = Una skin è un mucchio di componenti, configurazioni e script. Notoriamente macchinosa.
-    .rox = Un file con layout, palette e aspetto.
+    .rox = Un file solo, con layout, palette e aspetto.
 
 fb-row-source = Sorgente disponibile
     .fb = Freeware a codice chiuso.
     .rox = AGPL-3.0, tutto quanto.
 
 fb-row-components = Ecosistema di componenti
-    .fb = Profondo due decenni. Qualsiasi cosa ti venga in mente.
+    .fb = Ognuno ha costruito su chi c'era prima. Qualsiasi cosa ti venga in mente.
     .rox = Nessuna API per plugin.
 
 fb-row-maturity = Maturità
@@ -762,7 +767,7 @@ viz-limit-midi = Nessuna superficie di controllo MIDI o OSC. Il passaggio di sov
 viz-limit-battery = Un passaggio su tutta la finestra è un vero passaggio GPU a ogni fotogramma. Su un portatile a batteria è una scelta tua.
 
 viz-closer = Provalo sulla tua libreria
-    .body = Niente qui telefona da nessuna parte: l'analisi è sull'audio che sta già passando per il lettore. Altro su [cosa porta con sé uno spazio di lavoro](/workspaces).
+    .body = Qui niente chiama casa: l'analisi è sull'audio che sta già passando per il lettore. Altro su [cosa porta con sé uno spazio di lavoro](/workspaces).
 
 ## NekoRoX
 

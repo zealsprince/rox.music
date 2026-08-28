@@ -103,7 +103,12 @@ app-feature-scrobbling = Scrobbling Last.fm
 
 ## Accueil
 
-home-hero = Si Foobar2000 avait été écrit cette année.
+# Volontairement pas une traduction de la phrase anglaise. Le h1 porte la voix,
+# pas le référencement : c'est site-tagline qui porte "alternative à Foobar2000"
+# pour Google, donc cette ligne est libre de transmettre le sentiment plutôt que
+# de rejouer la blague de l'original. Revenir à une version littérale enlèverait
+# à la page d'accueil ce qui fait son intérêt.
+home-hero = Le lecteur d'aujourd'hui, pas celui d'hier.
     .lede = Un lecteur de musique pour ceux dont la bibliothèque locale est grande et taguée avec soin. Les panneaux, tu les composes toi-même ; un thème, c'est un seul fichier, à donner à qui tu veux. Natif sur Linux, macOS et Windows.
     .alt = rox avec l'espace de travail par défaut façon NekoRoX : bibliothèque, pochette, file d'attente et un panneau de spectre
 
@@ -247,7 +252,7 @@ workspace-default = À quoi ressemble rox tel quel : surfaces translucides, tei
 workspace-foobar = Tout ce projet est une querelle avec cette disposition. Opaque, dense, décorations système activées, barre de menus là où elle a toujours été.
     .alt = L'espace de travail Foobar de rox : une disposition foobar2000 classique avec barre de menus, colonnes de filtre par artiste et album, un tableau de pistes dense avec compteurs de lecture et notes, et la pochette en bas à gauche.
 
-workspace-catrox = Le skin CaTRoX pour foobar2000, connu et adoré, celui par qui tout a commencé.
+workspace-catrox = Le skin CaTRoX pour foobar2000, celui que tu connais par cœur, celui par qui tout a commencé.
     .alt = L'espace de travail CaTRoX de rox : le skin foobar2000 recréé, avec un rendu circulaire de la pochette en CD, une liste de champs de métadonnées à gauche et des pistes groupées par album avec des points de notation.
 
 workspace-llama = WinAmp, tel que tu t'en souviens plutôt que tel qu'il était. Tahoma, sombre, sans décorations.
@@ -256,7 +261,7 @@ workspace-llama = WinAmp, tel que tu t'en souviens plutôt que tel qu'il était.
 workspace-metro = Panneaux plats et lignes aérées avec la teinte d'après la pochette, pour que la palette suive ce qui passe.
     .alt = L'espace de travail Metro de rox : une grille pleine largeur de pochettes d'album avec les titres en dessous, et à droite un panneau de biographie d'artiste avec photo, étiquettes de genre et nombre d'auditeurs.
 
-workspace-phosphor = Du monospace partout. Consolas, pas de pochette en lecture rapide, un terminal qui joue de la musique.
+workspace-phosphor = Du monospace partout. Consolas, pas de pochette en lecture rapide, un terminal qui, accessoirement, joue de la musique.
     .alt = L'espace de travail Phosphor de rox : du vert sur noir en monospace partout, une arborescence de dossiers à côté d'un tableau de pistes et une forme d'onde verte en bas, comme un terminal qui joue de la musique.
 
 workspace-critters = Toute l'application en impression 1 bit. Un tramage ordonné sur chaque surface, des tons qui s'écrasent avec les infrabasses, et un mur de bruit derrière les panneaux qui bouge avec le morceau.
@@ -338,11 +343,11 @@ platform-more = Plus sur [à quoi il ressemble](/workspaces), la [comparaison co
 linux = rox - un lecteur de musique natif pour Linux
     .description = Un lecteur de musique Linux natif pour les grandes bibliothèques locales. Sur l'AUR et en flake Nix, Wayland et X11, sortie exclusive ALSA, touches multimédias MPRIS, et une fenêtre en moins d'une seconde à 50 000 pistes.
     .h1 = Un lecteur de musique pour Linux, conçu pour Linux
-    .lede = Pas un portage, pas une enveloppe Electron, et pas Foobar2000 sous Wine. Un binaire natif qui traite Linux comme une cible de première classe plutôt que comme la troisième.
-    .aside = Une sortie exclusive qui rapporte ce que la carte a réellement accepté plutôt que ce que tu lui as demandé, et une apparence que tu construis ici et transmets à quelqu'un sous Windows. Si c'est le genre de chose dont Linux t'a privé, c'est ici que ça se trouve.
+    .lede = Pas un portage, pas une enveloppe Electron, et pas Foobar2000 sous Wine. Un binaire natif qui traite Linux comme une cible de premier ordre plutôt que comme la troisième.
+    .aside = Une sortie exclusive qui rapporte ce que la carte son a réellement accepté plutôt que ce que tu lui as demandé, et une apparence que tu construis ici et transmets à quelqu'un sous Windows. Si c'est le genre de chose dont Linux t'a privé, c'est ici que ça se trouve.
     .siblings = Le même lecteur sous [Windows](/windows) et [macOS](/macos).
 
-linux-why = Le problème pour lequel il a été écrit
+linux-why = Le problème qui l'a fait naître
 linux-why-1 = Les bons lecteurs Linux renoncent chacun à quelque chose. Le tagage de Tauon reste en surface. Strawberry ne se compose pas. Quod Libet n'est pas un lecteur qu'on aurait envie d'habiller. La pile qui fait à la fois les panneaux, le tagage approfondi et une culture du thème est coincée sous Windows depuis vingt ans.
 linux-why-2 = Faire tourner cette pile sous Wine fonctionne jusqu'à ce que ça ne fonctionne plus. Un skin comme CaTRoX tient par des contournements empilés et, par endroits, du rendu Internet Explorer à l'intérieur de panneaux. À travers une couche de traduction, on voit vite quelle part relève de la chance, et chaque mise à jour du système est une occasion de le découvrir.
 linux-why-3 = rox, c'est cette forme écrite nativement : une quarantaine de types de panneaux que tu disposes toi-même, une édition de tags à laquelle tu peux confier une vraie collection, et des thèmes qui voyagent dans un seul fichier.
@@ -356,7 +361,7 @@ linux-display = Wayland et X11
 linux-display-1 = Les deux, nativement, via gpui. Les décorations de fenêtre sont un réglage par espace de travail plutôt qu'une décision prise à la compilation, tu peux donc utiliser des décorations côté serveur sur une disposition et une fenêtre sans bordure sur la suivante, sans redémarrer dans un autre build.
 
 linux-alsa = Sortie exclusive via ALSA
-linux-alsa-1 = Le mode exclusif ouvre la carte directement sous la forme `hw:CARD=x,DEV=n`. C'est le seul nom ALSA sans dmix, sans plug et sans serveur de son sur le chemin, et c'est précisément ce qui en fait la seule voie qui refusera une fréquence qu'elle ne sait pas faire au lieu de rééchantillonner discrètement vers autre chose.
+linux-alsa-1 = Le mode exclusif ouvre la carte son directement sous la forme `hw:CARD=x,DEV=n`. C'est le seul nom ALSA sans dmix, sans plug et sans serveur de son sur le chemin, et c'est précisément ce qui en fait la seule voie qui refusera une fréquence qu'elle ne sait pas faire au lieu de rééchantillonner discrètement vers autre chose.
 linux-alsa-2 = La contrepartie est honnête : tant que rox tient la carte en mode exclusif, il la tient. Rien d'autre sur le système ne joue par ce périphérique jusqu'à ce que tu arrêtes. rox te dit ce que le matériel a réellement accepté plutôt que ce que tu as demandé, donc un écart apparaît comme un chiffre au lieu d'un soupçon.
 linux-alsa-3 = Le mode partagé est la valeur par défaut et se comporte comme toutes les autres applications de ton bureau.
 
@@ -376,7 +381,7 @@ windows = rox - un lecteur de musique pour Windows sans installeur
     .description = Un lecteur de musique Windows natif pour les grandes bibliothèques locales. Un zip sans installeur, le mode portable, la sortie exclusive WASAPI, une édition de tags approfondie, et des panneaux que tu composes toi-même.
     .h1 = Un lecteur de musique pour Windows, par quelqu'un qui a quitté Windows
     .lede = Foobar2000 est chez lui sous Windows, et il y est très bon. Cette page est honnête là-dessus, et sur les raisons précises pour lesquelles tu pourrais quand même vouloir rox.
-    .aside = Ce que tu construis ici tient dans un fichier, et il s'ouvre à l'identique sur la machine Linux ou Mac posée à côté. Si une configuration à laquelle tu as consacré un week-end s'est déjà retrouvée coincée sur un seul système, c'est la partie qui vaut bien un après-midi.
+    .aside = Ce que tu construis ici tient dans un fichier, et il s'ouvre à l'identique sur la machine Linux ou Mac posée à côté. Si tu as déjà vu une configuration montée en un week-end rester coincée sur un seul système, c'est ça qui vaut bien un après-midi.
     .siblings = Le même lecteur sous [Linux](/linux) et [macOS](/macos).
 
 windows-awkward = Commençons par la partie gênante
@@ -501,7 +506,7 @@ musicbee-size = La question de la taille
 musicbee-split = Le verdict honnête
     .p1 = Tu restes sous Windows avec une installation MusicBee qui synchronise ton téléphone et l'alimente en podcasts ? Rien ici ne remplace ça, et changer te coûterait deux fonctions dont rox n'a aucune version.
     .p2 = Tu passes à Linux ou sur un Mac, ou tu y es déjà et tu regardes le vide laissé par MusicBee ? C'est toute la raison d'être de ceci, et les termes de l'échange sont précis : tu abandonnes la synchronisation et les podcasts, et tu obtiens un lecteur natif avec un tagage plus profond, une disposition que tu construis toi-même, et une bibliothèque qui reste rapide à cinquante mille pistes.
-    .aside = Détacher un panneau dans sa propre fenêtre système, ou transmettre toute ta disposition sous forme d'un fichier, ne sont pas des lignes d'un tableau comparatif parce qu'il n'y a rien en face à quoi les comparer. Si c'est ce que tu cherchais, c'est dans rox que ça se trouve.
+    .aside = Détacher un panneau dans sa propre fenêtre système, ou transmettre toute ta disposition sous forme d'un fichier, ne sont pas des lignes d'un tableau comparatif parce qu'il n'y a rien en face à quoi les comparer. Si c'est ce que tu cherchais, c'est chez rox que ça se passe.
 
 musicbee-closer = Mets-le à l'épreuve de ta propre bibliothèque
     .body = Libre et open source sous AGPL, sans compte et sans installeur. Il y a aussi une [comparaison avec Foobar2000](/foobar2000-alternative), si c'est vraiment la configuration que tu quittes.
@@ -635,7 +640,7 @@ fb-row-panels = Des panneaux à composer
     .rox = Une quarantaine de types de panneaux, intégrés, aucun composant à installer.
 
 fb-row-sharing = Partager une apparence
-    .fb = Un skin, ce sont des composants, des configurations et des scripts. Réputé pénible.
+    .fb = Un skin, ce sont des composants, des configurations et des scripts. Un casse-tête, et ça se sait.
     .rox = Un fichier portant disposition, palette et apparence.
 
 fb-row-source = Code disponible
@@ -643,7 +648,7 @@ fb-row-source = Code disponible
     .rox = AGPL-3.0, en entier.
 
 fb-row-components = Écosystème de composants
-    .fb = Vingt ans d'accumulation. Tout ce que tu peux imaginer.
+    .fb = Chacun a bâti sur le précédent. Tout ce que tu peux imaginer.
     .rox = Pas d'API de plugins.
 
 fb-row-maturity = Maturité
@@ -654,7 +659,7 @@ fb-row-footprint = Empreinte
     .fb = Réputé minuscule.
     .rox = Un binaire de 62 Mo, 134 Mo en mémoire à 50k pistes.
 
-fb-not = Qui ne devrait pas changer
+fb-not = Qui ferait mieux de rester où il est
     .p1 = Si tu es sous Windows, que tes composants sont réglés et que l'installation est stable depuis une décennie, rien ici ne vaut le dérangement. Si tu dépends d'un composant Foobar2000 précis, rox n'a pas d'API de plugins et ne peut pas le remplacer. Si tu veux un logiciel qui a déjà fait toutes ses erreurs, rox est quatre ans trop jeune.
     .p2 = Si tu es passé à Linux en laissant l'installation derrière toi, ou si tu es sur un Mac avec un lecteur privé de l'écosystème qui le justifiait, c'est le vide dans lequel ceci a été construit.
     .p3 = L'autre versant d'arriver tard mérite d'être dit. Rien dans rox ne doit rester compatible avec une décision prise en 2002, et c'est ainsi qu'une apparence entière devient un fichier partageable au lieu d'un graphe de composants, qu'une seule base de code couvre les trois plateformes, et qu'une quarantaine de types de panneaux sont livrés d'emblée au lieu d'être assemblés téléchargement après téléchargement. C'est aussi pour ça que l'identité d'une piste n'a jamais été liée aux chemins de fichiers, et c'est ce qui rendra possible plus tard la fusion d'une bibliothèque locale avec autre chose. L'essentiel de ces 62 Mo raconte la même histoire.
@@ -746,7 +751,7 @@ viz-trust = Exécuter le shader d'un inconnu
     .p3 = En activer un ouvre une fenêtre de confirmation qui attend une réponse au lieu de compter à rebours, et cette fenêtre ne passe jamais elle-même sous un shader. Quoi que le shader fasse au reste de l'écran, le chemin de sortie reste lisible.
 
 viz-limits = Ce qui n'est pas traité
-    .aside = La distance entre « je veux que tout le lecteur clignote sur la grosse caisse » et l'avoir, c'est une bande, une porte et une route, et aucun des trois ne demande de recompiler.
+    .aside = Entre « je veux que tout le lecteur clignote sur la grosse caisse » et l'avoir à l'écran, il y a une bande, une porte et une route, et aucune des trois ne demande de recompiler.
 
 viz-limit-routes = Les routes atteignent les emplacements de shaders et les réglages du panneau de particules. Les réglages de tous les autres panneaux restent des curseurs que tu places à la main.
 viz-limit-milkdrop = Du WGSL, pas du Milkdrop ni de l'AVS. Il n'y a d'importateur pour aucun des deux, et vingt ans de préréglages ne passent pas.
@@ -815,7 +820,7 @@ neko-had-bio = Recherche de biographie en direct
 neko-had-lastfm = Intégration Last.fm
     .now = Scrobbling, lecture en cours, cœurs répercutés en loves, et import des pistes aimées.
 
-neko-closer = Obtenir rox
+neko-closer = Récupère rox
     .body = Libre, open source, un binaire par plateforme. La [page des espaces de travail](/workspaces) montre les { workspace-count } apparences livrées, et la [comparaison foobar2000](/foobar2000-alternative) détaille les points où foobar2000 garde l'avantage.
 
 ## ReplayGain
@@ -845,7 +850,7 @@ rg-unmeasured = Les fichiers que personne n'a jamais mesurés
     .p2 = rox lit les tags là où ils existent, sous les noms standards dans chaque format qu'il indexe : trames TXXX en ID3v2, commentaires Vorbis en FLAC, atomes libres en MP4. Pour tout le reste, il mesure les fichiers lui-même avec une passe d'intensité EBU R128 et range le résultat dans la bibliothèque, marqué comme mesuré, pour qu'une analyse ultérieure puisse distinguer les chiffres de rox de ce qu'un tagueur a écrit. Si tu préfères que les chiffres vivent dans les fichiers, un réglage les réécrit par le même chemin d'écriture vérifié qu'utilise l'éditeur de tags.
     .p3 = Cette passe peut se lancer toute seule. Avec la mesure automatique activée, les fichiers sont mesurés une fois que la surveillance des dossiers s'est calmée après un import, et une piste déposée dans un album déjà mesuré renvoie tout le disque à une nouvelle mesure, puisque le gain par album est un chiffre sur le disque et non sur le fichier.
 
-rg-skip = La partie que la plupart des pages sautent
+rg-skip = La partie que la plupart des pages passent sous silence
     .p1 = ReplayGain multiplie tes échantillons par un nombre. C'est du traitement. Ce n'est pas sans perte, ce n'est pas un passage direct, et tout lecteur revendiquant à la fois ReplayGain et sortie bit-perfect décrit quelque chose qui ne peut pas exister.
     .p2 = Cela compte si tu possèdes un DAC choisi avec soin. Bit-perfect veut dire que les échantillons qui atteignent le convertisseur sont ceux du fichier, non modifiés, donc tout ce qui les met à l'échelle, un volume en dessous du maximum, un égaliseur, ReplayGain, met fin à cette revendication. Il n'existe aucune version de normalisation d'intensité qui laisse les bits tranquilles, parce que changer l'intensité c'est changer les bits.
     .choice = Choisir entre les deux est un vrai choix, pas une question piège. Le bit-perfect compte pour l'écoute critique d'un album sur du bon matériel. ReplayGain compte pour toutes les autres heures, quand la bibliothèque tourne en aléatoire et que tu préférerais ne pas toucher au volume. La plupart des gens devraient activer ReplayGain et ne plus y penser. Ce qui compte, c'est de savoir lequel est actif.

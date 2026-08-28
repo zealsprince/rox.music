@@ -45,7 +45,7 @@ footer-irc = IRC
 footer-irc-direct = 直连
 footer-irc-web = 网页聊天
 footer-bug = 报告问题
-footer-translate = 帮助翻译
+footer-translate = 一起来翻译
 
 ## 网站本身
 
@@ -371,7 +371,7 @@ linux-limit-plugins = 没有插件 API，所以这里没有任何东西能替掉
 
 windows = rox - 一款不用安装程序的 Windows 音乐播放器
     .description = 面向大型本地媒体库的原生 Windows 音乐播放器。一个不带安装程序的 zip、便携模式、WASAPI 独占输出、深度标签编辑，还有你自己拼的面板。
-    .h1 = 一款 Windows 音乐播放器，作者是个已经离开 Windows 的人
+    .h1 = 一款 Windows 音乐播放器，作者早就不用 Windows 了
     .lede = Windows 是 Foobar2000 的主场，而且它在那儿非常好。这一页会诚实地说这件事，也会说你为什么可能还是想要 rox。
     .aside = 在这儿搭出来的东西就是一个文件，拿到旁边那台 Linux 或 Mac 机器上打开是一样的。要是你花一个周末搭的配置曾经困死在某一个操作系统上，这件事值得一个下午。
     .siblings = 同一个播放器，也有 [Linux](/linux) 和 [macOS](/macos) 版。
@@ -455,7 +455,7 @@ best-criterion-yours = 它得是你留得住的
 best-measured = 第一条实测出来是什么样
     .body = 七个播放器，一个五万首曲目媒体库，一台机器，一套流程。启动和空闲开销是每天都能感觉到的那部分。
 
-best-shortlist = 诚实的短名单
+best-shortlist = 老实说，能挑的就这几个
     .p1 = 如果你在 Windows 上，而且已经在用 [Foobar2000](/foobar2000-alternative)，那你二十年前就有答案了。这一页上没有任何东西能在它自己的平台上赢过一套跑得好好的 Foobar2000。
     .p2 = 如果你想要插件生态庞大、在 Linux 上有长期记录的东西，Quod Libet 和 Strawberry 都是真答案，两个用起来都挺舒服，前提是先等它们把这么大的媒体库加载完。要是标签那一条才是你真正在意的，它另外写成了一篇 [Mp3tag 替代品](/mp3tag-alternative)；第一条里响度那一面在 [ReplayGain](/replaygain) 那篇。
     .p3 = 如果你想要的是在 Linux 或 macOS 上原生的 Foobar2000 那个形状，rox 就是答案：自己拼的面板、深度标签、作为单个可分享文件的主题，还有面对这么大的媒体库依然一秒之内出窗口。它很新，也没有插件 API。这两条都是真实的代价。
@@ -529,7 +529,7 @@ catrox-recreation = 这次重现
 catrox-shot-alt = rox 里的 CaTRoX 工作区：封面渲染成圆形 CD，左侧一列元数据字段，写着标题、艺术家、专辑、编码和比特率，右侧是按专辑分组、带评分小点的曲目。
 
 catrox-limits = 你拿不回来的东西
-    .aside = 换到的是这样一套布局：在 Linux 和 macOS 上打开，附近连 Wine 都没有，扛得住系统更新，还能作为一个文件流通。维护了十年原版之后，这笔交易就是 rox 存在的全部理由。
+    .aside = 换到的是这样一套布局：在 Linux 和 macOS 上打开，底下不垫 Wine，扛得住系统更新，还能作为一个文件流通。维护了十年原版之后，这笔交易就是 rox 存在的全部理由。
 
 catrox-limit-panels = 不是每个 CaTRoX 面板都有对应物。rox 有自己那四十来种面板，但不是同一批四十种。
 catrox-limit-youtube = 没有 YouTube 播放。CaTRoX 和 NekoRoX 都通过组件有过；rox 放的是你硬盘上的东西。
@@ -547,7 +547,7 @@ cue-breadcrumb = Cue 表
 cue-title = 一首一首地播 FLAC 加 CUE 整轨
     .description = 整张碟的镜像加旁边的 cue 表，索引成真正的曲目：每一段都能拖动进度、排序、scrobble，也能无缝接进下一段，而你的播放列表永远不会知道有三行共用同一个文件。
 
-cue-h1 = Cue 表，以及表现得像专辑的整轨
+cue-h1 = Cue 表，以及能当专辑听的整轨
     .lede = 如果你在拆轨成为默认做法之前就在抓 CD，那你媒体库里有一块是一碟一个 FLAC，旁边配一个文本文件。大多数播放器要么无视这个表，要么把它描述的东西当二等公民。下面是 rox 拿它怎么办。
 
 cue-what = cue 整轨到底是什么
@@ -616,30 +616,30 @@ fb-table = 并排看
 
 fb-row-linux = Linux 原生
     .fb = 没有官方构建。只能 Wine。
-    .rox = 头等支持，x86_64。
+    .rox = 一等公民，x86_64。
 
 fb-row-macos = macOS 原生
     .fb = 从 v2 起有官方构建。
-    .rox = 头等支持，Apple Silicon。
+    .rox = 一等公民，Apple Silicon。
 
 fb-row-windows = Windows 原生
     .fb = 它的主场。二十多年。
-    .rox = 头等支持，x86_64。
+    .rox = 一等公民，x86_64。
 
 fb-row-panels = 自己拼的面板
     .fb = 有，通过 Columns UI 之类。
     .rox = 四十来种面板，内置，不用装组件。
 
 fb-row-sharing = 分享一套外观
-    .fb = 一套皮肤是组件、配置加脚本。以难折腾出名。
+    .fb = 一套皮肤是组件、配置加脚本。出了名的难伺候。
     .rox = 一个文件，装着布局、调色板和外观。
 
 fb-row-source = 源码可得
     .fb = 闭源免费软件。
-    .rox = AGPL-3.0，全部。
+    .rox = AGPL-3.0，一行不落。
 
 fb-row-components = 组件生态
-    .fb = 二十年的积累。你想得到的都有。
+    .fb = 一代接一代往上垒。你想得到的都有。
     .rox = 没有插件 API。
 
 fb-row-maturity = 成熟度
@@ -647,7 +647,7 @@ fb-row-maturity = 成熟度
     .rox = 从 2026 年起。它偶尔会。
 
 fb-row-footprint = 体积
-    .fb = 以小巧出名。
+    .fb = 出了名的小。
     .rox = 一个 62 MB 的可执行文件，五万首曲目下常驻 134 MB。
 
 fb-not = 谁不该换
@@ -697,7 +697,7 @@ mp3tag-spec-patterns = **模式，两个方向。** 像 `%artist% - %title%` 这
 mp3tag-stay = 谁该继续用 Mp3tag
     .p1 = 如果你在 Windows 上，而且靠动作、脚本或者更花哨的格式串工作，rox 没有对应物，换过来是降级。如果你要的标签工具不该兼做播放器，那这个形状整个就不对。
     .p2 = 如果你在 Linux 或 Mac 上，或者标签整理是在听歌途中发生的，而不是当成一件单独的活儿，那这就是它填的那个空缺。
-    .aside = 写入路径是那个没有对手可比的部分。覆盖原文件之前先校验音频流的哈希，标签工具一般不这么干，除非它预计自己会被指向你拥有的一切。要是这就是你想垫在一次编辑和你的文件之间的那份谨慎，这里有的就是它。
+    .aside = 写入路径是那个没有对手可比的部分。覆盖原文件之前先校验音频流的哈希，标签工具一般不这么干，除非它早就打算对着你全部的收藏跑。要是你想在一次编辑和你的文件之间垫上这么一层谨慎，这里就有。
 
 mp3tag-closer = 让它指向你一直在躲的那个文件夹
     .body = 自由开源，不用账号，没有安装程序。[媒体库那一面](/best-music-player)另外写了一篇；如果你是从一套 Windows 配置里出来的，这里还有 [MusicBee](/musicbee-alternative) 和 [Foobar2000](/foobar2000-alternative) 的对比。
@@ -854,7 +854,7 @@ rg-exclusive = 独占输出，单独说
     .p2 = 代价和独占在哪儿都一样：rox 握着这个设备的时候，机器上别的东西都不能从它发声。设备拿不下来，rox 会回退到共享模式并把状态显示出来，而不是没了声音让你自己去猜。
 
 rg-limits = 没有处理的部分
-    .aside = 会告诉你此刻位完美和 ReplayGain 哪个成立、还肯去测那些标签工具从没顾上的文件的播放器，没几个。要是这就是你想从媒体库和 DAC 之间那个东西身上要的诚实，rox 算一个。
+    .aside = 肯明说此刻位完美和 ReplayGain 哪个成立，也肯去测那些标签工具从没顾上的文件，这样的播放器没几个。要是这就是你想从媒体库和 DAC 之间那个东西身上要的诚实，rox 算一个。
 
 rg-limit-opus = Opus 文件带着自己的 `R128_TRACK_GAIN` 方案，参考值也不同。rox 不做换算，因为 `.opus` 不在扫描器的扩展名列表里。
 rg-limit-itunes = iTunes 的 `iTunNORM` 不在范围内。没有别的东西写它，而且它那些逐声道的数值也不是分贝增益。

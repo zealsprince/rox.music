@@ -35,5 +35,11 @@ export const SITE = {
  *
  * This is why the year belongs in headings and never in a URL: a title can be
  * rebuilt, a path can't be re-dated without breaking every link pointing at it.
+ *
+ * A string, not a number, and that matters. Fluent number-formats any numeric
+ * argument for its locale, so a plain 2026 renders as "2,026" in English and
+ * Japanese, "2.026" in German, and "2 026" in French, Russian and Ukrainian.
+ * A year is a label, not a quantity. Keep the String() here rather than
+ * wrapping every call site in NUMBER($year, useGrouping: "false").
  */
-export const YEAR = new Date().getFullYear()
+export const YEAR = String(new Date().getFullYear())

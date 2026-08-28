@@ -328,7 +328,7 @@ linux = rox - a native music player for Linux
     .description = A native Linux music player for large local libraries. On the AUR and as a Nix flake, Wayland and X11, ALSA exclusive output, MPRIS media keys, and under a second to a window at 50,000 tracks.
     .h1 = A music player for Linux that was built for Linux
     .lede = Not a port, not an Electron wrapper, and not Foobar2000 under Wine. One native binary that treats Linux as a first-class target rather than the third one.
-    .aside = Exclusive output that reports back what the card actually agreed to rather than what you asked it for, and a look you can build here and hand to someone running Windows. If that's the sort of thing Linux has had you going without, this is where it lives.
+    .aside = Exclusive output that reports back what the sound card actually agreed to rather than what you asked it for, and a look you can build here and hand to someone running Windows. If that's the sort of thing Linux has had you going without, this is where it lives.
     .siblings = Same player on [Windows](/windows) and [macOS](/macos).
 
 linux-why = The problem it was written for
@@ -345,7 +345,7 @@ linux-display = Wayland and X11
 linux-display-1 = Both, natively, through gpui. Window decorations are a per-workspace setting rather than a compile-time decision, so you can run server-side decorations on one layout and a borderless one on the next without restarting into a different build.
 
 linux-alsa = Exclusive output through ALSA
-linux-alsa-1 = Exclusive mode opens the card directly as `hw:CARD=x,DEV=n`. That is the one ALSA name with no dmix, no plug and no sound server anywhere in the path, which is what makes it the only route that will refuse a rate it can't do rather than quietly resampling to something else.
+linux-alsa-1 = Exclusive mode opens the sound card directly as `hw:CARD=x,DEV=n`. That is the one ALSA name with no dmix, no plug and no sound server anywhere in the path, which is what makes it the only route that will refuse a rate it can't do rather than quietly resampling to something else.
 linux-alsa-2 = The trade is the honest one: while rox holds the card in exclusive mode, it holds it. Nothing else on the system plays through that device until you stop. rox tells you what the hardware actually agreed to rather than what you asked for, so a mismatch shows up as a number instead of as a suspicion.
 linux-alsa-3 = Shared mode is the default and behaves like every other application on your desktop.
 
@@ -631,7 +631,7 @@ fb-row-source = Source available
     .rox = AGPL-3.0, all of it.
 
 fb-row-components = Component ecosystem
-    .fb = Two decades deep. Anything you can think of.
+    .fb = Built on everyone who came before. Anything you can think of.
     .rox = No plugin API.
 
 fb-row-maturity = Maturity
