@@ -207,6 +207,26 @@ download-cta-detected = Скачать для %s
 download-packaged = На Arch или NixOS? [Ставьте из AUR или Nix flake](/download#packages).
 download-meta = v{ $version } · Linux, macOS, Windows · [все загрузки](/download)
 
+## Числа загрузок, где бы они ни появлялись
+
+stats-all-time = Всего загрузок: { $count }
+stats-title = Загрузки по релизам
+stats-title-week = Загрузки по неделям
+stats-view-week = Неделя
+stats-view-release = Релиз
+stats-tip = v{ $version }, { $date }, { $count ->
+        [one] { $count } загрузка
+        [few] { $count } загрузки
+       *[many] { $count } загрузок
+    }
+stats-tip-week = неделя с { $date }, { $count ->
+        [one] { $count } загрузка
+        [few] { $count } загрузки
+       *[many] { $count } загрузок
+    }
+stats-note = Считаются файлы релизов на GitHub, самое старое слева. Копии, собранные из AUR или из флейка Nix, в сумму не входят.
+stats-note-week = Неделя считается с понедельника по воскресенье. Текущая не показана.
+
 ## Загрузка
 
 download-title = Скачать rox для Linux, macOS или Windows

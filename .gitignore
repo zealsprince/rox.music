@@ -30,3 +30,7 @@ vite.config.ts.timestamp-*
 
 # Build-time repo stats, refetched on every build
 /src/data/repo.generated.json
+
+# Build-time download counts, refetched on every build. The history file beside
+# it is tracked on purpose: it is the only copy of the time series.
+/src/data/downloads.generated.json

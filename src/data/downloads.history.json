@@ -1,0 +1,15 @@
+{
+  "samples": [
+    {
+      "date": "2026-08-30",
+      "total": 421,
+      "channels": {
+        "linux-archive": 81,
+        "linux-alt": 5,
+        "macos-archive": 47,
+        "windows-archive": 257,
+        "windows-alt": 31
+      }
+    }
+  ]
+}

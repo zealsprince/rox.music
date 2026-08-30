@@ -188,6 +188,18 @@ download-cta-detected = %s 版をダウンロード
 download-packaged = Arch や NixOS をお使いなら、[AUR か Nix flake から入れてください](/download#packages)。
 download-meta = v{ $version } · Linux, macOS, Windows · [すべてのダウンロード](/download)
 
+## ダウンロード数が出てくるところすべて
+
+stats-all-time = 累計ダウンロード数：{ $count } 件
+stats-title = リリースごとのダウンロード数
+stats-title-week = 週ごとのダウンロード数
+stats-view-week = 週
+stats-view-release = リリース
+stats-tip = v{ $version }、{ $date }、ダウンロード { $count } 件
+stats-tip-week = { $date } の週、ダウンロード { $count } 件
+stats-note = GitHub のリリースファイルを数えています。いちばん左が最も古いものです。AUR や Nix flake からビルドしたものは合計に入りません。
+stats-note-week = 週は月曜から日曜までです。進行中の週は出していません。
+
 ## ダウンロード
 
 download-title = Linux、macOS、Windows 向けの rox をダウンロード

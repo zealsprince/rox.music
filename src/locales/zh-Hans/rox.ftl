@@ -198,6 +198,18 @@ download-cta-detected = 下载 %s 版
 download-packaged = 用 Arch 或 NixOS？那就[从 AUR 或 Nix flake 装](/download#packages)吧。
 download-meta = v{ $version } · Linux、macOS、Windows · [全部下载](/download)
 
+## 下载数据，凡是出现的地方
+
+stats-all-time = 累计下载：{ $count } 次
+stats-title = 各版本的下载次数
+stats-title-week = 每周的下载次数
+stats-view-week = 按周
+stats-view-release = 按版本
+stats-tip = v{ $version }、{ $date }、{ $count } 次下载
+stats-tip-week = { $date } 那一周、{ $count } 次下载
+stats-note = 统计的是 GitHub 上各版本的发布文件，最左边是最早的。通过 AUR 或 Nix flake 装的副本不计入总数。
+stats-note-week = 一周从周一算到周日。还没过完的这一周不显示。
+
 ## 下载
 
 download-title = 下载 rox，Linux、macOS 或 Windows 版

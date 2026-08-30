@@ -206,6 +206,18 @@ download-cta-detected = Télécharger pour %s
 download-packaged = Sous Arch ou NixOS ? [Installe-le plutôt depuis l'AUR ou le flake Nix](/download#packages).
 download-meta = v{ $version } · Linux, macOS, Windows · [tous les téléchargements](/download)
 
+## Chiffres de téléchargement, partout où ils apparaissent
+
+stats-all-time = Téléchargements au total : { $count }
+stats-title = Téléchargements par version
+stats-title-week = Téléchargements par semaine
+stats-view-week = Semaine
+stats-view-release = Version
+stats-tip = v{ $version }, { $date }, { $count } téléchargements
+stats-tip-week = semaine du { $date }, { $count } téléchargements
+stats-note = Comptés sur les fichiers des versions publiées sur GitHub, le plus ancien à gauche. Les copies installées depuis l'AUR ou le flake Nix ne sont pas dans le total.
+stats-note-week = Les semaines vont du lundi au dimanche. Celle en cours n'apparaît pas.
+
 ## Téléchargement
 
 download-title = Télécharger rox pour Linux, macOS ou Windows

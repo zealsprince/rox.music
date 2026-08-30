@@ -93,6 +93,54 @@ Regenerate the fallback snapshot when rox's asset naming changes:
 curl -s https://api.github.com/repos/zealsprince/rox/releases/latest > /tmp/rel.json
 ```
 
+## Download counts
+
+The download page carries an all-time tally in the top right and a `Stats` disclosure
+under the platform cards. The landing page ends on the same breakdown. Each platform is a
+full-width strip, one segment per release with the oldest on the left, shaded against that
+platform's own best release; a segment's `title` carries the version, the date and the
+number. Built at prerender, so it works with JavaScript off, and `<details>` does the
+folding without any.
+
+`src/lib/server/downloads.ts` reads the counts off the GitHub releases API, with the same
+cache-then-fallback layering as the release loader. Nothing has to be stored for this: a
+release is already a point in time and its `download_count` is its own.
+
+A `Week` / `Release` button group switches between two views of the same counts. It's the
+radio-and-`:has()` switcher the workspaces page uses, so the state lives in the markup and
+no script runs. Two thresholds, not one: the control appears at four complete weeks, and
+week becomes the view the page opens on at twenty-six. Between them the weekly strip is
+there to be picked but doesn't lead, because a handful of recent weeks says less about the
+project than every release it has shipped.
+
+The weekly view is the one that needs storage, because `download_count` is a running total
+GitHub keeps no history for and a month not recorded can't be recovered later.
+`.github/workflows/snapshot.yml` writes one row a day into the tracked
+`src/data/downloads.history.json` and commits it. A week is worth the difference between
+its last snapshot and the previous week's, so the view appears once four complete weeks
+exist. Weeks run Monday to Sunday, the one in progress is left out because a partial week
+always draws short, and a gap in the snapshots lands on the week that ends it rather than
+going missing.
+
+The snapshot workflow runs an hour before the deploy cron rather than triggering a deploy,
+because commits made with the default `GITHUB_TOKEN` don't fire other workflows.
+
+```bash
+npm run snapshot                      # appends today's row, idempotent
+ROX_MOCK_HISTORY=1 npm run dev        # invents 30 weeks, so the weekly view leads
+ROX_MOCK_HISTORY=10 npm run dev       # 10 weeks, offered but not leading
+```
+
+The weekly strip is the one thing here that can't be checked by building it, since it
+needs months of samples that only exist after months. `src/lib/server/mock-history.ts`
+generates a deterministic set so the layout can be looked at now. It's gated on `dev` as
+well as on the variable, so a build with `ROX_MOCK_HISTORY` set in the environment still
+reads the real file and there is no path from it to a published page.
+
+Counts cover the GitHub release assets and nothing else. The AUR reports votes and a
+popularity score rather than installs, and the flake reports nothing, so adding either to
+the total would mean inventing a number.
+
 ## Screenshots
 
 Source images live in the rox repo. `npm run images` re-encodes them into the AVIF and

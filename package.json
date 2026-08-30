@@ -14,6 +14,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "lint": "eslint .",
     "locales": "tsx scripts/check-locales.ts",
+    "snapshot": "tsx scripts/snapshot-downloads.ts",
     "typecheck": "tsc --noEmit -p tsconfig.scripts.json && npm run check",
     "assets": "tsx scripts/build-assets.ts",
     "postbuild": "tsx scripts/postbuild-aliases.ts"

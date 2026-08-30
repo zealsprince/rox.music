@@ -190,6 +190,21 @@ download-cta-detected = Download for %s
 download-packaged = On Arch or NixOS? [Install it from the AUR or the Nix flake](/download#packages) instead.
 download-meta = v{ $version } · Linux, macOS, Windows · [all downloads](/download)
 
+## Download counts
+
+# Counts come off the GitHub releases API, so they cover the release assets and
+# nothing packaged elsewhere, which is what the note says out loud.
+stats-all-time = All time downloads: { $count }
+stats-title = Downloads by release
+stats-title-week = Downloads by week
+stats-view-week = Week
+stats-view-release = Release
+# The native tooltips on one segment of a platform's strip.
+stats-tip = v{ $version }, { $date }, { $count } downloads
+stats-tip-week = week of { $date }, { $count } downloads
+stats-note = Counted from the release files on GitHub, oldest on the left. Copies built from the AUR or the Nix flake aren't in the total.
+stats-note-week = Weeks run Monday to Sunday. The one in progress isn't shown.
+
 ## Download
 
 download-title = Download rox for Linux, macOS or Windows

@@ -1,4 +1,7 @@
-import type { Platform } from '$types/release'
+// Relative rather than `$types/release`: src/data/channels.ts derives the
+// download channels from this list and has to import under tsx as well as under
+// Vite, and the alias only exists in one of the two.
+import type { Platform } from '../types/release'
 
 // The install steps mirror rox's README so the two never drift into telling
 // people different things. The artifact slugs have to match the `artifact`

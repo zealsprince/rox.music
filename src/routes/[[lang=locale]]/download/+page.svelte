@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Platform } from '$types/release'
   import type { PageData } from './$types'
+  import DownloadStats from '$components/DownloadStats.svelte'
   import Meta from '$components/Meta.svelte'
   import PlatformIcon from '$components/PlatformIcon.svelte'
   import Rich from '$components/Rich.svelte'
@@ -124,6 +125,68 @@
     </article>
   {/each}
 </div>
+
+<section class="shell block stats">
+  <!--
+    Same radio switcher the workspaces page runs on: the inputs hold the state,
+    the labels are the buttons, and :has() drives which panel shows. No
+    JavaScript, which this site has to mean literally, and the radio group brings
+    keyboard arrow navigation and screen reader semantics with it.
+
+    Only rendered once there is a week to switch to. Before that the release
+    panel is the whole section and a button group of one would be furniture.
+  -->
+  {#if data.downloads.byWeek}
+    <!-- Week leads only past half a year of snapshots. Before that it is there
+         to be picked but a handful of recent weeks says less about the project
+         than every release it has shipped. -->
+    <div class="tabs">
+      <input
+        type="radio"
+        name="stats-view"
+        id="stats-week"
+        checked={data.downloads.weekLeads}
+      />
+      <label for="stats-week">{t('stats-view-week')}</label>
+      <input
+        type="radio"
+        name="stats-view"
+        id="stats-release"
+        checked={!data.downloads.weekLeads}
+      />
+      <label for="stats-release">{t('stats-view-release')}</label>
+    </div>
+  {/if}
+
+  <div class="panels" class:single={!data.downloads.byWeek}>
+    {#if data.downloads.byWeek}
+      <div class="panel" data-panel="week">
+        <div class="head">
+          <h2>{t('stats-title-week')}</h2>
+          <p class="tally">
+            {t('stats-all-time', { count: data.downloads.byRelease.total })}
+          </p>
+        </div>
+        <DownloadStats strip={data.downloads.byWeek} />
+        <!-- Both caveats on one line. The week sentence lives here rather than
+             under the section, so it is absent when you are looking at
+             releases and there are no weeks to explain. -->
+        <p class="note">{t('stats-note-week')} {t('stats-note')}</p>
+      </div>
+    {/if}
+
+    <div class="panel" data-panel="release">
+      <div class="head">
+        <h2>{t('stats-title')}</h2>
+        <p class="tally">
+          {t('stats-all-time', { count: data.downloads.byRelease.total })}
+        </p>
+      </div>
+      <DownloadStats strip={data.downloads.byRelease} />
+      <p class="note">{t('stats-note')}</p>
+    </div>
+  </div>
+</section>
 
 <section id="packages" class="shell block">
   <h2>{t('download-packages')}</h2>
@@ -331,6 +394,108 @@ rox --portable</code></pre>
          row and misalign the rules. The track already puts them level. */
       margin-top: 0;
     }
+  }
+
+  /* Baseline rather than centre: the heading and the total are different sizes,
+     and aligning their boxes would leave the number floating against the cap
+     height of the h2 beside it. */
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-sm) var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  .stats .head h2 {
+    margin-bottom: 0;
+  }
+
+  .tally {
+    font-size: var(--step--1);
+    font-variant-numeric: tabular-nums;
+    color: var(--text-bright);
+  }
+
+  /* A segmented control rather than the workspaces page's attached tabs: nothing
+     hangs off the bottom of this strip, so the buttons collapse their shared
+     border instead of merging into a panel edge. */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: var(--space-md);
+  }
+
+  /* The radios are the state, not the interface. Kept in the layout rather than
+     display: none so they stay focusable and reachable by keyboard. */
+  .tabs input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .tabs label {
+    padding: 0.45rem var(--space-md);
+    border: var(--hairline) solid var(--border);
+    color: var(--text-secondary);
+    font-size: var(--step--1);
+    cursor: pointer;
+  }
+
+  /* Labels are the only element of their type in here, so the pair share one
+     hairline instead of drawing two next to each other. */
+  .tabs label:not(:first-of-type) {
+    margin-left: calc(var(--hairline) * -1);
+  }
+
+  .tabs label:hover {
+    color: var(--text-bright);
+  }
+
+  .tabs input:checked + label {
+    /* Relative so the checked button's border paints over its neighbour's. */
+    position: relative;
+    background: var(--bg-panel);
+    border-color: var(--accent);
+    color: var(--text-bright);
+  }
+
+  /* Focus has to show on the label, since the input it belongs to is invisible. */
+  .tabs input:focus-visible + label {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+  }
+
+  .panels {
+    display: grid;
+  }
+
+  /* Both panels stack into one grid cell, so switching never changes the page
+     height and the packages section below it doesn't jump. */
+  .panel {
+    grid-area: 1 / 1;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* `.single` is the no-history case, where there are no tabs to check and the
+     release panel is the section on its own. */
+  .panels.single .panel,
+  .tabs:has(#stats-week:checked) ~ .panels .panel[data-panel='week'],
+  .tabs:has(#stats-release:checked) ~ .panels .panel[data-panel='release'] {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .note {
+    margin-top: var(--space-md);
+    font-size: var(--step--1);
+    color: var(--text-faint);
   }
 
   .block {
