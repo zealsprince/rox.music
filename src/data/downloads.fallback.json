@@ -375,10 +375,21 @@
     "publishedAt": "2026-08-29T19:49:46Z",
     "counts": {
       "linux-archive": 1,
-      "linux-alt": 3,
+      "linux-alt": 4,
       "macos-archive": 2,
-      "windows-archive": 3,
+      "windows-archive": 5,
       "windows-alt": 12
+    }
+  },
+  {
+    "tag": "v1.23.6",
+    "publishedAt": "2026-08-31T02:40:37Z",
+    "counts": {
+      "linux-archive": 0,
+      "linux-alt": 0,
+      "macos-archive": 1,
+      "windows-archive": 0,
+      "windows-alt": 0
     }
   }
 ]

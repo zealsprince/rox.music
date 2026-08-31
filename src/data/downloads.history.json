@@ -10,6 +10,17 @@
         "windows-archive": 257,
         "windows-alt": 31
       }
+    },
+    {
+      "date": "2026-08-31",
+      "total": 425,
+      "channels": {
+        "linux-archive": 81,
+        "linux-alt": 6,
+        "macos-archive": 48,
+        "windows-archive": 259,
+        "windows-alt": 31
+      }
     }
   ]
 }
