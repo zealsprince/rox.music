@@ -27,6 +27,86 @@ function applyThemeToImages(theme: Theme): void {
     source.media = theme === 'light' ? 'all' : 'not all'
 }
 
+/**
+ * A themed image only ever downloads the half matching the current theme, so
+ * the toggle points every one of them at a file the browser has never seen and
+ * they blink in one after another. Once the page is loaded and idle, pull the
+ * other half into cache so the swap is instant.
+ *
+ * Each warm is a clone of the real <picture> with its media queries inverted,
+ * so the browser negotiates format and width exactly the way it would for the
+ * live one instead of us reconstructing a URL and guessing at avif support.
+ * They run one at a time: this is background work and has no business
+ * competing with anything the visitor asked for.
+ *
+ * Clones rather than an IntersectionObserver on the real ones because the
+ * workspaces page is a CSS radio-tab switcher. Its unselected panels have no
+ * layout box, so they would never intersect and never warm.
+ */
+function warmOffThemeImages(): void {
+  const queue = [...document.querySelectorAll<HTMLElement>('picture')]
+    .filter(picture => picture.querySelector('source[data-light]'))
+  if (!queue.length)
+    return
+
+  // Rendered, so the clones actually fetch, but a pixel across and invisible.
+  const attic = document.createElement('div')
+  attic.setAttribute('aria-hidden', 'true')
+  attic.style.cssText
+    = 'position:fixed;left:0;top:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none'
+  document.body.append(attic)
+
+  // Read once up front. A toggle part way through would otherwise turn the rest
+  // of the queue around to fetch the half that is now on screen and already in
+  // cache, leaving the half we were warming for still missing.
+  const wantLight = currentTheme() === 'dark'
+
+  const next = (): void => {
+    const picture = queue.shift()
+    if (!picture) {
+      attic.remove()
+      return
+    }
+
+    const clone = picture.cloneNode(true) as HTMLElement
+    for (const source of clone.querySelectorAll<HTMLSourceElement>('source[data-light]'))
+      source.media = wantLight ? 'all' : 'not all'
+
+    const img = clone.querySelector('img')
+    if (!img) {
+      next()
+      return
+    }
+
+    // The clone exists to fill a cache, not to be content: no lazy gate holding
+    // it back, no priority taken from anything real, and no second copy of the
+    // alt text for a screen reader to walk into.
+    img.loading = 'eager'
+    img.removeAttribute('fetchpriority')
+    img.alt = ''
+    img.addEventListener('load', next, { once: true })
+    img.addEventListener('error', next, { once: true })
+    attic.append(clone)
+  }
+
+  next()
+}
+
+/** Runs work after the page has settled, so warming never delays first paint. */
+function whenIdle(run: () => void): void {
+  const start = (): void => {
+    if ('requestIdleCallback' in window)
+      requestIdleCallback(() => run(), { timeout: 3000 })
+    else
+      setTimeout(run, 500)
+  }
+
+  if (document.readyState === 'complete')
+    start()
+  else
+    window.addEventListener('load', start, { once: true })
+}
+
 function applyTheme(theme: Theme): void {
   const root = document.documentElement
   root.classList.toggle('dark', theme === 'dark')
@@ -110,6 +190,7 @@ function main(): void {
 
   wireThemeToggle()
   markPlatform()
+  whenIdle(warmOffThemeImages)
 }
 
 main()

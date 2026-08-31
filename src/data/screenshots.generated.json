@@ -1,10 +1,10 @@
 {
   "hero": {
-    "width": 1000,
-    "height": 936,
+    "width": 976,
+    "height": 912,
     "widths": [
       640,
-      1000
+      976
     ],
     "path": "/screenshots/hero-dark",
     "lightPath": "/screenshots/hero-light"

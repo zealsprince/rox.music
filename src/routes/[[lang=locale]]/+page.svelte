@@ -1,13 +1,15 @@
 <script lang="ts">
+  import type { ScreenshotManifest } from '$data/images'
   import type { PageData } from './$types'
+  import { base } from '$app/paths'
   import BenchmarkTable from '$components/BenchmarkTable.svelte'
   import DownloadButton from '$components/DownloadButton.svelte'
   import FeatureIcon from '$components/FeatureIcon.svelte'
   import Meta from '$components/Meta.svelte'
   import Rich from '$components/Rich.svelte'
-  import Screenshot from '$components/Screenshot.svelte'
   import StructuredData from '$components/StructuredData.svelte'
   import { FEATURE_GROUPS } from '$data/features'
+  import manifest from '$data/screenshots.generated.json'
   import { SITE } from '$data/site'
   import { WORKSPACE_COUNT } from '$data/workspaces'
   import { i18n } from '$lib/i18n/context'
@@ -15,6 +17,19 @@
   const { data }: { data: PageData } = $props()
 
   const { t, href } = i18n()
+
+  const heroEntry = (manifest as ScreenshotManifest).hero
+
+  /**
+   * One recording serves both themes, so there is no pair to swap on the
+   * toggle and nothing here can pop in. The poster is the dark still, which is
+   * what the loop itself shows.
+   *
+   * The size is the capture window rather than the stills' 1000x936, and it is
+   * here to reserve the box before the video arrives.
+   */
+  const HERO_VIDEO = { width: 976, height: 912 }
+  const heroPoster = `${base}${heroEntry.path}-${heroEntry.widths[heroEntry.widths.length - 1]}.webp`
 </script>
 
 <Meta
@@ -36,16 +51,23 @@
   </div>
 
   <!--
-    `sizes` tracks the layout: the hero is the 7fr column of a 5fr/7fr grid with
-    a 3.5rem gap, inside .shell's 1116px content width, so (1116 - 56) * 7/12 =
-    618px at full width. The grid collapses to one column below 64rem.
+    preload="auto" alongside autoplay so the loop is fetched with the page
+    rather than after it, which is what keeps the poster from sitting there.
   -->
-  <Screenshot
-    id="hero"
-    alt={t('home-hero.alt')}
-    sizes="(min-width: 1180px) 618px, (min-width: 64rem) calc((100vw - 7.5rem) * 7 / 12), (min-width: 48rem) calc(100vw - 4rem), calc(100vw - 2.5rem)"
-    priority
-  />
+  <video
+    class="hero-video"
+    poster={heroPoster}
+    width={HERO_VIDEO.width}
+    height={HERO_VIDEO.height}
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="auto"
+    aria-label={t('home-hero.alt')}
+  >
+    <source src="{base}/video/hero.webm" type="video/webm" />
+  </video>
 </section>
 
 <section class="block band">
@@ -116,6 +138,14 @@
       grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
       padding-block: var(--space-2xl) var(--space-xl);
     }
+  }
+
+  .hero-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: var(--hairline) solid var(--border);
+    background: var(--bg-panel);
   }
 
   h1 {
