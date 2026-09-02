@@ -386,10 +386,10 @@
     "publishedAt": "2026-08-31T02:40:37Z",
     "counts": {
       "linux-archive": 1,
-      "linux-alt": 3,
-      "macos-archive": 2,
-      "windows-archive": 11,
-      "windows-alt": 4
+      "linux-alt": 4,
+      "macos-archive": 3,
+      "windows-archive": 17,
+      "windows-alt": 11
     }
   }
 ]
