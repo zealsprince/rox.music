@@ -385,11 +385,11 @@
     "tag": "v1.23.6",
     "publishedAt": "2026-08-31T02:40:37Z",
     "counts": {
-      "linux-archive": 1,
+      "linux-archive": 3,
       "linux-alt": 4,
-      "macos-archive": 3,
-      "windows-archive": 17,
-      "windows-alt": 11
+      "macos-archive": 7,
+      "windows-archive": 18,
+      "windows-alt": 16
     }
   }
 ]
