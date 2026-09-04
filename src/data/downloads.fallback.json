@@ -289,7 +289,7 @@
     "publishedAt": "2026-08-28T06:50:34Z",
     "counts": {
       "linux-archive": 0,
-      "macos-archive": 1,
+      "macos-archive": 2,
       "windows-archive": 5
     }
   },
@@ -385,11 +385,22 @@
     "tag": "v1.23.6",
     "publishedAt": "2026-08-31T02:40:37Z",
     "counts": {
-      "linux-archive": 3,
+      "linux-archive": 5,
       "linux-alt": 4,
-      "macos-archive": 7,
-      "windows-archive": 18,
-      "windows-alt": 16
+      "macos-archive": 11,
+      "windows-archive": 21,
+      "windows-alt": 20
+    }
+  },
+  {
+    "tag": "v1.24.0",
+    "publishedAt": "2026-09-03T22:27:28Z",
+    "counts": {
+      "linux-archive": 2,
+      "linux-alt": 1,
+      "macos-archive": 2,
+      "windows-archive": 1,
+      "windows-alt": 2
     }
   }
 ]
