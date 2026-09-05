@@ -396,11 +396,11 @@
     "tag": "v1.24.0",
     "publishedAt": "2026-09-03T22:27:28Z",
     "counts": {
-      "linux-archive": 2,
-      "linux-alt": 1,
-      "macos-archive": 2,
-      "windows-archive": 1,
-      "windows-alt": 2
+      "linux-archive": 3,
+      "linux-alt": 2,
+      "macos-archive": 4,
+      "windows-archive": 11,
+      "windows-alt": 9
     }
   }
 ]
