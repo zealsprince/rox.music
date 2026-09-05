@@ -216,6 +216,8 @@ download-h1 = Hol dir rox
 download-released = veröffentlicht am { $date }
 download-notes = Versionshinweise
 download-missing = In dieser Version gibt es keinen Build für { $platform }. [Sieh auf der Releases-Seite nach](@releases).
+download-candidate = Release Candidate
+    .body = Eine Vorschau auf die nächste Version, die vorab erscheint, damit die letzten Fehler vor dem Release gefunden werden. Die Builds oben sind die stabilen; nimm diesen, wenn du beim Testen helfen möchtest, und rox aktualisiert dich auf das Release, sobald es da ist.
 
 install-linux-1 = Den Tarball irgendwohin entpacken.
 install-linux-2 = `./rox` starten.

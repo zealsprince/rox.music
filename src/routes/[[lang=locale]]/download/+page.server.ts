@@ -1,10 +1,12 @@
 import type { PageServerLoad } from './$types'
 import { loadDownloads } from '$lib/server/downloads'
-import { loadRelease } from '$lib/server/release'
+import { loadReleases } from '$lib/server/release'
 
 export const load: PageServerLoad = async () => {
+  const { stable, candidate } = await loadReleases()
   return {
-    release: await loadRelease(),
+    release: stable,
+    candidate,
     downloads: await loadDownloads(),
   }
 }

@@ -217,6 +217,8 @@ download-h1 = Download rox
 download-released = released { $date }
 download-notes = release notes
 download-missing = No { $platform } build in this release. [Check the releases page](@releases).
+download-candidate = Release candidate
+    .body = A preview of the next release, published ahead of it so the last bugs get found before it ships. The builds above are the stable ones; take this one if you'd like to help test, and rox updates you to the release when it lands.
 
 install-linux-1 = Unpack the tarball anywhere.
 install-linux-2 = Run `./rox`.

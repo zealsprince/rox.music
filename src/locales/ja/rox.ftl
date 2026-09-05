@@ -212,6 +212,8 @@ download-h1 = rox をダウンロード
 download-released = { $date } 公開
 download-notes = リリースノート
 download-missing = このリリースに { $platform } 向けのビルドはありません。[リリースページを確認してください](@releases)。
+download-candidate = リリース候補
+    .body = 次のリリースのプレビュー版。公開前に残りのバグを見つけるため、先に出しているもの。上のビルドが安定版で、テストを手伝ってくれるならこちらをどうぞ。正式リリースが出れば rox がそちらへ更新する。
 
 install-linux-1 = tarball を好きな場所に展開する。
 install-linux-2 = `./rox` を実行する。

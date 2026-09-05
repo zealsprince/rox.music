@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Platform } from '$types/release'
+  import type { Platform, Release } from '$types/release'
   import type { PageData } from './$types'
   import DownloadStats from '$components/DownloadStats.svelte'
   import Meta from '$components/Meta.svelte'
@@ -20,18 +20,20 @@
   const TITLE = t('download-title')
   const DESCRIPTION = t('download-title.description')
 
-  const assetFor = (id: string) => data.release.assets.find(a => a.platform === id)
-  const altFor = (id: string) => data.release.alts.find(a => a.platform === id)
+  const assetFor = (release: Release, id: string) => release.assets.find(a => a.platform === id)
+  const altFor = (release: Release, id: string) => release.alts.find(a => a.platform === id)
 
   // The card's buttons in display order: the lead artifact takes the accent,
   // the rest render as outlined alternatives. Windows leads with the installer
-  // while the zip stays the canonical asset the hero button hands out.
-  const buttonsFor = (platform: Platform) => {
-    const asset = assetFor(platform.id)
+  // while the zip stays the canonical asset the hero button hands out. The
+  // candidate section runs the same resolver over its own release, so the
+  // two can't disagree about which artifact a platform gets.
+  const buttonsFor = (platform: Platform, release: Release = data.release) => {
+    const asset = assetFor(release, platform.id)
     if (!asset)
       return []
     const main = { ...asset, label: platform.cta ?? 'nav-download' }
-    const alt = platform.alt ? altFor(platform.id) : undefined
+    const alt = platform.alt ? altFor(release, platform.id) : undefined
     if (!platform.alt || !alt)
       return [main]
     const second = { ...alt, label: platform.alt.key }
@@ -45,12 +47,13 @@
   // The long form, in the reader's language and in the reader's order: "8
   // February 2026" and "8. Februar 2026" are the same date and neither is a
   // format the other one parses.
-  const published = $derived(
+  const longDate = (iso: string): string =>
     new Intl.DateTimeFormat(info.htmlLang, {
       dateStyle: 'long',
       timeZone: 'UTC',
-    }).format(new Date(data.release.publishedAt)),
-  )
+    }).format(new Date(iso))
+
+  const published = $derived(longDate(data.release.publishedAt))
 </script>
 
 <Meta
@@ -125,6 +128,51 @@
     </article>
   {/each}
 </div>
+
+<!--
+  A release candidate, when one is ahead of the stable build: the same
+  artifacts in a quieter row, outlined buttons only, under a heading that says
+  what it is. The section is absent the rest of the time, which is most of
+  it: the loader only hands one over while it outranks the stable release,
+  so the day the release ships this goes away on its own.
+-->
+{#if data.candidate}
+  <section class="shell block candidate">
+    <div class="head">
+      <h2>
+        {t('download-candidate')}
+        <strong>v{data.candidate.version}</strong>
+      </h2>
+      <p class="version">
+        <span>{t('download-released', { date: longDate(data.candidate.publishedAt) })}</span>
+        <a href={data.candidate.url} rel="noreferrer">{t('download-notes')}</a>
+      </p>
+    </div>
+    <p class="prose">{t('download-candidate.body')}</p>
+    <ul class="builds">
+      {#each PLATFORMS as platform (platform.id)}
+        {@const buttons = buttonsFor(platform, data.candidate)}
+        {#if buttons.length > 0}
+          <li>
+            <span class="platform">
+              <PlatformIcon platform={platform.id} size={18} />
+              {platform.label}
+            </span>
+            <span class="gets">
+              {#each buttons as button (button.url)}
+                <a class="get secondary plain" href={button.url} title={button.name}>
+                  <Download size={16} strokeWidth={2} aria-hidden="true" />
+                  {t(button.label)}
+                  <span class="size">{mb(button.size)}</span>
+                </a>
+              {/each}
+            </span>
+          </li>
+        {/if}
+      {/each}
+    </ul>
+  </section>
+{/if}
 
 <section class="shell block stats">
   <!--
@@ -496,6 +544,69 @@ rox --portable</code></pre>
     margin-top: var(--space-md);
     font-size: var(--step--1);
     color: var(--text-faint);
+  }
+
+  .candidate .head h2 {
+    margin-bottom: 0;
+  }
+
+  /* The heading's version reads like the intro's: bright and tabular, so a
+     visitor scanning for numbers finds both the same way. */
+  .candidate h2 strong {
+    color: var(--text-bright);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .candidate .version {
+    margin-top: 0;
+  }
+
+  .candidate .prose {
+    color: var(--text-secondary);
+  }
+
+  .builds {
+    list-style: none;
+    margin: var(--space-md) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  /* One row per platform: name on the left, its buttons on the right. Narrow
+     screens stack the two, the buttons keeping their own row. */
+  .builds li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm) var(--space-md);
+    padding: var(--space-sm) 0;
+    border-top: var(--hairline) solid var(--border);
+  }
+
+  .platform {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 7rem;
+    color: var(--text-bright);
+    font-weight: 600;
+  }
+
+  .builds .gets {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: auto;
+  }
+
+  .builds .get {
+    font-size: var(--step--1);
+    padding: 0.45em 0.9em;
+  }
+
+  .builds .size {
+    margin-left: 0.25rem;
   }
 
   .block {

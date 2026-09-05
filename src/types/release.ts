@@ -39,6 +39,12 @@ export interface Release {
   tag: string
   url: string
   publishedAt: string
+  /**
+   * A release candidate: tagged with a prerelease suffix (`v1.25.0-rc.1`)
+   * and flagged as one on GitHub. Never the release the download buttons
+   * hand out by default.
+   */
+  prerelease: boolean
   /** One per platform: the archive the platform card and CTA button link. */
   assets: ReleaseAsset[]
   /** The alt artifacts, at most one per platform with an `alt` matcher. */
