@@ -230,8 +230,9 @@ download-h1 = Télécharger rox
 download-released = publié le { $date }
 download-notes = notes de version
 download-missing = Aucun build { $platform } dans cette version. [Voir la page des versions](@releases).
-download-candidate = Version candidate
-    .body = Un aperçu de la prochaine version, publié en avance pour que les derniers bugs soient trouvés avant sa sortie. Les builds ci-dessus sont les stables ; prenez celle-ci si vous voulez aider à tester, et rox vous mettra à jour vers la version finale quand elle sortira.
+download-channel-stable = Dernière version
+download-channel-candidate = Préversion
+    .body = Un aperçu de la prochaine version, publié en avance pour que les derniers bugs soient trouvés avant sa sortie. Prenez-la si vous voulez aider à tester, et rox vous mettra à jour vers la version finale quand elle sortira.
 
 install-linux-1 = Décompresse l'archive n'importe où.
 install-linux-2 = Lance `./rox`.

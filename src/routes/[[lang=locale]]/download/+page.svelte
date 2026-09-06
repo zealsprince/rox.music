@@ -25,10 +25,10 @@
 
   // The card's buttons in display order: the lead artifact takes the accent,
   // the rest render as outlined alternatives. Windows leads with the installer
-  // while the zip stays the canonical asset the hero button hands out. The
-  // candidate section runs the same resolver over its own release, so the
-  // two can't disagree about which artifact a platform gets.
-  const buttonsFor = (platform: Platform, release: Release = data.release) => {
+  // while the zip stays the canonical asset the hero button hands out. Both
+  // channels run the same resolver over their own release, so the two can't
+  // disagree about which artifact a platform gets.
+  const buttonsFor = (platform: Platform, release: Release) => {
     const asset = assetFor(release, platform.id)
     if (!asset)
       return []
@@ -53,7 +53,15 @@
       timeZone: 'UTC',
     }).format(new Date(iso))
 
-  const published = $derived(longDate(data.release.publishedAt))
+  // The two channels the page can show. The candidate only exists while one
+  // outranks the stable build, so most of the time this is a list of one and
+  // the switcher stays off the page.
+  const channels = $derived([
+    { id: 'stable', release: data.release, label: 'download-channel-stable' },
+    ...(data.candidate
+      ? [{ id: 'candidate', release: data.candidate, label: 'download-channel-candidate' }]
+      : []),
+  ])
 </script>
 
 <Meta
@@ -74,105 +82,99 @@
 <section class="shell intro">
   <h1>{t('download-h1')}</h1>
   <p class="prose lede">{t('download-h1.lede')}</p>
-  <p class="version">
-    <strong>v{data.release.version}</strong>
-    <span>{t('download-released', { date: published })}</span>
-    <a href={data.release.url} rel="noreferrer">{t('download-notes')}</a>
-  </p>
+  <!--
+    The version line and the cards both follow the channel. Same radio
+    switcher as the stats below: the inputs are the state, :has() on this
+    section picks which version line and which card grid shows, and none of
+    it needs JavaScript. With no candidate there is one channel, one line and
+    no buttons to pick between.
+  -->
+  <div class="version">
+    {#if data.candidate}
+      <div class="tabs channel">
+        {#each channels as channel (channel.id)}
+          <input
+            type="radio"
+            name="channel"
+            id="channel-{channel.id}"
+            checked={channel.id === 'stable'}
+          />
+          <label for="channel-{channel.id}">{t(channel.label)}</label>
+        {/each}
+      </div>
+    {/if}
+    {#each channels as channel (channel.id)}
+      <p data-channel={channel.id}>
+        <strong>v{channel.release.version}</strong>
+        <span>{t('download-released', { date: longDate(channel.release.publishedAt) })}</span>
+        <a href={channel.release.url} rel="noreferrer">{t('download-notes')}</a>
+      </p>
+    {/each}
+  </div>
 </section>
 
-<div class="shell cards">
-  {#each PLATFORMS as platform (platform.id)}
-    {@const buttons = buttonsFor(platform)}
-    <article data-platform-card={platform.id}>
-      <h2>
-        <PlatformIcon platform={platform.id} size={22} />
-        {platform.label}
-      </h2>
+<!--
+  One grid per channel, stacked into the same cell so switching doesn't move
+  the stats below. The candidate's grid is absent the rest of the time, which
+  is most of it: the loader only hands one over while it outranks the stable
+  release, so the day the release ships this goes back to a single grid.
+-->
+<div class="shell panels" class:single={!data.candidate}>
+  {#each channels as channel (channel.id)}
+    <div class="panel" data-channel={channel.id}>
+      <div class="cards">
+        {#each PLATFORMS as platform (platform.id)}
+          {@const buttons = buttonsFor(platform, channel.release)}
+          <article data-platform-card={platform.id}>
+            <h2>
+              <PlatformIcon platform={platform.id} size={22} />
+              {platform.label}
+            </h2>
 
-      {#if buttons.length > 0}
-        <!--
-          The buttons share one wrapper: the subgrid below spans a fixed five
-          rows per card, and a sixth child on only some cards would knock the
-          rows out of line.
-        -->
-        <div class="gets">
-          {#each buttons as button, index (button.url)}
-            <a class="get plain" class:secondary={index > 0} href={button.url}>
-              <Download size={17} strokeWidth={2} aria-hidden="true" />
-              {t(button.label)}
-              <span class="size">{mb(button.size)}</span>
-            </a>
-          {/each}
-        </div>
-        <p class="filename">
-          {#each buttons as button (button.url)}
-            <code>{button.name}</code>
-          {/each}
-        </p>
-      {:else}
-        <p class="missing">
-          <Rich key="download-missing" args={{ platform: platform.label }} />
-        </p>
-      {/if}
+            {#if buttons.length > 0}
+              <!--
+                The buttons share one wrapper: the subgrid below spans a fixed five
+                rows per card, and a sixth child on only some cards would knock the
+                rows out of line.
+              -->
+              <div class="gets">
+                {#each buttons as button, index (button.url)}
+                  <a class="get plain" class:secondary={index > 0} href={button.url}>
+                    <Download size={17} strokeWidth={2} aria-hidden="true" />
+                    {t(button.label)}
+                    <span class="size">{mb(button.size)}</span>
+                  </a>
+                {/each}
+              </div>
+              <p class="filename">
+                {#each buttons as button (button.url)}
+                  <code>{button.name}</code>
+                {/each}
+              </p>
+            {:else}
+              <p class="missing">
+                <Rich key="download-missing" args={{ platform: platform.label }} />
+              </p>
+            {/if}
 
-      <ol>
-        {#each platform.steps as step (step)}
-          <li><Rich key={step} /></li>
+            <ol>
+              {#each platform.steps as step (step)}
+                <li><Rich key={step} /></li>
+              {/each}
+            </ol>
+
+            {#if platform.caveat}
+              <p class="caveat">{t(platform.caveat)}</p>
+            {/if}
+          </article>
         {/each}
-      </ol>
-
-      {#if platform.caveat}
-        <p class="caveat">{t(platform.caveat)}</p>
+      </div>
+      {#if channel.id === 'candidate'}
+        <p class="note">{t('download-channel-candidate.body')}</p>
       {/if}
-    </article>
+    </div>
   {/each}
 </div>
-
-<!--
-  A release candidate, when one is ahead of the stable build: the same
-  artifacts in a quieter row, outlined buttons only, under a heading that says
-  what it is. The section is absent the rest of the time, which is most of
-  it: the loader only hands one over while it outranks the stable release,
-  so the day the release ships this goes away on its own.
--->
-{#if data.candidate}
-  <section class="shell block candidate">
-    <div class="head">
-      <h2>
-        {t('download-candidate')}
-        <strong>v{data.candidate.version}</strong>
-      </h2>
-      <p class="version">
-        <span>{t('download-released', { date: longDate(data.candidate.publishedAt) })}</span>
-        <a href={data.candidate.url} rel="noreferrer">{t('download-notes')}</a>
-      </p>
-    </div>
-    <p class="prose">{t('download-candidate.body')}</p>
-    <ul class="builds">
-      {#each PLATFORMS as platform (platform.id)}
-        {@const buttons = buttonsFor(platform, data.candidate)}
-        {#if buttons.length > 0}
-          <li>
-            <span class="platform">
-              <PlatformIcon platform={platform.id} size={18} />
-              {platform.label}
-            </span>
-            <span class="gets">
-              {#each buttons as button (button.url)}
-                <a class="get secondary plain" href={button.url} title={button.name}>
-                  <Download size={16} strokeWidth={2} aria-hidden="true" />
-                  {t(button.label)}
-                  <span class="size">{mb(button.size)}</span>
-                </a>
-              {/each}
-            </span>
-          </li>
-        {/if}
-      {/each}
-    </ul>
-  </section>
-{/if}
 
 <section class="shell block stats">
   <!--
@@ -294,10 +296,24 @@ rox --portable</code></pre>
     margin-top: var(--space-md);
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-sm);
-    align-items: baseline;
+    gap: var(--space-sm) var(--space-md);
+    align-items: center;
     font-size: var(--step--1);
     color: var(--text-muted);
+  }
+
+  .version p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    align-items: baseline;
+  }
+
+  /* Only the picked channel's line renders; the other stays out of the flow,
+     so whichever one is showing sits right after the switcher. */
+  .intro:has(#channel-candidate:checked) .version p[data-channel='stable'],
+  .intro:has(#channel-stable:checked) .version p[data-channel='candidate'] {
+    display: none;
   }
 
   .version strong {
@@ -309,6 +325,16 @@ rox --portable</code></pre>
     display: grid;
     gap: var(--space-md);
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  }
+
+  /* The switcher lives in the intro, so the grids answer to it from the next
+     section over. The stacking and the no-candidate `.single` case share the
+     stats section's rules further down. */
+  .intro:has(#channel-stable:checked) + .panels .panel[data-channel='stable'],
+  .intro:has(#channel-candidate:checked) + .panels .panel[data-channel='candidate'] {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   article {
@@ -485,6 +511,16 @@ rox --portable</code></pre>
     pointer-events: none;
   }
 
+  /* Inline with the version line, so it drops the strip's bottom margin and
+     tightens up to the text beside it. */
+  .tabs.channel {
+    margin-bottom: 0;
+  }
+
+  .tabs.channel label {
+    padding: 0.25rem 0.75rem;
+  }
+
   .tabs label {
     padding: 0.45rem var(--space-md);
     border: var(--hairline) solid var(--border);
@@ -546,67 +582,11 @@ rox --portable</code></pre>
     color: var(--text-faint);
   }
 
-  .candidate .head h2 {
-    margin-bottom: 0;
-  }
-
-  /* The heading's version reads like the intro's: bright and tabular, so a
-     visitor scanning for numbers finds both the same way. */
-  .candidate h2 strong {
-    color: var(--text-bright);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .candidate .version {
-    margin-top: 0;
-  }
-
-  .candidate .prose {
+  /* Under the candidate's cards rather than above them, so the two grids
+     start on the same line and only the pre-release view carries the
+     explanation. */
+  .panel[data-channel] .note {
     color: var(--text-secondary);
-  }
-
-  .builds {
-    list-style: none;
-    margin: var(--space-md) 0 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-  }
-
-  /* One row per platform: name on the left, its buttons on the right. Narrow
-     screens stack the two, the buttons keeping their own row. */
-  .builds li {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-sm) var(--space-md);
-    padding: var(--space-sm) 0;
-    border-top: var(--hairline) solid var(--border);
-  }
-
-  .platform {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    min-width: 7rem;
-    color: var(--text-bright);
-    font-weight: 600;
-  }
-
-  .builds .gets {
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-left: auto;
-  }
-
-  .builds .get {
-    font-size: var(--step--1);
-    padding: 0.45em 0.9em;
-  }
-
-  .builds .size {
-    margin-left: 0.25rem;
   }
 
   .block {

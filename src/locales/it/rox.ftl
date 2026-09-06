@@ -238,8 +238,9 @@ download-h1 = Scarica rox
 download-released = pubblicato il { $date }
 download-notes = note di rilascio
 download-missing = Nessuna build per { $platform } in questa versione. [Controlla la pagina dei rilasci](@releases).
-download-candidate = Release candidate
-    .body = Un'anteprima della prossima versione, pubblicata in anticipo perché gli ultimi bug vengano trovati prima dell'uscita. Le build qui sopra sono quelle stabili; prendi questa se vuoi aiutare a provarla, e rox ti aggiornerà alla versione finale quando arriva.
+download-channel-stable = Ultima
+download-channel-candidate = Anteprima
+    .body = Un'anteprima della prossima versione, pubblicata in anticipo perché gli ultimi bug vengano trovati prima dell'uscita. Prendila se vuoi aiutare a provarla, e rox ti aggiornerà alla versione finale quando arriva.
 
 install-linux-1 = Estrai il tarball dove vuoi.
 install-linux-2 = Avvia `./rox`.

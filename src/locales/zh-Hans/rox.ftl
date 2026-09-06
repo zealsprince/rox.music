@@ -222,8 +222,9 @@ download-h1 = 下载 rox
 download-released = 发布于 { $date }
 download-notes = 发行说明
 download-missing = 这个版本没有 { $platform } 构建。[去发布页看看](@releases)。
-download-candidate = 候选版本
-    .body = 下一个版本的预览版，提前放出来是为了在正式发布前找出最后的问题。上面的构建是稳定版；想帮忙测试就用这个，正式版发布后 rox 会把你更新过去。
+download-channel-stable = 最新版
+download-channel-candidate = 预发布版
+    .body = 下一个版本的预览版，提前放出来是为了在正式发布前找出最后的问题。想帮忙测试就用这个，正式版发布后 rox 会把你更新过去。
 
 install-linux-1 = 把 tar 包解压到任意位置。
 install-linux-2 = 运行 `./rox`。
