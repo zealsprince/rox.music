@@ -399,19 +399,30 @@
       "linux-archive": 7,
       "linux-alt": 3,
       "macos-archive": 6,
-      "windows-archive": 17,
-      "windows-alt": 14
+      "windows-archive": 20,
+      "windows-alt": 18
     }
   },
   {
     "tag": "v1.25.0-rc.1",
     "publishedAt": "2026-09-06T00:30:03Z",
     "counts": {
-      "linux-archive": 1,
-      "linux-alt": 1,
+      "linux-archive": 2,
+      "linux-alt": 2,
       "macos-archive": 2,
       "windows-archive": 1,
-      "windows-alt": 2
+      "windows-alt": 3
+    }
+  },
+  {
+    "tag": "v1.25.0",
+    "publishedAt": "2026-09-06T22:42:10Z",
+    "counts": {
+      "linux-archive": 0,
+      "linux-alt": 0,
+      "macos-archive": 0,
+      "windows-archive": 1,
+      "windows-alt": 0
     }
   }
 ]
