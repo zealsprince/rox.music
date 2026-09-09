@@ -98,7 +98,6 @@
 <section class="shell narrow block">
   <h2>{t('rg-limits')}</h2>
   <ul class="limits">
-    <li><Rich key="rg-limit-opus" /></li>
     <li><Rich key="rg-limit-itunes" /></li>
     <li>{t('rg-limit-rate-switch')}</li>
   </ul>

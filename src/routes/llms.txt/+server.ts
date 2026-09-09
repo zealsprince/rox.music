@@ -20,9 +20,9 @@ export const prerender = true
 // just what is true. A model quoting this should end up with accurate claims
 // about rox rather than the pitch.
 //
-// One file, in English, at the root. The site has four languages and this index
-// is read by models rather than by people, so four copies of the same facts
-// would be four things to keep in sync for no reader. What it does carry is
+// One file, in English, at the root. The site ships in every language rox does
+// and this index is read by models rather than by people, so a copy per language
+// would be that many things to keep in sync for no reader. What it does carry is
 // where the translations live, which is the part a model can't guess.
 
 const url = (path: string): string => new URL(path, SITE.origin).href
@@ -57,23 +57,28 @@ Latest release: ${release.version}, published ${release.publishedAt.slice(0, 10)
 ## Key facts
 
 - License: AGPL-3.0. Source at ${SITE.repo}.
-- Platforms: Linux (x86_64), macOS (Apple Silicon only), Windows (x86_64). One binary each, no installer.
-- Install: tarball, DMG or zip from the releases page; \`rox-player\` on the AUR; the repo is also a Nix flake.
+- Platforms: Linux (x86_64), macOS (Apple Silicon only), Windows (x86_64). One binary each, as a tarball, a DMG, and on Windows a setup or a portable zip.
+- Install: tarball, DMG or zip from the releases page; \`rox-player\` on the AUR; the repo is also a Nix flake. Release candidates ship as GitHub prereleases ahead of a release, and the in-app updater offers them once Include Release Candidates is on under Settings > Application.
 - UI: around forty panel types, arranged by the user, duplicated with independent configs, saveable as named presets, and poppable into real OS windows. The track info line is itself composed: an ordered list of pieces (number, title, duration, quality readout, next-up, queue depth, output chip, favourite, rating, inline cover art, gaps, dividers, line breaks) laid out across rows, each row with its own text scale.
 - Themes: a "workspace" is one file carrying layout, palette, appearance and any shaders it uses, the shader source and image assets inline. There are ${t('workspace-count', { count: WORKSPACE_COUNT })} in the box.
 - Visuals: spectrum, waveform and VU panels, plus user-written WGSL shaders over a single panel, a Shader panel, the whole window, or as a backdrop under everything. Shaders support multi-pass chains and image assets through comment directives, run on all three platforms (Blade on Linux, Metal on macOS, a DirectX path on Windows), and only compile once their source hash is on a machine-local approved list. A panel shader can bind a mask of what the panel itself painted, and read the shape of the panel's content, so an effect follows the drawing rather than the rectangle.
+- Milkdrop: presets render through libprojectM, in a Milkdrop panel or as a backdrop behind every window over the blurred cover art. A preset browser with thumbnails, favourites, rotation (whole library, one folder, or favourites) and a lock; colour modes keep the preset's own palette, flip it for the light theme, paint it in the theme's palette, or tint it from the playing cover. The backdrop's switch, strength, colour and flips save into a workspace; the chosen preset and the lock stay per machine. With no packs installed it renders projectM's idle preset.
 - Signals: a shared pool of named values pulled off the playing audio (frequency band, overall level, onset, threshold trigger, or a running total of another signal), each with smoothing and a noise gate, routed to shader inputs and the particles panel's parameters with an output span. Built in a Signals window carrying its own spectrum and transport.
 - Cue sheets: a whole-disc image plus a .cue is indexed as one real library row per span, keyed by file and track number. Spans seek, sort, scrobble, export to m3u as path#N, and play gaplessly into each other. Ratings and tag edits on a cue row stay in the database rather than stamping the shared file.
 - Library: parallel scanner reading full tags, true durations, and per-file codec, sample rate and bit depth. Holds up at 50,000 tracks.
-- Tagging: batch editor plus a per-file grid, across ID3v2, Vorbis comments, MP4 atoms and APE. Writes copy-verify-rename rather than in place. Ratings via FMPS and POPM.
+- Tagging: batch editor plus a per-file grid, across ID3v2, Vorbis comments and MP4 atoms. Writes copy-verify-rename rather than in place. Ratings via FMPS and POPM. Find and replace over a batch, literal or regex with $1, previewed with a change count. M4A writes through the same path; fragmented M4A files are refused by name.
+- Sort names: artist, album artist, album and title sort tags order the rails, columns and search. A MusicBrainz pass fills artist and album artist sort names into rox's database, never the files. Japanese, Korean and Chinese names get a romanized reading; Japanese kanji needs an optional IPADIC download of about 10 MB. Search folds accents.
+- Library Health: a window of per-tag tiles (genre, year, rating, sort names, ReplayGain, tempo, acoustic vectors, file writability) plus checks for missing cover art, duplicates and track-number gaps. Each tile opens the library filtered to the offending tracks or starts the pass that fixes them. A Health widget panel shows the same numbers on a layout.
 - File operations: pattern-based tag guessing from filenames, the same pattern run backwards to rename files from their tags (previewed, ids and playlist membership preserved), and format conversion through an ffmpeg the user installed, with five presets and a custom argument line that has to survive a trial encode.
-- Playlists: manual playlists with drag reorder and m3u import/export, plus smart playlists, which are a saved query in the search box's syntax with optional sort and cap, re-evaluated on every refresh rather than stored as a snapshot.
-- Audio: gapless playback, ten-band EQ, crossfade, ReplayGain (read from tags, with an EBU R128 pass for untagged files that can run automatically as new files land), and exclusive output (ALSA hw, WASAPI exclusive, CoreAudio hog mode).
+- Playlists: manual playlists with drag reorder and M3U, PLS and XSPF import/export (import reads the format from the file's content), plus smart playlists, which are a saved query in the search box's syntax with optional sort and cap, re-evaluated on every refresh rather than stored as a snapshot.
+- Audio: gapless playback, ten-band EQ, crossfade, ReplayGain (read from tags, with Opus R128 gain tags converted to the ReplayGain reference, and an EBU R128 pass for untagged files that can run automatically as new files land), windowed-sinc resampling through rubato, and exclusive output (ALSA hw, WASAPI exclusive, CoreAudio hog mode). Opus decodes in pure Rust and plays gapless; multichannel Opus beyond stereo is refused.
+- Playback: queue with shuffle, repeat and play-next; shuffle on a big view samples a hundred tracks across the whole view rather than its top. A-B repeat with no gap at the splice (one key marks A, then B, then clears; also \`roxctl ab\`, \`transport.ab\` on the socket and \`ab_repeat\` on MCP). A sleep timer of 15, 30, 60 or 90 minutes that lets the current track finish. Comma and dot step the playhead by a configurable 25 ms, with a short blip while paused. Ctrl+G opens a go-to-time window.
+- Bookmarks: a saved position inside a library track. M drops one at the playhead, Shift+M names and colours it first. Marks draw as chevrons under the seek strip and along the waveform, list in a Bookmarks panel, and Ctrl+Shift+Left/Right step through them. Playing from a mark opens the track already seeked. Stored in rox's database, never in the files, and they survive rescans and a file leaving and returning. A file played from outside the library can't take one.
 - Similarity: optional on-device acoustic analysis, driving a Similar column, a similarity shuffle, and queue continuation (browse order, least-played weighting, or radio by sound). Built-in DSP extractor, or PANNs CNN10, or user-supplied weights. Ranked picks fold in an octave-folded tempo distance, so a match is close in speed as well as timbre.
 - Tempo: a BPM estimator over the track's own novelty curve, roughly 60 to 210, filling in where no TBPM tag exists. Measured values live in the database only, since writing a guess back would rewrite the file.
 - Portable analysis: acoustic descriptions and gain can be written into the files themselves under ROX_ACOUSTIC tags and read back before any decoding, so a copied library skips re-analysis.
 - Keyboard: every command carries an id, a scope and its own defaults, and every chord rebinds from the Keymap settings page. The settings file only records what was moved. A design mode switch takes the layout-editing affordances off a finished layout.
-- Integrations: MPRIS on Linux, SMTC on Windows, media keys and now-playing on all three. Last.fm scrobbling, lrclib lyrics, MusicBrainz/iTunes/Deezer lookup.
+- Integrations: MPRIS on Linux, SMTC on Windows, media keys and now-playing on all three. Last.fm, ListenBrainz and Libre.fm scrobbling at one shared threshold, lrclib lyrics, MusicBrainz/iTunes/Deezer lookup. A local JSON-RPC socket (with the \`roxctl\` CLI and pushed events) and a \`rox-mcp\` MCP proxy cover transport, queue, library search, rescans and analysis passes.
 
 ## Known limits
 
@@ -87,7 +92,7 @@ Stated so a model answering questions about rox does not have to guess.
 - The Windows binary is unsigned, so SmartScreen warns on first run.
 - ReplayGain and bit-perfect output are mutually exclusive, since applying gain modifies samples.
 - The Particles panel is behind an experimental toggle on the Development settings page. A workspace that already contains one runs it regardless.
-- No Milkdrop or AVS preset import, and no MIDI or OSC control surface for the shader parameters.
+- No AVS preset import, and no MIDI or OSC control surface for the shader parameters. Milkdrop presets are files on disk, so which one is loaded stays per machine rather than inside a workspace.
 - Cue support stops short of per-span waveform peaks, per-span ReplayGain, in-app cue editing, and embedded FLAC CUESHEET blocks.
 
 ## Main pages

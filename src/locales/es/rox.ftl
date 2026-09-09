@@ -90,7 +90,7 @@ app-feature-gapless = Reproducción sin huecos
 app-feature-dsp = Ecualizador, fundido encadenado y ReplayGain
 app-feature-exclusive = Salida exclusiva bit a bit
 app-feature-lyrics = Letras sincronizadas
-app-feature-scrobbling = Scrobbling a Last.fm
+app-feature-scrobbling = Scrobbling a Last.fm, ListenBrainz y Libre.fm
 
 ## Inicio
 
@@ -131,7 +131,7 @@ feature-library = Una biblioteca que aguanta
     .link = Qué se rompe con 50.000 pistas
 
 feature-tagging = Etiquetado del que te puedes fiar
-    .body = Un editor completo con escrituras atómicas y edición por lotes. Las valoraciones van en los propios archivos vía FMPS y POPM. Consultas a MusicBrainz, iTunes y Deezer.
+    .body = Un editor completo con escrituras atómicas, edición por lotes y buscar y reemplazar. Las valoraciones van en los propios archivos vía FMPS y POPM. Consultas a MusicBrainz, iTunes y Deezer.
     .link = Frente a Mp3tag
 
 feature-cue = Los rips con cue suenan como pistas
@@ -139,7 +139,7 @@ feature-cue = Los rips con cue suenan como pistas
     .link = Cómo funcionan los tramos
 
 feature-gapless = Reproducción sin huecos
-    .body = Un solo flujo, con aleatorio, repetición y reproducir a continuación. Se recupera cuando desaparece un dispositivo de audio, y las teclas multimedia y el "sonando ahora" funcionan en las tres plataformas.
+    .body = Un solo flujo, con aleatorio, repetición, reproducir a continuación y repetición A-B. Un marcador se pone con una tecla y se queda en la barra de posición. Las teclas multimedia y el "sonando ahora" funcionan en las tres plataformas.
 
 feature-equalizer = Diez bandas y bit a bit
     .body = Un ecualizador en su propia ventana, un fundido encadenado que deja en paz los empalmes de un álbum, y salida exclusiva que dice a qué accedió el hardware.
@@ -157,14 +157,14 @@ feature-themes = Temas como archivos que se comparten
     .link = Los { workspace-count } de serie
 
 feature-shaders = Visuales que escuchan
-    .body = Escribe un shader WGSL sobre un panel o sobre toda la ventana. Sus entradas las alimentan señales con nombre sacadas del espectro, así que una banda de bombo mueve el mando que tú le señales.
+    .body = Escribe un shader WGSL sobre un panel o sobre toda la ventana, o ejecuta presets de Milkdrop a través de projectM. Señales con nombre sacadas del espectro alimentan las entradas de los shaders.
     .link = Shaders y señales
 
 feature-lyrics = Letras e historial
     .body = Sincronizadas o planas, desde archivos adjuntos, etiquetas o lrclib, con un editor que reescribe donde leyó. Un registro de escuchas alimenta el panel de historial, las estadísticas y el scrobbling.
 
 feature-playlists = Listas que sobreviven
-    .body = Favoritos, reordenar arrastrando, m3u de entrada y de salida, y listas inteligentes que vuelven a ejecutar una consulta guardada en vez de guardar una foto fija. Las entradas sobreviven a que un archivo se vaya y vuelva.
+    .body = Favoritos, reordenar arrastrando, M3U, PLS y XSPF de entrada y de salida, y listas inteligentes que vuelven a ejecutar una consulta guardada en vez de guardar una foto fija. Las entradas sobreviven a que un archivo se vaya y vuelva.
 
 feature-binary = Un binario, sin instalador
     .body = Un tarball, un DMG o un zip, además del AUR y un flake de Nix. El modo portátil guarda la biblioteca y los ajustes en una carpeta junto al ejecutable.
@@ -251,7 +251,7 @@ download-cli = Ejecutarlo desde una terminal
     .flags = `--enqueue` (o `-e`) añade a la cola en vez de reproducir. `--portable` guarda la biblioteca, los ajustes y las cachés en una carpeta `rox-data` junto al ejecutable durante esa ejecución. Para que siga siendo portátil entre arranques, deja un archivo vacío llamado `portable` junto al ejecutable, o activa el interruptor en los ajustes de Comportamiento.
 
 download-build = Compilarlo tú mismo
-    .body = Con Nix, `nix develop` y luego `cargo run` te da un entorno de desarrollo con la toolchain de Rust y las bibliotecas que gpui carga en tiempo de ejecución. Sin Nix necesitas Rust estable y las bibliotecas de sistema de gpui desde tu distribución. La [sección de desarrollo del README](@readme-dev) tiene la lista completa.
+    .body = Con Nix, `nix develop` y luego `cargo run` te da un entorno de desarrollo con la toolchain de Rust y las bibliotecas que gpui carga en tiempo de ejecución. Sin Nix necesitas Rust estable, cmake y las bibliotecas de sistema de gpui desde tu distribución, más una pasada de los dos scripts vendor. La [sección de desarrollo del README](@readme-dev) tiene la lista completa.
 
 ## Espacios de trabajo
 
@@ -315,7 +315,7 @@ page-nekorox = NekoRoX, y adónde fue a parar
     .blurb = El fork de CaTRoX que mantuve durante una década, por qué se paró, y cuáles de sus paneles existen hoy en rox. Incluye AlphaRoX, el claro.
 
 page-music-visualizer = El visualizador, y la capa que hay debajo
-    .blurb = Paneles de espectro y forma de onda, shaders WGSL sobre cualquier panel o sobre toda la ventana, y las señales con nombre sacadas del audio que los mueven.
+    .blurb = Paneles de espectro y forma de onda, presets de Milkdrop a través de projectM, shaders WGSL sobre cualquier panel o sobre toda la ventana, y las señales con nombre sacadas del audio que los mueven.
 
 page-cue-sheets = Rips en FLAC y CUE
     .blurb = Una imagen de disco entero y su sheet, indexadas como pistas de verdad que se recorren, se ordenan, se scrobblean y entran una en otra sin huecos.
@@ -692,7 +692,7 @@ fb-closer = Ponlo a prueba con tu propia biblioteca
 
 mp3tag-breadcrumb = Alternativa a Mp3tag
 mp3tag-title = Una alternativa a Mp3tag para Linux y macOS en { $year }
-    .description = Edición de etiquetas por lotes en FLAC, MP3, MP4 y APE, una rejilla por archivo para las importaciones hechas un desastre, valoraciones escritas en los propios archivos, y una ruta de escritura que nunca edita un original en el sitio.
+    .description = Edición de etiquetas por lotes en FLAC, MP3 y MP4, una rejilla por archivo para las importaciones hechas un desastre, valoraciones escritas en los propios archivos, y una ruta de escritura que nunca edita un original en el sitio.
 
 mp3tag-h1 = Un editor de etiquetas que puedes apuntar a diez mil archivos
     .lede = Mp3tag es la herramienta a la que se refiere casi todo el mundo cuando dice editor de etiquetas, y no hay compilación de Linux. rox lleva un editor completo dentro, y una ruta de escritura pensada para el caso en que un lote es lo bastante grande como para que "normalmente funciona" no baste.
@@ -714,13 +714,16 @@ mp3tag-batch = Editar un lote sin aplanarlo
     .p2 = Cuando un archivo del lote está mal, el formulario se cambia por una tabla: una fila por pista, una columna por campo, y los campos bloqueados por pista editables ahí mismo. Esa es la vista para la importación donde cada título y cada número está mal de una forma distinta, y le gana a ir entrando campo por campo. Las dos vistas confirman como un solo lote por la misma ruta de escritura, y el resultado aterriza en la biblioteca sin reescanear.
 
 mp3tag-specs = Qué lee y qué escribe
-mp3tag-spec-formats = **Formatos.** ID3v2, comentarios Vorbis, átomos MP4 y APE tras un solo editor, así que MP3, FLAC, M4A y el resto son la misma pantalla.
+mp3tag-spec-formats = **Formatos.** ID3v2, comentarios Vorbis y átomos MP4 tras un solo editor, así que MP3, FLAC y M4A son la misma pantalla.
 mp3tag-spec-ratings = **Valoraciones.** Escritas en los propios archivos con FMPS y POPM, no en una base de datos que no te puedes llevar.
 mp3tag-spec-genres = **Géneros de valores múltiples.** Listas de verdad, con las unificaciones guardadas como una opinión de la biblioteca en vez de como una reescritura de tus etiquetas.
 mp3tag-spec-art = **Carátulas.** Portadas de varias imágenes, añadidas y reemplazadas por la misma ruta atómica.
 mp3tag-spec-lookup = **Consultas.** Etiquetas y carátulas de MusicBrainz, iTunes y Deezer, aplicadas por el mismo diff para que veas qué cambia antes de que escriba.
 mp3tag-spec-repair = **Reparación.** Una pasada para archivos cuyas etiquetas están dañadas de formas concretas y conocidas en vez de simplemente mal, las que hacen que otros etiquetadores muestren una pista como un nombre de archivo y una duración de cero.
 mp3tag-spec-patterns = **Patrones, en los dos sentidos.** Una cadena de formato como `%artist% - %title%` saca etiquetas de un nombre de archivo, y el mismo patrón al revés renombra archivos a partir de sus etiquetas. Los dos muestran una vista previa de cada pista antes de escribir nada.
+mp3tag-spec-replace = **Buscar y reemplazar.** Cualquier campo cuyos valores difieran dentro de un lote acepta un texto a buscar y otro de reemplazo, literal o regex con `$1`, y la vista previa cuenta cuántas pistas cambian antes de escribir nada.
+mp3tag-spec-sortnames = **Nombres de ordenación y lecturas.** Las etiquetas de ordenación que llevan tus archivos deciden dónde se archiva un nombre. Donde no las hay, MusicBrainz rellena los nombres de ordenación de los artistas, y los nombres japoneses, coreanos y chinos reciben una lectura en letras latinas que alimenta la búsqueda y los índices de letras. Ambos viven en la base de datos de rox, y tus archivos quedan intactos.
+mp3tag-spec-health = **Salud de la biblioteca.** Una ventana de mosaicos, uno por etiqueta, cada uno abre la biblioteca filtrada a las pistas a las que le falta: género, año, valoración, nombres de ordenación, ReplayGain, más carátula, duplicados y huecos en los números de pista.
 
 mp3tag-stay = Quién debería quedarse con Mp3tag
     .p1 = Si usas Windows y te apoyas en acciones, scripting o en el trabajo más elaborado con cadenas de formato, rox no tiene equivalente y esto sería un paso atrás. Si quieres un etiquetador que no sea además un reproductor, esta es la forma equivocada por completo.
@@ -734,15 +737,20 @@ mp3tag-closer = Apúntalo a la carpeta que llevas evitando
 
 viz-breadcrumb = Visualizador de música
 viz-title = Un visualizador de música integrado en el reproductor - rox
-    .description = Paneles de espectro, forma de onda y VU, además de shaders WGSL sobre cualquier panel o sobre toda la ventana, movidos por señales con nombre que sacas del audio que suena y enrutas adonde quieras.
+    .description = Paneles de espectro, forma de onda y VU, presets de Milkdrop en un panel o detrás de toda la aplicación, y shaders WGSL movidos por señales con nombre que sacas del audio que suena y enrutas adonde quieras.
     .image-alt = El logo de rox sobre la frase en inglés: signals off the music, shaders on every surface
 
 viz-h1 = Un visualizador que vive dentro del reproductor
-    .lede = Casi todos los reproductores te dan un analizador de espectro y ahí se quedan. rox tiene esos paneles, y debajo una capa de modulación: señales con nombre sacadas del audio, enrutadas a entradas de shader que escribes tú, guardadas en el mismo archivo donde vive el resto de tu tema.
+    .lede = Casi todos los reproductores te dan un analizador de espectro y ahí se quedan. rox tiene esos paneles, un motor Milkdrop para veinte años de presets, y debajo una capa de modulación: señales con nombre sacadas del audio, enrutadas a entradas de shader que escribes tú, guardadas en el mismo archivo donde vive el resto de tu tema.
 
 viz-panels = Primero, los paneles normales
     .p1 = Un panel de espectro con estilos de barra o de bloque, degradados, marcas de pico con su propia gravedad, etiquetas de frecuencia, y zonas partidas que analizan por encima y por debajo de una frecuencia elegida con ventanas de distinto tamaño, así que cada extremo del rango cambia reactividad por resolución en sus propios términos. Una tira de forma de onda que dibuja la pista entera, por canal, y que va adonde hagas clic. Un medidor VU. Un estante de carátulas que las gira en 3D de verdad. Nada de esto necesita una línea de código y es lo que usará la mayoría.
     .p2 = Pausar congela las barras donde estaban, en vez de dejarlas caer al suelo. Suena a poco hasta que intentas mirar el momento exacto en el que pausaste.
+
+viz-milkdrop = Milkdrop, en un panel y detrás de todo
+    .p1 = Un panel Milkdrop renderiza presets a través de libprojectM en su propio hilo y dibuja el resultado por la misma cadena de shaders que todo lo demás: se acopla, se pone en pestaña y se desprende como cualquier otro panel, y un shader de superficie pasa por encima igual. Suelta un paquete de presets en la carpeta que indica la página Presets, Cream of the Crop o el juego original de MilkDrop, y pulsa Reescanear. Las texturas que vienen dentro de un paquete se encuentran solas.
+    .p2 = Elegir preset abre un explorador en su propia ventana: un árbol de carpetas o una cuadrícula de miniaturas, un filtro, un interruptor de favoritos y navegación con teclado. Hacer clic en un preset lo carga al momento detrás de la ventana, así que lo que ves es el render real y no una vista previa. La rotación decide qué recorren Siguiente, Anterior y el cambio temporizado, y el bloqueo mantiene un preset de una pista a otra.
+    .p3 = El mismo motor corre como fondo detrás de cada ventana, compuesto sobre la carátula desenfocada con la intensidad que tú fijes. Un preset puede conservar sus propios colores, invertirse para el tema claro, pintar en la paleta o tomar el color de la carátula que suena conservando su propio detalle, y un tinte de álbum desplaza los tonos hacia la carátula. Una cola detenida lo funde a negro y el hilo de render se para, así que un visual parado no cuesta nada.
 
 viz-shaders = Shaders, en cuatro superficies
     .p1 = Un shader de rox es una etapa de fragmento WGSL. Puede ejecutarse sobre el cuerpo de un solo panel, como panel de Shader propio, como superposición sobre toda la ventana, o como fondo pintando bajo todos los paneles, detrás de la carátula. La superposición y el fondo tienen cada uno un interruptor que los extiende a todas las ventanas que rox tenga abiertas. El mismo lenguaje, el mismo bloque de uniforms y el mismo enrutado en todos ellos.
@@ -773,7 +781,7 @@ viz-limits = Qué no está resuelto
     .aside = La distancia entre "quiero que el reproductor entero destelle con el bombo" y tenerlo son una banda, una puerta y una ruta, y ninguna de las tres necesita recompilar nada.
 
 viz-limit-routes = Las rutas llegan a los slots de shader y a los mandos del panel de partículas. Los ajustes de todos los demás paneles siguen siendo mandos que pones a mano.
-viz-limit-milkdrop = WGSL, no Milkdrop ni AVS. No hay importador para ninguno, y veinte años de presets no cruzan.
+viz-limit-avs = Presets de Milkdrop, no AVS. No hay importador para el AVS de Winamp. Y un preset es un archivo en tu disco, así que cuál está cargado se queda por máquina en vez de viajar dentro de un espacio de trabajo.
 viz-limit-midi = Sin superficie de control MIDI ni OSC. Lo que existe es la pasada de superposición y las pasadas de panel, movidas por el audio y el puntero.
 viz-limit-battery = Una pasada a ventana completa es una pasada de GPU real en cada fotograma. En un portátil con batería, eso es una decisión que estás tomando.
 
@@ -831,7 +839,7 @@ neko-had-covers = Visor de carátulas y cover flow
 neko-had-lyrics = Letras sincronizadas en tiempo real
     .now = Letras LRC resaltadas sobre el cabezal, clic en una línea para ir ahí, descargadas de lrclib.
 neko-had-viz = Visualización y barra de posición con amplitud
-    .now = Una forma de onda de la pista entera que puedes recorrer, un espectro FFT, un medidor VU.
+    .now = Una forma de onda de la pista entera que puedes recorrer, un espectro FFT, un medidor VU, y presets de Milkdrop a través de projectM.
 neko-had-discord = Rich presence de Discord
     .now = Lo que suena, el estado de reproducción y el tiempo transcurrido por IPC de Discord.
 neko-had-bio = Búsqueda de biografía en vivo
@@ -866,7 +874,7 @@ rg-peak = El pico, y por qué un realce puede saturar
 
 rg-unmeasured = Los archivos que nadie midió nunca
     .p1 = ReplayGain solo funciona con archivos que llevan las etiquetas, y en una biblioteca real reunida a lo largo de veinte años una buena parte no las lleva. Históricamente eso significaba pasar un etiquetador aparte por todo antes de que tu reproductor sirviera de algo.
-    .p2 = rox lee las etiquetas donde existen, bajo los nombres estándar de cada formato que indexa: marcos TXXX en ID3v2, comentarios Vorbis en FLAC, átomos libres en MP4. Para todo lo demás mide los archivos él mismo con una pasada de sonoridad EBU R128 y guarda el resultado contra la biblioteca, marcado como medido para que un reescaneo posterior pueda distinguir los números propios de rox de lo que escribió un etiquetador. Si prefieres que los números vivan en los archivos, un ajuste los escribe de vuelta por la misma ruta de escritura verificada que usa el editor de etiquetas.
+    .p2 = rox lee las etiquetas donde existen, bajo los nombres estándar de cada formato que indexa: marcos TXXX en ID3v2, comentarios Vorbis en FLAC, átomos libres en MP4, y las etiquetas de ganancia R128 que lleva Opus, llevadas a la referencia de ReplayGain al leerlas. Para todo lo demás mide los archivos él mismo con una pasada de sonoridad EBU R128 y guarda el resultado contra la biblioteca, marcado como medido para que un reescaneo posterior pueda distinguir los números propios de rox de lo que escribió un etiquetador. Si prefieres que los números vivan en los archivos, un ajuste los escribe de vuelta por la misma ruta de escritura verificada que usa el editor de etiquetas.
     .p3 = Esa pasada puede ejecutarse sola. Con la medición automática activada, los archivos se miden en cuanto el vigilante de carpetas se calma tras una importación, y una pista soltada en un álbum ya medido manda el disco entero de vuelta a medir, porque la ganancia de álbum es una cifra sobre el disco y no sobre el archivo.
 
 rg-skip = La parte que casi todas las páginas se saltan
@@ -884,7 +892,6 @@ rg-exclusive = Salida exclusiva, aparte
 rg-limits = Qué no está resuelto
     .aside = Un reproductor que te diga cuál de los dos, bit a bit o ReplayGain, está activo ahora mismo, y que mida los archivos a los que tus etiquetadores nunca llegaron, es una lista corta. Si esa es la clase de honestidad que quieres de lo que hay entre tu biblioteca y tu DAC, rox está en ella.
 
-rg-limit-opus = Los archivos Opus llevan su propio esquema `R128_TRACK_GAIN` relativo a una referencia distinta. rox no lo convierte, porque `.opus` no está entre las extensiones del escáner.
 rg-limit-itunes = El `iTunNORM` de iTunes queda fuera del alcance. No lo escribe nada más y sus cifras por canal no son una ganancia en decibelios.
 rg-limit-rate-switch = Seguir la frecuencia de origen en modo exclusivo cuesta un hueco audible entre dos pistas de frecuencias distintas, porque el flujo se reabre. La reproducción sin huecos dentro de una misma frecuencia no se ve afectada.
 
@@ -904,7 +911,7 @@ ctl-refused = El servidor que rox se niega a ser
     .p2 = rox se queda con la capacidad y rechaza el envoltorio. Su interfaz de máquina es un socket local, un socket de dominio Unix en Linux y macOS y una tubería con nombre en Windows, atado a la carpeta de datos para que dos instancias portátiles nunca se crucen. La autenticación son los permisos del sistema de archivos: cualquier cosa que pudiera leer tu música ya puede hacer lo que el socket permite. Nada escucha en un puerto, y en el binario no viaja ningún servidor HTTP.
 
 ctl-socket = Un socket, el reproductor entero
-    .p1 = El protocolo es JSON-RPC 2.0, un objeto por línea, abierto con un saludo de versión. `transport.*` maneja el transporte: alternar, saltar, volumen. `queue.*` edita el orden de reproducción por id estable de entrada, así que la fila que moviste sigue siendo la fila que querías decir. `library.*` busca, devuelve las etiquetas completas de la pista que suena y entrega la carátula. Cada método lee y maneja el mismo reproductor y la misma biblioteca que los paneles, así que el socket nunca puede decir algo que la interfaz no diría.
+    .p1 = El protocolo es JSON-RPC 2.0, un objeto por línea, abierto con un saludo de versión. `transport.*` maneja el transporte: alternar, saltar, volumen, la sección A-B. `queue.*` edita el orden de reproducción por id estable de entrada, así que la fila que moviste sigue siendo la fila que querías decir. `library.*` busca, devuelve las etiquetas completas de la pista que suena y entrega la carátula. `library.rescan` y `tasks.*` inician, siguen y detienen los reescaneos y las pasadas de análisis, y la respuesta al inicio lleva el número de pistas y la estimación de tiempo que te habría mostrado la ventana. Cada método lee y maneja el mismo reproductor y la misma biblioteca que los paneles, así que el socket nunca puede decir algo que la interfaz no diría.
     .p2 = El precedente son el IPC JSON de mpv y el protocolo de mpd, y el coste también es el suyo: un consumidor necesita un cliente de socket donde un servidor habría ofrecido curl. `roxctl`, el cliente de referencia en el árbol del código, cubre el caso de la shell, una llamada por invocación, `--json` cuando lee un script, así que `roxctl next` y `roxctl search miles davis` funcionan antes de que hayas escrito una línea de nada.
 
 ctl-events = Empuje, para no sondear nunca
@@ -912,7 +919,7 @@ ctl-events = Empuje, para no sondear nunca
     .p2 = A un consumidor que se queda atrás se le corta en vez de esperarlo, así que un lector atascado nunca puede atragantar la reproducción. `roxctl watch` imprime el flujo según llega, que es un "sonando ahora" para una barra de estado resuelto en un bucle de shell.
 
 ctl-mcp = MCP, que ningún otro reproductor tiene
-    .p1 = Junto a la aplicación va `rox-mcp`, un binario fino que habla [MCP](@mcp-spec) sobre stdio por un lado y con el socket por el otro. Apúntale Claude o cualquier cliente MCP y el reproductor se convierte en herramientas: qué suena, buscar en la biblioteca, leer la cola, manejar el transporte. "Pon en cola algo tranquilo de los 70" deja de ser una función que rox tendría que criar y pasa a ser una frase sobre la que tu asistente puede actuar.
+    .p1 = Junto a la aplicación va `rox-mcp`, un binario fino que habla [MCP](@mcp-spec) sobre stdio por un lado y con el socket por el otro. Apúntale Claude o cualquier cliente MCP y el reproductor se convierte en herramientas: qué suena, buscar en la biblioteca, leer la cola, manejar el transporte, iniciar un reescaneo o una pasada de análisis. "Pon en cola algo tranquilo de los 70" deja de ser una función que rox tendría que criar y pasa a ser una frase sobre la que tu asistente puede actuar.
     .p2 = Cada herramienta pasa por un método del socket, así que la superficie MCP es por construcción un subconjunto de lo que sirve el socket y no puede adelantársele. Y se activa dos veces: un interruptor de funciones de IA, apagado por defecto, revela una página de ajustes de MCP con su propio interruptor, y cada llamada de herramienta vuelve a comprobar los interruptores en la aplicación en marcha antes de responder. Apagado significa un rechazo claro, no un cuelgue.
 
 ctl-broadcast = La mitad del audio

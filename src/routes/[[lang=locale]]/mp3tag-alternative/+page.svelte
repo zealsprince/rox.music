@@ -73,6 +73,9 @@
       <li><Rich key="mp3tag-spec-lookup" /></li>
       <li><Rich key="mp3tag-spec-repair" /></li>
       <li><Rich key="mp3tag-spec-patterns" /></li>
+      <li><Rich key="mp3tag-spec-replace" /></li>
+      <li><Rich key="mp3tag-spec-sortnames" /></li>
+      <li><Rich key="mp3tag-spec-health" /></li>
     </ul>
   </div>
 </section>

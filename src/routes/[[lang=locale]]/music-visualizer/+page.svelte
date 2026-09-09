@@ -44,6 +44,15 @@
   </div>
 </section>
 
+<section class="shell narrow block">
+  <h2>{t('viz-milkdrop')}</h2>
+  <div class="prose">
+    <p>{t('viz-milkdrop.p1')}</p>
+    <p>{t('viz-milkdrop.p2')}</p>
+    <p>{t('viz-milkdrop.p3')}</p>
+  </div>
+</section>
+
 <section class="block band">
   <div class="shell narrow">
     <h2>{t('viz-shaders')}</h2>
@@ -100,7 +109,7 @@
     <h2>{t('viz-limits')}</h2>
     <ul class="limits">
       <li>{t('viz-limit-routes')}</li>
-      <li>{t('viz-limit-milkdrop')}</li>
+      <li>{t('viz-limit-avs')}</li>
       <li>{t('viz-limit-midi')}</li>
       <li>{t('viz-limit-battery')}</li>
     </ul>
