@@ -320,7 +320,7 @@
     "publishedAt": "2026-08-28T20:03:26Z",
     "counts": {
       "linux-archive": 0,
-      "linux-alt": 0,
+      "linux-alt": 1,
       "macos-archive": 0,
       "windows-archive": 1,
       "windows-alt": 1
@@ -352,7 +352,7 @@
     "tag": "v1.23.3",
     "publishedAt": "2026-08-29T03:22:06Z",
     "counts": {
-      "linux-archive": 0,
+      "linux-archive": 1,
       "linux-alt": 2,
       "macos-archive": 2,
       "windows-archive": 2,
@@ -374,7 +374,7 @@
     "tag": "v1.23.5",
     "publishedAt": "2026-08-29T19:49:46Z",
     "counts": {
-      "linux-archive": 2,
+      "linux-archive": 3,
       "linux-alt": 5,
       "macos-archive": 4,
       "windows-archive": 7,
@@ -386,7 +386,7 @@
     "publishedAt": "2026-08-31T02:40:37Z",
     "counts": {
       "linux-archive": 7,
-      "linux-alt": 5,
+      "linux-alt": 6,
       "macos-archive": 13,
       "windows-archive": 23,
       "windows-alt": 22
@@ -398,7 +398,7 @@
     "counts": {
       "linux-archive": 9,
       "linux-alt": 5,
-      "macos-archive": 7,
+      "macos-archive": 8,
       "windows-archive": 22,
       "windows-alt": 20
     }
@@ -495,11 +495,11 @@
     "tag": "v1.27.0",
     "publishedAt": "2026-09-12T19:22:37Z",
     "counts": {
-      "linux-archive": 7,
+      "linux-archive": 9,
       "linux-alt": 2,
-      "macos-archive": 2,
-      "windows-archive": 6,
-      "windows-alt": 7
+      "macos-archive": 4,
+      "windows-archive": 10,
+      "windows-alt": 15
     }
   }
 ]
