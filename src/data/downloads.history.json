@@ -186,6 +186,17 @@
         "windows-archive": 371,
         "windows-alt": 135
       }
+    },
+    {
+      "date": "2026-09-16",
+      "total": 781,
+      "channels": {
+        "linux-archive": 131,
+        "linux-alt": 35,
+        "macos-archive": 92,
+        "windows-archive": 381,
+        "windows-alt": 142
+      }
     }
   ]
 }
