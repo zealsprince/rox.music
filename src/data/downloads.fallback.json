@@ -495,11 +495,11 @@
     "tag": "v1.27.0",
     "publishedAt": "2026-09-12T19:22:37Z",
     "counts": {
-      "linux-archive": 14,
-      "linux-alt": 6,
+      "linux-archive": 15,
+      "linux-alt": 7,
       "macos-archive": 13,
-      "windows-archive": 31,
-      "windows-alt": 31
+      "windows-archive": 37,
+      "windows-alt": 35
     }
   }
 ]
