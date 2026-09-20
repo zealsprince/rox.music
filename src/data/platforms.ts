@@ -10,17 +10,30 @@ import type { Platform } from '../types/release'
 // Labels stay put: "Linux", "macOS" and "Windows" are names, and a page that
 // translated them would be naming something else. Steps and caveats are prose,
 // so they're keys.
+//
+// Linux ships four artifacts and the card lists all four, because a visitor on
+// a Flatpak distro who only sees a tarball concludes there isn't one.
+
+/** The Linux artifact slug, shared by the tarball and the AppImage. */
+const LINUX = 'linux-x86_64'
+
 export const PLATFORMS: Platform[] = [
   {
     id: 'linux',
     label: 'Linux',
-    artifact: 'linux-x86_64',
+    artifact: LINUX,
     archive: 'tar.gz',
-    steps: ['install-linux-1', 'install-linux-2'],
+    steps: ['install-linux-1', 'install-linux-2', 'install-linux-3', 'install-linux-4'],
     caveat: null,
     cta: 'download-btn-tarball',
-    // cargo-deb names it rox_<version>_amd64.deb, so the slug never appears.
-    alt: { suffix: '_amd64.deb', key: 'download-btn-deb' },
+    alts: [
+      // cargo-deb names it rox_<version>_amd64.deb, so the slug never appears.
+      { id: 'alt', suffix: '_amd64.deb', key: 'download-btn-deb' },
+      { id: 'appimage', suffix: `${LINUX}.AppImage`, key: 'download-btn-appimage' },
+      // The bundle carries its own slug rather than the Linux one, because the
+      // Flatpak is built in a container of its own.
+      { id: 'flatpak', suffix: 'flatpak-x86_64.flatpak', key: 'download-btn-flatpak' },
+    ],
   },
   {
     id: 'macos',
@@ -30,7 +43,7 @@ export const PLATFORMS: Platform[] = [
     steps: ['install-macos-1', 'install-macos-2'],
     caveat: null,
     cta: null,
-    alt: null,
+    alts: [],
   },
   {
     id: 'windows',
@@ -42,7 +55,9 @@ export const PLATFORMS: Platform[] = [
     cta: 'download-btn-portable',
     // The installer leads: per-user install, Start menu entry, in-place
     // upgrades. The zip stays for people who want portable mode.
-    alt: { suffix: '-setup.exe', key: 'download-btn-installer', lead: true },
+    alts: [
+      { id: 'alt', suffix: '-setup.exe', key: 'download-btn-installer', lead: true },
+    ],
   },
 ]
 

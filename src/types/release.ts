@@ -14,17 +14,33 @@ export interface Platform {
   caveat: string | null
   /**
    * Message key for the main download button's label, or null for the plain
-   * "Download". Platforms with an alt name both buttons so the pair reads
+   * "Download". Platforms carrying alts name every button so the set reads
    * as a choice.
    */
   cta: string | null
-  /**
-   * A second artifact beside the archive, like the .deb or the Windows
-   * installer. `suffix` is matched against the end of the asset name, `key`
-   * labels its button. `lead` puts it first on the card: display order only,
-   * the archive stays the release's canonical asset.
-   */
-  alt: { suffix: string, key: string, lead?: boolean } | null
+  /** The other artifacts beside the archive, in the order the card lists them. */
+  alts: Alt[]
+}
+
+/**
+ * One artifact beside the platform's archive: the .deb, the AppImage, the
+ * Flatpak bundle, the Windows installer.
+ *
+ * `suffix` is matched against the end of the asset name, `key` labels its
+ * button, and `lead` puts it first on the card, which is display order only
+ * and leaves the archive as the release's canonical asset.
+ *
+ * `id` is the tail of this artifact's download-count channel id
+ * (`linux-appimage`, `windows-alt`), so it outlives the filename the way
+ * src/data/channels.ts requires. The .deb and the Windows installer are both
+ * `alt` because that's what they have been counted under since the first
+ * snapshot, and a rename would start a fresh series.
+ */
+export interface Alt {
+  id: string
+  suffix: string
+  key: string
+  lead?: boolean
 }
 
 export interface ReleaseAsset {
@@ -47,7 +63,7 @@ export interface Release {
   prerelease: boolean
   /** One per platform: the archive the platform card and CTA button link. */
   assets: ReleaseAsset[]
-  /** The alt artifacts, at most one per platform with an `alt` matcher. */
+  /** The alt artifacts a release carries, in the order PLATFORMS declares them. */
   alts: ReleaseAsset[]
   /** True when the data came from the checked-in fallback, not the API. */
   stale: boolean

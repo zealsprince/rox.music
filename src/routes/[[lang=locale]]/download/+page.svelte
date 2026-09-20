@@ -21,23 +21,30 @@
   const DESCRIPTION = t('download-title.description')
 
   const assetFor = (release: Release, id: string) => release.assets.find(a => a.platform === id)
-  const altFor = (release: Release, id: string) => release.alts.find(a => a.platform === id)
 
   // The card's buttons in display order: the lead artifact takes the accent,
   // the rest render as outlined alternatives. Windows leads with the installer
-  // while the zip stays the canonical asset the hero button hands out. Both
-  // channels run the same resolver over their own release, so the two can't
-  // disagree about which artifact a platform gets.
+  // while the zip stays the canonical asset the hero button hands out, and
+  // Linux lists its four in the order platforms.ts declares them. Both channels
+  // run the same resolver over their own release, so the two can't disagree
+  // about which artifact a platform gets.
+  //
+  // Alts are matched back to their entry by suffix rather than by position,
+  // since a release that predates one of them carries fewer assets than the
+  // platform declares and a zip through the list would slide the labels along.
   const buttonsFor = (platform: Platform, release: Release) => {
-    const asset = assetFor(release, platform.id)
-    if (!asset)
+    const archive = assetFor(release, platform.id)
+    if (!archive)
       return []
-    const main = { ...asset, label: platform.cta ?? 'nav-download' }
-    const alt = platform.alt ? altFor(release, platform.id) : undefined
-    if (!platform.alt || !alt)
-      return [main]
-    const second = { ...alt, label: platform.alt.key }
-    return platform.alt.lead ? [second, main] : [main, second]
+
+    const main = { ...archive, label: platform.cta ?? 'nav-download' }
+    const alts = platform.alts.flatMap((alt) => {
+      const asset = release.alts.find(a =>
+        a.platform === platform.id && a.name.endsWith(alt.suffix))
+      return asset ? [{ ...asset, label: alt.key, lead: alt.lead === true }] : []
+    })
+
+    return [...alts.filter(a => a.lead), main, ...alts.filter(a => !a.lead)]
   }
 
   const mb = (bytes: number): string =>

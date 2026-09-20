@@ -4,6 +4,7 @@
     AudioLines,
     Blend,
     Cable,
+    CassetteTape,
     Disc3,
     Heart,
     LayoutDashboard,
@@ -14,7 +15,9 @@
     Palette,
     Play,
     Radio,
+    RadioReceiver,
     RadioTower,
+    Server,
     Tag,
   } from '@lucide/svelte'
 
@@ -29,7 +32,9 @@
   // Shader panel's icon in the app's own Add Panel menu, Palette is the
   // Appearance settings page, AudioLines is the equalizer, Mic is the lyrics
   // panel, Link is the MCP settings page. Someone who has used rox should
-  // recognise the row.
+  // recognise the row. The stations cell takes the receiver rather than rox's
+  // own radio mark, because that one is already on the similarity cell for
+  // radio-by-sound and two identical marks in one grid read as a mistake.
   //
   // `satisfies` rather than a type annotation, so a new id in features.ts fails
   // the typecheck here instead of rendering nothing.
@@ -49,6 +54,9 @@
     ipc: Cable,
     mcp: Link,
     broadcast: RadioTower,
+    radio: RadioReceiver,
+    subsonic: Server,
+    capture: CassetteTape,
   } satisfies Record<FeatureIconId, unknown>
 
   const Icon = $derived(ICONS[icon])

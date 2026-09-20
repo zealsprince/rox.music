@@ -98,6 +98,8 @@ app-feature-dsp = 均衡器、交叉淡化和 ReplayGain
 app-feature-exclusive = 独占位完美输出
 app-feature-lyrics = 同步歌词
 app-feature-scrobbling = Last.fm、ListenBrainz 和 Libre.fm scrobble
+app-feature-radio = 可以回拨的网络电台，带直播缓冲
+app-feature-subsonic = Subsonic 和 OpenSubsonic 曲库同步
 
 ## 首页
 
@@ -146,17 +148,17 @@ feature-cue = CUE 整轨像普通曲目一样播
     .link = 分段是怎么运作的
 
 feature-gapless = 无缝播放
-    .body = 一条流，带随机、重复、下一首播放和 A-B 循环。书签一个键就能放下，落在进度条上。媒体键和“正在播放”在三个平台上都能用。
+    .body = 一条流，带随机、重复、下一首播放和 A-B 循环。书签和用完即弃的会话标记都落在进度条上。媒体键和“正在播放”在三个平台上都能用。
 
 feature-equalizer = 十段均衡，位完美
-    .body = 独立窗口里的均衡器、不去碰专辑自身接缝的交叉淡化，还有会说明硬件到底答应了什么的独占输出。
+    .body = 独立窗口里的均衡器，预设可以自己存，AutoEq 耳机数据库就在里面。交叉淡化不去碰专辑自身的接缝，独占输出会说明硬件到底答应了什么。
     .link = ReplayGain 和位完美
 
 feature-similarity = 按听感排序
     .body = rox 从音频本身描述你的曲目，速度也算在内，再按相像程度安排接下来放什么。它在你自己的机器上跑你自己的文件，中间没有任何服务。
 
 feature-panels = 你自己拼的面板
-    .body = 四十来种面板，从媒体库、队列到艺术家墙、频谱和 VU。可以连配置一起复制、存成预设，或者弹出成独立窗口。
+    .body = 四十来种面板，从媒体库、队列到艺术家墙和电平表。可以连配置一起复制，或者弹出成独立窗口。专辑封面下面还能标上年份、风格或上次播放。
     .link = 和 Foobar2000 比
 
 feature-themes = 主题就是可以分享的文件
@@ -168,14 +170,25 @@ feature-shaders = 会听音乐的视觉
     .link = 着色器和信号
 
 feature-lyrics = 歌词和历史
-    .body = 同步的或纯文本的，来自同名文件、标签或 lrclib，编辑器会写回它读来的地方。收听日志驱动播放历史面板、统计和 scrobble。
+    .body = 同步的或纯文本的，来自同名文件、标签或 lrclib，编辑器会写回它读来的地方。收听日志驱动播放历史面板和统计，Last.fm 的 scrobble 也能连着日期一起导入。
 
 feature-playlists = 活得下来的播放列表
     .body = 收藏、拖动重排、M3U、PLS 和 XSPF 进出，还有重新跑一次保存好的查询、而不是拿着快照的智能播放列表。文件走了又回来，条目照样还在。
 
 feature-binary = 一个可执行文件，不用装
-    .body = 一个 tar 包、一个 DMG 或者一个 zip，另外还有 AUR 和 Nix flake。便携模式把媒体库和设置放在可执行文件旁边的文件夹里。
+    .body = 一个 tar 包、一个 AppImage、一个 Flatpak、一个 DMG 或者一个 zip，另外还有 AUR 和 Nix flake。便携模式把媒体库和设置放在可执行文件旁边的文件夹里。
     .link = 去下载
+
+features-sources = 来源
+
+feature-radio = 能回拨的电台
+    .body = 粘一个流地址，或者在 radio-browser 目录里挑一个。电台像曲目一样进队列、照样 scrobble，直播缓冲让你把正在播的节目暂停、往回拨。
+
+feature-subsonic = 你的服务器，进了媒体库
+    .body = Subsonic 或 OpenSubsonic 服务器把曲库同步进来，这些条目和文件一样能浏览、能搜、能播。播放时取的是原始文件，所以无缝和 ReplayGain 照旧。
+
+feature-capture = 从电波里留下的歌
+    .body = 抓取会把电台放过的整首歌存进你自己的文件夹，保持流本身的格式，带标签，封面就在旁边。默认关着。
 
 features-beyond = 窗口之外
 
@@ -213,11 +226,11 @@ stats-note-week = 一周从周一算到周日。还没过完的这一周不显�
 ## 下载
 
 download-title = 下载 rox，Linux、macOS 或 Windows 版
-    .description = 免费下载 rox 的 Linux、macOS 或 Windows 版。每个平台一个下载文件，不用账号。开源，采用 AGPL。
+    .description = 免费下载 rox 的 Linux、macOS 或 Windows 版。选好平台和格式就行，不用账号。开源，采用 AGPL。
     .image-alt = rox 标志，下面是英文原句：download for Linux, macOS and Windows
 
 download-h1 = 下载 rox
-    .lede = 每个平台一个下载文件。不用账号，关掉之后后台什么都不留。
+    .lede = 选好平台和格式就行。不用账号，关掉之后后台什么都不留。
 
 download-released = 发布于 { $date }
 download-notes = 发行说明
@@ -226,8 +239,10 @@ download-channel-stable = 最新版
 download-channel-candidate = 预发布版
     .body = 下一个版本的预览版，提前放出来是为了在正式发布前找出最后的问题。想帮忙测试就用这个，正式版发布后 rox 会把你更新过去。
 
-install-linux-1 = 把 tar 包解压到任意位置。
-install-linux-2 = 运行 `./rox`。
+install-linux-1 = 压缩包：解压到任意位置，运行 `./rox`。
+install-linux-2 = Deb：用 `apt install ./rox_*.deb` 安装。
+install-linux-3 = AppImage：`chmod +x` 之后直接运行。首次启动会问要不要加菜单项。
+install-linux-4 = Flatpak：用 `flatpak install --user` 安装这个包。运行时来自 Flathub。
 install-macos-1 = 打开 DMG。
 install-macos-2 = 把 rox 拖进“应用程序”。
 install-windows-1 = 运行安装程序，rox 会出现在开始菜单中。
@@ -236,6 +251,8 @@ install-windows-caveat = 如果 SmartScreen 拦下来，选“更多信息”，
 
 download-btn-tarball = 下载压缩包
 download-btn-deb = 下载 .deb
+download-btn-appimage = 下载 AppImage
+download-btn-flatpak = 下载 Flatpak
 download-btn-portable = 下载便携版
 download-btn-installer = 下载安装程序
 
@@ -517,7 +534,7 @@ musicbee-gaps = rox 不做什么
     .close = 四件真事，这个清单没有为了显得诚实而注水。要是其中两件属于你用播放器的方式，那就到此为止。
 
 musicbee-gap-sync = **不做设备同步。** 如果你是通过播放器把音乐搬到手机或者随身听上的，rox 完全没有答案。
-musicbee-gap-radio = **没有播客和网络电台。** rox 放的是你硬盘上的文件。
+musicbee-gap-radio = **没有播客。** 网络电台能放，也能顺手录下来，但 rox 不会去订阅播客源。
 musicbee-gap-plugins = **没有插件 API。** 你打算靠插件解决的事，得是已经存在的功能。
 musicbee-gap-ffmpeg = **转换需要 ffmpeg。** rox 能在格式之间转换，但它驱动的是你自己装的 ffmpeg，而不是自带一个编码器；它也不会在送去设备的路上重编码，因为根本没有同步这回事。
 

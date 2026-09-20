@@ -32,7 +32,7 @@
 
   const { t, info } = i18n()
 
-  // Eight short claims about what the app does, in the language of the page
+  // Ten short claims about what the app does, in the language of the page
   // making them. A graph that describes a German page in English is a graph
   // describing something else.
   const FEATURES = [
@@ -44,6 +44,8 @@
     'app-feature-exclusive',
     'app-feature-lyrics',
     'app-feature-scrobbling',
+    'app-feature-radio',
+    'app-feature-subsonic',
   ].map(key => t(key))
 
   // Same reasoning as Meta's canonical: prerendered, so page.url is the

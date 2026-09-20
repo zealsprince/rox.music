@@ -11,7 +11,10 @@ import { PLATFORMS } from './platforms'
  * The `id` is what lands in the history file, so it has to outlive the asset
  * name it stands for. `macos-archive` keeps counting the Mac build when the dmg
  * goes universal and the suffix changes; an id derived from the filename would
- * quietly start a new series instead.
+ * quietly start a new series instead. For the same reason the .deb and the
+ * Windows installer stay `linux-alt` and `windows-alt` now that a platform can
+ * carry several alts: those two ids have been in the history file since the
+ * first snapshot, and renaming either one would fork its series in place.
  *
  * Relative imports, no `$` aliases: scripts/snapshot-downloads.ts runs this
  * under tsx, outside Vite, where the aliases don't resolve. Same reason
@@ -24,20 +27,18 @@ export interface Channel {
   suffix: string
 }
 
-export const CHANNELS: Channel[] = PLATFORMS.flatMap((platform) => {
-  const archive: Channel = {
+export const CHANNELS: Channel[] = PLATFORMS.flatMap(platform => [
+  {
     id: `${platform.id}-archive`,
     platform: platform.id,
     suffix: `${platform.artifact}.${platform.archive}`,
-  }
-  if (!platform.alt)
-    return [archive]
-  return [archive, {
-    id: `${platform.id}-alt`,
+  },
+  ...platform.alts.map(alt => ({
+    id: `${platform.id}-${alt.id}`,
     platform: platform.id,
-    suffix: platform.alt.suffix,
-  }]
-})
+    suffix: alt.suffix,
+  })),
+])
 
 export const CHANNEL_IDS = CHANNELS.map(channel => channel.id)
 

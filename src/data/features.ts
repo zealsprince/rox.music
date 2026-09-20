@@ -19,6 +19,9 @@ export type FeatureIconId
     | 'ipc'
     | 'mcp'
     | 'broadcast'
+    | 'radio'
+    | 'subsonic'
+    | 'capture'
 
 export interface Feature {
   /** Message key. Value is the cell title, `.body` the paragraph under it. */
@@ -112,6 +115,14 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
         icon: 'binary',
         link: { path: '/download', key: 'feature-binary.link' },
       },
+    ],
+  },
+  {
+    key: 'features-sources',
+    features: [
+      { key: 'feature-radio', icon: 'radio' },
+      { key: 'feature-subsonic', icon: 'subsonic' },
+      { key: 'feature-capture', icon: 'capture' },
     ],
   },
   {

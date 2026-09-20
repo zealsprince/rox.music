@@ -90,6 +90,8 @@ app-feature-dsp = Equalizer, crossfade and ReplayGain
 app-feature-exclusive = Exclusive bit-perfect output
 app-feature-lyrics = Synced lyrics
 app-feature-scrobbling = Last.fm, ListenBrainz and Libre.fm scrobbling
+app-feature-radio = Internet radio with a rewindable live buffer
+app-feature-subsonic = Subsonic and OpenSubsonic library sync
 
 ## Home
 
@@ -138,17 +140,17 @@ feature-cue = Cue rips play like tracks
     .link = How the spans work
 
 feature-gapless = Gapless playback
-    .body = One stream, with shuffle, repeat, play-next and A-B repeat. Bookmarks drop with one key and sit on the seek strip. Media keys and now-playing work on all three platforms.
+    .body = One stream, with shuffle, repeat, play-next and A-B repeat. Bookmarks and throwaway session markers sit on the seek strip. Media keys and now-playing work on all three platforms.
 
 feature-equalizer = Ten bands and bit-perfect
-    .body = An equalizer in a window of its own, crossfade that leaves an album's own splices alone, and exclusive output that says what the hardware agreed to.
+    .body = An equalizer in its own window, with saved presets and the AutoEq headphone database inside it. Crossfade leaves an album's splices alone, and exclusive output says what the hardware agreed to.
     .link = ReplayGain and bit-perfect
 
 feature-similarity = Sorted by how it sounds
     .body = rox describes your tracks off their own audio, tempo included, and orders what's next by resemblance. It runs on your machine against your files, no service in the loop.
 
 feature-panels = Panels you compose
-    .body = Forty-odd panel types, from library and queue to artist grids, spectrum and VU. Duplicate one with its config, save it as a preset, or pop it out into a window.
+    .body = Forty-odd panel types, from library and queue to artist grids and meters. Duplicate one with its config or pop it out into a window. Album tiles caption themselves with year, genre or last played.
     .link = Next to Foobar2000
 
 feature-themes = Themes as shareable files
@@ -160,14 +162,25 @@ feature-shaders = Visuals that listen
     .link = Shaders and signals
 
 feature-lyrics = Lyrics and history
-    .body = Synced or plain, from sidecar files, tags or lrclib, with an editor that writes back where it read. A listen log drives the history panel, stats and scrobbling.
+    .body = Synced or plain, from sidecar files, tags or lrclib, with an editor that writes back where it read. A listen log drives the history panel and stats, and Last.fm's scrobbles import with their own dates.
 
 feature-playlists = Playlists that survive
     .body = Favourites, drag reorder, M3U, PLS and XSPF in and out, and smart playlists that re-run a saved query rather than hold a snapshot. Entries survive a file leaving and returning.
 
 feature-binary = One binary, no installer
-    .body = A tarball, a DMG or a zip, plus the AUR and a Nix flake. Portable mode keeps the library and settings in a folder beside the executable.
+    .body = A tarball, an AppImage, a Flatpak, a DMG or a zip, plus the AUR and a Nix flake. Portable mode keeps the library and settings in a folder beside the executable.
     .link = Get it
+
+features-sources = Sources
+
+feature-radio = Radio you can rewind
+    .body = Paste a stream URL or pick one out of the radio-browser directory. A station queues and scrobbles like a track, and a live buffer lets you pause a broadcast and rewind it.
+
+feature-subsonic = Your server in the library
+    .body = A Subsonic or OpenSubsonic server syncs its catalog in, and the rows browse, search and play like files. Streams ask for the original, so gapless and ReplayGain hold.
+
+feature-capture = Songs off the air
+    .body = Capture saves whole songs a station plays into a folder of your own, in the stream's own format, tagged, with the cover beside them. Off until you turn it on.
 
 features-beyond = Beyond the window
 
@@ -208,11 +221,11 @@ stats-note-week = Weeks run Monday to Sunday. The one in progress isn't shown.
 ## Download
 
 download-title = Download rox for Linux, macOS or Windows
-    .description = Download rox free for Linux, macOS or Windows. One download per platform, no account. Open source under the AGPL.
+    .description = Download rox free for Linux, macOS or Windows. Pick your platform and format, no account. Open source under the AGPL.
     .image-alt = The rox logo above the words: download for Linux, macOS and Windows
 
 download-h1 = Download rox
-    .lede = One download per platform. No account, nothing running in the background when it's closed.
+    .lede = Pick your platform and format. No account, nothing running in the background when it's closed.
 
 download-released = released { $date }
 download-notes = release notes
@@ -221,8 +234,10 @@ download-channel-stable = Latest
 download-channel-candidate = Pre-release
     .body = A preview of the next release, published ahead of it so the last bugs get found before it ships. Take it if you'd like to help test, and rox updates you to the release when it lands.
 
-install-linux-1 = Unpack the tarball anywhere.
-install-linux-2 = Run `./rox`.
+install-linux-1 = Tarball: unpack it anywhere and run `./rox`.
+install-linux-2 = Deb: install it with `apt install ./rox_*.deb`.
+install-linux-3 = AppImage: `chmod +x` it and run it. The first launch offers a menu entry.
+install-linux-4 = Flatpak: `flatpak install --user` the bundle. Its runtime comes from Flathub.
 install-macos-1 = Open the DMG.
 install-macos-2 = Drag rox into Applications.
 install-windows-1 = Run the setup. rox lands in your Start menu.
@@ -231,6 +246,8 @@ install-windows-caveat = If SmartScreen objects, choose More info, then Run anyw
 
 download-btn-tarball = Download Tarball
 download-btn-deb = Download .deb
+download-btn-appimage = Download AppImage
+download-btn-flatpak = Download Flatpak
 download-btn-portable = Download Portable
 download-btn-installer = Download Installer
 
@@ -512,7 +529,7 @@ musicbee-gaps = What rox doesn't do
     .close = Four real things and the list isn't padded to look honest. If two of them are part of how you use a player, stop here.
 
 musicbee-gap-sync = **No device sync.** If you move music onto a phone or a DAP through your player, rox has no answer at all.
-musicbee-gap-radio = **No podcasts or internet radio.** rox plays files on your disk.
+musicbee-gap-radio = **No podcasts.** Radio stations play and can be saved as they go, but a podcast feed isn't something rox subscribes to.
 musicbee-gap-plugins = **No plugin API.** Anything you'd have solved with an add-on has to already exist.
 musicbee-gap-ffmpeg = **Conversion needs ffmpeg.** rox converts between formats, but it drives an ffmpeg you installed rather than carrying an encoder of its own, and it won't re-encode on the way to a device because there's no sync to re-encode for.
 

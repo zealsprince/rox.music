@@ -88,6 +88,8 @@ app-feature-dsp = イコライザー、クロスフェード、ReplayGain
 app-feature-exclusive = 排他モードのビットパーフェクト出力
 app-feature-lyrics = 同期歌詞
 app-feature-scrobbling = Last.fm、ListenBrainz、Libre.fm へのスクロブル
+app-feature-radio = 巻き戻せるライブバッファ付きのインターネットラジオ
+app-feature-subsonic = Subsonic と OpenSubsonic のライブラリ同期
 
 ## ホーム
 
@@ -136,17 +138,17 @@ feature-cue = CUE リップもトラックとして鳴る
     .link = 区間の仕組み
 
 feature-gapless = ギャップレス再生
-    .body = 1 本のストリームで、シャッフル、リピート、次に再生、A-Bリピートも効きます。ブックマークはキー 1 つで置けてシークバーに並びます。メディアキーと再生中表示は 3 つのプラットフォームすべてで動きます。
+    .body = 1 本のストリームで、シャッフル、リピート、次に再生、A-Bリピートも効きます。ブックマークと使い捨てのセッションマーカーがシークバーに並びます。メディアキーと再生中表示は 3 つのプラットフォームすべてで動きます。
 
 feature-equalizer = 10 バンドとビットパーフェクト
-    .body = 独立したウィンドウのイコライザー、アルバム内のつなぎ目には触らないクロスフェード、そしてハードウェアが何を受けたかを言う排他出力。
+    .body = 独立したウィンドウのイコライザー。プリセットを保存でき、AutoEq のヘッドホンデータベースも中にあります。クロスフェードはアルバム内のつなぎ目に触らず、排他出力はハードウェアが何を受けたかを言います。
     .link = ReplayGain とビットパーフェクト
 
 feature-similarity = 音の似かたで並べる
     .body = rox は音声そのものから曲の特徴をテンポも含めて割り出し、次に鳴るものを似ている順に並べます。処理は自分のマシンで自分のファイルに対して走り、途中にサービスは入りません。
 
 feature-panels = 自分で組むパネル
-    .body = ライブラリやキューからアーティストグリッド、スペクトラム、VU まで 40 種類ほど。設定ごと複製したり、プリセットとして保存したり、独立したウィンドウに切り離したりできます。
+    .body = ライブラリやキューからアーティストグリッド、レベルメーターまで 40 種類ほど。設定ごと複製したり、独立したウィンドウに切り離したりできます。アルバムのタイルには年、ジャンル、最後に聴いた日も出せます。
     .link = Foobar2000 と並べて
 
 feature-themes = ファイル 1 つで渡せるテーマ
@@ -158,14 +160,25 @@ feature-shaders = 音を聴くビジュアル
     .link = シェーダーとシグナル
 
 feature-lyrics = 歌詞と履歴
-    .body = 同期でもプレーンでも、隣のファイル、タグ、lrclib から読み込み、読んだ場所へ書き戻すエディター付き。再生ログが履歴パネル、統計、スクロブルを動かします。
+    .body = 同期でもプレーンでも、隣のファイル、タグ、lrclib から読み込み、読んだ場所へ書き戻すエディター付き。再生ログが履歴パネルと統計を動かし、Last.fm のスクロブルは日時ごと取り込めます。
 
 feature-playlists = 壊れないプレイリスト
     .body = お気に入り、ドラッグでの並べ替え、M3U、PLS、XSPF の入出力、そしてスナップショットではなく保存したクエリを走らせ直すスマートプレイリスト。ファイルが一度消えて戻ってきても項目は残ります。
 
 feature-binary = バイナリ 1 つ、インストーラーなし
-    .body = tarball、DMG、zip に加えて AUR と Nix flake。ポータブルモードならライブラリと設定は実行ファイルの隣のフォルダーに収まります。
+    .body = tarball、AppImage、Flatpak、DMG、zip に加えて AUR と Nix flake。ポータブルモードならライブラリと設定は実行ファイルの隣のフォルダーに収まります。
     .link = 入手する
+
+features-sources = ソース
+
+feature-radio = 巻き戻せるラジオ
+    .body = ストリームの URL を貼るか、radio-browser のディレクトリから選ぶだけ。ステーションは曲と同じようにキューに入ってスクロブルされ、ライブバッファのおかげで放送を止めて巻き戻せます。
+
+feature-subsonic = ライブラリの中のサーバー
+    .body = Subsonic や OpenSubsonic のサーバーはカタログをここへ同期します。行はファイルと同じように辿れて、検索できて、再生できます。ストリームは元ファイルを要求するので、ギャップレスも ReplayGain も効いたままです。
+
+feature-capture = 電波から録れる曲
+    .body = キャプチャは、ステーションが流した曲を丸ごと自分のフォルダーへ、ストリームの形式のまま、タグ付きで、カバーを添えて保存します。既定ではオフです。
 
 features-beyond = ウィンドウの外へ
 
@@ -203,11 +216,11 @@ stats-note-week = 週は月曜から日曜までです。進行中の週は出�
 ## ダウンロード
 
 download-title = Linux、macOS、Windows 向けの rox をダウンロード
-    .description = Linux、macOS、Windows 向けの rox を無料でダウンロード。プラットフォームごとにダウンロード 1 つ、アカウント不要。AGPL のオープンソース。
+    .description = Linux、macOS、Windows 向けの rox を無料でダウンロード。プラットフォームと形式を選ぶだけ、アカウント不要。AGPL のオープンソース。
     .image-alt = rox のロゴと、その下に英語で「Download for Linux, macOS and Windows.」の一文
 
 download-h1 = rox をダウンロード
-    .lede = プラットフォームごとにダウンロード 1 つ。アカウントは要らず、閉じれば裏で動くものも残りません。
+    .lede = プラットフォームと形式を選ぶだけ。アカウントは要らず、閉じれば裏で動くものも残りません。
 
 download-released = { $date } 公開
 download-notes = リリースノート
@@ -216,8 +229,10 @@ download-channel-stable = 最新版
 download-channel-candidate = プレリリース
     .body = 次のリリースのプレビュー版。公開前に残りのバグを見つけるため、先に出しているもの。テストを手伝ってくれるならこちらをどうぞ。正式リリースが出れば rox がそちらへ更新する。
 
-install-linux-1 = tarball を好きな場所に展開する。
-install-linux-2 = `./rox` を実行する。
+install-linux-1 = tarball: 好きな場所に展開して `./rox` を実行する。
+install-linux-2 = deb: `apt install ./rox_*.deb` でインストールする。
+install-linux-3 = AppImage: `chmod +x` を付けて実行する。初回起動時にメニュー項目の登録を聞かれます。
+install-linux-4 = Flatpak: バンドルを `flatpak install --user` でインストールする。ランタイムは Flathub から来ます。
 install-macos-1 = DMG を開く。
 install-macos-2 = rox をアプリケーションフォルダーにドラッグする。
 install-windows-1 = セットアップを実行すると、スタートメニューに rox が追加される。
@@ -226,6 +241,8 @@ install-windows-caveat = SmartScreen が止めたら、詳細情報を開いて�
 
 download-btn-tarball = tarball をダウンロード
 download-btn-deb = .deb をダウンロード
+download-btn-appimage = AppImage をダウンロード
+download-btn-flatpak = Flatpak をダウンロード
 download-btn-portable = ポータブル版をダウンロード
 download-btn-installer = インストーラーをダウンロード
 
@@ -507,7 +524,7 @@ musicbee-gaps = rox にできないこと
     .close = どれも実際に欠けている 4 つで、正直そうに見せるための水増しはありません。このうち 2 つが自分の使い方に入っているなら、ここで止めてください。
 
 musicbee-gap-sync = **機器同期なし。**プレイヤー経由でスマートフォンや DAP に音楽を移しているなら、rox には答えが一切ありません。
-musicbee-gap-radio = **ポッドキャストもインターネットラジオもなし。**rox はディスクにあるファイルを鳴らします。
+musicbee-gap-radio = **ポッドキャストはなし。**ラジオ局は鳴らせて、流れたまま保存もできますが、ポッドキャストのフィードは購読しません。
 musicbee-gap-plugins = **プラグイン API なし。**アドオンで解決していたことは、既にあるものでなければなりません。
 musicbee-gap-ffmpeg = **変換には ffmpeg が要る。**rox は形式を変換しますが、自前のエンコーダーを抱えるのではなく自分で入れた ffmpeg を叩きます。機器へ送る途中で再エンコードすることもありません。再エンコードする先の同期が無いので。
 

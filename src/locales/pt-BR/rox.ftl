@@ -98,6 +98,8 @@ app-feature-dsp = Equalizador, crossfade e ReplayGain
 app-feature-exclusive = Saída exclusiva bit-perfect
 app-feature-lyrics = Letras sincronizadas
 app-feature-scrobbling = Scrobbling no Last.fm, ListenBrainz e Libre.fm
+app-feature-radio = Rádio pela internet com buffer ao vivo que rebobina
+app-feature-subsonic = Sincronização de bibliotecas Subsonic e OpenSubsonic
 
 ## Início
 
@@ -146,17 +148,17 @@ feature-cue = Rips em cue tocam como faixas
     .link = Como os trechos funcionam
 
 feature-gapless = Reprodução sem intervalo
-    .body = Um stream só, com aleatório, repetição, tocar em seguida e repetição A-B. Um marcador cai com uma tecla e fica na barra de posição. As teclas de mídia e o aviso de faixa tocando funcionam nas três plataformas.
+    .body = Um stream só, com aleatório, repetição, tocar em seguida e repetição A-B. Os marcadores e as marcas de sessão, que são descartáveis, ficam na barra de posição. As teclas de mídia e o aviso de faixa tocando funcionam nas três plataformas.
 
 feature-equalizer = Dez bandas e bit-perfect
-    .body = Um equalizador numa janela própria, um crossfade que deixa as emendas de um álbum em paz, e saída exclusiva que diz com o que o hardware concordou.
+    .body = Um equalizador numa janela própria, com predefinições que você salva e o banco de fones do AutoEq lá dentro. O crossfade deixa as emendas de um álbum em paz, e a saída exclusiva diz com o que o hardware concordou.
     .link = ReplayGain e bit-perfect
 
 feature-similarity = Ordenado por como soa
     .body = O rox descreve suas faixas a partir do áudio delas, andamento incluído, e ordena o que vem a seguir por semelhança. Tudo roda na sua máquina, sobre os seus arquivos, sem serviço nenhum no meio.
 
 feature-panels = Painéis que você monta
-    .body = Uns quarenta tipos de painel, de biblioteca e fila a grades de artistas, espectro e VU. Duplique um com a configuração dele, salve como predefinição, ou destaque em uma janela.
+    .body = Uns quarenta tipos de painel, de biblioteca e fila a grades de artistas e medidores. Duplique um com a configuração dele ou destaque em uma janela. As capas da grade se rotulam com ano, gênero ou última audição.
     .link = Ao lado do Foobar2000
 
 feature-themes = Temas como arquivos compartilháveis
@@ -168,14 +170,25 @@ feature-shaders = Visuais que escutam
     .link = Shaders e sinais
 
 feature-lyrics = Letras e histórico
-    .body = Sincronizadas ou simples, de arquivos ao lado, tags ou lrclib, com um editor que escreve de volta onde leu. Um registro de audições alimenta o painel de histórico, as estatísticas e o scrobbling.
+    .body = Sincronizadas ou simples, de arquivos ao lado, tags ou lrclib, com um editor que escreve de volta onde leu. Um registro de audições alimenta o painel de histórico e as estatísticas, e os scrobbles do Last.fm entram com as datas deles.
 
 feature-playlists = Playlists que sobrevivem
     .body = Favoritos, reordenar arrastando, M3U, PLS e XSPF para dentro e para fora, e playlists inteligentes que reexecutam uma consulta salva em vez de guardar um retrato. As entradas sobrevivem a um arquivo sair e voltar.
 
 feature-binary = Um binário, sem instalador
-    .body = Um tarball, um DMG ou um zip, mais o AUR e um flake do Nix. O modo portátil guarda a biblioteca e as configurações numa pasta ao lado do executável.
+    .body = Um tarball, um AppImage, um Flatpak, um DMG ou um zip, mais o AUR e um flake do Nix. O modo portátil guarda a biblioteca e as configurações numa pasta ao lado do executável.
     .link = Baixe
+
+features-sources = Fontes
+
+feature-radio = Rádio que dá para rebobinar
+    .body = Cole a URL de um stream ou ache uma emissora no diretório do radio-browser. Uma emissora entra na fila e faz scrobble como uma faixa, e um buffer ao vivo deixa você pausar a transmissão e voltar nela.
+
+feature-subsonic = Seu servidor dentro da biblioteca
+    .body = Um servidor Subsonic ou OpenSubsonic sincroniza o catálogo dele aqui, e as linhas se navegam, se buscam e tocam como arquivos. Os streams pedem o original, então o sem intervalo e o ReplayGain continuam valendo.
+
+feature-capture = Músicas tiradas do ar
+    .body = A captura salva inteiras as músicas que uma emissora toca numa pasta sua, no formato do stream, com tags e a capa do lado. Desligada até você ligar.
 
 features-beyond = Além da janela
 
@@ -214,11 +227,11 @@ stats-note-week = As semanas vão de segunda a domingo. A que está em curso nã
 ## Download
 
 download-title = Baixar o rox para Linux, macOS ou Windows
-    .description = Baixe o rox de graça para Linux, macOS ou Windows. Um download por plataforma, sem conta. Código aberto sob a AGPL.
+    .description = Baixe o rox de graça para Linux, macOS ou Windows. Escolha plataforma e formato, sem conta. Código aberto sob a AGPL.
     .image-alt = O logo do rox acima da frase em inglês: download for Linux, macOS and Windows
 
 download-h1 = Baixar o rox
-    .lede = Um download por plataforma. Sem conta, e nada rodando em segundo plano quando ele está fechado.
+    .lede = Escolha plataforma e formato. Sem conta, e nada rodando em segundo plano quando ele está fechado.
 
 download-released = lançado em { $date }
 download-notes = notas da versão
@@ -227,8 +240,10 @@ download-channel-stable = Mais recente
 download-channel-candidate = Pré-lançamento
     .body = Uma prévia da próxima versão, publicada antes para que os últimos bugs apareçam antes do lançamento. Pegue esta se quiser ajudar a testar, e o rox atualiza você para a versão final quando ela sair.
 
-install-linux-1 = Descompacte o tarball em qualquer lugar.
-install-linux-2 = Rode `./rox`.
+install-linux-1 = Tarball: descompacte em qualquer lugar e rode `./rox`.
+install-linux-2 = Deb: instale com `apt install ./rox_*.deb`.
+install-linux-3 = AppImage: dê `chmod +x` nele e rode. A primeira execução oferece um atalho no menu.
+install-linux-4 = Flatpak: instale o pacote com `flatpak install --user`. O runtime vem do Flathub.
 install-macos-1 = Abra o DMG.
 install-macos-2 = Arraste o rox para Aplicativos.
 install-windows-1 = Execute o instalador. O rox aparece no menu Iniciar.
@@ -237,6 +252,8 @@ install-windows-caveat = Se o SmartScreen reclamar, escolha Mais informações e
 
 download-btn-tarball = Baixar tarball
 download-btn-deb = Baixar .deb
+download-btn-appimage = Baixar AppImage
+download-btn-flatpak = Baixar Flatpak
 download-btn-portable = Baixar versão portátil
 download-btn-installer = Baixar instalador
 
@@ -518,7 +535,7 @@ musicbee-gaps = O que o rox não faz
     .close = Quatro coisas reais, e a lista não foi enchida para parecer honesta. Se duas delas fazem parte de como você usa um player, pare por aqui.
 
 musicbee-gap-sync = **Sem sincronização com aparelhos.** Se você passa música para um celular ou um DAP pelo seu player, o rox não tem resposta nenhuma.
-musicbee-gap-radio = **Sem podcasts nem rádio pela internet.** O rox toca arquivos do seu disco.
+musicbee-gap-radio = **Sem podcasts.** As rádios tocam e dá para salvar o que passa, mas o rox não assina um feed de podcast.
 musicbee-gap-plugins = **Sem API de plugins.** O que você resolveria com um complemento precisa já existir.
 musicbee-gap-ffmpeg = **A conversão precisa do ffmpeg.** O rox converte entre formatos, mas ele dirige um ffmpeg que você instalou em vez de trazer um codificador próprio, e não recodifica no caminho para um aparelho porque não existe sincronização para a qual recodificar.
 

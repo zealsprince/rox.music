@@ -46,11 +46,13 @@ export interface Releases {
 
 /**
  * Picks the assets a platform can claim out of a release: the archive, plus
- * the alt artifact (the .deb, the Windows installer) where the platform
- * declares one. Matched on suffix rather than substring: the installer's name
- * carries the same `windows-x86_64` slug as the zip, so a substring match
- * would hand whichever GitHub lists first to both slots. A platform with no
- * matching asset is dropped rather than rendered as a dead link.
+ * every alt artifact it declares (the .deb, the AppImage, the Flatpak bundle,
+ * the Windows installer). Matched on suffix rather than substring: the
+ * installer's name carries the same `windows-x86_64` slug as the zip, and so
+ * does the AppImage, so a substring match would hand whichever GitHub lists
+ * first to both slots. An artifact with no matching asset is dropped rather
+ * than rendered as a dead link, which is how a release from before the
+ * AppImage and the Flatpak existed still renders its two buttons.
  */
 function bySuffix(api: ApiAsset[], platform: Platform, suffix: string): ReleaseAsset[] {
   const match = api.find(a => a.name.endsWith(suffix))
@@ -83,7 +85,7 @@ function normalize(api: ApiRelease, stale: boolean): Release {
     assets: PLATFORMS.flatMap(p =>
       bySuffix(api.assets, p, `${p.artifact}.${p.archive}`)),
     alts: PLATFORMS.flatMap(p =>
-      p.alt ? bySuffix(api.assets, p, p.alt.suffix) : []),
+      p.alts.flatMap(alt => bySuffix(api.assets, p, alt.suffix))),
     stale,
   }
 }

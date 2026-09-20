@@ -1,25 +1,89 @@
 [
   {
-    "tag_name": "v1.18.0",
-    "html_url": "https://github.com/zealsprince/rox/releases/tag/v1.18.0",
-    "published_at": "2026-08-14T23:38:35Z",
+    "tag_name": "v1.28.0-rc.1",
+    "html_url": "https://github.com/zealsprince/rox/releases/tag/v1.28.0-rc.1",
+    "published_at": "2026-09-20T04:48:47Z",
+    "draft": false,
+    "prerelease": true,
+    "assets": [
+      {
+        "name": "rox-v1.28.0-rc.1-flatpak-x86_64.flatpak",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.28.0-rc.1/rox-v1.28.0-rc.1-flatpak-x86_64.flatpak",
+        "size": 46115872
+      },
+      {
+        "name": "rox-v1.28.0-rc.1-linux-x86_64.AppImage",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.28.0-rc.1/rox-v1.28.0-rc.1-linux-x86_64.AppImage",
+        "size": 47819256
+      },
+      {
+        "name": "rox-v1.28.0-rc.1-linux-x86_64.tar.gz",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.28.0-rc.1/rox-v1.28.0-rc.1-linux-x86_64.tar.gz",
+        "size": 52891613
+      },
+      {
+        "name": "rox-v1.28.0-rc.1-macos-aarch64.dmg",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.28.0-rc.1/rox-v1.28.0-rc.1-macos-aarch64.dmg",
+        "size": 43853997
+      },
+      {
+        "name": "rox-v1.28.0-rc.1-windows-x86_64-setup.exe",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.28.0-rc.1/rox-v1.28.0-rc.1-windows-x86_64-setup.exe",
+        "size": 35215774
+      },
+      {
+        "name": "rox-v1.28.0-rc.1-windows-x86_64.zip",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.28.0-rc.1/rox-v1.28.0-rc.1-windows-x86_64.zip",
+        "size": 53976627
+      },
+      {
+        "name": "rox_1.28.0.rc.1_amd64.deb",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.28.0-rc.1/rox_1.28.0.rc.1_amd64.deb",
+        "size": 35332708
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.28.0-rc.1/SHA256SUMS.txt",
+        "size": 717
+      }
+    ]
+  },
+  {
+    "tag_name": "v1.27.0",
+    "html_url": "https://github.com/zealsprince/rox/releases/tag/v1.27.0",
+    "published_at": "2026-09-12T19:22:37Z",
     "draft": false,
     "prerelease": false,
     "assets": [
       {
-        "name": "rox-v1.18.0-linux-x86_64.tar.gz",
-        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.18.0/rox-v1.18.0-linux-x86_64.tar.gz",
-        "size": 41066039
+        "name": "rox-v1.27.0-linux-x86_64.tar.gz",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.27.0/rox-v1.27.0-linux-x86_64.tar.gz",
+        "size": 51677864
       },
       {
-        "name": "rox-v1.18.0-macos-aarch64.dmg",
-        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.18.0/rox-v1.18.0-macos-aarch64.dmg",
-        "size": 37236262
+        "name": "rox-v1.27.0-macos-aarch64.dmg",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.27.0/rox-v1.27.0-macos-aarch64.dmg",
+        "size": 42622112
       },
       {
-        "name": "rox-v1.18.0-windows-x86_64.zip",
-        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.18.0/rox-v1.18.0-windows-x86_64.zip",
-        "size": 41899146
+        "name": "rox-v1.27.0-windows-x86_64-setup.exe",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.27.0/rox-v1.27.0-windows-x86_64-setup.exe",
+        "size": 34422060
+      },
+      {
+        "name": "rox-v1.27.0-windows-x86_64.zip",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.27.0/rox-v1.27.0-windows-x86_64.zip",
+        "size": 52562585
+      },
+      {
+        "name": "rox_1.27.0_amd64.deb",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.27.0/rox_1.27.0_amd64.deb",
+        "size": 34898960
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "browser_download_url": "https://github.com/zealsprince/rox/releases/download/v1.27.0/SHA256SUMS.txt",
+        "size": 481
       }
     ]
   }
