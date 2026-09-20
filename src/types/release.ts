@@ -8,16 +8,19 @@ export interface Platform {
   artifact: string
   /** What the user ends up with once the archive is open. */
   archive: string
-  /** Message keys, one line each, rendered as an ordered list. */
+  /** Message keys for the archive's install lines, one line each. */
   steps: string[]
-  /** Message key for the gatekeeping note on unsigned builds, or null. */
-  caveat: string | null
   /**
-   * Message key for the main download button's label, or null for the plain
-   * "Download". Platforms carrying alts name every button so the set reads
-   * as a choice.
+   * Message key for the line under the card: the gatekeeping note on Windows'
+   * unsigned builds, the package-manager pointer on Linux. Rendered through
+   * `<Rich>`, so it can carry a link.
    */
-  cta: string | null
+  footnote: string | null
+  /**
+   * Message key for the archive's download button. `.short` on the same key is
+   * what the format chip says, so a label and its chip can't drift apart.
+   */
+  cta: string
   /** The other artifacts beside the archive, in the order the card lists them. */
   alts: Alt[]
 }
@@ -27,8 +30,8 @@ export interface Platform {
  * Flatpak bundle, the Windows installer.
  *
  * `suffix` is matched against the end of the asset name, `key` labels its
- * button, and `lead` puts it first on the card, which is display order only
- * and leaves the archive as the release's canonical asset.
+ * button and, through `.short`, its chip, `steps` are its install lines, and
+ * `lead` makes it the format the card opens on rather than the archive.
  *
  * `id` is the tail of this artifact's download-count channel id
  * (`linux-appimage`, `windows-alt`), so it outlives the filename the way
@@ -40,6 +43,7 @@ export interface Alt {
   id: string
   suffix: string
   key: string
+  steps: string[]
   lead?: boolean
 }
 

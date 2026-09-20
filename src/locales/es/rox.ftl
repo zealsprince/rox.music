@@ -233,22 +233,30 @@ download-channel-stable = Última
 download-channel-candidate = Prelanzamiento
     .body = Un adelanto de la próxima versión, publicado antes para que los últimos fallos aparezcan antes de que salga. Llévatelo si quieres ayudar a probar, y rox te actualizará a la versión final cuando llegue.
 
-install-linux-1 = Tarball: descomprímelo donde quieras y ejecuta `./rox`.
-install-linux-2 = Deb: instálalo con `apt install ./rox_*.deb`.
-install-linux-3 = AppImage: dale `chmod +x` y ejecútalo. El primer arranque ofrece una entrada de menú.
-install-linux-4 = Flatpak: instala el paquete con `flatpak install --user`. El runtime viene de Flathub.
+install-linux-tarball = Descomprímelo donde quieras y ejecuta `./rox`.
+install-linux-deb = Instálalo con `apt install ./rox_*.deb`.
+install-linux-appimage = Dale `chmod +x` y ejecútalo. El primer arranque ofrece una entrada de menú.
+install-linux-flatpak = Instala el paquete con `flatpak install --user`. El runtime viene de Flathub.
+install-linux-note = ¿En Arch o Nix? Instálalo desde [tu gestor de paquetes](/download#packages).
 install-macos-1 = Abre el DMG.
 install-macos-2 = Arrastra rox a Aplicaciones.
-install-windows-1 = Ejecuta el instalador. rox queda en el menú Inicio.
-install-windows-2 = ¿Prefieres portable? Descomprime el zip donde quieras y ejecuta `rox.exe`.
+install-windows-installer = Ejecuta el instalador. rox queda en el menú Inicio.
+install-windows-portable = Descomprime el zip donde quieras y ejecuta `rox.exe`.
 install-windows-caveat = Si SmartScreen protesta, elige Más información y luego Ejecutar de todas formas.
 
 download-btn-tarball = Descargar tarball
+    .short = Tarball
 download-btn-deb = Descargar .deb
+    .short = .deb
 download-btn-appimage = Descargar AppImage
+    .short = AppImage
 download-btn-flatpak = Descargar Flatpak
+    .short = Flatpak
+download-btn-dmg = Descargar DMG
 download-btn-portable = Descargar versión portátil
+    .short = Portátil
 download-btn-installer = Descargar instalador
+    .short = Instalador
 
 download-packages = Gestores de paquetes
     .body = Dos vías para que rox se mantenga al día junto con el resto de tu sistema.

@@ -239,22 +239,30 @@ download-channel-stable = 最新版
 download-channel-candidate = 预发布版
     .body = 下一个版本的预览版，提前放出来是为了在正式发布前找出最后的问题。想帮忙测试就用这个，正式版发布后 rox 会把你更新过去。
 
-install-linux-1 = 压缩包：解压到任意位置，运行 `./rox`。
-install-linux-2 = Deb：用 `apt install ./rox_*.deb` 安装。
-install-linux-3 = AppImage：`chmod +x` 之后直接运行。首次启动会问要不要加菜单项。
-install-linux-4 = Flatpak：用 `flatpak install --user` 安装这个包。运行时来自 Flathub。
+install-linux-tarball = 解压到任意位置，运行 `./rox`。
+install-linux-deb = 用 `apt install ./rox_*.deb` 安装。
+install-linux-appimage = `chmod +x` 之后直接运行。首次启动会问要不要加菜单项。
+install-linux-flatpak = 用 `flatpak install --user` 安装这个包。运行时来自 Flathub。
+install-linux-note = 用 Arch 或 Nix？可以走[包管理器](/download#packages)装。
 install-macos-1 = 打开 DMG。
 install-macos-2 = 把 rox 拖进“应用程序”。
-install-windows-1 = 运行安装程序，rox 会出现在开始菜单中。
-install-windows-2 = 想用便携版？解压到任意位置，运行 `rox.exe` 即可。
+install-windows-installer = 运行安装程序，rox 会出现在开始菜单中。
+install-windows-portable = 解压到任意位置，运行 `rox.exe`。
 install-windows-caveat = 如果 SmartScreen 拦下来，选“更多信息”，再点“仍要运行”。
 
 download-btn-tarball = 下载压缩包
+    .short = 压缩包
 download-btn-deb = 下载 .deb
+    .short = .deb
 download-btn-appimage = 下载 AppImage
+    .short = AppImage
 download-btn-flatpak = 下载 Flatpak
+    .short = Flatpak
+download-btn-dmg = 下载 DMG
 download-btn-portable = 下载便携版
+    .short = 便携版
 download-btn-installer = 下载安装程序
+    .short = 安装程序
 
 download-packages = 包管理器
     .body = 两条能让 rox 跟着系统其他部分一起更新的路。

@@ -234,22 +234,30 @@ download-channel-stable = Latest
 download-channel-candidate = Pre-release
     .body = A preview of the next release, published ahead of it so the last bugs get found before it ships. Take it if you'd like to help test, and rox updates you to the release when it lands.
 
-install-linux-1 = Tarball: unpack it anywhere and run `./rox`.
-install-linux-2 = Deb: install it with `apt install ./rox_*.deb`.
-install-linux-3 = AppImage: `chmod +x` it and run it. The first launch offers a menu entry.
-install-linux-4 = Flatpak: `flatpak install --user` the bundle. Its runtime comes from Flathub.
+install-linux-tarball = Unpack it anywhere and run `./rox`.
+install-linux-deb = Install it with `apt install ./rox_*.deb`.
+install-linux-appimage = `chmod +x` it and run it. The first launch offers a menu entry.
+install-linux-flatpak = Install the bundle with `flatpak install --user`. Its runtime comes from Flathub.
+install-linux-note = On Arch or Nix? Install it from [your package manager](/download#packages).
 install-macos-1 = Open the DMG.
 install-macos-2 = Drag rox into Applications.
-install-windows-1 = Run the setup. rox lands in your Start menu.
-install-windows-2 = Portable instead? Unzip anywhere and run `rox.exe`.
+install-windows-installer = Run the setup. rox lands in your Start menu.
+install-windows-portable = Unzip it anywhere and run `rox.exe`.
 install-windows-caveat = If SmartScreen objects, choose More info, then Run anyway.
 
 download-btn-tarball = Download Tarball
+    .short = Tarball
 download-btn-deb = Download .deb
+    .short = .deb
 download-btn-appimage = Download AppImage
+    .short = AppImage
 download-btn-flatpak = Download Flatpak
+    .short = Flatpak
+download-btn-dmg = Download DMG
 download-btn-portable = Download Portable
+    .short = Portable
 download-btn-installer = Download Installer
+    .short = Installer
 
 download-packages = Package managers
     .body = Two routes that keep rox updated alongside the rest of your system.

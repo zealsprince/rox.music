@@ -255,22 +255,30 @@ download-channel-stable = Ultima
 download-channel-candidate = Anteprima
     .body = Un'anteprima della prossima versione, pubblicata in anticipo perché gli ultimi bug vengano trovati prima dell'uscita. Prendila se vuoi aiutare a provarla, e rox ti aggiornerà alla versione finale quando arriva.
 
-install-linux-1 = Tarball: estrailo dove vuoi e avvia `./rox`.
-install-linux-2 = Deb: installalo con `apt install ./rox_*.deb`.
-install-linux-3 = AppImage: dagli `chmod +x` e avvialo. Al primo avvio ti propone una voce di menu.
-install-linux-4 = Flatpak: installa il bundle con `flatpak install --user`. Il runtime arriva da Flathub.
+install-linux-tarball = Estrailo dove vuoi e avvia `./rox`.
+install-linux-deb = Installalo con `apt install ./rox_*.deb`.
+install-linux-appimage = Dagli `chmod +x` e avvialo. Al primo avvio ti propone una voce di menu.
+install-linux-flatpak = Installa il bundle con `flatpak install --user`. Il runtime arriva da Flathub.
+install-linux-note = Su Arch o Nix? Passa dal [tuo gestore di pacchetti](/download#packages).
 install-macos-1 = Apri il DMG.
 install-macos-2 = Trascina rox in Applicazioni.
-install-windows-1 = Avvia il setup. rox finisce nel menu Start.
-install-windows-2 = Preferisci la portable? Estrai lo zip dove vuoi e avvia `rox.exe`.
+install-windows-installer = Avvia il setup. rox finisce nel menu Start.
+install-windows-portable = Estrai lo zip dove vuoi e avvia `rox.exe`.
 install-windows-caveat = Se SmartScreen protesta, scegli Ulteriori informazioni e poi Esegui comunque.
 
 download-btn-tarball = Scarica il tarball
+    .short = Tarball
 download-btn-deb = Scarica il .deb
+    .short = .deb
 download-btn-appimage = Scarica l'AppImage
+    .short = AppImage
 download-btn-flatpak = Scarica il Flatpak
+    .short = Flatpak
+download-btn-dmg = Scarica il DMG
 download-btn-portable = Scarica la versione portable
+    .short = Portable
 download-btn-installer = Scarica l'installer
+    .short = Installer
 
 download-packages = Gestori di pacchetti
     .body = Due strade che tengono rox aggiornato insieme al resto del sistema.

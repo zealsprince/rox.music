@@ -229,22 +229,30 @@ download-channel-stable = 最新版
 download-channel-candidate = プレリリース
     .body = 次のリリースのプレビュー版。公開前に残りのバグを見つけるため、先に出しているもの。テストを手伝ってくれるならこちらをどうぞ。正式リリースが出れば rox がそちらへ更新する。
 
-install-linux-1 = tarball: 好きな場所に展開して `./rox` を実行する。
-install-linux-2 = deb: `apt install ./rox_*.deb` でインストールする。
-install-linux-3 = AppImage: `chmod +x` を付けて実行する。初回起動時にメニュー項目の登録を聞かれます。
-install-linux-4 = Flatpak: バンドルを `flatpak install --user` でインストールする。ランタイムは Flathub から来ます。
+install-linux-tarball = 好きな場所に展開して `./rox` を実行する。
+install-linux-deb = `apt install ./rox_*.deb` でインストールする。
+install-linux-appimage = `chmod +x` を付けて実行する。初回起動時にメニュー項目の登録を聞かれます。
+install-linux-flatpak = バンドルを `flatpak install --user` でインストールする。ランタイムは Flathub から来ます。
+install-linux-note = Arch や Nix なら、[パッケージマネージャー](/download#packages)から入れられます。
 install-macos-1 = DMG を開く。
 install-macos-2 = rox をアプリケーションフォルダーにドラッグする。
-install-windows-1 = セットアップを実行すると、スタートメニューに rox が追加される。
-install-windows-2 = ポータブル版なら、好きな場所に展開して `rox.exe` を実行する。
+install-windows-installer = セットアップを実行すると、スタートメニューに rox が追加される。
+install-windows-portable = 好きな場所に展開して `rox.exe` を実行する。
 install-windows-caveat = SmartScreen が止めたら、詳細情報を開いて実行してください。
 
 download-btn-tarball = tarball をダウンロード
+    .short = tarball
 download-btn-deb = .deb をダウンロード
+    .short = .deb
 download-btn-appimage = AppImage をダウンロード
+    .short = AppImage
 download-btn-flatpak = Flatpak をダウンロード
+    .short = Flatpak
+download-btn-dmg = DMG をダウンロード
 download-btn-portable = ポータブル版をダウンロード
+    .short = ポータブル
 download-btn-installer = インストーラーをダウンロード
+    .short = インストーラー
 
 download-packages = パッケージマネージャー
     .body = システムの他のものと一緒に rox を更新し続ける 2 つの経路。

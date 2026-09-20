@@ -22,26 +22,28 @@
 
   const assetFor = (release: Release, id: string) => release.assets.find(a => a.platform === id)
 
-  // The card's buttons in display order: the lead artifact takes the accent,
-  // the rest render as outlined alternatives. Windows leads with the installer
-  // while the zip stays the canonical asset the hero button hands out, and
-  // Linux lists its four in the order platforms.ts declares them. Both channels
-  // run the same resolver over their own release, so the two can't disagree
-  // about which artifact a platform gets.
+  // Every artifact the platform ships in this release, in the order the chip
+  // strip lists them. The lead format is first and is the one the card opens
+  // on: Windows leads with the installer while the zip stays the canonical
+  // asset the hero button hands out, and Linux leads with its tarball. Both
+  // channels run the same resolver over their own release, so the two can't
+  // disagree about which artifact a platform gets.
   //
   // Alts are matched back to their entry by suffix rather than by position,
   // since a release that predates one of them carries fewer assets than the
   // platform declares and a zip through the list would slide the labels along.
-  const buttonsFor = (platform: Platform, release: Release) => {
+  const formatsFor = (platform: Platform, release: Release) => {
     const archive = assetFor(release, platform.id)
     if (!archive)
       return []
 
-    const main = { ...archive, label: platform.cta ?? 'nav-download' }
+    const main = { ...archive, id: 'archive', key: platform.cta, steps: platform.steps, lead: false }
     const alts = platform.alts.flatMap((alt) => {
       const asset = release.alts.find(a =>
         a.platform === platform.id && a.name.endsWith(alt.suffix))
-      return asset ? [{ ...asset, label: alt.key, lead: alt.lead === true }] : []
+      return asset
+        ? [{ ...asset, id: alt.id, key: alt.key, steps: alt.steps, lead: alt.lead === true }]
+        : []
     })
 
     return [...alts.filter(a => a.lead), main, ...alts.filter(a => !a.lead)]
@@ -131,47 +133,84 @@
     <div class="panel" data-channel={channel.id}>
       <div class="cards">
         {#each PLATFORMS as platform (platform.id)}
-          {@const buttons = buttonsFor(platform, channel.release)}
+          {@const formats = formatsFor(platform, channel.release)}
+          {@const group = `fmt-${channel.id}-${platform.id}`}
           <article data-platform-card={platform.id}>
             <h2>
               <PlatformIcon platform={platform.id} size={22} />
               {platform.label}
             </h2>
 
-            {#if buttons.length > 0}
+            <!--
+              The format picker, and the card's whole state. Same radio
+              switcher as the channel and the stats strips: the inputs hold the
+              pick, the labels are the chips, and :has() further down swaps the
+              button, the filename and the steps to match. No JavaScript, which
+              this site has to mean literally.
+
+              Its own row rather than a corner of the header: Linux's four
+              chips are wider than any card, so beside the name they wrapped and
+              left every other card centring its name in a two-line track.
+
+              The wrapper stays on a card with nothing to pick between, because
+              the subgrid below spans a fixed six rows and a card short one
+              child would slide the rest up out of line.
+            -->
+            <div class="tabs formats">
+              {#if formats.length > 1}
+                {#each formats as format, index (format.id)}
+                  <input type="radio" name={group} id="{group}-{format.id}" checked={index === 0} />
+                  <label for="{group}-{format.id}">{t(`${format.key}.short`)}</label>
+                {/each}
+              {/if}
+            </div>
+
+            {#if formats.length > 0}
               <!--
-                The buttons share one wrapper: the subgrid below spans a fixed five
-                rows per card, and a sixth child on only some cards would knock the
-                rows out of line.
+                Every format's button, filename and steps are in the page; the
+                strip above decides which one of each is on screen. Each row is
+                its own wrapper because the subgrid below spans a fixed five
+                rows per card, and the three have to line up across cards.
               -->
               <div class="gets">
-                {#each buttons as button, index (button.url)}
-                  <a class="get plain" class:secondary={index > 0} href={button.url}>
+                {#each formats as format (format.id)}
+                  <a class="get plain" href={format.url}>
                     <Download size={17} strokeWidth={2} aria-hidden="true" />
-                    {t(button.label)}
-                    <span class="size">{mb(button.size)}</span>
+                    {t(format.key)}
+                    <span class="size">{mb(format.size)}</span>
                   </a>
                 {/each}
               </div>
               <p class="filename">
-                {#each buttons as button (button.url)}
-                  <code>{button.name}</code>
+                {#each formats as format (format.id)}
+                  <code>{format.name}</code>
                 {/each}
               </p>
+              <div class="howto">
+                {#each formats as format (format.id)}
+                  <!-- Numbered only where the steps are a sequence. One line
+                       under a chip that already names the format is a
+                       sentence, and "1." in front of it reads as a list with
+                       the rest of it missing. -->
+                  {#if format.steps.length > 1}
+                    <ol>
+                      {#each format.steps as step (step)}
+                        <li><Rich key={step} /></li>
+                      {/each}
+                    </ol>
+                  {:else}
+                    <p><Rich key={format.steps[0]} /></p>
+                  {/if}
+                {/each}
+              </div>
             {:else}
               <p class="missing">
                 <Rich key="download-missing" args={{ platform: platform.label }} />
               </p>
             {/if}
 
-            <ol>
-              {#each platform.steps as step (step)}
-                <li><Rich key={step} /></li>
-              {/each}
-            </ol>
-
-            {#if platform.caveat}
-              <p class="caveat">{t(platform.caveat)}</p>
+            {#if platform.footnote}
+              <p class="footnote"><Rich key={platform.footnote} /></p>
             {/if}
           </article>
         {/each}
@@ -351,6 +390,11 @@ rox --portable</code></pre>
     background: var(--bg-panel);
     border: var(--hairline) solid var(--border);
     padding: var(--space-md);
+    /* The format radios are in the layout but a pixel across, and a page with
+       six of them wants them parked in their own card rather than all in the
+       document's top corner, where tabbing to one throws the viewport up
+       there. */
+    position: relative;
   }
 
   /* enhance.js puts the detected OS on the root, and the matching card lifts. */
@@ -391,27 +435,12 @@ rox --portable</code></pre>
     color: var(--text-on-accent);
     font-weight: 600;
     padding: 0.6em 1em;
-    /* Transparent rather than none, so both buttons come out the same height
-       once the secondary paints its outline. */
-    border: var(--hairline) solid transparent;
     border-radius: var(--radius);
   }
 
   .get:hover {
     background: var(--accent-hover);
     color: var(--text-on-accent);
-  }
-
-  .get.secondary {
-    background: none;
-    border-color: var(--border);
-    color: var(--text-bright);
-  }
-
-  .get.secondary:hover {
-    background: none;
-    border-color: var(--accent);
-    color: var(--text-bright);
   }
 
   .size {
@@ -434,13 +463,46 @@ rox --portable</code></pre>
     overflow-wrap: anywhere;
   }
 
-  ol {
-    margin: 0;
-    padding-left: 1.2rem;
+  .howto {
     color: var(--text-secondary);
     font-size: var(--step--1);
   }
 
+  .howto ol {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  /* The chip strip is the card's state and these three rows follow it. A card
+     opens on its first format, and a single-format card has no strip and stops
+     there. Picking any other chip hides the first of each row and shows the one
+     standing in for it, matched by position: a format's button, filename and
+     steps are the nth child of their three wrappers. */
+  .gets > :not(:first-child),
+  .filename > :not(:first-child),
+  .howto > :not(:first-child) {
+    display: none;
+  }
+
+  article:has(.formats input:not(:first-of-type):checked)
+    :is(.gets, .filename, .howto)
+    > :first-child {
+    display: none;
+  }
+
+  article:has(.formats input:nth-of-type(2):checked) .gets > :nth-child(2),
+  article:has(.formats input:nth-of-type(3):checked) .gets > :nth-child(3),
+  article:has(.formats input:nth-of-type(4):checked) .gets > :nth-child(4) {
+    display: flex;
+  }
+
+  article:has(.formats input:nth-of-type(2):checked) :is(.filename, .howto) > :nth-child(2),
+  article:has(.formats input:nth-of-type(3):checked) :is(.filename, .howto) > :nth-child(3),
+  article:has(.formats input:nth-of-type(4):checked) :is(.filename, .howto) > :nth-child(4) {
+    display: block;
+  }
+
+  .footnote,
   .caveat,
   .missing {
     margin-top: auto;
@@ -450,29 +512,31 @@ rox --portable</code></pre>
     font-size: var(--step--1);
   }
 
-  /* Side by side, each card's sections should sit on the same rows: one line
-     for the buttons, one for the filenames, one for the steps, one for the
-     caveats. Subgrid shares the row tracks across cards, and cards that wrap
-     to their own line get their own tracks, so mobile is unaffected. Kept
+  /* Side by side, each card's sections should sit on the same rows: name,
+     chips, button, filename, steps, footnote. Subgrid shares the row tracks
+     across cards, and cards that wrap to their own line get their own tracks,
+     so mobile is unaffected. Kept
      after the base rules above, since the margin-top reset ties on
      specificity and has to win on order. */
   @supports (grid-template-rows: subgrid) {
     article {
       display: grid;
       grid-template-rows: subgrid;
-      grid-row: span 5;
+      grid-row: span 6;
       row-gap: var(--space-sm);
     }
 
     .missing {
-      /* Stands in for the button and filename rows when a build is absent. */
-      grid-row: span 2;
+      /* Stands in for the button, filename and steps rows when a build is
+         absent. */
+      grid-row: span 3;
     }
 
+    .footnote,
     .caveat,
     .missing {
-      /* The flex bottom-pinning would float short caveats off their shared
-         row and misalign the rules. The track already puts them level. */
+      /* The flex bottom-pinning would float short notes off their shared row
+         and misalign the rules. The track already puts them level. */
       margin-top: 0;
     }
   }
@@ -526,6 +590,24 @@ rox --portable</code></pre>
 
   .tabs.channel label {
     padding: 0.25rem 0.75rem;
+  }
+
+  /* Tighter than the strips above. These are the card's small print next to
+     the button under them, and Linux fits four across a card with them. */
+  .tabs.formats {
+    margin-bottom: 0;
+  }
+
+  .tabs.formats label {
+    padding: 0.25rem 0.6rem;
+  }
+
+  /* The strips elsewhere sit on the root and raise themselves to panel when
+     checked. This one is already on a panel, so it borrows the palette's
+     control surface instead and keeps its edge against the detected
+     platform's tinted card too. */
+  .tabs.formats input:checked + label {
+    background: var(--bg-control);
   }
 
   .tabs label {

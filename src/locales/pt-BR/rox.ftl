@@ -240,22 +240,30 @@ download-channel-stable = Mais recente
 download-channel-candidate = Pré-lançamento
     .body = Uma prévia da próxima versão, publicada antes para que os últimos bugs apareçam antes do lançamento. Pegue esta se quiser ajudar a testar, e o rox atualiza você para a versão final quando ela sair.
 
-install-linux-1 = Tarball: descompacte em qualquer lugar e rode `./rox`.
-install-linux-2 = Deb: instale com `apt install ./rox_*.deb`.
-install-linux-3 = AppImage: dê `chmod +x` nele e rode. A primeira execução oferece um atalho no menu.
-install-linux-4 = Flatpak: instale o pacote com `flatpak install --user`. O runtime vem do Flathub.
+install-linux-tarball = Descompacte em qualquer lugar e rode `./rox`.
+install-linux-deb = Instale com `apt install ./rox_*.deb`.
+install-linux-appimage = Dê `chmod +x` nele e rode. A primeira execução oferece um atalho no menu.
+install-linux-flatpak = Instale o pacote com `flatpak install --user`. O runtime vem do Flathub.
+install-linux-note = No Arch ou no Nix? Instale pelo [seu gerenciador de pacotes](/download#packages).
 install-macos-1 = Abra o DMG.
 install-macos-2 = Arraste o rox para Aplicativos.
-install-windows-1 = Execute o instalador. O rox aparece no menu Iniciar.
-install-windows-2 = Prefere a versão portátil? Descompacte o zip em qualquer lugar e rode `rox.exe`.
+install-windows-installer = Execute o instalador. O rox aparece no menu Iniciar.
+install-windows-portable = Descompacte o zip em qualquer lugar e rode `rox.exe`.
 install-windows-caveat = Se o SmartScreen reclamar, escolha Mais informações e depois Executar assim mesmo.
 
 download-btn-tarball = Baixar tarball
+    .short = Tarball
 download-btn-deb = Baixar .deb
+    .short = .deb
 download-btn-appimage = Baixar AppImage
+    .short = AppImage
 download-btn-flatpak = Baixar Flatpak
+    .short = Flatpak
+download-btn-dmg = Baixar DMG
 download-btn-portable = Baixar versão portátil
+    .short = Portátil
 download-btn-installer = Baixar instalador
+    .short = Instalador
 
 download-packages = Gerenciadores de pacotes
     .body = Dois caminhos que mantêm o rox atualizado junto com o resto do seu sistema.

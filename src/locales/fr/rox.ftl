@@ -247,22 +247,30 @@ download-channel-stable = Dernière version
 download-channel-candidate = Préversion
     .body = Un aperçu de la prochaine version, publié en avance pour que les derniers bugs soient trouvés avant sa sortie. Prenez-la si vous voulez aider à tester, et rox vous mettra à jour vers la version finale quand elle sortira.
 
-install-linux-1 = Tarball : décompresse-le n'importe où et lance `./rox`.
-install-linux-2 = Deb : installe-le avec `apt install ./rox_*.deb`.
-install-linux-3 = AppImage : fais `chmod +x` dessus et lance-le. Le premier lancement propose une entrée de menu.
-install-linux-4 = Flatpak : installe le bundle avec `flatpak install --user`. Son runtime vient de Flathub.
+install-linux-tarball = Décompresse-le n'importe où et lance `./rox`.
+install-linux-deb = Installe-le avec `apt install ./rox_*.deb`.
+install-linux-appimage = Fais `chmod +x` dessus et lance-le. Le premier lancement propose une entrée de menu.
+install-linux-flatpak = Installe le bundle avec `flatpak install --user`. Son runtime vient de Flathub.
+install-linux-note = Sur Arch ou Nix ? Passe par [ton gestionnaire de paquets](/download#packages).
 install-macos-1 = Ouvre le DMG.
 install-macos-2 = Glisse rox dans Applications.
-install-windows-1 = Lance le setup. rox arrive dans le menu Démarrer.
-install-windows-2 = Plutôt portable ? Décompresse le zip n'importe où et lance `rox.exe`.
+install-windows-installer = Lance le setup. rox arrive dans le menu Démarrer.
+install-windows-portable = Décompresse le zip n'importe où et lance `rox.exe`.
 install-windows-caveat = Si SmartScreen proteste, choisis Informations complémentaires, puis Exécuter quand même.
 
 download-btn-tarball = Télécharger le tarball
+    .short = Tarball
 download-btn-deb = Télécharger le .deb
+    .short = .deb
 download-btn-appimage = Télécharger l'AppImage
+    .short = AppImage
 download-btn-flatpak = Télécharger le Flatpak
+    .short = Flatpak
+download-btn-dmg = Télécharger le DMG
 download-btn-portable = Télécharger la version portable
+    .short = Portable
 download-btn-installer = Télécharger l'installeur
+    .short = Installeur
 
 download-packages = Gestionnaires de paquets
     .body = Deux voies qui gardent rox à jour en même temps que le reste de ton système.
