@@ -469,7 +469,6 @@ windows-integration = Il resto dell'integrazione con Windows
 windows-integration-1 = I tasti multimediali e il riquadro del brano in riproduzione passano da SMTC, la stessa superficie di sistema che usano le app integrate, quindi il pannello dei tasti del volume mostra la traccia e i pulsanti di riproduzione funzionano.
 windows-integration-2 = C'è un'icona nell'area di notifica con la chiusura in tray, quindi chiudere l'ultima finestra lascia la musica in riproduzione invece di fermarla, e l'icona è la strada per rientrare. Uno spazio di lavoro può anche togliere del tutto la cornice della finestra, o tenerla e rinunciare solo al bordo di ridimensionamento, il che lascia intatti l'ombra, i layout Snap e Win+freccia e costa solo il trascinamento dal bordo.
 
-windows-limit-instance = Nessun blocco a istanza singola. Su Linux e macOS un secondo avvio consegna i suoi file al rox già in esecuzione; su Windows parte una seconda copia.
 windows-limit-signing = Solo x86_64, e il binario non è firmato, quindi aspettati SmartScreen una volta.
 windows-limit-plugins = Nessuna API per plugin, quindi un componente Foobar2000 preciso non ha un equivalente qui.
 

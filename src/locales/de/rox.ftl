@@ -447,7 +447,6 @@ windows-integration = Der Rest der Windows-Anbindung
 windows-integration-1 = Medientasten und die Titeleinblendung laufen über SMTC, dieselbe Systemoberfläche, die eingebaute Apps benutzen, die Lautstärke-Einblendung zeigt also den Titel und die Transportknöpfe funktionieren.
 windows-integration-2 = Es gibt ein Tray-Symbol mit Schließen-ins-Tray, das Schließen des letzten Fensters lässt die Musik also weiterlaufen, und das Symbol ist der Weg zurück. Eine Arbeitsfläche kann den Fensterrahmen auch ganz weglassen, oder den Rahmen behalten und nur den Größenänderungsrand aufgeben, was Schatten, Snap-Layouts und Win+Pfeil intakt lässt und allein das Ziehen an der Kante kostet.
 
-windows-limit-instance = Keine Einzelinstanz-Sperre. Unter Linux und macOS übergibt ein zweiter Start seine Dateien an das laufende rox; unter Windows startet eine zweite Kopie.
 windows-limit-signing = Nur x86_64, und die Binärdatei ist unsigniert, rechne also einmal mit SmartScreen.
 windows-limit-plugins = Keine Plugin-Schnittstelle, eine bestimmte Foobar2000-Komponente hat hier also kein Gegenstück.
 

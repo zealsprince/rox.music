@@ -453,7 +453,6 @@ windows-integration = Windows 集成的其余部分
 windows-integration-1 = 媒体键和“正在播放”浮层走的是 SMTC，也就是内置应用用的那套系统界面，所以音量键弹出的面板会显示曲目，播放按钮也能用。
 windows-integration-2 = 有托盘图标和“关到托盘”，所以关掉最后一个窗口是让音乐继续放，而不是结束它，图标就是回去的路。工作区也可以把窗口边框整个去掉，或者保留边框只去掉调整大小的那圈边，这样阴影、贴靠布局和 Win+方向键都还在，只放弃了边缘拖拽。
 
-windows-limit-instance = 没有单实例守卫。在 Linux 和 macOS 上，第二次启动会把文件交给正在跑的 rox；在 Windows 上它会开第二份。
 windows-limit-signing = 只有 x86_64，而且没有签名，所以 SmartScreen 会拦一次。
 windows-limit-plugins = 没有插件 API，所以某个特定的 Foobar2000 组件在这里没有对应物。
 

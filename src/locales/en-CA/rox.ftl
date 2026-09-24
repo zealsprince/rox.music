@@ -448,7 +448,6 @@ windows-integration = The rest of the Windows integration
 windows-integration-1 = Media keys and the now-playing overlay come through SMTC, the same system surface built-in apps use, so the volume-key panel shows the track and the transport buttons work.
 windows-integration-2 = There is a tray icon with quit-to-tray, so closing the last window leaves the music playing rather than ending it, and the icon is the way back in. A workspace can also take the window frame off, or keep the frame and drop only the resize border, which leaves the shadow, the snap layouts and Win+arrow intact and gives up the edge drag alone.
 
-windows-limit-instance = No single-instance guard. On Linux and macOS a second launch hands its files to the running rox; on Windows it starts a second copy.
 windows-limit-signing = x86_64 only, and the binary is unsigned, so expect SmartScreen once.
 windows-limit-plugins = No plugin API, so a specific Foobar2000 component has no equivalent here.
 

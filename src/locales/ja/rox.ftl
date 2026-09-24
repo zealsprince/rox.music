@@ -443,7 +443,6 @@ windows-integration = Windows 連携の残り
 windows-integration-1 = メディアキーと再生中のオーバーレイは SMTC を通ります。組み込みアプリと同じ仕組みなので、音量キーのパネルに曲が出て、再生ボタンも効きます。
 windows-integration-2 = トレイアイコンとトレイに残す動作があるので、最後のウィンドウを閉じても音楽は止まらず、アイコンから戻れます。ワークスペースでウィンドウ枠を外すこともできますし、枠は残してリサイズ用の縁だけ落とせば、影とスナップレイアウトと Win+方向キーはそのままで、縁のドラッグだけを手放せます。
 
-windows-limit-instance = 単一インスタンスの制御はありません。Linux と macOS では 2 回目の起動が動いている rox にファイルを渡しますが、Windows では 2 つ目が立ち上がります。
 windows-limit-signing = x86_64 のみ、バイナリは未署名なので SmartScreen が一度出ます。
 windows-limit-plugins = プラグイン API がないので、特定の Foobar2000 コンポーネントに相当するものはここにありません。
 

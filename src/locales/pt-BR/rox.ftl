@@ -454,7 +454,6 @@ windows-integration = O resto da integração com o Windows
 windows-integration-1 = As teclas de mídia e a sobreposição com a faixa tocando passam pelo SMTC, a mesma superfície de sistema que os aplicativos internos usam, então o painel da tecla de volume mostra a faixa e os botões de transporte funcionam.
 windows-integration-2 = Tem ícone de bandeja com fechar-para-a-bandeja, então fechar a última janela deixa a música tocando em vez de encerrá-la, e o ícone é o caminho de volta. Um espaço de trabalho também pode tirar a moldura da janela, ou manter a moldura e abrir mão só da borda de redimensionamento, o que deixa a sombra, os snap layouts e o Win+seta intactos e sacrifica apenas o arraste pela borda.
 
-windows-limit-instance = Sem trava de instância única. No Linux e no macOS um segundo início entrega os arquivos dele ao rox que já roda; no Windows ele abre uma segunda cópia.
 windows-limit-signing = Só x86_64, e o binário não é assinado, então conte com o SmartScreen uma vez.
 windows-limit-plugins = Sem API de plugins, então um componente específico do Foobar2000 não tem equivalente aqui.
 

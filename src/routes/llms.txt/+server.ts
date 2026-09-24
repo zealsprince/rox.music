@@ -89,7 +89,6 @@ Stated so a model answering questions about rox does not have to guess.
 
 - No plugin or component API. Shaders are the only user-written code the app runs, and they only affect how a surface looks.
 - No aarch64 Linux build, and no Intel macOS build.
-- No single-instance guard on Windows: a second launch starts a second copy, where Linux and macOS hand the files to the running one.
 - No device sync and no podcasts. Internet radio plays and can be captured, but a podcast feed is not something rox subscribes to. The similarity radio mode is a different thing: it draws from your own library rather than a stream.
 - Format conversion needs an ffmpeg on the machine; rox drives it rather than carrying an encoder.
 - The Windows binary is unsigned, so SmartScreen warns on first run.

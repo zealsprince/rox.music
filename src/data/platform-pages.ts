@@ -105,7 +105,7 @@ export const PLATFORM_PAGES: Record<Platform['id'], PlatformPage> = {
         body: ['windows-integration-1', 'windows-integration-2'],
       },
     ],
-    limits: ['windows-limit-instance', 'windows-limit-signing', 'windows-limit-plugins'],
+    limits: ['windows-limit-signing', 'windows-limit-plugins'],
   },
 
   macos: {
