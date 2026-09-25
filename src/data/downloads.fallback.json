@@ -584,13 +584,26 @@
     "tag": "v1.28.4",
     "publishedAt": "2026-09-23T16:20:19Z",
     "counts": {
-      "linux-archive": 2,
+      "linux-archive": 4,
       "linux-alt": 1,
       "linux-appimage": 2,
-      "linux-flatpak": 1,
+      "linux-flatpak": 3,
       "macos-archive": 2,
-      "windows-archive": 6,
-      "windows-alt": 2
+      "windows-archive": 15,
+      "windows-alt": 3
+    }
+  },
+  {
+    "tag": "v1.28.5",
+    "publishedAt": "2026-09-24T19:31:47Z",
+    "counts": {
+      "linux-archive": 1,
+      "linux-alt": 0,
+      "linux-appimage": 0,
+      "linux-flatpak": 0,
+      "macos-archive": 2,
+      "windows-archive": 5,
+      "windows-alt": 4
     }
   }
 ]
