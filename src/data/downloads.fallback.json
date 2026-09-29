@@ -610,13 +610,13 @@
     "tag": "v1.28.6",
     "publishedAt": "2026-09-25T19:42:07Z",
     "counts": {
-      "linux-archive": 5,
+      "linux-archive": 8,
       "linux-alt": 9,
-      "linux-appimage": 6,
-      "linux-flatpak": 7,
-      "macos-archive": 5,
-      "windows-archive": 18,
-      "windows-alt": 18
+      "linux-appimage": 9,
+      "linux-flatpak": 8,
+      "macos-archive": 9,
+      "windows-archive": 38,
+      "windows-alt": 28
     }
   }
 ]
