@@ -127,6 +127,27 @@ home-speed = Una finestra in meno di un secondo
 
 home-features = Cosa c'è dentro
 
+home-plugins-eyebrow = Plugin
+home-plugins = E per tutto il resto
+    .lede = La tua libreria copre quello che c'è sul tuo disco. Un plugin porta dentro musica da qualche altra parte, come un catalogo sul web o un server che gestisci tu. rox lo sfoglia, lo cerca e lo riproduce negli stessi pannelli e nella stessa coda dei tuoi file.
+home-plugins-step-drop = Mettici dentro una cartella
+    .body = Un plugin è una cartella con un piccolo manifest e un programma. Attiva i plugin nelle Impostazioni, premi Mostra cartella e copiacela dentro.
+home-plugins-step-approve = Accendilo
+    .body = Accenderlo è l'approvazione. Una scheda dice cosa fa il plugin e cosa esegue, e una modifica a uno qualsiasi dei suoi file lo spegne di nuovo.
+home-plugins-step-browse = Sfoglialo
+    .body = Si apre in un pannello Sorgenti esterne con la home propria della sorgente, scaffali di copertine, ricerca e colonne ordinabili, disegnato nel tuo tema.
+home-plugins-step-play = Riproducilo, tienilo, o avvia una radio
+    .body = Le sue tracce vanno in coda, suonano senza stacchi e finiscono nelle playlist come le tue. Tieni un album e entra nella tua libreria. Avvia una radio e il servizio sceglie cosa viene dopo.
+home-plugins-more = Come funzionano i plugin
+home-plugins-write = Scrivi il tuo
+home-plugins-shot = Il plugin di esempio Internet Archive in un pannello Sorgenti esterne: un avviso in alto, righe da sfogliare, scaffali di copertine delle uscite, e colonne per download e anno.
+home-plugins-caption = L'[esempio Internet Archive](@plugin-archive), mentre sfoglia pubblicazioni Creative Commons dalla collezione di netlabel dell'Archivio. È nel repository di rox, pronto da copiare.
+home-plugins-marks = Cosa si vede sullo schermo
+home-plugins-mark-panel = Un pannello suo, agganciato e nel tema come il resto
+home-plugins-mark-notice = Una riga dal plugin, con un link
+home-plugins-mark-shelf = Scaffali di copertine che scorrono lateralmente
+home-plugins-mark-fields = Colonne che il servizio conosce, ordinate con un clic
+
 home-closer = Fallo tuo
     .body = Ci sono { workspace-count } spazi di lavoro inclusi, a un clic dalla finestra di benvenuto. Ognuno è un singolo file che contiene il layout, la palette e gli shader che usa: lo modifichi, lo rompi, lo passi a qualcun altro. [Guardali tutti](/workspaces).
 
@@ -379,6 +400,9 @@ page-replaygain = ReplayGain, e quanto costa
 page-control = Un lettore su cui costruire
     .blurb = Il socket di controllo JSON-RPC, gli eventi che spinge, il proxy MCP e lo stream in uscita verso Icecast, e come i pezzi si sommano in un front end tutto tuo.
 
+page-plugins = Plugin, e cosa portano dentro
+    .blurb = Come i plugin portano musica esterna in rox: sfogliare, tenere, radio, cosa approva l'accensione di uno, e come scrivere il tuo.
+
 page-best-music-player = Il miglior lettore musicale per una libreria locale
     .blurb = Cosa distingue davvero i lettori una volta che la tua collezione è seria, e come se la cava il gruppo su 50.000 tracce.
 
@@ -441,7 +465,7 @@ linux-benchmarks = Nei benchmark ci sono solo lettori Linux
 linux-benchmarks-1 = La tabella comparativa di questo sito è stata eseguita su Linux contro software Linux: Elisa, fooyin, Quod Libet, Strawberry, Museeks e Tauon, tutti su una sola macchina con la stessa libreria da 50.000 tracce. rox mostra una finestra in 0,3 secondi e si assesta a 134 MB. Il secondo più leggero, tra quelli che arrivano in fondo al caricamento, usa quasi il triplo della memoria.
 
 linux-limit-arch = Solo x86_64. Non c'è una build Linux aarch64, quindi le schede ARM e Asahi richiedono una compilazione dai sorgenti.
-linux-limit-plugins = Nessuna API per plugin, quindi qui niente sostituisce un componente Foobar2000 preciso da cui dipendi.
+linux-limit-plugins = I [plugin](/plugins) portano dentro sorgenti musicali e nient'altro, quindi qui niente sostituisce un componente Foobar2000 preciso da cui dipendi.
 
 ## Windows
 
@@ -470,7 +494,7 @@ windows-integration-1 = I tasti multimediali e il riquadro del brano in riproduz
 windows-integration-2 = C'è un'icona nell'area di notifica con la chiusura in tray, quindi chiudere l'ultima finestra lascia la musica in riproduzione invece di fermarla, e l'icona è la strada per rientrare. Uno spazio di lavoro può anche togliere del tutto la cornice della finestra, o tenerla e rinunciare solo al bordo di ridimensionamento, il che lascia intatti l'ombra, i layout Snap e Win+freccia e costa solo il trascinamento dal bordo.
 
 windows-limit-signing = Solo x86_64, e il binario non è firmato, quindi aspettati SmartScreen una volta.
-windows-limit-plugins = Nessuna API per plugin, quindi un componente Foobar2000 preciso non ha un equivalente qui.
+windows-limit-plugins = I [plugin](/plugins) portano dentro sorgenti musicali e nient'altro, quindi un componente Foobar2000 preciso non ha un equivalente qui.
 
 ## macOS
 
@@ -497,7 +521,7 @@ macos-coreaudio-1 = La modalità esclusiva pilota il dispositivo tramite CoreAud
 
 macos-limit-silicon = Solo Apple Silicon. Non c'è una build Intel, quindi un Mac Intel richiede una compilazione dai sorgenti.
 macos-limit-xcode = Compilare dai sorgenti richiede Xcode, con o senza nix: gpui compila shader Metal in fase di build e nix non può distribuire la toolchain Metal di Apple.
-macos-limit-plugins = Nessuna API per plugin, quindi un componente Foobar2000 preciso non ha un equivalente qui.
+macos-limit-plugins = I [plugin](/plugins) portano dentro sorgenti musicali e nient'altro, quindi un componente Foobar2000 preciso non ha un equivalente qui.
 
 ## Miglior lettore per una libreria locale
 
@@ -533,7 +557,7 @@ best-measured = Com'è il primo criterio, misurato
 best-shortlist = La rosa onesta
     .p1 = Se sei su Windows e usi già [Foobar2000](/foobar2000-alternative), hai la risposta e ce l'hai da vent'anni. Niente in questa pagina batte un Foobar2000 che funziona, sulla sua piattaforma.
     .p2 = Se vuoi qualcosa con un grande ecosistema di plugin e una lunga storia su Linux, Quod Libet e Strawberry sono entrambe risposte vere, ed entrambe sono più lente a caricare una libreria di queste dimensioni di quanto siano piacevoli una volta caricata. Se il criterio del tagging è quello che ti interessa davvero, è trattato a parte come [alternativa a Mp3tag](/mp3tag-alternative), e il lato volume del primo criterio è coperto in [ReplayGain](/replaygain).
-    .p3 = rox è la risposta se vuoi la forma di Foobar2000 in modo nativo su Linux o macOS: pannelli che componi, tagging approfondito, temi come singoli file condivisibili, e un lettore che mostra una finestra in meno di un secondo con una libreria di queste dimensioni. È nuovo, e non ha un'API per plugin. Sono due costi reali.
+    .p3 = rox è la risposta se vuoi la forma di Foobar2000 in modo nativo su Linux o macOS: pannelli che componi, tagging approfondito, temi come singoli file condivisibili, e un lettore che mostra una finestra in meno di un secondo con una libreria di queste dimensioni. È nuovo, e i suoi [plugin](/plugins) portano dentro solo sorgenti musicali. Sono due costi reali.
     .aside = I cinque criteri qui sopra sono la base, non il tetto. I voti finiscono nei file stessi tramite FMPS e POPM invece che in un database che non puoi portarti via, e i generi a valori multipli si uniscono come un parere della libreria invece di riscrivere i tuoi tag. Se è questo che volevi da una libreria, è questo il lettore da puntare sul tuo disco.
 
 best-closer = Misuralo sulla tua collezione
@@ -558,7 +582,7 @@ musicbee-gaps = Cosa non fa rox
 
 musicbee-gap-sync = **Nessuna sincronizzazione con dispositivi.** Se la musica la sposti su un telefono o su un DAP passando dal lettore, rox non ha proprio una risposta.
 musicbee-gap-radio = **Nessun podcast.** Le stazioni radio si ascoltano e si possono salvare mentre vanno, ma rox non si abbona a un feed di podcast.
-musicbee-gap-plugins = **Nessuna API per plugin.** Quello che avresti risolto con un'estensione deve esistere già.
+musicbee-gap-plugins = **I plugin portano dentro solo musica.** Un [plugin](/plugins) aggiunge una sorgente da sfogliare e riprodurre, quindi un'estensione che avesse cambiato il funzionamento del lettore stesso deve esistere già in rox.
 musicbee-gap-ffmpeg = **La conversione richiede ffmpeg.** rox converte tra formati, ma pilota un ffmpeg che hai installato tu invece di portarsi dietro un encoder proprio, e non ricodifica in direzione di un dispositivo perché non c'è nessuna sincronizzazione per cui ricodificare.
 
 musicbee-transfers = Cosa si trasferisce, e cosa è meglio
@@ -608,7 +632,7 @@ catrox-limits = Cosa non recuperi
 
 catrox-limit-panels = Non ogni pannello di CaTRoX ha un equivalente. rox ha una quarantina di tipi di pannello suoi e non sono gli stessi quaranta.
 catrox-limit-youtube = Nessuna riproduzione da YouTube. CaTRoX e NekoRoX ce l'avevano entrambi tramite componenti; rox riproduce quello che sta sul tuo disco.
-catrox-limit-plugins = Nessuna API per plugin, quindi quello che avresti risolto con un componente foobar2000 deve esistere già in rox oppure non esiste affatto.
+catrox-limit-plugins = I plugin portano dentro solo sorgenti musicali, quindi quello che avresti risolto con un componente foobar2000 deve esistere già in rox oppure non esiste affatto.
 catrox-limit-fidelity = È una ricreazione fatta dall'esterno. I dettagli differiscono, e una corrispondenza al pixel non è mai stata l'obiettivo.
 
 # $others è il numero degli spazi di lavoro inclusi meno questo. Prima
@@ -716,7 +740,7 @@ fb-row-source = Sorgente disponibile
 
 fb-row-components = Ecosistema di componenti
     .fb = Ognuno ha costruito su chi c'era prima. Qualsiasi cosa ti venga in mente.
-    .rox = Nessuna API per plugin.
+    .rox = Plugin per sorgenti musicali, e nient'altro.
 
 fb-row-maturity = Maturità
     .fb = Dal 2002. Non ti sorprende.
@@ -727,7 +751,7 @@ fb-row-footprint = Ingombro
     .rox = Un binario da 62 MB, 134 MB residenti a 50k tracce.
 
 fb-not = Chi non dovrebbe cambiare
-    .p1 = Se sei su Windows, i tuoi componenti sono configurati e la cosa è stabile da un decennio, qui non c'è niente che valga il disturbo. Se dipendi da un componente Foobar2000 preciso, rox non ha un'API per plugin e non può sostituirlo. Se vuoi un software che ha già fatto tutti i suoi errori, rox è giovane di quattro anni.
+    .p1 = Se sei su Windows, i tuoi componenti sono configurati e la cosa è stabile da un decennio, qui non c'è niente che valga il disturbo. Se dipendi da un componente Foobar2000 preciso, rox non può sostituirlo: i suoi plugin portano dentro sorgenti musicali e nient'altro. Se vuoi un software che ha già fatto tutti i suoi errori, rox è giovane di quattro anni.
     .p2 = Se sei passato a Linux lasciandoti dietro la configurazione, o sei su un Mac con un lettore privo dell'ecosistema che lo giustificava, è quello il vuoto in cui questo è stato costruito.
     .p3 = Vale la pena dire anche l'altro lato dell'arrivare tardi. Niente in rox deve restare compatibile con una decisione presa nel 2002, ed è così che un look intero finisce per essere un file condivisibile invece di un grafo di componenti, che una sola base di codice copre tutte e tre le piattaforme, e che una quarantina di tipi di pannello arrivano inclusi invece di essere montati un download alla volta. È anche il motivo per cui l'identità di una traccia non è mai stata legata ai percorsi dei file, ed è questo che renderà possibile più avanti unire una libreria locale con qualcos'altro. Gran parte di quei 62 MB racconta la stessa storia.
     .aside = Pannelli che si staccano in vere finestre di sistema, o una palette che si ritinge dalla copertina in riproduzione, non sono mai entrati nella tabella qui sopra. Non c'era niente da mettere nell'altra colonna. Se è questo il genere di differenze che cerchi, rox è il posto giusto.
@@ -984,3 +1008,49 @@ ctl-honest = Dove sta la linea
 
 ctl-closer = Porta un client socket
     .body = Il socket è acceso ovunque giri rox, `rox-mcp` viaggia accanto all'app, e la pagina MCP nelle impostazioni ha la riga di configurazione per il tuo client. `roxctl` si compila con un solo comando cargo dal [codice sorgente](@repo).
+
+## Plugins
+
+plg-title = Plugin per rox: porta qualsiasi sorgente musicale nel tuo lettore
+    .description = I plugin di rox portano sorgenti musicali esterne nel lettore per sfogliarle, cercarle, riprodurle, tenerle nella tua libreria, o farle girare come radio. Come funzionano, cosa approvi, e come scriverne uno in qualsiasi linguaggio.
+plg-breadcrumb = Plugin
+plg-h1 = Porta dentro il resto della tua musica
+    .lede = Un plugin porta dentro rox una sorgente musicale esterna. rox la sfoglia, la cerca, la riproduce senza stacchi e tiene quello che gli chiedi, negli stessi pannelli e nella stessa coda dei file sul tuo disco.
+
+plg-what = Cos'è un plugin
+    .p1 = Un plugin è una cartella con dentro un piccolo manifest e un programma. Il programma può essere uno script Python o un binario nativo, e parla con rox attraverso il suo standard input e output. rox lo avvia la prima volta che serve e lo riavvia se va in crash. Cinque crash in dieci minuti lo fermano finché non lo spegni e lo riaccendi.
+    .p2 = Quello che un plugin può fare è una lista breve: elencare e cercare in un catalogo, sincronizzare collezioni nella tua libreria, servire audio, far girare una radio, rimandare alle proprie pagine web, e aggiungere pannelli preimpostati sotto il suo nome. Non può aggiungere pulsanti, cambiare l'aspetto di rox né mettere mano ad altri pannelli. I plugin portano dentro sorgenti, e il lettore intorno resta tutto di rox.
+
+plg-browse = Sfogliare una sorgente
+    .p1 = Ogni plugin in esecuzione ottiene una voce sotto Aggiungi pannello > Plugin, che apre un pannello Sorgenti esterne sulla sua sorgente. Il pannello elenca le cartelle, le playlist e gli album del plugin, cerca, mostra le copertine e ne carica altre mentre scorri. La home di un servizio compare al primo livello del pannello, quindi è lì senza bisogno di un clic.
+    .p2 = Cos'altro mostra il pannello dipende dal plugin. Dei chip sopra una lista passano tra le viste del plugin, come una ricerca ristretta agli album. Scaffali di copertine scorrono lateralmente, e una pagina fatta di sole copertine si ripiega in una griglia. Colonne che il servizio conosce e i tuoi tag no, come un conteggio dei download, si ordinano con un clic sull'intestazione. Mentre suona una delle tracce del plugin, il primo livello la mostra insieme a cosa viene dopo.
+
+plg-play = Riprodurre e tenere
+    .p1 = Le tracce di un plugin vanno in coda, nelle playlist e nella cronologia come i tuoi file, e suonano senza stacchi una dietro l'altra. Una traccia che si interrompe a metà si riconnette e riprende dallo stesso punto. Uno stream live da un plugin ottiene la pausa e il buffer live, come una stazione radio.
+    .p2 = Riprodurre una traccia non la aggiunge alla tua libreria, è Aggiungi alla libreria a tenerla. Passa sopra una collezione e clicca sul suo segno di spunta per tenerla tutta. Si sincronizza nella tua libreria, segue la collezione quando cambia, e si apre da lì anche con il plugin fermo o la rete assente.
+    .p3 = Apri nel browser e Copia link portano alla pagina di una traccia o di un album sul servizio, da ovunque le sue tracce compaiano in rox. Lo scrobbling è spento a meno che il plugin non lo chieda, e allora è un interruttore sulla riga del plugin.
+
+plg-radio = Radio
+    .p1 = Un plugin con una radio aggiunge Avvia radio alle sue tracce, album, playlist e artisti. rox riproduce quello che hai scelto, poi tiene la coda in moto con le scelte del servizio man mano che si assottiglia. Un album che riproduci dal pannello continua allo stesso modo alla fine, invece di passare alla tua libreria locale.
+    .p2 = Le tracce della radio suonano attraverso il motore proprio di rox come qualsiasi altra traccia. Non entrano nella tua libreria, la stazione salta quello che è già suonato in questa sessione, e continua dopo un riavvio. Spegni Continua a suonare in Impostazioni > Riproduzione e la coda si ferma alla sua fine.
+
+plg-trust = Cosa stai approvando
+    .p1 = Un plugin nuovo compare spento. Accenderlo è l'approvazione, e la scheda che confermi dice cos'è il plugin, cosa può fare, quali programmi gli servono, e che gira come programma sul tuo computer con i tuoi permessi.
+    .p2 = L'approvazione copre esattamente i file nella cartella del plugin. Se uno di loro cambia, il plugin si spegne da solo e mostra Cambiato sul disco finché non lo approvi di nuovo, e la scheda a quel punto mostra cos'è cambiato nel suo manifest. Rimuovi nella pagina Plugin elimina le tracce, le collezioni sincronizzate, le impostazioni e l'approvazione del plugin, e lascia stare la sua cartella.
+plg-sandbox = Non è una sandbox
+    .body = Un plugin ha il tuo accesso alla rete e i tuoi file, come qualsiasi programma che esegui. Accendi quelli che faresti girare come programma comunque. rox non include plugin per nessun servizio, e i due nel suo repository sono esempi.
+
+plg-write = Scrivi il tuo
+    .p1 = Un plugin parla JSON-RPC, un messaggio per riga su standard input e output, quindi va bene qualsiasi linguaggio che legga e scriva righe. La [guida ai plugin](@plugin-guide) copre il manifest, ogni metodo, i timeout e come l'audio arriva al lettore. Il pulsante Guida ai plugin nella pagina Plugin la apre per la versione che stai usando.
+    .p2 = Due esempi sono nel [repository](@plugin-examples). tones genera toni sinusoidali e accordi, ed è quello per imparare il protocollo. Internet Archive usa ogni parte opzionale del protocollo contro un catalogo vero, con scaffali home, viste, colonne, radio e link, in Python senza nulla oltre la libreria standard.
+    .p3 = La modalità sviluppatore sulla riga di un plugin approva da sola le tue modifiche alla sua cartella finché non chiudi rox, e riavvia il plugin a ogni salvataggio. Ogni parte più recente del protocollo è opt-in. rox elenca quelle che supporta all'avvio del plugin, quindi un plugin non deve mai mandare qualcosa che un rox più vecchio rifiuterebbe.
+
+plg-limits = Dove si fermano i plugin
+plg-limit-scope = I plugin portano dentro sorgenti e nient'altro. Un componente foobar2000 che cambiava il lettore stesso, come un nuovo pannello o un DSP, non ha un equivalente tra i plugin.
+plg-limit-python = I plugin a script hanno bisogno di Python 3 sulla macchina. La maggior parte delle installazioni Linux ce l'ha, Windows e macOS di solito no.
+plg-limit-flatpak = Il Flatpak non vede i programmi installati sull'host. Include Python 3, quindi un plugin che ha bisogno solo della libreria standard gira così com'è. Tutto il resto deve viaggiare nella cartella `bin` propria del plugin.
+plg-limit-macos = Un'app Mac avviata dal Finder o dal Dock non eredita il PATH della tua shell, quindi i programmi installati con Homebrew risultano mancanti finché non aggiungi la cartella di Homebrew a Cartelle dei programmi in Impostazioni > Plugin.
+plg-limit-windows = Su Windows, i file di un plugin nativo non si possono sostituire mentre gira. Spegnilo prima di aggiornare la sua cartella.
+
+plg-closer = Provane uno
+    .body = Scarica rox, attiva Attiva i plugin in Impostazioni > Plugin, e copia l'[esempio Internet Archive](@plugin-archive) nella cartella dei plugin. Serve la rete e nessun account.

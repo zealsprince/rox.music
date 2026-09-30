@@ -104,6 +104,27 @@ home-speed = Under a second to a window
 
 home-features = What's in it
 
+home-plugins-eyebrow = Plugins
+home-plugins = And for everything else
+    .lede = Your library covers what's on your disk. A plugin brings in music from somewhere else, like a catalogue on the web or a server you run. rox browses, searches and plays it in the same panels and the same queue as your own files.
+home-plugins-step-drop = Drop in a folder
+    .body = A plugin is a folder holding a small manifest and a program. Turn on plugins in Settings, press Reveal Folder and copy it in.
+home-plugins-step-approve = Switch it on
+    .body = Switching it on is the approval. A card says what the plugin does and what it runs, and a change to any of its files switches it off again.
+home-plugins-step-browse = Browse it
+    .body = It opens in an External Sources panel with the source's own home, shelves of covers, search and sortable columns, drawn in your theme.
+home-plugins-step-play = Play it, keep it, or start a radio
+    .body = Its tracks queue, play gapless and go in playlists like your own. Keep an album and it joins your library. Start a radio and the service picks what comes next.
+home-plugins-more = How plugins work
+home-plugins-write = Write your own
+home-plugins-shot = The Internet Archive example plugin in an External Sources panel: a notice at the top, rows to browse, shelves of release covers, and download and year columns.
+home-plugins-caption = The [Internet Archive example](@plugin-archive), browsing Creative Commons releases from the Archive's netlabels collection. It's in rox's repository, ready to copy.
+home-plugins-marks = What's on screen
+home-plugins-mark-panel = Its own panel, docked and themed like the rest
+home-plugins-mark-notice = A line from the plugin, with a link
+home-plugins-mark-shelf = Shelves of covers that scroll sideways
+home-plugins-mark-fields = Columns the service knows, sorted with a click
+
 home-closer = Make it yours
     .body = There are { workspace-count } workspaces in the box, one click away on the welcome window. Each one is a single file carrying the layout, the palette and the shaders it runs, so you can edit it, break it, and hand it to someone else. [See them all](/workspaces).
 
@@ -358,6 +379,9 @@ page-replaygain = ReplayGain, and what it costs
 page-control = A player you can build on
     .blurb = The JSON-RPC control socket, the events it pushes, the MCP proxy, and the Icecast stream out, and how the pieces add up to your own front end.
 
+page-plugins = Plugins, and what they bring in
+    .blurb = How plugins bring outside music into rox: browsing, keeping, radio, what switching one on approves, and how to write your own.
+
 page-best-music-player = The best music player for a local library
     .blurb = What actually separates players once your library is real, and how the field measures up on a 50,000-track collection.
 
@@ -420,7 +444,7 @@ linux-benchmarks = The benchmarks are all Linux players
 linux-benchmarks-1 = The comparison table on this site was run on Linux against Linux software: Elisa, fooyin, Quod Libet, Strawberry, Museeks and Tauon, all on one machine with the same 50,000-track library. rox gets a window up in 0.3 seconds and settles at 134 MB. The next lightest that finishes loading uses nearly three times the memory.
 
 linux-limit-arch = x86_64 only. There is no aarch64 Linux build, so ARM boards and Asahi need a source build.
-linux-limit-plugins = No plugin API, so nothing here replaces a specific Foobar2000 component you depend on.
+linux-limit-plugins = [Plugins](/plugins) bring in music sources and nothing else, so nothing here replaces a specific Foobar2000 component you depend on.
 
 ## Windows
 
@@ -449,7 +473,7 @@ windows-integration-1 = Media keys and the now-playing overlay come through SMTC
 windows-integration-2 = There is a tray icon with quit-to-tray, so closing the last window leaves the music playing rather than ending it, and the icon is the way back in. A workspace can also take the window frame off, or keep the frame and drop only the resize border, which leaves the shadow, the snap layouts and Win+arrow intact and gives up the edge drag alone.
 
 windows-limit-signing = x86_64 only, and the binary is unsigned, so expect SmartScreen once.
-windows-limit-plugins = No plugin API, so a specific Foobar2000 component has no equivalent here.
+windows-limit-plugins = [Plugins](/plugins) bring in music sources and nothing else, so a specific Foobar2000 component has no equivalent here.
 
 ## macOS
 
@@ -476,7 +500,7 @@ macos-coreaudio-1 = Exclusive mode drives the device through CoreAudio at the fi
 
 macos-limit-silicon = Apple Silicon only. There is no Intel build, so an Intel Mac needs a source build.
 macos-limit-xcode = Building from source needs Xcode, nix or not: gpui compiles Metal shaders at build time and nix cannot ship Apple's Metal toolchain.
-macos-limit-plugins = No plugin API, so a specific Foobar2000 component has no equivalent here.
+macos-limit-plugins = [Plugins](/plugins) bring in music sources and nothing else, so a specific Foobar2000 component has no equivalent here.
 
 ## Best music player for a local library
 
@@ -512,7 +536,7 @@ best-measured = What the first one looks like measured
 best-shortlist = The honest shortlist
     .p1 = If you're on Windows and already run [Foobar2000](/foobar2000-alternative), you have the answer and have had it for twenty years. Nothing on this page beats a working Foobar2000 setup on its own platform.
     .p2 = If you want something with a large plugin ecosystem and a long track record on Linux, Quod Libet and Strawberry are both real answers, and both are slower to load a library this size than they are pleasant to use once loaded. If the tagging criterion is the one you actually care about, that's written up on its own as an [Mp3tag alternative](/mp3tag-alternative), and the loudness side of criterion one is covered under [ReplayGain](/replaygain).
-    .p3 = rox is the answer if you want the Foobar2000 shape natively on Linux or macOS: panels you compose, deep tagging, themes as single shareable files, and a player that gets a window up in under a second against a library this size. It's new, and it has no plugin API. Both of those are real costs.
+    .p3 = rox is the answer if you want the Foobar2000 shape natively on Linux or macOS: panels you compose, deep tagging, themes as single shareable files, and a player that gets a window up in under a second against a library this size. It's new, and its [plugins](/plugins) only bring in music sources. Both of those are real costs.
     .aside = The five criteria above are the floor, not the ceiling. Ratings go into the files themselves through FMPS and POPM rather than a database you can't take with you, and multi-value genres merge as a library opinion instead of a rewrite of your tags. If that's the kind of thing you've been wanting out of a library, this is the one to point at your disk.
 
 best-closer = Measure it against your own collection
@@ -537,7 +561,7 @@ musicbee-gaps = What rox doesn't do
 
 musicbee-gap-sync = **No device sync.** If you move music onto a phone or a DAP through your player, rox has no answer at all.
 musicbee-gap-radio = **No podcasts.** Radio stations play and can be saved as they go, but a podcast feed isn't something rox subscribes to.
-musicbee-gap-plugins = **No plugin API.** Anything you'd have solved with an add-on has to already exist.
+musicbee-gap-plugins = **Plugins only bring in music.** A [plugin](/plugins) adds a source to browse and play, so an add-on that changed how the player itself works has to already exist in rox.
 musicbee-gap-ffmpeg = **Conversion needs ffmpeg.** rox converts between formats, but it drives an ffmpeg you installed rather than carrying an encoder of its own, and it won't re-encode on the way to a device because there's no sync to re-encode for.
 
 musicbee-transfers = What transfers, and what's better
@@ -587,7 +611,7 @@ catrox-limits = What you don't get back
 
 catrox-limit-panels = Not every CaTRoX panel has an equivalent. rox has forty-odd panel types of its own and they aren't the same forty.
 catrox-limit-youtube = No YouTube playback. CaTRoX and NekoRoX both had it through components; rox plays what's on your disk.
-catrox-limit-plugins = No plugin API, so anything you'd have solved with a foobar2000 component has to already exist in rox or not exist at all.
+catrox-limit-plugins = Plugins only bring in music sources, so anything you'd have solved with a foobar2000 component has to already exist in rox or not exist at all.
 catrox-limit-fidelity = It's a recreation working from the outside. Details differ, and a pixel-exact match was never the goal.
 
 # $others is the shipped workspace count minus this one. It used to be the
@@ -694,7 +718,7 @@ fb-row-source = Source available
 
 fb-row-components = Component ecosystem
     .fb = Built on everyone who came before. Anything you can think of.
-    .rox = No plugin API.
+    .rox = Plugins for music sources, and nothing else.
 
 fb-row-maturity = Maturity
     .fb = Since 2002. It does not surprise you.
@@ -705,7 +729,7 @@ fb-row-footprint = Footprint
     .rox = One 62 MB binary, 134 MB resident at 50k tracks.
 
 fb-not = Who should not switch
-    .p1 = If you're on Windows, your components are configured, and the setup has been stable for a decade, there is nothing here worth the disruption. If you depend on a specific Foobar2000 component, rox has no plugin API and can't replace it. If you want software that has already made all its mistakes, rox is four years too young.
+    .p1 = If you're on Windows, your components are configured, and the setup has been stable for a decade, there is nothing here worth the disruption. If you depend on a specific Foobar2000 component, rox can't replace it: its plugins bring in music sources and nothing else. If you want software that has already made all its mistakes, rox is four years too young.
     .p2 = If you moved to Linux and left the setup behind, or you're on a Mac holding a player without the ecosystem that justified it, that's the gap this was built in.
     .p3 = The other side of arriving late is worth stating. Nothing in rox has to stay compatible with a decision made in 2002, which is how a whole look ends up as one shareable file instead of a component graph, how one codebase covers all three platforms, and how forty-odd panel types ship in the box rather than getting assembled one download at a time. It's also why track identity was never tied to file paths, which is the thing that makes merging a local library with anything else possible later. Most of that 62 MB is the same story.
     .aside = Panels that pop out into real OS windows, or a palette that retints itself from whatever cover is playing, never made the table above. There was nothing to put in the other column. If differences like that are what you're after, rox is the place to be.
@@ -961,3 +985,49 @@ ctl-honest = Where the line is
 
 ctl-closer = Bring a socket client
     .body = The socket is on wherever rox runs, `rox-mcp` ships beside the app, and the MCP page in settings has the config line for your client. `roxctl` builds from [the source](@repo) in one cargo command.
+
+## Plugins
+
+plg-title = Plugins for rox: bring any music source into your player
+    .description = rox plugins bring outside music sources into the player to browse, search, play, keep in your library, or run as a radio. How they work, what you approve, and how to write one in any language.
+plg-breadcrumb = Plugins
+plg-h1 = Bring the rest of your music in
+    .lede = A plugin brings one outside music source into rox. rox browses that source, searches it, plays it gapless and keeps what you ask it to, in the same panels and queue as the files on your disk.
+
+plg-what = What a plugin is
+    .p1 = A plugin is a folder holding a small manifest and a program. The program can be a Python script or a native binary, and it talks to rox over its standard input and output. rox starts it the first time something needs it and restarts it if it crashes. Five crashes in ten minutes stop it until you switch it off and on again.
+    .p2 = What a plugin can do is a short list: list and search a catalogue, sync collections into your library, serve audio, run a radio, link to its own web pages, and add preset panels under its name. It can't add buttons, change how rox looks or reach into other panels. Plugins bring in sources, and the player around them stays rox's own.
+
+plg-browse = Browsing a source
+    .p1 = Each running plugin gets an entry under Add Panel > Plugins, which opens an External Sources panel on its source. The panel lists the plugin's folders, playlists and albums, searches, shows cover art and loads more as you scroll. A service's home page lists under the panel's top level, so it's there without a click.
+    .p2 = What else the panel shows depends on the plugin. Chips over a list switch between the plugin's views, like search narrowed to albums. Shelves of covers scroll sideways, and a page of nothing but covers wraps into a grid. Columns the service knows and your tags don't, like a download count, sort with a click on their heading. While one of the plugin's tracks plays, the top level shows it with what's up next.
+
+plg-play = Playing and keeping
+    .p1 = Plugin tracks go in the queue, playlists and history like your own files, and play gapless back to back. A track that drops partway through reconnects and carries on from the same spot. A live stream from a plugin gets pause and the rewind buffer, like a radio station.
+    .p2 = Playing a track doesn't add it to your library, and Add to Library keeps it. Hover a collection and click its checkmark to keep the whole thing. It syncs into your library, follows the collection as it changes, and opens from there even with the plugin stopped or the network down.
+    .p3 = Open in Browser and Copy Link go to a track's or album's page on the service, from anywhere its tracks show in rox. Scrobbling is off unless the plugin asks for it, and then it's a switch on the plugin's row.
+
+plg-radio = Radio
+    .p1 = A plugin with a radio adds Start Radio to its tracks, albums, playlists and artists. rox plays what you picked, then keeps the queue going with the service's picks as it runs low. An album you play from the panel goes on the same way when it ends, instead of running into your local library.
+    .p2 = The radio's tracks play through rox's own engine like any other track. They don't join your library, the station skips what already played this session, and it carries on after a restart. Turn Keep Playing off in Settings > Playback and the queue stops at its end.
+
+plg-trust = What you're approving
+    .p1 = A new plugin shows up switched off. Switching it on is the approval, and the card you confirm says what the plugin is, what it can do, which programs it needs, and that it runs as a program on your computer with your permissions.
+    .p2 = The approval covers exactly the files in the plugin's folder. If any of them change, the plugin switches itself off and reads Changed on disk until you approve it again, and the card then shows what changed in its manifest. Remove on the Plugins page drops the plugin's tracks, synced collections, settings and approval, and leaves its folder alone.
+plg-sandbox = Not a sandbox
+    .body = A plugin has your network access and your files, like any program you run. Switch on the ones you'd run as a program anyway. rox doesn't ship plugins for any service, and the two in its repository are examples.
+
+plg-write = Write your own
+    .p1 = A plugin speaks JSON-RPC, one message per line over standard input and output, so any language that reads and writes lines will do. The [plugin guide](@plugin-guide) covers the manifest, every method, the timeouts and how audio reaches the player. The Plugin Guide button on the Plugins page opens it for the version you're running.
+    .p2 = Two examples are in the [repository](@plugin-examples). tones generates sine tones and chords, and it's the one for learning the protocol. Internet Archive uses every optional part of it against a real catalogue, with home shelves, views, columns, radio and links, in Python with nothing beyond the standard library.
+    .p3 = Developer mode on a plugin's row approves your own edits to its folder until rox quits, and restarts the plugin each time you save. Each newer part of the protocol is opt-in. rox lists the ones it supports when the plugin starts, so a plugin never has to send something an older rox would refuse.
+
+plg-limits = Where plugins stop
+plg-limit-scope = Plugins bring in sources and nothing else. A foobar2000 component that changed the player itself, like a new panel or a DSP, has no plugin equivalent.
+plg-limit-python = Script plugins need Python 3 on the machine. Most Linux installs have it, and Windows and macOS usually don't.
+plg-limit-flatpak = The Flatpak can't see programs installed on the host. It includes Python 3, so a plugin that only needs the standard library runs as is. Anything else has to ship in the plugin's own `bin` folder.
+plg-limit-macos = A Mac app started from Finder or the Dock doesn't get your shell's PATH, so programs installed with Homebrew show as missing until you add Homebrew's folder to Program Folders in Settings > Plugins.
+plg-limit-windows = On Windows, a native plugin's files can't be replaced while it runs. Switch it off before updating its folder.
+
+plg-closer = Try one
+    .body = Download rox, turn on Enable Plugins in Settings > Plugins, and copy the [Internet Archive example](@plugin-archive) into the plugins folder. It needs the network and no account.

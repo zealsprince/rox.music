@@ -55,6 +55,7 @@ const PLACES: Record<Kind, { in: string, out: string, url: string }> = {
 
 const SOURCES: Source[] = [
   { id: 'hero', from: 'docs/0S-screenshots/Preview_Dark.png' },
+  { id: 'plugins', from: 'docs/0S-screenshots/Plugins_Dark.png' },
   { id: 'default', from: 'crates/rox/assets/workspaces/Default_Dark.png' },
   { id: 'foobar', from: 'crates/rox/assets/workspaces/Foobar_Dark.png' },
   { id: 'catrox', from: 'crates/rox/assets/workspaces/CaTRoX_Dark.png' },

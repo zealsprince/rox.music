@@ -182,6 +182,9 @@ const ALIASES: Record<string, { href: string, rel?: string, plain?: boolean }> =
   '@mp3tag': { href: 'https://www.mp3tag.de/en/' },
   '@icecast': { href: 'https://icecast.org' },
   '@mcp-spec': { href: 'https://modelcontextprotocol.io' },
+  '@plugin-guide': { href: SITE.pluginGuide },
+  '@plugin-examples': { href: `${SITE.repo}/tree/main/examples/plugins` },
+  '@plugin-archive': { href: `${SITE.repo}/tree/main/examples/plugins/internet-archive` },
   // Plain, because it sits in the method note under a table whose own player
   // column already suppresses its arrows: one arrow down there would read as a
   // different kind of link rather than as the same one.

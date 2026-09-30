@@ -13,6 +13,7 @@ export const SITE = {
   issues: 'https://github.com/zealsprince/rox/issues/new/choose',
   releases: 'https://github.com/zealsprince/rox/releases',
   docs: 'https://github.com/zealsprince/rox/tree/main/docs',
+  pluginGuide: 'https://github.com/zealsprince/rox/blob/main/README_PLUGINS.md',
   // The project rather than either component. Both catalogs live under it, and
   // someone arriving from the language picker wants the app translated as much
   // as the pages: a new language that only covers the site is half a language.

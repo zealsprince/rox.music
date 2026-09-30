@@ -9,6 +9,16 @@
     "path": "/screenshots/hero-dark",
     "lightPath": "/screenshots/hero-light"
   },
+  "plugins": {
+    "width": 1268,
+    "height": 1430,
+    "widths": [
+      640,
+      1024,
+      1268
+    ],
+    "path": "/screenshots/plugins-dark"
+  },
   "default": {
     "width": 1416,
     "height": 876,

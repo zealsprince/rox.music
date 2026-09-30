@@ -7,12 +7,14 @@
   import FeatureIcon from '$components/FeatureIcon.svelte'
   import Meta from '$components/Meta.svelte'
   import Rich from '$components/Rich.svelte'
+  import Screenshot from '$components/Screenshot.svelte'
   import StructuredData from '$components/StructuredData.svelte'
   import { FEATURE_GROUPS } from '$data/features'
   import manifest from '$data/screenshots.generated.json'
   import { SITE } from '$data/site'
   import { WORKSPACE_COUNT } from '$data/workspaces'
   import { i18n } from '$lib/i18n/context'
+  import { Compass, FolderInput, ListPlus, ShieldCheck } from '@lucide/svelte'
 
   const { data }: { data: PageData } = $props()
 
@@ -30,6 +32,25 @@
    */
   const HERO_VIDEO = { width: 976, height: 912 }
   const heroPoster = `${base}${heroEntry.path}-${heroEntry.widths[heroEntry.widths.length - 1]}.webp`
+
+  const PLUGIN_STEPS = [
+    { key: 'home-plugins-step-drop', icon: FolderInput },
+    { key: 'home-plugins-step-approve', icon: ShieldCheck },
+    { key: 'home-plugins-step-browse', icon: Compass },
+    { key: 'home-plugins-step-play', icon: ListPlus },
+  ]
+
+  /**
+   * Numbered pins over the plugins screenshot, as percentages of the shot so
+   * they hold their place at any width. They're measured against the Internet
+   * Archive shot at 1268x1430: a new screenshot needs them measured again.
+   */
+  const PLUGIN_MARKS = [
+    { key: 'home-plugins-mark-panel', x: 38, y: 1.4 },
+    { key: 'home-plugins-mark-fields', x: 86.5, y: 5.5 },
+    { key: 'home-plugins-mark-notice', x: 70, y: 8.4 },
+    { key: 'home-plugins-mark-shelf', x: 10.5, y: 23.3 },
+  ]
 </script>
 
 <Meta
@@ -114,6 +135,58 @@
       {/each}
     {/each}
   </div>
+</section>
+
+<section class="shell block plugins">
+  <div class="plugins-copy">
+    <p class="eyebrow">{t('home-plugins-eyebrow')}</p>
+    <h2>{t('home-plugins')}</h2>
+    <p class="prose">{t('home-plugins.lede')}</p>
+
+    <!-- The process as a rail: one node per step, joined by a line, so the
+         four read as a sequence rather than as four more feature cells. -->
+    <ol class="steps">
+      {#each PLUGIN_STEPS as step (step.key)}
+        <li class="step">
+          <span class="node" aria-hidden="true">
+            <step.icon size={16} strokeWidth={2} />
+          </span>
+          <div>
+            <h3 class="step-title">{t(step.key)}</h3>
+            <p class="step-body">{t(`${step.key}.body`)}</p>
+          </div>
+        </li>
+      {/each}
+    </ol>
+
+    <p class="plugins-links">
+      <a href={href('/plugins')}>{t('home-plugins-more')}</a>
+      <a href={SITE.pluginGuide}>{t('home-plugins-write')}</a>
+    </p>
+  </div>
+
+  <figure class="plugins-figure">
+    <div class="pinned">
+      <Screenshot
+        id="plugins"
+        alt={t('home-plugins-shot')}
+        sizes="(min-width: 64rem) 34rem, (min-width: 48rem) 40rem, calc(100vw - 2.5rem)"
+      />
+      {#each PLUGIN_MARKS as mark, i (mark.key)}
+        <span class="pin" style:left="{mark.x}%" style:top="{mark.y}%" aria-hidden="true">
+          {i + 1}
+        </span>
+      {/each}
+    </div>
+    <figcaption>
+      <ol class="marks" aria-label={t('home-plugins-marks')}>
+        {#each PLUGIN_MARKS as mark, i (mark.key)}
+          <li><span class="pin" aria-hidden="true">{i + 1}</span>{t(mark.key)}</li>
+        {/each}
+      </ol>
+      <p class="caption"><Rich key="home-plugins-caption" /></p>
+    </figcaption>
+  </figure>
 </section>
 
 <section class="block band closer">
@@ -278,6 +351,148 @@
   }
 
   .more a {
+    font-size: var(--step--1);
+  }
+
+  .plugins {
+    display: grid;
+    gap: var(--space-xl);
+    padding-block: var(--space-2xl);
+  }
+
+  @media (min-width: 64rem) {
+    .plugins {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 34rem);
+      align-items: start;
+    }
+  }
+
+  /* The same strip lettering as the feature grid's group rules, in the accent,
+     since this is the one heading on the page that names a new thing. */
+  .eyebrow {
+    margin-bottom: var(--space-xs);
+    color: var(--accent-text);
+    font-size: var(--step--1);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .plugins .prose {
+    color: var(--text-secondary);
+  }
+
+  .steps {
+    margin: var(--space-lg) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .step {
+    --node: 2.25rem;
+
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--node) minmax(0, 1fr);
+    gap: var(--space-md);
+    padding-bottom: var(--space-lg);
+  }
+
+  /* The rail: from under one node to the top of the next. The last step has
+     no next, so it has no line. */
+  .step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    top: var(--node);
+    bottom: 0;
+    left: calc(var(--node) / 2);
+    width: var(--hairline);
+    background: var(--border);
+  }
+
+  .node {
+    display: grid;
+    place-items: center;
+    width: var(--node);
+    height: var(--node);
+    background: var(--bg-panel);
+    border: var(--hairline) solid var(--border);
+    color: var(--accent-text);
+  }
+
+  .step-title {
+    font-size: var(--step-1);
+    line-height: 1.25;
+    margin-top: 0.3rem;
+  }
+
+  .step-body {
+    margin-top: var(--space-xs);
+    color: var(--text-secondary);
+    font-size: var(--step--1);
+  }
+
+  .plugins-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md) var(--space-lg);
+  }
+
+  .plugins-figure {
+    margin: 0;
+    max-width: 40rem;
+  }
+
+  .pinned {
+    position: relative;
+  }
+
+  .pin {
+    display: inline-grid;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    flex: none;
+    background: var(--accent);
+    color: var(--text-on-accent);
+    font-size: var(--step--1);
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  /* Over the screenshot the pin centres on its point, and a dark ring keeps it
+     legible against a bright cover. */
+  .pinned .pin {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 3px rgb(0 0 0 / 0.55);
+  }
+
+  .marks {
+    display: grid;
+    gap: var(--space-xs) var(--space-md);
+    margin: var(--space-md) 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--step--1);
+    color: var(--text-secondary);
+  }
+
+  @media (min-width: 34rem) {
+    .marks {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .marks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .caption {
+    margin-top: var(--space-md);
+    color: var(--text-muted);
     font-size: var(--step--1);
   }
 </style>
