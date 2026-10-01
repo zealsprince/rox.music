@@ -1008,7 +1008,7 @@ plg-play = Playing and keeping
     .p3 = Open in Browser and Copy Link go to a track's or album's page on the service, from anywhere its tracks show in rox. Scrobbling is off unless the plugin asks for it, and then it's a switch on the plugin's row.
 
 plg-radio = Radio
-    .p1 = A plugin with a radio adds Start Radio to its tracks, albums, playlists and artists. rox plays what you picked, then keeps the queue going with the service's picks as it runs low. An album you play from the panel goes on the same way when it ends, instead of running into your local library.
+    .p1 = A plugin with a radio adds Play Similar to its tracks, albums, playlists and artists. An album, playlist or artist plays its own tracks first, while a track only seeds the station and is left out of it. The service's picks then keep the queue going as it runs low. Shuffle switches to Similar, and for the plugin's tracks that works without your library's acoustic analysis. An album you play from the panel goes on the same way when it ends, instead of running into your local library.
     .p2 = The radio's tracks play through rox's own engine like any other track. They don't join your library, the station skips what already played this session, and it carries on after a restart. Turn Keep Playing off in Settings > Playback and the queue stops at its end.
 
 plg-trust = What you're approving

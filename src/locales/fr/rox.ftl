@@ -1022,7 +1022,7 @@ plg-play = Lire et garder
     .p3 = Ouvrir dans le navigateur et Copier le lien mènent à la page d'une piste ou d'un album sur le service, depuis n'importe où ses pistes apparaissent dans rox. Le scrobbling est désactivé sauf si le plugin le demande, et c'est alors un interrupteur sur la ligne du plugin.
 
 plg-radio = Radio
-    .p1 = Un plugin avec une radio ajoute Lancer la radio à ses pistes, albums, playlists et artistes. rox lit ce que tu as choisi, puis alimente la file d'attente avec les choix du service à mesure qu'elle se vide. Un album que tu lis depuis le panneau continue de la même façon à sa fin, au lieu de basculer sur ta bibliothèque locale.
+    .p1 = Un plugin avec une radio ajoute Lire des pistes proches à ses pistes, albums, playlists et artistes. Un album, une playlist ou un artiste joue d'abord ses propres pistes, alors qu'une piste sert seulement de point de départ à la station et n'y est pas lue. Les choix du service alimentent ensuite la file d'attente à mesure qu'elle se vide. La lecture aléatoire passe sur Proches, et pour les pistes du plugin elle se passe de l'analyse acoustique de ta bibliothèque. Un album que tu lis depuis le panneau continue de la même façon à sa fin, au lieu de basculer sur ta bibliothèque locale.
     .p2 = Les pistes de la radio se lisent via le moteur propre de rox comme n'importe quelle autre piste. Elles ne rejoignent pas ta bibliothèque, la station saute ce qui a déjà joué dans la session, et elle continue après un redémarrage. Désactive Continuer la lecture dans Réglages > Lecture et la file d'attente s'arrête à sa fin.
 
 plg-trust = Ce que tu approuves

@@ -1015,7 +1015,7 @@ plg-play = Tocando e guardando
     .p3 = Abrir no navegador e Copiar link levam para a página de uma faixa ou álbum no serviço, de qualquer lugar onde as faixas dele apareçam no rox. O scrobbling fica desligado a não ser que o plugin peça, e aí é um interruptor na linha do plugin.
 
 plg-radio = Rádio
-    .p1 = Um plugin com rádio acrescenta Iniciar rádio às faixas, álbuns, playlists e artistas dele. O rox toca o que você escolheu, e depois mantém a fila rodando com as escolhas do serviço conforme ela esvazia. Um álbum que você toca pelo painel continua do mesmo jeito quando acaba, em vez de cair na sua biblioteca local.
+    .p1 = Um plugin com rádio acrescenta Reproduzir similares às faixas, álbuns, playlists e artistas dele. Um álbum, playlist ou artista toca primeiro as próprias faixas, enquanto uma faixa só serve de ponto de partida para a estação e não toca nela. Depois, as escolhas do serviço mantêm a fila rodando conforme ela esvazia. A ordem aleatória passa para Similar, e para as faixas do plugin funciona sem a análise acústica da sua biblioteca. Um álbum que você toca pelo painel continua do mesmo jeito quando acaba, em vez de cair na sua biblioteca local.
     .p2 = As faixas da rádio tocam pelo próprio motor do rox, como qualquer outra faixa. Elas não entram na sua biblioteca, a estação pula o que já tocou nesta sessão, e continua depois de reiniciar. Desligue Continuar tocando em Configurações > Reprodução e a fila para no final.
 
 plg-trust = O que você está aprovando

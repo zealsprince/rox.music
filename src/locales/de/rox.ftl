@@ -1006,7 +1006,7 @@ plg-play = Abspielen und behalten
     .p3 = Im Browser öffnen und Link kopieren führen zur Seite eines Titels oder Albums beim Dienst, von überall dort, wo seine Titel in rox auftauchen. Scrobbling ist aus, außer das Plugin fragt danach, dann ist es ein Schalter in der Zeile des Plugins.
 
 plg-radio = Radio
-    .p1 = Ein Plugin mit Radio fügt Radio starten zu seinen Titeln, Alben, Playlists und Künstlern hinzu. rox spielt, was du ausgewählt hast, und hält die Warteschlange danach mit der Auswahl des Dienstes am Laufen, wenn sie zur Neige geht. Ein Album, das du aus dem Panel abspielst, geht am Ende genauso weiter, statt in deine lokale Bibliothek überzugehen.
+    .p1 = Ein Plugin mit Radio fügt Ähnliches abspielen zu seinen Titeln, Alben, Playlists und Künstlern hinzu. Ein Album, eine Playlist oder ein Künstler spielt zuerst die eigenen Titel, ein Titel dagegen dient der Station nur als Ausgangspunkt und läuft selbst nicht mit. Danach hält die Auswahl des Dienstes die Warteschlange am Laufen, wenn sie zur Neige geht. Die Zufallswiedergabe wechselt auf Ähnlich, und für die Titel des Plugins braucht sie dafür keine Klanganalyse deiner Bibliothek. Ein Album, das du aus dem Panel abspielst, geht am Ende genauso weiter, statt in deine lokale Bibliothek überzugehen.
     .p2 = Die Titel des Radios laufen über die eigene Engine von rox wie jeder andere Titel. Sie kommen nicht in deine Bibliothek, die Station überspringt, was in dieser Sitzung schon lief, und macht nach einem Neustart weiter. Schalte Weiterspielen in Einstellungen > Wiedergabe aus, und die Warteschlange stoppt an ihrem Ende.
 
 plg-trust = Was du damit freigibst
