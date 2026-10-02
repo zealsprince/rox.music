@@ -649,13 +649,13 @@
     "tag": "v1.29.1",
     "publishedAt": "2026-10-01T05:28:40Z",
     "counts": {
-      "linux-archive": 0,
-      "linux-alt": 0,
-      "linux-appimage": 0,
+      "linux-archive": 5,
+      "linux-alt": 1,
+      "linux-appimage": 4,
       "linux-flatpak": 0,
-      "macos-archive": 0,
-      "windows-archive": 0,
-      "windows-alt": 0
+      "macos-archive": 2,
+      "windows-archive": 9,
+      "windows-alt": 3
     }
   }
 ]
