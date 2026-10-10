@@ -231,7 +231,7 @@ stats-view-week = 週
 stats-view-release = リリース
 stats-tip = v{ $version }、{ $date }、ダウンロード { $count } 件
 stats-tip-week = { $date } の週、ダウンロード { $count } 件
-stats-note = GitHub のリリースファイルを数えています。いちばん左が最も古いものです。AUR や Nix flake からビルドしたものは合計に入りません。
+stats-note = GitHub のリリースファイルを数えています。いちばん左が最も古いものです。AUR の rox-player-bin は Linux の tarball をダウンロードするので、そのインストールも含まれます。AUR や Nix flake でソースからビルドしたものは合計に入りません。
 stats-note-week = 週は月曜から日曜までです。進行中の週は出していません。
 
 ## ダウンロード
@@ -279,8 +279,8 @@ download-packages = パッケージマネージャー
     .body = システムの他のものと一緒に rox を更新し続ける 2 つの経路。
 
 package-aur =
-    .scope = AUR、ソースからビルド
-    .body = AUR に `rox-player` として、rox の作者も共同で保守しています。どの AUR ヘルパーでも使えますし、パッケージを clone して `makepkg -si` を自分で叩いても構いません。
+    .scope = AUR、ソースからビルドまたはビルド済み
+    .body = パッケージは 3 つあり、どれも rox の作者が共同で保守しています。`rox-player` は最新リリースをソースからビルドし、`rox-player-bin` は同じリリースをビルド済みで入れ、`rox-player-git` は main の最新をビルドします。どの AUR ヘルパーでも使えますし、パッケージを clone して `makepkg -si` を自分で叩いても構いません。
     .link = AUR の rox-player
 
 package-nix =
@@ -419,7 +419,7 @@ linux-why-2 = そのスタックを Wine で走らせるのは、動かなくな
 linux-why-3 = rox はその形をネイティブに書いたものです。自分で並べる 40 種類ほどのパネル、本物のコレクションを任せられるタグ編集、そして 1 つのファイルとして旅するテーマ。
 
 linux-install = インストール
-linux-install-1 = Arch なら AUR に `rox-player` として、作者も共同で保守しています。どのヘルパーでも使えますし、clone して `makepkg -si` を自分で叩いても構いません。
+linux-install-1 = Arch なら AUR に、最新リリースをソースからビルドする `rox-player`、それをビルド済みで入れる `rox-player-bin`、main の最新をビルドする `rox-player-git` があります。どれも作者が共同で保守しています。どのヘルパーでも使えますし、clone して `makepkg -si` を自分で叩いても構いません。
 linux-install-2 = リポジトリは flake でもあるので、Nix と NixOS はパッケージ化を待たずに使えます。1 つ目のコマンドは何もインストールせずに rox を動かし、2 つ目はプロファイルに入れます。
 linux-install-3 = それ以外はどこでも、tarball を展開して `./rox` を実行するだけ。バイナリ 1 つ、インストーラーなし、消せば何も残りません。
 

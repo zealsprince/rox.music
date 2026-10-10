@@ -257,7 +257,7 @@ stats-view-week = Settimana
 stats-view-release = Versione
 stats-tip = v{ $version }, { $date }, { $count } download
 stats-tip-week = settimana del { $date }, { $count } download
-stats-note = Si contano i file delle versioni pubblicate su GitHub, il più vecchio a sinistra. Le copie installate dall'AUR o dal flake Nix non rientrano nel totale.
+stats-note = Si contano i file delle versioni pubblicate su GitHub, il più vecchio a sinistra. Ci rientrano le installazioni di rox-player-bin dall'AUR, che scarica il tarball Linux. Le copie compilate dai sorgenti, tramite l'AUR o il flake Nix, non rientrano nel totale.
 stats-note-week = Le settimane vanno da lunedì a domenica. Quella in corso non compare.
 
 ## Download
@@ -305,8 +305,8 @@ download-packages = Gestori di pacchetti
     .body = Due strade che tengono rox aggiornato insieme al resto del sistema.
 
 package-aur =
-    .scope = AUR, compila dai sorgenti
-    .body = Sull'AUR come `rox-player`, co-mantenuto dall'autore di rox. Va bene qualsiasi helper AUR, oppure cloni il pacchetto e lanci `makepkg -si` a mano.
+    .scope = AUR, dai sorgenti o precompilato
+    .body = Tre pacchetti, tutti co-mantenuti dall'autore di rox: `rox-player` compila l'ultima release dai sorgenti, `rox-player-bin` installa la stessa release precompilata e `rox-player-git` compila la punta di main. Va bene qualsiasi helper AUR, oppure cloni il pacchetto e lanci `makepkg -si` a mano.
     .link = rox-player sull'AUR
 
 package-nix =
@@ -445,7 +445,7 @@ linux-why-2 = Far girare quello stack sotto Wine funziona finché non funziona p
 linux-why-3 = rox è quella forma scritta in modo nativo: una quarantina di tipi di pannello che disponi tu, un editing dei tag a cui puoi affidare una collezione vera, e temi che viaggiano come un singolo file.
 
 linux-install = Installarlo
-linux-install-1 = Su Arch sta sull'AUR come `rox-player`, co-mantenuto dall'autore. Va bene qualsiasi helper, oppure cloni e lanci `makepkg -si` a mano.
+linux-install-1 = Su Arch l'AUR ha `rox-player`, che compila l'ultima release dai sorgenti, `rox-player-bin`, che la installa precompilata, e `rox-player-git`, che compila la punta di main. L'autore li co-mantiene tutti e tre. Va bene qualsiasi helper, oppure cloni e lanci `makepkg -si` a mano.
 linux-install-2 = Il repository è anche un flake, quindi Nix e NixOS lo ottengono senza un passaggio di pacchettizzazione. Il primo comando avvia rox senza installare nulla, il secondo lo mette nel tuo profilo.
 linux-install-3 = Ovunque altro, estrai il tarball e avvia `./rox`. Un binario, nessun installer, niente che resti indietro quando lo cancelli.
 

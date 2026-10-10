@@ -17,8 +17,11 @@ export interface PackageSource {
 
 // Verified against the real sources rather than written from memory:
 //
-//   AUR   rox-player 1.5.0-1, AGPL-3.0-only, source build (makedepends cargo,
-//         clang, gcc). Checked via the AUR RPC. Co-maintained by Andrew.
+//   AUR   rox-player 1.30.13-1, AGPL-3.0-only, source build (makedepends cargo,
+//         clang, gcc). rox-player-bin 1.30.13-1 repackages the linux-x86_64
+//         release tarball, so its installs land in the download counts.
+//         rox-player-git builds from a clone of main. Checked via the AUR
+//         RPC. Andrew co-maintains all three.
 //   Nix   `nix eval .#packages.x86_64-linux.default.name` on the rox repo
 //         returns rox-1.5.0, so the commands below hit a real derivation.
 //
@@ -29,7 +32,7 @@ export const PACKAGES: PackageSource[] = [
     id: 'aur',
     name: 'Arch Linux',
     key: 'package-aur',
-    commands: ['yay -S rox-player'],
+    commands: ['yay -S rox-player[-bin|-git]'],
     caveat: false,
     href: 'https://aur.archlinux.org/packages/rox-player',
   },

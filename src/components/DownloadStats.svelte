@@ -41,71 +41,80 @@
 
   const fill = (count: number, peak: number): number =>
     FLOOR + Math.round((count / peak) * (100 - FLOOR))
+
+  const rows = PLATFORMS.flatMap((platform) => {
+    const stats = strip.platforms.find(p => p.platform === platform.id)
+    return stats ? [{ platform, stats }] : []
+  })
 </script>
 
-<div class="rows">
-  {#each PLATFORMS as platform (platform.id)}
-    {@const stats = strip.platforms.find(p => p.platform === platform.id)}
-    {#if stats}
-      <div class="row">
-        <span class="name">
-          <PlatformIcon platform={platform.id} size={17} />
-          {platform.label}
-        </span>
+<!--
+  Names, strips and totals are three columns rather than three rows, so all the
+  strips sit in one scroller and move together. Every cell is the strip's
+  height, which keeps the columns lined up without the rows sharing a box.
+-->
+<div class="chart">
+  <div class="names">
+    {#each rows as row (row.platform.id)}
+      <span class="name">
+        <PlatformIcon platform={row.platform.id} size={17} />
+        {row.platform.label}
+      </span>
+    {/each}
+  </div>
 
-        <div class="strip" aria-hidden="true">
+  <!-- Reversed so the scroller opens on its far end, where the newest bucket
+       is. That's the end anyone looks at first, and it needs no script. -->
+  <div class="scroller">
+    <div class="strips" aria-hidden="true">
+      {#each rows as row (row.platform.id)}
+        <div class="strip">
           {#each strip.buckets as bucket (bucket.key)}
-            {@const count = bucket.byPlatform[platform.id]}
+            {@const count = bucket.byPlatform[row.platform.id]}
             <span
               class="seg"
-              style="--fill: {fill(count, stats.peak)}%"
+              style="--fill: {fill(count, row.stats.peak)}%"
               title={strip.kind === 'week'
                 ? t('stats-tip-week', { date: date(bucket.at), count })
                 : t('stats-tip', { version: bucket.key, date: date(bucket.at), count })}
             ></span>
           {/each}
         </div>
+      {/each}
+    </div>
+  </div>
 
-        <!-- Bare number. Three rows repeating the word "downloads" under a
-             heading that already says it is three chances to read the same
-             word instead of the three numbers. -->
-        <span class="total">{number(stats.total)}</span>
-      </div>
-    {/if}
-  {/each}
+  <!-- Bare number. Three rows repeating the word "downloads" under a heading
+       that already says it is three chances to read the same word instead of
+       the three numbers. -->
+  <div class="totals">
+    {#each rows as row (row.platform.id)}
+      <span class="total">{number(row.stats.total)}</span>
+    {/each}
+  </div>
 </div>
 
 <style>
-  .rows {
+  .chart {
+    --row: 1.6rem;
+
     display: grid;
-    gap: var(--space-sm);
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    column-gap: var(--space-md);
+    align-items: start;
   }
 
-  .row {
+  .names,
+  .totals,
+  .strips {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 0.4rem var(--space-md);
-    align-items: center;
+    grid-auto-rows: var(--row);
+    row-gap: var(--space-sm);
   }
 
-  /* Name over strip on narrow screens, all three on one line once there's room
-     for a long strip to still be worth hovering.
-
-     `display: contents` on the row, not a per-row grid: the totals column is
-     auto-width, so three independent grids size it three different ways and
-     every strip ends somewhere else. Dissolving the row makes the cells direct
-     children of one grid, which is what puts the three columns on shared
-     tracks. Same job subgrid does in the download cards, without needing the
-     @supports guard, since there's nothing to fall back to here. */
   @media (min-width: 40rem) {
-    .rows {
+    .chart {
       grid-template-columns: 7.5rem minmax(0, 1fr) auto;
-      column-gap: var(--space-md);
-      align-items: center;
-    }
-
-    .row {
-      display: contents;
     }
   }
 
@@ -115,26 +124,33 @@
     gap: 0.45rem;
     font-size: var(--step--1);
     color: var(--text-bright);
+    white-space: nowrap;
   }
 
-  .strip {
+  .scroller {
     display: flex;
-    gap: 1px;
-    height: 1.6rem;
-    /* Spans both columns on the stacked layout, its own column once the row
-       goes wide. */
-    grid-column: 1 / -1;
+    flex-direction: row-reverse;
+    overflow-x: auto;
   }
 
-  @media (min-width: 40rem) {
-    .strip {
-      grid-column: auto;
-    }
+  /* As wide as the segments need, and never narrower than the scroller, so a
+     strip with few buckets still spans the whole column. */
+  .strips {
+    flex: none;
+    width: max-content;
+    min-width: 100%;
+  }
+
+  /* Each segment gets at least a hover target's width. Past that the strip
+     scrolls rather than thinning every release down to a hairline. */
+  .strip {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0.75rem, 1fr);
+    gap: 1px;
   }
 
   .seg {
-    flex: 1;
-    min-width: 0;
     background: color-mix(in srgb, var(--accent) var(--fill), var(--bg-root));
   }
 
@@ -142,16 +158,14 @@
     background: var(--accent-hover);
   }
 
-  /* Right-aligned so the three end flush against the same edge. The left edges
-     stay ragged because "86 downloads" is shorter than "288 downloads", and
-     splitting the number off into its own column isn't available: the count and
-     its noun are one translated string, and they don't come in that order in
-     every language. */
+  /* Right-aligned so the three end flush against the same edge. */
   .total {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     font-size: var(--step--1);
     font-variant-numeric: tabular-nums;
     color: var(--text-secondary);
     white-space: nowrap;
-    text-align: right;
   }
 </style>

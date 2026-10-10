@@ -241,7 +241,7 @@ stats-view-week = 按周
 stats-view-release = 按版本
 stats-tip = v{ $version }、{ $date }、{ $count } 次下载
 stats-tip-week = { $date } 那一周、{ $count } 次下载
-stats-note = 统计的是 GitHub 上各版本的发布文件，最左边是最早的。通过 AUR 或 Nix flake 装的副本不计入总数。
+stats-note = 统计的是 GitHub 上各版本的发布文件，最左边是最早的。AUR 上的 rox-player-bin 会下载 Linux tar 包，所以它的安装也算在内。通过 AUR 或 Nix flake 从源码构建的副本不计入总数。
 stats-note-week = 一周从周一算到周日。还没过完的这一周不显示。
 
 ## 下载
@@ -289,8 +289,8 @@ download-packages = 包管理器
     .body = 两条能让 rox 跟着系统其他部分一起更新的路。
 
 package-aur =
-    .scope = AUR，从源码构建
-    .body = 在 AUR 上叫 `rox-player`，由 rox 作者共同维护。任何 AUR 助手都行，也可以自己克隆这个包再跑 `makepkg -si`。
+    .scope = AUR，从源码构建或预编译
+    .body = 有三个包，都由 rox 作者共同维护：`rox-player` 从源码构建最新发布版，`rox-player-bin` 直接安装同一发布版的预编译版本，`rox-player-git` 构建 main 的最新代码。任何 AUR 助手都行，也可以自己克隆这个包再跑 `makepkg -si`。
     .link = AUR 上的 rox-player
 
 package-nix =
@@ -429,7 +429,7 @@ linux-why-2 = 用 Wine 跑那一套，能用到它不能用为止。像 CaTRoX �
 linux-why-3 = rox 就是那个形状的原生写法：四十来种面板由你自己排布、标签编辑敢用在真实收藏上、主题作为单个文件流通。
 
 linux-install = 怎么装
-linux-install-1 = 在 Arch 上它在 AUR 里叫 `rox-player`，由作者共同维护。任何助手都行，也可以自己克隆再跑 `makepkg -si`。
+linux-install-1 = 在 Arch 上，AUR 里有从源码构建最新发布版的 `rox-player`、直接安装预编译版本的 `rox-player-bin`，以及构建 main 最新代码的 `rox-player-git`，三个都由作者共同维护。任何助手都行，也可以自己克隆再跑 `makepkg -si`。
 linux-install-2 = 这个仓库同时也是一个 flake，所以 Nix 和 NixOS 不用打包步骤就能拿到。第一条命令不装任何东西就能跑 rox，第二条把它放进你的 profile。
 linux-install-3 = 其他情况下，解压 tar 包，跑 `./rox`。一个可执行文件，没有安装程序，删掉之后什么都不留。
 

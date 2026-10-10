@@ -137,9 +137,10 @@ generates a deterministic set so the layout can be looked at now. It's gated on 
 well as on the variable, so a build with `ROX_MOCK_HISTORY` set in the environment still
 reads the real file and there is no path from it to a published page.
 
-Counts cover the GitHub release assets and nothing else. The AUR reports votes and a
-popularity score rather than installs, and the flake reports nothing, so adding either to
-the total would mean inventing a number.
+Counts cover the GitHub release assets and nothing else. `rox-player-bin` on the AUR
+installs the Linux tarball, so its installs are already in there. The source-built AUR
+packages report votes and a popularity score rather than installs, and the flake reports
+nothing, so adding either to the total would mean inventing a number.
 
 ## Screenshots
 

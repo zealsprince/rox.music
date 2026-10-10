@@ -236,7 +236,7 @@ stats-view-release = Release
 # The native tooltips on one segment of a platform's strip.
 stats-tip = v{ $version }, { $date }, { $count } downloads
 stats-tip-week = week of { $date }, { $count } downloads
-stats-note = Counted from the release files on GitHub, oldest on the left. Copies built from the AUR or the Nix flake aren't in the total.
+stats-note = Counted from the release files on GitHub, oldest on the left. That includes installs of rox-player-bin from the AUR, which downloads the Linux tarball. Copies built from source, through the AUR or the Nix flake, aren't in the total.
 stats-note-week = Weeks run Monday to Sunday. The one in progress isn't shown.
 
 ## Download
@@ -284,8 +284,8 @@ download-packages = Package managers
     .body = Two routes that keep rox updated alongside the rest of your system.
 
 package-aur =
-    .scope = AUR, builds from source
-    .body = On the AUR as `rox-player`, co-maintained by the rox author. Any AUR helper works, or clone the package and run `makepkg -si` yourself.
+    .scope = AUR, from source or prebuilt
+    .body = Three packages, all co-maintained by the rox author: `rox-player` builds the latest release from source, `rox-player-bin` installs that release prebuilt, and `rox-player-git` builds the tip of main. Any AUR helper works, or clone the package and run `makepkg -si` yourself.
     .link = rox-player on the AUR
 
 package-nix =
@@ -424,7 +424,7 @@ linux-why-2 = Running that stack through Wine works until it doesn't. A skin lik
 linux-why-3 = rox is that shape written natively: around forty panel types you arrange yourself, tag editing you can trust with a real collection, and themes that travel as a single file.
 
 linux-install = Installing it
-linux-install-1 = On Arch it's on the AUR as `rox-player`, co-maintained by the author. Any helper works, or clone and run `makepkg -si` yourself.
+linux-install-1 = On Arch, the AUR has `rox-player`, which builds the latest release from source, `rox-player-bin`, which installs it prebuilt, and `rox-player-git`, which builds the tip of main. The author co-maintains all three. Any helper works, or clone and run `makepkg -si` yourself.
 linux-install-2 = The repo is also a flake, so Nix and NixOS get it without a package step. The first command runs rox without installing anything, the second puts it in your profile.
 linux-install-3 = Everywhere else, unpack the tarball and run `./rox`. One binary, no installer, nothing left behind when you delete it.
 
