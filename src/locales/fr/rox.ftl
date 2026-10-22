@@ -114,10 +114,15 @@ home-hero = Le lecteur d'aujourd'hui, pas celui d'hier.
     .lede = Un lecteur de musique pour ceux dont la bibliothèque locale est grande et taguée avec soin. Les panneaux, tu les composes toi-même ; un thème, c'est un seul fichier, à donner à qui tu veux. Natif sur Linux, macOS et Windows.
     .alt = rox avec l'espace de travail par défaut façon NekoRoX : bibliothèque, pochette, file d'attente et un panneau de spectre
 
+# The three proof points under the hero's button. The number is formatted
+# by the page and comes first; these are the words under it.
+home-proof-window = du lancement à la fenêtre
+home-proof-memory = de mémoire avec { $tracks } pistes chargées
+home-proof-license = libre et open source
+
 home-speed = Une fenêtre en moins d'une seconde
     .body = rox tient dans un seul binaire et démarre avant que tu n'aies lâché la souris.
 
-home-features = Ce qu'il y a dedans
 
 home-plugins-eyebrow = Plugins
 home-plugins = Et pour tout le reste

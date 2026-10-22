@@ -178,6 +178,100 @@ function markPlatform(): void {
   }
 }
 
+/** Seconds as the seek panel's clock: m:ss. */
+function clock(secs: number): string {
+  const whole = Math.max(0, Math.round(secs))
+  return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, '0')}`
+}
+
+/**
+ * The home page's drawn panels take input: the seek strip, the volume, the
+ * equalizer bands. Each slider is a real range input, so it already moves
+ * with no script. This keeps the rest of the panel honest about it: the fill
+ * behind the knob, the clocks and readouts, and the waveform's played share,
+ * which the markup reads off one custom property on the panel.
+ */
+function wireSliders(): void {
+  const sliders = document.querySelectorAll<HTMLInputElement>('input.rox-range')
+
+  const apply = (input: HTMLInputElement): void => {
+    const min = Number(input.min || 0)
+    const max = Number(input.max || 100)
+    const value = Number(input.value)
+    const share = (value - min) / (max - min)
+    input.style.setProperty('--fill', `${share * 100}%`)
+
+    const panel = input.closest<HTMLElement>('[data-live]')
+    if (!panel)
+      return
+    // Three spellings of one value, since CSS can't convert between them: the
+    // percentage for positions, the share for scale factors, the raw value
+    // for anything in the slider's own unit.
+    if (input.dataset.var) {
+      panel.style.setProperty(input.dataset.var, `${share * 100}%`)
+      panel.style.setProperty(`${input.dataset.var}-share`, String(share))
+      panel.style.setProperty(`${input.dataset.var}-value`, String(value))
+    }
+
+    // What the panel prints next to the slider, by what the slider is.
+    const out = (name: string, text: string): void => {
+      const target = panel.querySelector<HTMLElement>(`[data-out="${name}"]`)
+      if (target)
+        target.textContent = text
+    }
+    switch (input.dataset.kind) {
+      case 'seek': {
+        const duration = Number(input.dataset.duration || 0)
+        out('elapsed', clock(share * duration))
+        out('ending', `-${clock(duration - share * duration)}`)
+        break
+      }
+
+      case 'percent':
+        out(input.name, `${Math.round(value)}%`)
+        break
+
+      case 'db':
+        out(input.name, `${value > 0 ? '+' : ''}${value}`)
+        break
+    }
+  }
+
+  for (const input of sliders)
+    input.addEventListener('input', () => apply(input))
+
+  // The waveform is a seek strip too: a press anywhere on it moves the seek
+  // slider there, and the slider does the rest.
+  for (const wave of document.querySelectorAll<HTMLElement>('[data-waveform]')) {
+    wave.addEventListener('pointerdown', (event) => {
+      const seek = wave.closest('[data-live]')?.querySelector<HTMLInputElement>('input[data-kind="seek"]')
+      if (!seek)
+        return
+      const box = wave.getBoundingClientRect()
+      const share = Math.min(1, Math.max(0, (event.clientX - box.left) / box.width))
+      const min = Number(seek.min || 0)
+      const max = Number(seek.max || 100)
+      seek.value = String(min + share * (max - min))
+      apply(seek)
+    })
+  }
+}
+
+/**
+ * The workspaces page is a CSS radio-tab switcher, so a link into it can only
+ * name a tab by its radio's id in the hash, and a hash on its own just scrolls
+ * there. Checking the radio it names is what opens the tab.
+ */
+function openHashTab(): void {
+  const id = location.hash.slice(1)
+  if (!id)
+    return
+
+  const input = document.getElementById(id)
+  if (input instanceof HTMLInputElement && input.type === 'radio')
+    input.checked = true
+}
+
 function main(): void {
   // Gates the CSS that reveals JS-only controls, so nothing dead ever renders.
   document.documentElement.classList.add('js')
@@ -189,7 +283,10 @@ function main(): void {
   applyThemeToImages(currentTheme())
 
   wireThemeToggle()
+  wireSliders()
   markPlatform()
+  openHashTab()
+  window.addEventListener('hashchange', openHashTab)
   whenIdle(warmOffThemeImages)
 }
 

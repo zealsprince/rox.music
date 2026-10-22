@@ -100,10 +100,15 @@ home-hero = La forma de Foobar2000, sin veinte años a cuestas.
     .lede = Un reproductor de escritorio para quien tiene la biblioteca en su disco, grande y bien etiquetada. Los paneles los montas tú. Un tema es un archivo, y ese archivo se lo puedes pasar a otra persona. Nativo en Linux, macOS y Windows.
     .alt = rox con el espacio de trabajo predeterminado al estilo NekoRoX, mostrando la biblioteca, la carátula, la cola y un panel de espectro
 
+# The three proof points under the hero's button. The number is formatted
+# by the page and comes first; these are the words under it.
+home-proof-window = del arranque a la ventana
+home-proof-memory = de memoria con { $tracks } pistas cargadas
+home-proof-license = libre y de código abierto
+
 home-speed = Menos de un segundo hasta la ventana
     .body = rox se distribuye como un único binario y arranca antes de que hayas soltado el ratón.
 
-home-features = Qué lleva dentro
 
 home-plugins-eyebrow = Plugins
 home-plugins = Y para todo lo demás

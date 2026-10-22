@@ -107,10 +107,15 @@ home-hero = 要是 Foobar2000 生在今天。
     .lede = 给拥有大型、精心整理过标签的本地媒体库的人用的桌面播放器。面板自己拼，一套主题就是一个文件，可以直接递给别人。在 Linux、macOS 和 Windows 上都是原生的。
     .alt = rox 跑着 NekoRoX 风格的默认工作区，显示媒体库、封面、队列和一个频谱面板
 
+# The three proof points under the hero's button. The number is formatted
+# by the page and comes first; these are the words under it.
+home-proof-window = 从启动到显示窗口
+home-proof-memory = 内存占用（已加载 { $tracks } 首曲目）
+home-proof-license = 自由且开源
+
 home-speed = 一秒之内出窗口
     .body = rox 就是一个可执行文件，鼠标还没松开它就起来了。
 
-home-features = 里面有什么
 
 home-plugins-eyebrow = 插件
 home-plugins = 其他音乐，也能进来

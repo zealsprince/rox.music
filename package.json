@@ -11,6 +11,7 @@
     "preview": "vite preview",
     "enhance": "tsx scripts/build-enhance.ts",
     "images": "tsx scripts/optimize-images.ts",
+    "wave": "tsx scripts/build-wave.ts",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "lint": "eslint .",
     "locales": "tsx scripts/check-locales.ts",

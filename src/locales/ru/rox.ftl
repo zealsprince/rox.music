@@ -115,10 +115,15 @@ home-hero = Если бы Foobar2000 сделали в текущем году.
     .lede = Настольный музыкальный плеер для тех, у кого большая локальная коллекция с аккуратными тегами. Панели вы собираете сами, а тема — это один файл, который можно отдать другому. Нативно на Linux, macOS и Windows.
     .alt = rox с рабочим пространством по умолчанию в духе NekoRoX: медиатека, обложка, очередь и панель спектра
 
+# The three proof points under the hero's button. The number is formatted
+# by the page and comes first; these are the words under it.
+home-proof-window = от запуска до окна
+home-proof-memory = памяти при { $tracks } загруженных треках
+home-proof-license = свободный и открытый
+
 home-speed = Меньше секунды до окна
     .body = rox поставляется одним бинарником и запускается раньше, чем вы отпустите мышь.
 
-home-features = Что внутри
 
 home-plugins-eyebrow = Плагины
 home-plugins = И всё остальное

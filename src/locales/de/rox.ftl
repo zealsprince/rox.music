@@ -100,10 +100,15 @@ home-hero = Der Medienplayer von heute, nicht von gestern.
     .lede = Ein Desktop-Musikplayer für Leute mit großen, sorgfältig getaggten lokalen Sammlungen. Die Oberfläche baust du dir selbst aus Panels zusammen, und ein ganzes Theme passt in eine Datei zum Weitergeben. Nativ auf Linux, macOS und Windows.
     .alt = rox mit der NekoRoX-artigen Standard-Arbeitsfläche: Bibliothek, Cover, Warteschlange und ein Spektrum-Panel
 
+# The three proof points under the hero's button. The number is formatted
+# by the page and comes first; these are the words under it.
+home-proof-window = vom Start bis zum Fenster
+home-proof-memory = Arbeitsspeicher bei { $tracks } geladenen Titeln
+home-proof-license = frei und quelloffen
+
 home-speed = Ein Fenster in unter einer Sekunde
     .body = rox ist eine einzige Binärdatei und startet, bevor du die Maus losgelassen hast.
 
-home-features = Was drinsteckt
 
 home-plugins-eyebrow = Plugins
 home-plugins = Und für alles andere

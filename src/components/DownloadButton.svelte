@@ -8,9 +8,11 @@
 
   interface Props {
     release: Release
+    /** Centre the button and its lines, for a hero that is centred itself. */
+    centered?: boolean
   }
 
-  const { release }: Props = $props()
+  const { release, centered = false }: Props = $props()
 
   const { t } = i18n()
 
@@ -27,7 +29,7 @@
   const detectedTemplate = t('download-cta-detected', { platform: '%s' })
 </script>
 
-<div class="wrap">
+<div class="wrap" class:centered>
   <a
     class="primary plain"
     href={fallbackHref}
@@ -72,6 +74,11 @@
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-sm);
+  }
+
+  .centered {
+    align-items: center;
+    text-align: center;
   }
 
   .primary {

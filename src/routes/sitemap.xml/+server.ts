@@ -40,7 +40,7 @@ function shot(id: string): string {
 // and for a player whose whole pitch is how it looks, an image listing is worth
 // as much as the page listing. Download carries none: it has no screenshots.
 const PATHS = [
-  { path: '/', priority: '1.0', changefreq: 'monthly', images: ['hero'] },
+  { path: '/', priority: '1.0', changefreq: 'monthly', images: ['default', 'foobar', 'plugins'] },
   { path: '/download', priority: '0.9', changefreq: 'weekly', images: [] },
   {
     path: '/workspaces',

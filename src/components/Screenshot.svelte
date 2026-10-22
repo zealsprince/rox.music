@@ -12,6 +12,12 @@
     /** Only the hero should be eager. Everything else waits. */
     priority?: boolean
     /**
+     * Fetch with the page but at normal priority. For the marquee, whose
+     * slides move into view on their own and would otherwise pop in one by
+     * one as the lazy threshold catches up.
+     */
+    eager?: boolean
+    /**
      * The source shot is light rather than dark. Only matters for shots with no
      * light variant, where it flips which page theme gets the mat.
      */
@@ -23,6 +29,7 @@
     alt,
     sizes = '100vw',
     priority = false,
+    eager = false,
     lightSource = false,
   }: Props = $props()
 
@@ -80,7 +87,7 @@
     height={entry.height}
     class:matted={!entry.lightPath && !lightSource}
     class:matted-light={!entry.lightPath && lightSource}
-    loading={priority ? 'eager' : 'lazy'}
+    loading={priority || eager ? 'eager' : 'lazy'}
     fetchpriority={priority ? 'high' : 'auto'}
     decoding={priority ? 'sync' : 'async'}
   />

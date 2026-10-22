@@ -71,6 +71,9 @@
 <style>
   .wrap {
     display: inline-flex;
+    /* A flex row with long copy beside it would otherwise squeeze the mark
+       down to nothing, since the global svg rule lets it shrink. */
+    flex: none;
     /* Optical, not metric: flex-start puts the icon's box at the top of the
        line box, which is above the cap height of the words next to it. */
     margin-top: 0.2em;

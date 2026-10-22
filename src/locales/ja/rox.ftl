@@ -97,10 +97,15 @@ home-hero = Foobar2000 が今の時代に作られていたら。
     .lede = 大きく、丁寧にタグ付けされたローカルライブラリを持つ人のためのデスクトップ音楽プレイヤー。パネルは自分で組み、テーマは 1 つのファイルとして誰かに渡せます。Linux、macOS、Windows でネイティブ。
     .alt = NekoRoX 風の既定ワークスペースで動く rox。ライブラリ、カバーアート、キュー、スペクトラムパネルが並んでいる
 
+# The three proof points under the hero's button. The number is formatted
+# by the page and comes first; these are the words under it.
+home-proof-window = 起動からウィンドウ表示まで
+home-proof-memory = のメモリ使用量（{ $tracks } 曲を読み込んだ状態）
+home-proof-license = フリーかつオープンソース
+
 home-speed = ウィンドウが出るまで 1 秒未満
     .body = rox はバイナリ 1 つで、マウスから指を離すより先に起動します。
 
-home-features = 中身
 
 home-plugins-eyebrow = プラグイン
 home-plugins = ほかの全部のために
