@@ -895,13 +895,26 @@
     "tag": "v1.32.0",
     "publishedAt": "2026-10-20T15:22:19Z",
     "counts": {
-      "linux-archive": 21,
+      "linux-archive": 24,
       "linux-alt": 9,
-      "linux-appimage": 9,
-      "linux-flatpak": 6,
-      "macos-archive": 4,
-      "windows-archive": 15,
-      "windows-alt": 13
+      "linux-appimage": 14,
+      "linux-flatpak": 11,
+      "macos-archive": 7,
+      "windows-archive": 29,
+      "windows-alt": 18
+    }
+  },
+  {
+    "tag": "v1.33.0",
+    "publishedAt": "2026-10-22T22:21:03Z",
+    "counts": {
+      "linux-archive": 9,
+      "linux-alt": 4,
+      "linux-appimage": 2,
+      "linux-flatpak": 0,
+      "macos-archive": 0,
+      "windows-archive": 5,
+      "windows-alt": 4
     }
   }
 ]

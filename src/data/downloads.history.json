@@ -657,6 +657,19 @@
         "windows-archive": 678,
         "windows-alt": 357
       }
+    },
+    {
+      "date": "2026-10-23",
+      "total": 1944,
+      "channels": {
+        "linux-archive": 317,
+        "linux-alt": 133,
+        "linux-appimage": 133,
+        "linux-flatpak": 72,
+        "macos-archive": 226,
+        "windows-archive": 697,
+        "windows-alt": 366
+      }
     }
   ]
 }
