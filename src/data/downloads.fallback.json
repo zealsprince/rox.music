@@ -884,7 +884,7 @@
     "counts": {
       "linux-archive": 35,
       "linux-alt": 9,
-      "linux-appimage": 15,
+      "linux-appimage": 16,
       "linux-flatpak": 5,
       "macos-archive": 9,
       "windows-archive": 18,
@@ -908,13 +908,13 @@
     "tag": "v1.33.0",
     "publishedAt": "2026-10-22T22:21:03Z",
     "counts": {
-      "linux-archive": 12,
-      "linux-alt": 16,
-      "linux-appimage": 9,
-      "linux-flatpak": 1,
-      "macos-archive": 3,
-      "windows-archive": 18,
-      "windows-alt": 18
+      "linux-archive": 21,
+      "linux-alt": 30,
+      "linux-appimage": 16,
+      "linux-flatpak": 4,
+      "macos-archive": 4,
+      "windows-archive": 30,
+      "windows-alt": 27
     }
   }
 ]
