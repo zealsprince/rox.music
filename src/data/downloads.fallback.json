@@ -908,13 +908,13 @@
     "tag": "v1.33.0",
     "publishedAt": "2026-10-22T22:21:03Z",
     "counts": {
-      "linux-archive": 23,
-      "linux-alt": 39,
-      "linux-appimage": 19,
-      "linux-flatpak": 6,
+      "linux-archive": 26,
+      "linux-alt": 42,
+      "linux-appimage": 22,
+      "linux-flatpak": 7,
       "macos-archive": 6,
-      "windows-archive": 42,
-      "windows-alt": 30
+      "windows-archive": 53,
+      "windows-alt": 38
     }
   }
 ]
