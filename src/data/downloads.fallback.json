@@ -888,7 +888,7 @@
       "linux-flatpak": 5,
       "macos-archive": 10,
       "windows-archive": 18,
-      "windows-alt": 9
+      "windows-alt": 10
     }
   },
   {
@@ -908,13 +908,13 @@
     "tag": "v1.33.0",
     "publishedAt": "2026-10-22T22:21:03Z",
     "counts": {
-      "linux-archive": 46,
-      "linux-alt": 57,
-      "linux-appimage": 34,
-      "linux-flatpak": 13,
-      "macos-archive": 20,
-      "windows-archive": 82,
-      "windows-alt": 58
+      "linux-archive": 47,
+      "linux-alt": 60,
+      "linux-appimage": 37,
+      "linux-flatpak": 16,
+      "macos-archive": 22,
+      "windows-archive": 92,
+      "windows-alt": 65
     }
   }
 ]
