@@ -27,7 +27,7 @@
     "tag": "v1.2.0",
     "publishedAt": "2026-07-21T23:01:20Z",
     "counts": {
-      "linux-archive": 3,
+      "linux-archive": 4,
       "windows-archive": 3
     }
   },
@@ -35,7 +35,7 @@
     "tag": "v1.2.1",
     "publishedAt": "2026-07-22T06:09:23Z",
     "counts": {
-      "linux-archive": 2,
+      "linux-archive": 3,
       "windows-archive": 2
     }
   },
@@ -67,7 +67,7 @@
     "tag": "v1.5.0",
     "publishedAt": "2026-07-26T06:59:01Z",
     "counts": {
-      "linux-archive": 9,
+      "linux-archive": 10,
       "windows-archive": 7
     }
   },
@@ -108,7 +108,7 @@
     "tag": "v1.7.0",
     "publishedAt": "2026-08-01T07:18:00Z",
     "counts": {
-      "linux-archive": 3,
+      "linux-archive": 4,
       "macos-archive": 1,
       "windows-archive": 5
     }
@@ -234,7 +234,7 @@
     "tag": "v1.16.0",
     "publishedAt": "2026-08-10T23:19:26Z",
     "counts": {
-      "linux-archive": 9,
+      "linux-archive": 10,
       "macos-archive": 6,
       "windows-archive": 15
     }
@@ -252,7 +252,7 @@
     "tag": "v1.18.0",
     "publishedAt": "2026-08-14T23:38:35Z",
     "counts": {
-      "linux-archive": 2,
+      "linux-archive": 3,
       "macos-archive": 4,
       "windows-archive": 2
     }
@@ -279,7 +279,7 @@
     "tag": "v1.19.0",
     "publishedAt": "2026-08-26T00:36:02Z",
     "counts": {
-      "linux-archive": 11,
+      "linux-archive": 12,
       "macos-archive": 4,
       "windows-archive": 13
     }
@@ -308,7 +308,7 @@
     "tag": "v1.22.0",
     "publishedAt": "2026-08-28T18:24:08Z",
     "counts": {
-      "linux-archive": 3,
+      "linux-archive": 4,
       "linux-alt": 1,
       "macos-archive": 2,
       "windows-archive": 2,
@@ -330,7 +330,7 @@
     "tag": "v1.23.1",
     "publishedAt": "2026-08-28T20:31:48Z",
     "counts": {
-      "linux-archive": 3,
+      "linux-archive": 4,
       "linux-alt": 1,
       "macos-archive": 2,
       "windows-archive": 1,
@@ -363,7 +363,7 @@
     "tag": "v1.23.4",
     "publishedAt": "2026-08-29T05:36:44Z",
     "counts": {
-      "linux-archive": 5,
+      "linux-archive": 6,
       "linux-alt": 3,
       "macos-archive": 4,
       "windows-archive": 6,
@@ -396,7 +396,7 @@
     "tag": "v1.24.0",
     "publishedAt": "2026-09-03T22:27:28Z",
     "counts": {
-      "linux-archive": 11,
+      "linux-archive": 12,
       "linux-alt": 6,
       "macos-archive": 9,
       "windows-archive": 23,
@@ -429,7 +429,7 @@
     "tag": "v1.26.0",
     "publishedAt": "2026-09-08T02:34:31Z",
     "counts": {
-      "linux-archive": 3,
+      "linux-archive": 4,
       "linux-alt": 1,
       "macos-archive": 1,
       "windows-archive": 1,
@@ -506,7 +506,7 @@
     "tag": "v1.28.0-rc.1",
     "publishedAt": "2026-09-20T04:48:47Z",
     "counts": {
-      "linux-archive": 3,
+      "linux-archive": 4,
       "linux-alt": 2,
       "linux-appimage": 3,
       "linux-flatpak": 4,
@@ -519,7 +519,7 @@
     "tag": "v1.28.0-rc.2",
     "publishedAt": "2026-09-20T06:53:47Z",
     "counts": {
-      "linux-archive": 2,
+      "linux-archive": 3,
       "linux-alt": 1,
       "linux-appimage": 3,
       "linux-flatpak": 4,
@@ -584,7 +584,7 @@
     "tag": "v1.28.4",
     "publishedAt": "2026-09-23T16:20:19Z",
     "counts": {
-      "linux-archive": 6,
+      "linux-archive": 7,
       "linux-alt": 2,
       "linux-appimage": 3,
       "linux-flatpak": 5,
@@ -597,7 +597,7 @@
     "tag": "v1.28.5",
     "publishedAt": "2026-09-24T19:31:47Z",
     "counts": {
-      "linux-archive": 5,
+      "linux-archive": 6,
       "linux-alt": 2,
       "linux-appimage": 1,
       "linux-flatpak": 3,
@@ -623,7 +623,7 @@
     "tag": "v1.29.0-rc.1",
     "publishedAt": "2026-09-29T21:18:02Z",
     "counts": {
-      "linux-archive": 3,
+      "linux-archive": 4,
       "linux-alt": 2,
       "linux-appimage": 2,
       "linux-flatpak": 3,
@@ -649,7 +649,7 @@
     "tag": "v1.29.1",
     "publishedAt": "2026-10-01T05:28:40Z",
     "counts": {
-      "linux-archive": 10,
+      "linux-archive": 11,
       "linux-alt": 3,
       "linux-appimage": 6,
       "linux-flatpak": 5,
@@ -675,7 +675,7 @@
     "tag": "v1.29.3",
     "publishedAt": "2026-10-02T20:20:01Z",
     "counts": {
-      "linux-archive": 2,
+      "linux-archive": 3,
       "linux-alt": 4,
       "linux-appimage": 2,
       "macos-archive": 1,
@@ -687,7 +687,7 @@
     "tag": "v1.29.4",
     "publishedAt": "2026-10-03T05:55:51Z",
     "counts": {
-      "linux-archive": 3,
+      "linux-archive": 4,
       "linux-alt": 5,
       "linux-appimage": 6,
       "linux-flatpak": 3,
@@ -700,7 +700,7 @@
     "tag": "v1.30.0",
     "publishedAt": "2026-10-04T00:14:41Z",
     "counts": {
-      "linux-archive": 5,
+      "linux-archive": 6,
       "linux-alt": 2,
       "linux-appimage": 2,
       "linux-flatpak": 2,
@@ -739,7 +739,7 @@
     "tag": "v1.30.3",
     "publishedAt": "2026-10-05T17:01:53Z",
     "counts": {
-      "linux-archive": 3,
+      "linux-archive": 4,
       "linux-alt": 3,
       "linux-appimage": 3,
       "linux-flatpak": 3,
@@ -752,7 +752,7 @@
     "tag": "v1.30.4",
     "publishedAt": "2026-10-06T00:35:22Z",
     "counts": {
-      "linux-archive": 6,
+      "linux-archive": 7,
       "linux-alt": 4,
       "linux-appimage": 4,
       "linux-flatpak": 4,
@@ -765,13 +765,13 @@
     "tag": "v1.30.5",
     "publishedAt": "2026-10-07T01:33:55Z",
     "counts": {
-      "linux-archive": 4,
-      "linux-alt": 1,
+      "linux-archive": 5,
+      "linux-alt": 2,
       "linux-appimage": 2,
       "linux-flatpak": 4,
       "macos-archive": 4,
       "windows-archive": 3,
-      "windows-alt": 3
+      "windows-alt": 4
     }
   },
   {
@@ -783,7 +783,7 @@
       "linux-appimage": 6,
       "linux-flatpak": 3,
       "macos-archive": 6,
-      "windows-archive": 11,
+      "windows-archive": 12,
       "windows-alt": 9
     }
   },
@@ -804,7 +804,7 @@
     "tag": "v1.30.8",
     "publishedAt": "2026-10-08T05:08:05Z",
     "counts": {
-      "linux-archive": 7,
+      "linux-archive": 8,
       "linux-alt": 3,
       "linux-appimage": 6,
       "linux-flatpak": 4,
@@ -817,7 +817,7 @@
     "tag": "v1.30.9",
     "publishedAt": "2026-10-08T18:29:31Z",
     "counts": {
-      "linux-archive": 3,
+      "linux-archive": 4,
       "linux-alt": 3,
       "linux-appimage": 6,
       "linux-flatpak": 3,
@@ -830,7 +830,7 @@
     "tag": "v1.30.10",
     "publishedAt": "2026-10-08T21:05:09Z",
     "counts": {
-      "linux-archive": 6,
+      "linux-archive": 7,
       "linux-alt": 6,
       "linux-appimage": 3,
       "linux-flatpak": 6,
@@ -843,7 +843,7 @@
     "tag": "v1.30.11",
     "publishedAt": "2026-10-09T18:01:47Z",
     "counts": {
-      "linux-archive": 4,
+      "linux-archive": 5,
       "linux-alt": 2,
       "linux-appimage": 4,
       "linux-flatpak": 3,
@@ -869,7 +869,7 @@
     "tag": "v1.30.13",
     "publishedAt": "2026-10-10T04:26:19Z",
     "counts": {
-      "linux-archive": 30,
+      "linux-archive": 31,
       "linux-alt": 16,
       "linux-appimage": 36,
       "linux-flatpak": 13,
@@ -882,7 +882,7 @@
     "tag": "v1.31.0",
     "publishedAt": "2026-10-17T23:53:54Z",
     "counts": {
-      "linux-archive": 37,
+      "linux-archive": 39,
       "linux-alt": 11,
       "linux-appimage": 19,
       "linux-flatpak": 8,
@@ -895,10 +895,10 @@
     "tag": "v1.32.0",
     "publishedAt": "2026-10-20T15:22:19Z",
     "counts": {
-      "linux-archive": 25,
+      "linux-archive": 27,
       "linux-alt": 11,
       "linux-appimage": 16,
-      "linux-flatpak": 13,
+      "linux-flatpak": 14,
       "macos-archive": 9,
       "windows-archive": 33,
       "windows-alt": 21
@@ -908,7 +908,7 @@
     "tag": "v1.33.0",
     "publishedAt": "2026-10-22T22:21:03Z",
     "counts": {
-      "linux-archive": 61,
+      "linux-archive": 62,
       "linux-alt": 68,
       "linux-appimage": 47,
       "linux-flatpak": 24,
@@ -921,7 +921,7 @@
     "tag": "v1.34.0",
     "publishedAt": "2026-11-02T16:19:23Z",
     "counts": {
-      "linux-archive": 23,
+      "linux-archive": 24,
       "linux-alt": 8,
       "linux-appimage": 7,
       "macos-archive": 6,
@@ -959,7 +959,7 @@
     "publishedAt": "2026-11-14T04:27:55Z",
     "counts": {
       "linux-archive": 21,
-      "linux-alt": 10,
+      "linux-alt": 11,
       "linux-appimage": 9,
       "linux-flatpak": 2,
       "macos-archive": 4,
@@ -984,13 +984,13 @@
     "tag": "v1.35.1",
     "publishedAt": "2026-11-14T22:54:27Z",
     "counts": {
-      "linux-archive": 22,
-      "linux-alt": 11,
-      "linux-appimage": 13,
+      "linux-archive": 26,
+      "linux-alt": 12,
+      "linux-appimage": 14,
       "linux-flatpak": 2,
-      "macos-archive": 4,
-      "windows-archive": 21,
-      "windows-alt": 6
+      "macos-archive": 5,
+      "windows-archive": 30,
+      "windows-alt": 16
     }
   }
 ]
