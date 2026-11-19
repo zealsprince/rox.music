@@ -925,7 +925,7 @@
       "linux-alt": 8,
       "linux-appimage": 7,
       "macos-archive": 6,
-      "windows-archive": 13,
+      "windows-archive": 14,
       "windows-alt": 8
     }
   },
@@ -959,7 +959,7 @@
     "publishedAt": "2026-11-14T04:27:55Z",
     "counts": {
       "linux-archive": 21,
-      "linux-alt": 11,
+      "linux-alt": 12,
       "linux-appimage": 9,
       "linux-flatpak": 2,
       "macos-archive": 4,
@@ -984,13 +984,13 @@
     "tag": "v1.35.1",
     "publishedAt": "2026-11-14T22:54:27Z",
     "counts": {
-      "linux-archive": 35,
-      "linux-alt": 17,
-      "linux-appimage": 14,
-      "linux-flatpak": 2,
-      "macos-archive": 8,
-      "windows-archive": 38,
-      "windows-alt": 19
+      "linux-archive": 42,
+      "linux-alt": 20,
+      "linux-appimage": 18,
+      "linux-flatpak": 4,
+      "macos-archive": 13,
+      "windows-archive": 44,
+      "windows-alt": 25
     }
   }
 ]
