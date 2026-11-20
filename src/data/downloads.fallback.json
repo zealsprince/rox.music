@@ -984,13 +984,13 @@
     "tag": "v1.35.1",
     "publishedAt": "2026-11-14T22:54:27Z",
     "counts": {
-      "linux-archive": 42,
-      "linux-alt": 20,
-      "linux-appimage": 18,
-      "linux-flatpak": 4,
-      "macos-archive": 13,
-      "windows-archive": 44,
-      "windows-alt": 25
+      "linux-archive": 44,
+      "linux-alt": 25,
+      "linux-appimage": 20,
+      "linux-flatpak": 6,
+      "macos-archive": 15,
+      "windows-archive": 56,
+      "windows-alt": 26
     }
   }
 ]
