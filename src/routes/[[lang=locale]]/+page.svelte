@@ -90,6 +90,14 @@
   ]
 
   /**
+   * How wide a story's shot is drawn, for the browser to pick a file by. A
+   * wide story's fills the shell and one beside its features gets half. Too
+   * small a claim here and the browser stretches a 640px file across the page.
+   */
+  const SIZES_SHELL = '(min-width: 1180px) 1116px, (min-width: 48rem) calc(100vw - 4rem), calc(100vw - 2.5rem)'
+  const SIZES_HALF = '(min-width: 64rem) 38rem, (min-width: 48rem) calc(100vw - 4rem), calc(100vw - 2.5rem)'
+
+  /**
    * What comes into rox and what goes out of it, on one line through the
    * mark: the sources on the left feeding in, the socket, the MCP proxy and
    * the Icecast source on the right fed from it. Each side is a feature group
@@ -235,7 +243,7 @@
             <Screenshot
               id={story.visual.id}
               alt={t(story.visual.alt)}
-              sizes="(min-width: 64rem) 38rem, (min-width: 48rem) calc(100vw - 4rem), calc(100vw - 2.5rem)"
+              sizes={story.wide ? SIZES_SHELL : SIZES_HALF}
             />
           </a>
         {:else if story.visual.kind === 'grid'}

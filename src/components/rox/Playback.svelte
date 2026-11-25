@@ -15,8 +15,8 @@
    * The spectrum moves in CSS alone, on a drum kit's worth of rhythm: the
    * bass pumps on every beat, the mids snap on the backbeat with a small hit
    * in between, the top flickers at twice the beat like hats, and every cap
-   * jumps to its bar's hit and falls until the next. The volume slider scales
-   * the whole picture and each equalizer band scales the bars in its octave,
+   * jumps to its bar's hit and falls until the next. The volume slider moves
+   * every bar's level and each equalizer band moves the bars in its octave,
    * through custom properties the sliders set on the frame around them.
    */
   interface Props {
@@ -99,8 +99,6 @@
       band,
       hit,
       low,
-      cap: clamp(hit + 0.02, 0, 1),
-      capLow: clamp(hit - 0.06, 0, 1),
       cycle: cycle.toFixed(2),
       phase: phase.toFixed(2),
     }
@@ -141,6 +139,8 @@
   })
 
   const pct = (v: number): string => `${(v * 100).toFixed(1)}%`
+  /** A level as a bare number, which is what the CSS does its sums on. */
+  const share = (v: number): string => v.toFixed(3)
   const SEEK_STEPS = 1000
 </script>
 
@@ -191,8 +191,8 @@
       {#each SPECTRUM as bar, i (i)}
         <span
           class="bar {bar.drum}"
-          style:--hit={pct(1 - bar.hit)}
-          style:--low={pct(1 - bar.low)}
+          style:--hit={share(bar.hit)}
+          style:--low={share(bar.low)}
           style:--gain="var(--band-{bar.band}-value, 0)"
           style:animation-duration="{bar.cycle}s"
           style:animation-delay="{bar.phase}s"
@@ -203,8 +203,7 @@
       {#each SPECTRUM as bar, i (i)}
         <span
           class="hold {bar.drum}"
-          style:--cap={pct(bar.cap)}
-          style:--cap-low={pct(bar.capLow)}
+          style:--hit={share(bar.hit)}
           style:--gain="var(--band-{bar.band}-value, 0)"
           style:animation-duration="{bar.cycle}s"
           style:animation-delay="{bar.phase}s"
@@ -315,8 +314,6 @@
     color: var(--text-faint);
   }
 
-  /* The whole picture scales with the volume slider, from the floor, with
-     the slider's starting 75% as the drawn size. */
   .bars,
   .holds {
     position: absolute;
@@ -324,32 +321,46 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    transform: scaleY(calc(var(--volume-share, 0.75) / 0.75));
-    transform-origin: bottom;
   }
 
-  /* And each bar scales with its own equalizer band: 12 dB either way is
-     sixty percent taller or shorter, which is what a boost looks like on a
-     meter rather than what it measures. */
+  /* The sliders move a bar's level, never its box, so the blocks and caps
+     keep their size. --k is the volume against its drawn 75%, times the
+     bar's equalizer band: 12 dB either way is sixty percent taller or
+     shorter, which is what a boost looks like on a meter rather than what
+     it measures.
+
+     A cut multiplies the level. A boost grows it into the headroom it has
+     left, level * k / (1 + (k - 1) * level), which tops out at exactly the
+     panel's height: a plain multiply sends every tall bar off the top. */
   .bar,
   .hold {
+    --k: calc(var(--volume-share, 0.75) / 0.75 * (1 + var(--gain, 0) / 20));
+    --cut: min(1, var(--k));
+    --boost: max(1, var(--k));
+    --hit-level: calc(
+      100% * var(--cut) * var(--boost) * var(--hit) / (1 + (var(--boost) - 1) * var(--hit))
+    );
+
     width: 0.1875em;
     flex: none;
-    transform: scaleY(calc(1 + var(--gain, 0) / 20));
-    transform-origin: bottom;
   }
 
   /* A full-height bar in 3px blocks on 1px gaps, cut from the top to its
-     level. Clipping rather than scaling keeps the blocks square while it
-     moves. Every drum rises fast and falls slow, the way a meter does. */
+     level. Every drum rises fast and falls slow, the way a meter does. */
   .bar {
+    --low-level: calc(
+      100% * var(--cut) * var(--boost) * var(--low) / (1 + (var(--boost) - 1) * var(--low))
+    );
+    --hit-at: calc(100% - var(--hit-level));
+    --low-at: calc(100% - var(--low-level));
+
     height: 100%;
     background: repeating-linear-gradient(
       to top,
       var(--text-faint) 0 0.1875em,
       transparent 0.1875em 0.25em
     );
-    clip-path: inset(var(--low) 0 0 0);
+    clip-path: inset(var(--low-at) 0 0 0);
     animation: kick ease-out infinite;
   }
 
@@ -363,56 +374,56 @@
 
   @keyframes kick {
     0% {
-      clip-path: inset(var(--low) 0 0 0);
+      clip-path: inset(var(--low-at) 0 0 0);
     }
 
     12% {
-      clip-path: inset(var(--hit) 0 0 0);
+      clip-path: inset(var(--hit-at) 0 0 0);
     }
 
     100% {
-      clip-path: inset(var(--low) 0 0 0);
+      clip-path: inset(var(--low-at) 0 0 0);
     }
   }
 
   /* Two beats long: a small hit on the one, the full hit on the two. */
   @keyframes snare {
     0% {
-      clip-path: inset(var(--low) 0 0 0);
+      clip-path: inset(var(--low-at) 0 0 0);
     }
 
     6% {
-      clip-path: inset(calc(var(--low) * 0.6 + var(--hit) * 0.4) 0 0 0);
+      clip-path: inset(calc(var(--low-at) * 0.6 + var(--hit-at) * 0.4) 0 0 0);
     }
 
     45% {
-      clip-path: inset(var(--low) 0 0 0);
+      clip-path: inset(var(--low-at) 0 0 0);
     }
 
     50% {
-      clip-path: inset(var(--low) 0 0 0);
+      clip-path: inset(var(--low-at) 0 0 0);
     }
 
     56% {
-      clip-path: inset(var(--hit) 0 0 0);
+      clip-path: inset(var(--hit-at) 0 0 0);
     }
 
     100% {
-      clip-path: inset(var(--low) 0 0 0);
+      clip-path: inset(var(--low-at) 0 0 0);
     }
   }
 
   @keyframes hat {
     0% {
-      clip-path: inset(var(--low) 0 0 0);
+      clip-path: inset(var(--low-at) 0 0 0);
     }
 
     25% {
-      clip-path: inset(var(--hit) 0 0 0);
+      clip-path: inset(var(--hit-at) 0 0 0);
     }
 
     100% {
-      clip-path: inset(var(--low) 0 0 0);
+      clip-path: inset(var(--low-at) 0 0 0);
     }
   }
 
@@ -420,7 +431,12 @@
     pointer-events: none;
   }
 
+  /* The cap rides just over its bar's hit and falls a little under it. At
+     the top it sits in the panel's own inset, so it never leaves the box. */
   .hold {
+    --cap: min(100%, calc(var(--hit-level) + 2%));
+    --cap-low: max(0%, calc(var(--hit-level) - 6%));
+
     position: relative;
     height: 100%;
   }
@@ -518,6 +534,8 @@
     padding-inline: 0.5em;
     cursor: pointer;
     user-select: none;
+    /* A sideways drag is a scrub, not the page panning. */
+    touch-action: pan-y;
   }
 
   /* The Default look: amber bars with the loudness band a shade apart

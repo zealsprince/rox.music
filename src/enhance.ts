@@ -240,19 +240,37 @@ function wireSliders(): void {
   for (const input of sliders)
     input.addEventListener('input', () => apply(input))
 
-  // The waveform is a seek strip too: a press anywhere on it moves the seek
-  // slider there, and the slider does the rest.
+  // The waveform is a seek strip too: a press or a drag anywhere on it moves
+  // the seek slider there, and the slider does the rest.
   for (const wave of document.querySelectorAll<HTMLElement>('[data-waveform]')) {
-    wave.addEventListener('pointerdown', (event) => {
+    const seekTo = (event: PointerEvent): void => {
       const seek = wave.closest('[data-live]')?.querySelector<HTMLInputElement>('input[data-kind="seek"]')
       if (!seek)
         return
+
       const box = wave.getBoundingClientRect()
       const share = Math.min(1, Math.max(0, (event.clientX - box.left) / box.width))
       const min = Number(seek.min || 0)
       const max = Number(seek.max || 100)
       seek.value = String(min + share * (max - min))
       apply(seek)
+    }
+
+    wave.addEventListener('pointerdown', (event) => {
+      if (event.button !== 0)
+        return
+
+      // Captured, so the drag keeps scrubbing past the strip's ends, and
+      // the release ends it wherever it lands. No default, or the drag
+      // starts selecting the page once it leaves the panel.
+      event.preventDefault()
+      wave.setPointerCapture(event.pointerId)
+      seekTo(event)
+    })
+
+    wave.addEventListener('pointermove', (event) => {
+      if (wave.hasPointerCapture(event.pointerId))
+        seekTo(event)
     })
   }
 }
