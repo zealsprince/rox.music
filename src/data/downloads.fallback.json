@@ -997,12 +997,12 @@
     "tag": "v1.36.0",
     "publishedAt": "2026-11-24T07:16:50Z",
     "counts": {
-      "linux-archive": 45,
-      "linux-alt": 10,
-      "linux-appimage": 8,
-      "linux-flatpak": 6,
+      "linux-archive": 48,
+      "linux-alt": 11,
+      "linux-appimage": 12,
+      "linux-flatpak": 7,
       "macos-archive": 16,
-      "windows-archive": 38,
+      "windows-archive": 49,
       "windows-alt": 26
     }
   }
